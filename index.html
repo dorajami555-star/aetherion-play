@@ -2985,6 +2985,107 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-pdet{height:clamp(66px,18dvh,112px)}.az-ptop{height:clamp(38px,10dvh,56px)}.az-tabs2 button{height:clamp(38px,9.4dvh,50px)}
 .az-pdet{overflow:hidden}.az-pdet .az-dt-ic{display:block;height:calc(clamp(66px,18dvh,112px) - 14px);aspect-ratio:1.1;text-align:center}.az-pdet .az-dt-ic .az-chest{height:100%;width:auto}
 @media (max-height:470px){.az-pcrk{display:none}.az-pact small{font-size:11px}.az-pact>b{display:none}.az-pdet .az-dt-txt small{display:none}.az-pdet .az-dt-txt b{font-size:15px}.az-rw.big{width:clamp(32px,8.6dvh,42px)}.az-pbtn{height:clamp(34px,9dvh,42px)}}
+/* ---- defence log: filters, 4 fights a page, the chosen fight's details on the side; a designed empty state ---- */
+.az-dl{display:grid;grid-template-columns:clamp(170px,33%,290px) minmax(0,1fr);gap:8px;height:100%;direction:rtl}
+.az-lpanel{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:4px;min-height:0;padding:5px;border-radius:14px;background:linear-gradient(#0e1846e6,#070c28e6);border:1.5px solid var(--line)}
+.az-lfs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.az-lf{display:flex;align-items:center;justify-content:center;gap:5px;height:clamp(32px,8.6dvh,42px);border-radius:10px;font:inherit;font-size:clamp(12px,3.4dvh,14px);font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(#162460,#0b1338);border:1.5px solid rgba(110,130,210,.5);white-space:nowrap}
+.az-lf.win .azi{color:#4fe08a}.az-lf.loss .azi{color:#ff5a5a}.az-lf.all .azi{color:#ffd75a}.az-lf.win span{color:#9fffc4}.az-lf.loss span{color:#ff9a8a}
+.az-lf.on{background:linear-gradient(#ffe9a6,#e2a43a 55%,#a86a10);border-color:#fff2c0;color:#2a1800}.az-lf.on span{color:#2a1800}.az-lf.on .azi{color:#2a1800}
+.az-lrows{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:4px;min-height:0}
+.az-lr{container-type:size;min-height:0;display:grid;grid-template-columns:clamp(58px,17cqw,118px) minmax(0,1fr) 22px;align-items:stretch;gap:8px;padding:4px 6px 4px 4px;border-radius:12px;font:inherit;color:#fff;cursor:pointer;text-align:right;
+  background:linear-gradient(90deg,rgba(16,26,72,.95),rgba(20,32,86,.95));border:1.5px solid rgba(110,130,210,.35)}
+.az-lr.on{border-color:#ffd75a;box-shadow:0 0 0 1px #6a4206,0 0 14px rgba(255,200,80,.55)}
+.az-lres{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;border-radius:9px;line-height:1.05;text-align:center}
+.az-lres .azi{width:20px;height:20px}.az-lres b{font-size:clamp(14px,26cqh,20px)}.az-lres small{font-size:10.5px;color:#e8ecff}
+.az-lres.w{background:linear-gradient(#0f5a34,#08341f);color:#7dffb0;box-shadow:inset 0 0 0 1px #3fd27a}.az-lres.l{background:linear-gradient(#6a1420,#3a0a12);color:#ff8a8a;box-shadow:inset 0 0 0 1px #e8404f}
+.az-lmain{display:grid;grid-template-rows:auto minmax(0,1fr);gap:2px;min-width:0}
+.az-ltop{display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap}.az-ltop .pav{flex:none;width:24px!important;height:24px!important}
+.az-lname{min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:clamp(12px,22cqh,15px)}
+.az-ltop .az-pow b{font-size:12.5px}.az-lr .az-d{font-size:13px}.az-lago{margin-inline-start:auto;font-size:11px;color:#c8d2f0;flex:none}
+.az-lr .az-mons{--mt:clamp(22px,calc(100cqh - 30px),40px);gap:3px;justify-content:flex-start;align-items:center}
+.az-lchev{display:grid;place-items:center;align-self:center;width:22px;height:min(70%,36px);border-radius:7px;color:#ffd75a;border:1px solid rgba(226,184,87,.5)}
+@container (max-width:540px){.az-ltop .az-pow{display:none}}
+@container (max-height:68px){.az-lr .az-mt small,.az-lr .az-mt em{display:none}}
+@container (max-width:380px){.az-lres small{display:none}.az-lchev{display:none}.az-lr{grid-template-columns:58px minmax(0,1fr)}.az-ltop .az-pow{display:none}}
+.az-ldet{display:grid;grid-template-rows:auto auto auto auto auto auto minmax(0,1fr);gap:4px;align-content:start;min-height:0;padding:6px 8px;border-radius:14px;background:linear-gradient(#0e1846e6,#070c28e6);border:1.5px solid var(--line);overflow:hidden}
+.az-ldet.empty{grid-template-rows:auto 1fr auto;justify-items:center;text-align:center}.az-ldet.empty>b{justify-self:start}
+.az-lx{display:grid;place-items:center;color:rgba(226,184,87,.55)}.az-lx .azi{width:clamp(60px,22dvh,110px);height:auto;stroke-width:1.2}
+.az-ldet.empty small{font-size:13px;color:#e8ecff;line-height:1.4}
+.az-ldh{display:flex;align-items:center;justify-content:space-between}.az-ldh b{font-size:clamp(15px,4.4dvh,20px);color:#fff2c8}.az-ldh small{font-size:11px;color:#c8d2f0}
+.az-lsum{display:flex;align-items:center;gap:6px;padding:3px 8px;border-radius:10px}.az-lsum .azi{width:20px;height:20px}.az-lsum>b:first-of-type{flex:1;font-size:clamp(15px,4.4dvh,19px)}
+.az-lsum.w{background:linear-gradient(90deg,#0f5a34,#0a2a20);color:#7dffb0;border:1px solid #3fd27a}.az-lsum.l{background:linear-gradient(90deg,#6a1420,#2a0a12);color:#ff8a8a;border:1px solid #e8404f}
+.az-lsum .az-d{display:inline-flex;align-items:center;gap:3px;font-size:15px}.az-lsum .az-d .azi{width:16px;height:16px;color:#ffd75a}
+.az-lside{display:flex;align-items:center;justify-content:space-between;gap:6px}.az-lside .az-lwho small{font-size:10.5px;color:#ffd75a}.az-lside .az-lwho b{font-size:13px}.az-lside .pav{width:34px!important;height:34px!important}
+.az-lrk{display:flex;flex-direction:column;align-items:center;font-size:11px;line-height:1}.az-lrk .rankic{width:22px;height:22px}.az-lrk small{font-size:11px}
+.az-ldet{container-type:inline-size}.az-ldet .az-mons{--mt:clamp(24px,calc((100cqw - 30px) / 5),44px);justify-content:center;gap:3px}
+@container (max-width:215px){.az-ldet .az-mt small,.az-ldet .az-mt em{display:none}.az-lrk small{display:none}.az-ldh b{font-size:14px!important}.az-ldh small{font-size:10.5px}}
+.az-vs{display:flex;align-items:center;justify-content:center;gap:6px;color:#ffd75a;font-size:14px;line-height:1}.az-vs .azi{width:16px;height:16px}
+.az-lmine{display:flex;flex-direction:column;align-items:center;gap:2px}.az-lmine>small{font-size:11.5px;font-weight:800;color:#ffd75a}.az-lna{font-size:11.5px;color:#c8d2f0}
+.az-lbtns{display:flex;gap:5px;justify-content:center;align-self:end;flex-wrap:wrap}
+.az-lbtns .btn{display:inline-flex;align-items:center;gap:4px;min-height:0!important;height:clamp(32px,8.4dvh,40px);padding:0 10px!important;font-size:12.5px!important;white-space:nowrap}
+.az-lempty{position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto auto auto;justify-items:center;align-items:end;gap:3px;min-height:0;padding:6px 10px 8px;border-radius:12px;overflow:hidden;text-align:center;
+  background:linear-gradient(180deg,rgba(7,12,40,0) 45%,rgba(7,12,40,.92) 80%),var(--em,none) center 30% / cover no-repeat,#0b1338}
+.az-lem-art{height:100%}
+.az-lempty>b{font-size:clamp(16px,5dvh,24px);color:#ffd75a;text-shadow:0 2px 0 #000}
+.az-lempty>small{font-size:12.5px;color:#e8ecff;max-width:420px;line-height:1.35}
+.az-ledit{display:inline-flex;align-items:center;gap:8px;height:clamp(36px,10dvh,48px);padding:0 22px;border-radius:14px;font:inherit;font-size:clamp(14px,4.4dvh,18px);font-weight:900;color:#3a2200;cursor:pointer;
+  background:linear-gradient(#ffe9a6,#f0c048 50%,#c98a1c);border:2px solid #fff2c0;box-shadow:0 0 0 2px #6a4206,0 0 14px rgba(255,200,80,.5)}
+.az-ledit .azi{width:20px;height:20px}
+@media (max-height:400px){.az-lempty>small{display:none}.az-ldet .az-vs{display:none}.az-lside .az-lrk small{display:none}}
+.az-lwho{display:flex;align-items:center;gap:6px;min-width:0}.az-lwho>span{display:flex;flex-direction:column;min-width:0;line-height:1.15}.az-lwho b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.az-dl.open .az-ldet{background:linear-gradient(#101b4c,#080d2c)}
+.az-lclose{display:none;width:34px;height:34px;border-radius:50%;padding:0;font:inherit;font-weight:900;color:#fff;cursor:pointer;background:#0b1338;border:1.5px solid var(--gold)}
+@media (max-width:720px){.az-dl{grid-template-columns:1fr;position:relative}.az-dl .az-ldet{display:none}.az-dl.open .az-ldet{display:grid;position:absolute;inset:0;z-index:5;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+  .az-lclose{display:grid;place-items:center}.az-dl.open .az-ldet .az-mons{--mt:clamp(28px,calc((100cqw - 40px) / 5),44px)}.az-dl.open .az-ldet{container-type:inline-size}}
+/* ---- arena shop: item grid (3x2, 2x2 on small phones) with pages, the chosen item's panel (quantity, totals, buy), compact purchase windows ---- */
+.az-shop2{display:grid;grid-template-columns:clamp(176px,30%,250px) minmax(0,1fr);gap:8px;height:100%;direction:rtl}
+.az-spanel{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:5px;min-height:0;padding:6px;border-radius:14px;background:linear-gradient(#0e1846e6,#070c28e6);border:1.5px solid var(--line)}
+.az-spanel .az-shead{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.az-spanel .az-stitle{padding:2px 14px;font-size:clamp(16px,5dvh,22px)}
+.az-spanel .az-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;flex-direction:row}
+.az-spanel .az-cats button{justify-content:center;height:clamp(32px,8.6dvh,42px)}
+.az-spanel .az-items{grid-template-columns:repeat(var(--cols),minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}
+.az-it{font:inherit;color:#fff;cursor:pointer;grid-template-rows:auto auto minmax(0,1fr) auto auto;padding:3px 6px 5px}
+.az-it{overflow:hidden;min-height:0;container-type:size}.az-it .az-it-ic{height:auto;min-height:0;aspect-ratio:auto;display:grid;place-items:center}
+.az-it .az-it-ic img{height:clamp(26px,calc(100cqh - 62px),104px);width:auto;max-width:100%}
+.az-it .az-it-ic .qty{bottom:0;left:-4px}
+.az-it.on{border:2px solid #ffd75a;box-shadow:0 0 0 1px #6a4206,0 0 8px rgba(255,200,80,.35)}
+.az-itd{display:none;font-size:10.5px;color:#c8d2f0;line-height:1.2;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.az-itlim{font-size:10.5px!important;color:#9fe0ff!important}.az-itlim.red{color:#ff8a8a!important;font-weight:800}
+.az-it .az-price{height:clamp(26px,7dvh,36px);cursor:pointer}
+.az-it.poor .az-price{background:linear-gradient(#5a4a2a,#3a2e18);color:#ff9a8a;border-color:#a8805a;box-shadow:0 0 0 1.5px #3a2506;filter:none}   /* not enough glory: dark price, red number */
+.az-it.sold{opacity:.6;filter:grayscale(.55)}.az-it.sold .az-price{background:linear-gradient(#3a3f55,#23263a);color:#c8d2f0;border-color:#5a6080;box-shadow:none}
+.az-sempty{display:grid;place-items:center;align-content:center;gap:6px;text-align:center;border-radius:12px;background:radial-gradient(circle at 50% 40%,#1a2a6a,#0a1236)}
+.az-sempty img{width:clamp(48px,16dvh,90px);opacity:.85;filter:drop-shadow(0 0 12px rgba(120,160,255,.5))}.az-sempty b{font-size:clamp(16px,5dvh,22px);color:#ffd75a}.az-sempty small{font-size:12.5px;color:#e8ecff}
+.az-sdet{container-type:inline-size;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto auto auto auto;gap:4px;min-height:0;padding:6px 8px;border-radius:14px;background:linear-gradient(#0e1846e6,#070c28e6);border:1.5px solid var(--line);text-align:center}
+.az-sdet.empty{place-items:center;color:#c8d2f0;font-size:13px}
+.az-sdn{font-size:clamp(15px,4.6dvh,20px);color:#fff2c8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.az-sdi{display:grid;place-items:center;min-height:0;border-radius:10px;background:radial-gradient(circle at 50% 45%,#3a2a7a,#0a1030 70%);border:1px solid rgba(226,184,87,.45);overflow:hidden}.az-sdi img{max-height:100%;max-width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box}
+.az-sdd{font-size:11px;color:#e8ecff;line-height:1.3}
+.az-slim{display:flex;flex-direction:column;align-items:center;padding:2px 6px;border-radius:8px;background:#0a1030;border:1px solid rgba(226,184,87,.45);line-height:1.2}.az-slim b{font-size:11.5px;color:#ffd75a}.az-slim small{font-size:11px;color:#e8ecff}
+.az-slim.red{border-color:#e8404f}.az-slim.red small{color:#ff8a8a;font-weight:800}
+.az-qty{display:grid;grid-template-columns:36px 1fr 36px auto;gap:4px;align-items:center;direction:rtl}
+.az-qty button{height:34px;border-radius:8px;font:inherit;font-size:18px;font-weight:900;color:#fff;cursor:pointer;background:linear-gradient(#2c5ad8,#1a3a9a);border:1px solid #8fb0ff;padding:0}
+.az-qty .az-max{padding:0 8px;font-size:13px;background:linear-gradient(#2c5ad8,#1a3a9a)}.az-qty button:disabled{opacity:.4;cursor:default}
+.az-qty>b{display:grid;place-items:center;height:34px;border-radius:8px;background:#0a1030;border:1px solid rgba(110,130,210,.5);font-size:16px}
+.az-sums{display:flex;flex-direction:column;gap:2px}
+.az-sums span,.az-brow{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:1px 6px;border-radius:6px;background:rgba(10,16,48,.7);font-size:11.5px;color:#c8d2f0}
+.az-sums b,.az-brow b{display:inline-flex;align-items:center;gap:3px;font-size:13px;color:#fff}.az-sums b img,.az-brow b img{width:16px;height:16px}.az-sums i,.az-brow i{font-style:normal}
+.az-sums b.pos,.az-brow b.pos{color:#6dff9c}.az-sums b.neg,.az-brow b.neg{color:#ff8a8a}
+.az-buy{height:clamp(36px,10dvh,46px);border-radius:12px;font:inherit;font-size:clamp(15px,4.6dvh,19px);font-weight:900;cursor:pointer;color:#3a2200;background:linear-gradient(#ffe9a6,#f0c048 50%,#c98a1c);border:2px solid #fff2c0;box-shadow:0 0 0 1.5px #6a4206}
+.az-buy{white-space:nowrap}.az-buy.poor,.az-buy.sold{font-size:clamp(13px,3.8dvh,16px)}.az-buy.poor{background:linear-gradient(#5a2a2a,#3a1418);color:#ffb0a0;border-color:#a8505a}.az-buy.sold{background:linear-gradient(#3a3f55,#23263a);color:#c8d2f0;border-color:#5a6080}
+.modal .card.azbuy{background:linear-gradient(#121d52,#080d2c)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;width:min(420px,calc(100vw - 24px));max-height:calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));padding:10px 12px;overflow:hidden}
+.az-bt{margin:0 0 6px!important;text-align:center;font-size:20px!important}.az-bt.red{color:#ff6a6a!important}.az-bt.green{color:#6dff9c!important}
+.az-bh{display:flex;align-items:center;gap:10px;margin-bottom:6px}.az-bi{flex:none;width:clamp(48px,16dvh,72px);aspect-ratio:1;display:grid;place-items:center;border-radius:10px;background:radial-gradient(circle,#3a2a7a,#0a1030);border:1px solid rgba(226,184,87,.5)}.az-bi img{width:90%;height:90%;object-fit:contain}
+.az-bh>span:last-child{display:flex;flex-direction:column;line-height:1.25;min-width:0}.az-bh b{font-size:16px;color:#ffd75a}.az-bh small{font-size:11.5px;color:#e8ecff}
+.az-brow{margin-bottom:3px;font-size:12.5px;padding:3px 8px}
+.az-bmsg{margin:4px 0;text-align:center;font-size:13px;color:#e8ecff}
+.az-bwarn{margin:4px 0;padding:4px 8px;border-radius:8px;text-align:center;font-size:12.5px;font-weight:700;color:#ff9a8a;border:1px solid #e8404f;background:rgba(80,10,20,.5)}
+.az-bbtns{display:flex;gap:8px;justify-content:center;margin-top:8px}.az-bbtns .btn{flex:1;min-height:42px}
+@media (min-height:520px){.az-itd{display:block}}
+@media (max-height:400px){.az-sdd{display:none}.az-spanel .az-stitle{font-size:16px}}
+@media (max-width:720px){.az-shop2{grid-template-columns:168px minmax(0,1fr)}.az-spanel .az-cats button span{font-size:12px}.az-spanel .az-cats button img{width:20px;height:20px}}
 /* short screens (iPhone SE, Safari with bars): tighter, same layout */
 @media (max-height:400px){.az-page{--hh:40px;gap:4px 8px}.az-head{height:40px}.az-back{width:40px;height:40px}.az-menu{gap:3px}.az-menu button{min-height:34px}.az-crest .rankic.big{width:38px}.az-head .title-font{font-size:19px}.az-next{display:none}
   .az-board{gap:3px}.az-th{height:14px;font-size:10.5px}.az-merow{gap:6px}.az-shead .az-snote{display:none}.az-shead{grid-template-columns:auto 1fr}.az-stitle{justify-self:end}}
@@ -3607,19 +3708,19 @@ const HAVE = new Set([   // generated by sync_have.py from assets/ — do not ed
   "stage_4_4","stage_4_5","stage_4_6","stage_4_7","stage_5_2","stage_5_3","stage_5_4","stage_5_5","stage_5_6","stage_5_7","stage_6_2","stage_6_3",
   "stage_6_4","stage_6_5","stage_6_6","stage_6_7","stage_7_2","stage_7_3","stage_7_4","stage_7_5","stage_7_6","stage_7_7","star_sage","star_sage_awakened",
   "star_wisp","storm_mage","storm_mage_awakened","summon_altar","summon_burst","summon_card_back","summon_circle","summon_open","summon_temple","summon_wings","summoner_3","summoner_4",
-  "summoner_f","summoner_m","tavern","treant_boss","ui_cardframe","ui_daily_banner","ui_detbtn_1","ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs","ui_gearframe_0_amulet",
-  "ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon","ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon","ui_gearframe_2_amulet",
-  "ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon","ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon","ui_gearframe_4_amulet",
-  "ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon","ui_plaque","ui_runering","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4","valkyrie",
-  "valkyrie_awakened","vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened","werewolf",
-  "werewolf_awakened","will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
+  "summoner_f","summoner_m","tavern","treant_boss","ui_cardframe","ui_daily_banner","ui_deflog_empty","ui_detbtn_1","ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs",
+  "ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon","ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon",
+  "ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon","ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon",
+  "ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon","ui_plaque","ui_runering","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4",
+  "valkyrie","valkyrie_awakened","vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened",
+  "werewolf","werewolf_awakened","will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
 const POOL = {2:["imp","mushroom"],3:["wolf","fairy","golem","elf","harpy","mermaid","skeleton","salamander","yeti","snowowl","scarab","mummy","werewolf","banshee"],4:["ninja","priestess","griffin","frostwitch","stormmage","obsidian","winddancer","frostserpent","aurora","sphinx","vampire","celestlion","starsage","voidknight"],5:["dragon","valkyrie","phoenix","djinn","ghostqueen","seraph","sun_empress","kraken_king","storm_roc","wind_centaur","mountain_behemoth","forest_dryad","dawn_unicorn","eclipse_dragon"]};
 POOL[5] = POOL[5].filter(id => !MON[id].mystic);         // the mystic monsters can't be summoned for now (owner's call): every summon and reward pool skips them
 const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"aurora_aw":[1,0.83],"bandit":[1,0.83],"banshee":[1,0.83],"banshee_aw":[1,0.83],"celestlion":[1,0.83],"celestlion_aw":[1,0.83],"cinderhound":[1,0.83],"cloudslime":[1,0.83],"crystalg":[1,0.93],"dawn_unicorn":[1,0.93],"djinn":[1,0.83],"djinn_aw":[1,0.83],"dragon":[1,0.84],"dragon_aw":[1,0.84],"duneworm":[1,0.83],"elf":[1,0.84],"elf_aw":[1,0.84],"fairy":[1,0.84],"fairy_aw":[1,0.85],"forest_dryad":[1,0.83],"forest_dryad_aw":[1,0.83],"frostserpent":[1,0.83],"frostserpent_aw":[1,0.83],"frostwitch":[1,0.83],"frostwitch_aw":[1,0.83],"frostwyrm":[1,0.83],"gargoyle":[1,0.83],"ghostqueen":[1,0.83],"ghostqueen_aw":[1,0.83],"ghoul":[1,0.83],"golem":[1,0.83],"golem_aw":[1,0.83],"griffin":[1,0.84],"griffin_aw":[1,0.84],"harpy":[1,0.83],"harpy_aw":[1,0.83],"icetroll":[1,0.83],"imp":[1,0.83],"imp_aw":[1,0.83],"kraken_king":[1,0.83],"kraken_king_aw":[1,0.83],"lavatitan":[1,0.83],"marble":[1,0.83],"mermaid":[1,0.83],"mermaid_aw":[1,0.83],"mosswolf":[1,0.95],"mummy":[1,0.83],"mummy_aw":[1,0.83],"mushroom":[1,0.83],"mushroom_aw":[1,0.84],"ninja":[1,0.83],"ninja_aw":[1,0.83],"obsidian":[1,0.83],"obsidian_aw":[1,0.83],"phoenix":[1,0.83],"phoenix_aw":[1,0.83],"pixie":[1,0.83],"priestess":[1,0.83],"priestess_aw":[1,0.83],"sandcolossus":[1,0.83],"scarab":[1,0.83],"scarab_aw":[1,0.83],"scorpion":[1,0.83],"seraph":[1,0.83],"seraph_aw":[1,0.83],"shadowlord":[1,0.83],"skeleton":[1,0.83],"skeleton_aw":[1,0.83],"skyboar":[1,0.89],"snowowl":[1,0.83],"snowowl_aw":[1,0.83],"snowsprite":[1,0.83],"sphinx":[1,0.83],"sphinx_aw":[1,0.83],"spider":[1,0.83],"sprite":[1,0.83],"starsage":[1,0.83],"starsage_aw":[1,0.83],"starwisp":[1,0.83],"storm_roc":[1,0.83],"storm_roc_aw":[1,0.83],"stormmage":[1,0.83],"stormmage_aw":[1,0.83],"sun_empress":[1,0.83],"sun_empress_aw":[1,0.83],"treant":[1,0.83],"valkyrie":[1,0.83],"valkyrie_aw":[1,0.83],"vampire":[1,0.83],"vampire_aw":[1,0.83],"voidknight":[1,0.83],"voidknight_aw":[1,0.83],"werewolf":[1,0.83],"werewolf_aw":[1,0.83],"wind_centaur":[1,0.83],"wind_centaur_aw":[1,0.83],"winddancer":[1,0.83],"winddancer_aw":[1,0.83],"wisp":[1,0.83],"wolf":[1,0.85],"wolf_aw":[1,0.84],"wraith":[1,0.83],"yeti":[1,0.83],"yeti_aw":[1,0.83]};   // generated by art_audit.py: [brightness, size] per monster (+"_aw")
 const ART = {battle:"assets/battle_meadow.webp", forest:"assets/battle_forest.webp", hub:"assets/sky_hub.webp", altar:"assets/summon_altar.webp"};
 // the published game page holds at most ~510 files, so newer art lives in its asset store; everywhere else (GitHub, local) it is read from assets/
 const ARTAR = {"aether_sprite":1.094,"aether_titan":1.037,"ash_golem":1.094,"aurora_spirit":0.503,"aurora_spirit_awakened":0.667,"banshee":0.658,"banshee_awakened":0.664,"celestial_lion":1.039,"celestial_lion_awakened":1.094,"cinder_hound":1.094,"cloud_slime":1.095,"crystal_beetle":1.493,"crystal_guardian":1.38,"desert_bandit":1.094,"djinn":0.613,"djinn_awakened":0.665,"dragon":1.228,"dragon_awakened":1.228,"dune_worm":1.094,"elf_archer":1.215,"elf_archer_awakened":1.228,"fairy":1.225,"fairy_awakened":1.231,"frost_serpent":1.088,"frost_serpent_awakened":1.092,"frost_witch":0.641,"frost_witch_awakened":0.667,"frost_wyrm":1.185,"gargoyle":1.093,"ghost_queen":0.669,"ghost_queen_awakened":0.667,"ghoul":1.099,"giant_spider":1.096,"golem":1.21,"golem_awakened":1.087,"griffin":1.228,"griffin_awakened":1.228,"harpy":1.206,"harpy_awakened":1.206,"ice_troll":1.092,"imp_fire":0.995,"imp_fire_awakened":1.094,"lava_titan":1.094,"legend_dawn_unicorn":1.382,"legend_dawn_unicorn_awakened":1.504,"legend_eclipse_dragon":1.508,"legend_eclipse_dragon_awakened":1.499,"legend_forest_dryad":0.668,"legend_forest_dryad_awakened":0.665,"legend_kraken_king":0.663,"legend_kraken_king_awakened":0.669,"legend_mountain_behemoth":1.499,"legend_mountain_behemoth_awakened":1.495,"legend_storm_roc":1.094,"legend_storm_roc_awakened":1.094,"legend_sun_empress":0.667,"legend_sun_empress_awakened":0.667,"legend_wind_centaur":0.667,"legend_wind_centaur_awakened":0.667,"magma_bat":1.508,"marble_guardian":1.086,"mermaid":0.842,"mermaid_awakened":0.843,"moon_priestess":0.642,"moon_priestess_awakened":0.67,"moss_wolf":1.405,"mummy":0.629,"mummy_awakened":0.667,"mushroom":1.202,"mushroom_awakened":1.228,"obsidian_knight":1.095,"obsidian_knight_awakened":1.093,"phoenix":1.098,"phoenix_awakened":1.094,"pixie_thief":1.1,"salamander":1.522,"salamander_awakened":1.495,"sand_colossus":1.094,"sand_scorpion":1.073,"scarab_knight":1.093,"scarab_knight_awakened":1.099,"seraph":0.66,"seraph_awakened":0.671,"shadow_lord":1.04,"shadow_ninja":1.057,"shadow_ninja_awakened":1.094,"shadow_wraith":1.1,"skeleton_knight":1.094,"skeleton_knight_awakened":1.093,"sky_boar":1.301,"sky_ray":1.504,"snow_owl":1.205,"snow_owl_awakened":1.208,"snow_sprite":1.094,"sphinx":1.094,"sphinx_awakened":1.094,"star_sage":0.667,"star_sage_awakened":0.666,"star_wisp":1.077,"storm_mage":0.665,"storm_mage_awakened":0.663,"treant_boss":1.094,"valkyrie":1.18,"valkyrie_awakened":1.18,"vampire":0.661,"vampire_awakened":0.668,"void_knight":0.661,"void_knight_awakened":0.668,"werewolf":1.103,"werewolf_awakened":1.094,"will_wisp":1.096,"wind_dancer":0.656,"wind_dancer_awakened":0.67,"wolf_spirit":1.247,"wolf_spirit_awakened":1.228,"yeti":1.082,"yeti_awakened":1.093};   // generated by sync_have.py: image width/height per monster art
-const BLOB = {ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
+const BLOB = {ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
   legend_kraken_king:"/_blob/57d4de9adf5506c59e8ea01766077092", legend_kraken_king_awakened:"/_blob/a907bb70c41aed676b48211f21842e02",
   legend_storm_roc:"/_blob/5de16d93d25a10eae9d5ab74af515700", legend_storm_roc_awakened:"/_blob/49a68678138e764c50648c52583da5d3",
   legend_wind_centaur:"/_blob/7f98d07d3382ce05e3da69c5960d6b15", legend_wind_centaur_awakened:"/_blob/0c00c92a8a6668fd211c977f066c398b",
@@ -4680,7 +4781,7 @@ function arenaNewDay(A) {
   for (let k = 0; k < n; k++) {
     const i = pk(near), b = getBot(A, i), defended = R() < .5 + (A.r - b.r) / 800, d = defended ? 6 : -10;
     A.r = Math.max(800, A.r + d); botTouch(A, i, defended ? -4 : 8, !defended);
-    A.log.unshift({bi:i, win:defended, d, day:today()});
+    A.log.unshift({bi:i, win:defended, d, day:today(), ts:Date.now(), pow:botPow(b), ar:b.r, def:S.team.map(u => S.mons.find(m => m.uid === u)).filter(Boolean).map(m => [m.id, m.lvl, mst(m)])});
   }
   A.log = A.log.slice(0, 15); A.day = today(); A.opp = null; save();
 }
@@ -4710,6 +4811,7 @@ const AZI = {                                        // small gold line icons fo
   pin:'<path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2.3"/>',
   eye:'<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/>',
   back:'<path d="M14 5l7 7-7 7M21 12H4"/>', next:'<path d="M15 5l-7 7 7 7"/>', prev:'<path d="M9 5l7 7-7 7"/>',
+  list:'<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
   lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
   refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>', check:'<path d="M4 12.5l5 5L20 6.5"/>', info:'<path d="M12 10v7M12 6.5v.5"/>'};
 const azi = (k, c) => `<svg class="azi ${c || ""}" viewBox="0 0 24 24" aria-hidden="true">${AZI[k]}</svg>`;
@@ -4942,25 +5044,61 @@ function azRewards(A, L) {
     SFX.legend(); toast(`קיבלת את פרס דרגת ${RANKS[t][1]}!`); renderArena(); });
 }
 function azFit(root) {                               // a long player name steps its font down (to 10px) instead of being cut
-  root.querySelectorAll(".az-oc-id>b,.az-c-name b,.az-pplate>b,.az-go-sub span").forEach(e => { let f = parseFloat(getComputedStyle(e).fontSize); while (e.scrollWidth > e.clientWidth + 1 && f > 10) { f -= .5; e.style.setProperty("font-size", f + "px", "important"); } });
+  root.querySelectorAll(".az-oc-id>b,.az-c-name b,.az-pplate>b,.az-go-sub span,.az-lname,.az-lside .az-lwho b,.az-sdn,.az-it>b").forEach(e => { let f = parseFloat(getComputedStyle(e).fontSize); while (e.scrollWidth > e.clientWidth + 1 && f > 10) { f -= .5; e.style.setProperty("font-size", f + "px", "important"); } });
 }
 function azPager(id, page, pages) {
   return pages > 1 ? `<div class="az-nav slim"><span class="az-pager"><button data-pg="-1" aria-label="עמוד קודם" ${page <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${page}/${pages}</b><button data-pg="1" aria-label="עמוד הבא" ${page >= pages ? "disabled" : ""}>${azi("next")}</button></span></div>` : "";
 }
+let azLogF = "all", azLogSel = null, azLogOpen = false;   // azLogOpen: on narrow screens the details cover the list until closed
+const AZ_LOG_PER = 4;
+function azAgo(x) {                                  // relative time from the attack's real timestamp; older entries only kept the day
+  if (!x.ts) return x.day === today() ? "היום" : x.day;
+  const m = Math.max(0, Math.floor((Date.now() - x.ts) / 60000));
+  return m < 1 ? "לפני רגע" : m < 60 ? `לפני ${m} דק׳` : m < 1440 ? `לפני ${Math.floor(m / 60)} שע׳` : `לפני ${Math.floor(m / 1440)} ימים`;
+}
 function azLog(A, L) {
   A.log.forEach(x => { if (x.day === today()) x.seen = 1; }); save();
-  const pages = Math.max(1, Math.ceil(A.log.length / AZ_PER)); azLogPage = Math.max(1, Math.min(pages, azLogPage));
-  const s0 = (azLogPage - 1) * AZ_PER;
-  L.innerHTML = `<div class="az-panel"><div class="az-ph">${azi("shield")}<b class="title-font">יומן הגנה</b><small>שחקנים שתקפו את ההגנה שלך</small></div>
-    <div class="az-list">${A.log.length ? A.log.slice(s0, s0 + AZ_PER).map((x, j) => { const b = getBot(A, x.bi), k2 = s0 + j;
-      return `<div class="az-tr"><span class="az-c-name">${framedAvatar(30, {k:"", c1:rankOf(b.r)[2], c2:"#0b1338"}, ART[b.team[0][0]] || "")}<span><b>${esc(b.name)}</b><small>${x.day === today() ? "היום" : x.day}</small></span></span>
-        <b class="az-res ${x.win ? "w" : "l"}">${x.win ? "הגנת בהצלחה" : "הפסדת בהגנה"}</b><b class="az-d ${x.win ? "w" : "l"}" dir="ltr">${x.d > 0 ? "+" : ""}${x.d}</b>
-        <span class="az-mons sm">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span>
-        <span class="az-c-act">${x.win || x.rev ? (x.rev ? '<small class="muted">נקמה בוצעה</small>' : "") : `<button class="btn az-rev" data-k="${k2}">נקמה!</button>`}<button class="az-view" data-i="${b.i}">${azi("eye")}צפייה</button></span></div>`; }).join("")
-      : `<div class="az-state">עוד אף אחד לא תקף אותך. כל יום חלק מהשחקנים תוקפים את ההגנה שלך.</div>`}</div>${azPager("log", azLogPage, pages)}</div>`;
-  L.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { const x = A.log[+b.dataset.k]; fightBot(getBot(A, x.bi), x); });
-  L.querySelectorAll("[data-i]").forEach(b => b.onclick = () => botProfile(getBot(A, +b.dataset.i)));
-  L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { azLogPage += +b.dataset.pg; renderArena(); });
+  const all = A.log.map((x, k) => ({x, k})), wins = all.filter(e => e.x.win), losses = all.filter(e => !e.x.win);
+  const list = azLogF === "win" ? wins : azLogF === "loss" ? losses : all;
+  const pages = Math.max(1, Math.ceil(list.length / AZ_LOG_PER)); azLogPage = Math.max(1, Math.min(pages, azLogPage));
+  if (!list.some(e => e.k === azLogSel)) azLogSel = list.length ? list[(azLogPage - 1) * AZ_LOG_PER].k : null;   // the chosen fight left the filter / page: the first one shown
+  const view = list.slice((azLogPage - 1) * AZ_LOG_PER, azLogPage * AZ_LOG_PER);
+  const filt = [["all", "הכל", all.length, "list"], ["win", "ניצחונות", wins.length, "shield"], ["loss", "הפסדים", losses.length, "sw"]]
+    .map(([f, n, c, ic]) => `<button class="az-lf ${f} ${azLogF === f ? "on" : ""}" data-f="${f}">${azi(ic)}<span>${n} (<b dir="ltr">${c}</b>)</span></button>`).join("");
+  const res = x => `<span class="az-lres ${x.win ? "w" : "l"}">${azi(x.win ? "shield" : "sw")}<b>${x.win ? "ניצחון" : "הפסד"}</b><small>${x.win ? "ההגנה שלך הצליחה" : "ההגנה שלך נכשלה"}</small></span>`;
+  const row = ({x, k}) => { const b = getBot(A, x.bi), pw = x.pow || null;
+    return `<button class="az-lr ${x.win ? "w" : "l"} ${k === azLogSel ? "on" : ""}" data-l="${k}">${res(x)}
+      <span class="az-lmain"><span class="az-ltop">${framedAvatar(28, {k:"", c1:rankOf(x.ar || b.r)[2], c2:"#0b1338"}, ART[b.team[0][0]] || "")}<b class="az-lname">${esc(b.name)}</b>
+        ${pw ? `<span class="az-pow">${azi("sw")}<b dir="ltr">${fmt(pw)}</b></span>` : ""}<b class="az-d ${x.win ? "w" : "l"}" dir="ltr">${x.d > 0 ? "+" : ""}${x.d}</b><small class="az-lago">${azAgo(x)}</small></span>
+        <span class="az-mons">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span></span>
+      <span class="az-lchev">${azi("next")}</span></button>`; };
+  let body;
+  if (!all.length) body = `<div class="az-lempty"${HAVE.has("ui_deflog_empty") ? ` style="--em:url(${assetUrl("ui_deflog_empty")})"` : ""}><span class="az-lem-art"></span>
+      <b class="title-font">עדיין לא תקפו את ההגנה שלך</b><small>כאן תופיע רשימת ההתקפות על ההגנה שלך, ברגע ששחקנים אחרים יתקפו אותך.</small>
+      <button class="az-ledit" id="azDefEdit">${azi("shield")}<span>ערוך הגנה</span>${azi("next", "chev")}</button></div>`;
+  else if (!list.length) body = `<div class="az-state">אין קרבות התואמים לסינון.</div>`;
+  else body = `<div class="az-lrows">${view.map(row).join("")}</div>`;
+  const sel = azLogSel != null ? A.log[azLogSel] : null;
+  let det;
+  if (!sel) det = `<div class="az-ldet empty"><b class="title-font">פרטי הקרב</b><span class="az-lx">${azi("sw")}</span><small>בחר קרב מהרשימה כדי לראות את פרטי הקרב</small></div>`;
+  else { const b = getBot(A, sel.bi), rk = rankOf(sel.ar || b.r), mine = sel.def;
+    det = `<div class="az-ldet"><div class="az-ldh"><b class="title-font">פרטי הקרב</b><small>${azAgo(sel)}</small><button class="az-lclose" id="azLogX" aria-label="סגירה">✕</button></div>
+      <div class="az-lsum ${sel.win ? "w" : "l"}">${azi(sel.win ? "shield" : "sw")}<b>${sel.win ? "ניצחון" : "הפסד"}</b><b class="az-d ${sel.win ? "w" : "l"}" dir="ltr">${azi("trophy")}${sel.d > 0 ? "+" : ""}${sel.d}</b></div>
+      <div class="az-lside"><span class="az-lwho">${framedAvatar(36, {k:"", c1:rk[2], c2:"#0b1338"}, ART[b.team[0][0]] || "")}<span><small>התוקף</small><b>${esc(b.name)}</b>${sel.pow ? `<span class="az-pow">${azi("sw")}<b dir="ltr">${fmt(sel.pow)}</b></span>` : ""}</span></span>
+        <span class="az-lrk">${rankIc(sel.ar || b.r, 1)}<small style="color:${rk[2]}">${rk[1]}</small></span></div>
+      <span class="az-mons">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span>
+      <div class="az-vs">${azi("sw")}<b>VS</b>${azi("sw")}</div>
+      <div class="az-lmine"><small>ההגנה שלך</small>${mine && mine.length ? `<span class="az-mons">${mine.map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span>` : `<span class="az-lna">ההרכב לא נשמר בקרב ישן זה</span>`}</div>
+      <div class="az-lbtns"><button class="btn blue az-lprof" data-i="${b.i}">${azi("users")}פרופיל התוקף</button>${!sel.win && !sel.rev ? `<button class="btn az-rev" data-k="${azLogSel}">${azi("sw")}נקמה</button>` : sel.rev ? '<small class="muted">נקמה בוצעה</small>' : ""}</div></div>`; }
+  L.innerHTML = `<div class="az-dl ${azLogOpen && sel ? "open" : ""}">${det}<div class="az-lpanel"><div class="az-lfs">${filt}</div>${body}
+      ${pages > 1 && list.length ? `<div class="az-nav slim"><span class="az-pager"><button data-pg="-1" aria-label="עמוד קודם" ${azLogPage <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${azLogPage} / ${pages}</b><button data-pg="1" aria-label="עמוד הבא" ${azLogPage >= pages ? "disabled" : ""}>${azi("next")}</button></span></div>` : ""}</div></div>`;
+  L.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { azLogF = b.dataset.f; azLogPage = 1; azLogSel = null; azLogOpen = false; renderArena(); });
+  L.querySelectorAll("[data-l]").forEach(b => b.onclick = () => { azLogSel = +b.dataset.l; azLogOpen = true; renderArena(); });
+  L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { azLogPage += +b.dataset.pg; azLogSel = null; azLogOpen = false; renderArena(); });
+  if ($("azLogX")) $("azLogX").onclick = () => { azLogOpen = false; renderArena(); };
+  L.querySelectorAll(".az-lprof").forEach(b => b.onclick = () => botProfile(getBot(A, +b.dataset.i)));
+  L.querySelectorAll(".az-rev").forEach(b => b.onclick = () => { const x = A.log[+b.dataset.k]; fightBot(getBot(A, x.bi), x); });
+  if ($("azDefEdit")) $("azDefEdit").onclick = () => { pickedStage = null; show("team"); };
 }
 function azHist(A, L) {
   const H = A.hist || [], pages = Math.max(1, Math.ceil(H.length / AZ_PER)); azHistPage = Math.max(1, Math.min(pages, azHistPage));
@@ -4976,21 +5114,74 @@ function azHist(A, L) {
   L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { azHistPage += +b.dataset.pg; renderArena(); });
 }
 const AZ_CATS = [["all", "הכל", "cur_glory"], ["sc", "מגילות", "scroll_l"], ["ru", "רונים", "rune_blade"], ["rs", "משאבים", "cur_energy"]];
+const AZ_DESC = {                                   // facts already in the game (scroll odds, rune rule, awakening cost, energy cap)
+  al:() => `זימון: ${SCR.l.rates}. ${SCR.l.note}.`, ald:() => `זימון: ${SCR.ld.rates}. ${SCR.ld.note}.`, am:() => `5 מגילות. זימון: ${SCR.m.rates}.`,
+  ar6:() => "רון אקראי של 6 כוכבים, עם 3 תכונות משנה.", amg:() => "חומר להתעוררות מפלצות (8 בכל התעוררות).", aen:() => "אנרגיה לקרבות (עד 99)."};
+let azShopPage = 1, azShopSel = null, azQty = 1, azBuying = false;
+const azGlory = () => arenaState().glory || 0;
+function azItemState(x) {                           // one place for an item's state: limit, bought today, how many can still be bought now
+  const used = shopDay().b[x.k] || 0, left = x.lim ? Math.max(0, x.lim - used) : Infinity, afford = Math.floor(azGlory() / x.p);
+  return {used, left, afford, max:Math.max(0, Math.min(left, afford, 99)), sold:left === 0, poor:afford < 1};
+}
+const azLimTxt = (x, st) => x.lim ? `נרכשו ${st.used} מתוך ${x.lim} היום` : "";
 function azShop(A, L) {
-  const D = shopDay(), list = ASHOP.filter(x => azShopCat === "all" || x.cat === azShopCat), have = A.glory || 0;
-  L.innerHTML = `<div class="az-panel az-shop"><div class="az-shead"><span class="az-bal"><img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(have)}</b></span><b class="title-font az-stitle">${azi("shop")}חנות הזירה</b><small class="az-snote">תהילה: 12 על ניצחון, 3 על הפסד</small></div>
-    <div class="az-sbody"><div class="az-items">${list.map(x => { const used = D.b[x.k] || 0, left = x.lim ? x.lim - used : null, sold = left === 0, poor = have < x.p, arm = azBuyArm === x.k;
-      return `<div class="az-it ${sold ? "sold" : ""}"><span class="az-it-ic">${shopImg(x)}${x.x ? `<span class="qty" dir="ltr">×${x.x}</span>` : ""}</span><b>${x.n}</b>
-        <small>${left != null ? (sold ? "נגמר להיום" : `נשארו היום: ${left}`) : "&nbsp;"}</small>
-        <button class="az-price ${arm ? "arm" : ""} ${poor && !sold ? "poor" : ""}" data-k="${x.k}" ${sold ? "disabled" : ""}>${arm ? "לאשר קנייה?" : `<img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(x.p)}</b>`}</button></div>`; }).join("")}</div>
-      <div class="az-cats">${AZ_CATS.map(([c, n, im]) => `<button class="${azShopCat === c ? "on" : ""}" data-c="${c}"><img src="assets/${im}.webp" alt=""><span>${n}</span></button>`).join("")}</div></div></div>`;
-  L.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { azShopCat = b.dataset.c; azBuyArm = null; renderArena(); });
-  L.querySelectorAll("[data-k]").forEach(b => b.onclick = () => {
-    const x = ASHOP.find(i => i.k === b.dataset.k);
-    if ((A.glory || 0) < x.p) { azBuyArm = null; return toast(`אין מספיק תהילה (צריך ${fmt(x.p)})`); }
-    if (azBuyArm !== x.k) { azBuyArm = x.k; renderArena(); clearTimeout(azShop.t); azShop.t = setTimeout(() => { if (azBuyArm === x.k) { azBuyArm = null; if ($("arena").classList.contains("on") && arenaTab === "shop") renderArena(); } }, 3000); return; }
-    azBuyArm = null; storeBuy("arena", x);                         // the existing purchase: price check, daily limit, payment and the reward
-  });
+  const all = ASHOP.filter(x => azShopCat === "all" || x.cat === azShopCat);
+  const W = L.clientWidth || 600, per = W < 470 ? 4 : 6, pages = Math.max(1, Math.ceil(all.length / per));
+  azShopPage = Math.max(1, Math.min(pages, azShopPage));
+  const list = all.slice((azShopPage - 1) * per, azShopPage * per);
+  if (!all.some(x => x.k === azShopSel)) { azShopSel = all[0] ? all[0].k : null; azQty = 1; }
+  const have = azGlory(), x = ASHOP.find(i => i.k === azShopSel), st = x ? azItemState(x) : null;
+  if (st) azQty = Math.max(1, Math.min(azQty, Math.max(1, Math.min(st.left, 99))));
+  const card = i => { const s2 = azItemState(i);
+    return `<button class="az-it ${s2.sold ? "sold" : s2.poor ? "poor" : ""} ${i.k === azShopSel ? "on" : ""}" data-s="${i.k}"><b>${i.n}</b><small class="az-itd">${AZ_DESC[i.k] ? AZ_DESC[i.k]() : ""}</small>
+      <span class="az-it-ic">${shopImg(i)}${i.x ? `<span class="qty" dir="ltr">×${i.x}</span>` : ""}</span>
+      ${s2.sold ? '<small class="az-itlim red">הגעת למגבלת הרכישה</small>' : `<small class="az-itlim">${azLimTxt(i, s2) || "&nbsp;"}</small>`}
+      <span class="az-price ${s2.poor && !s2.sold ? "poor" : ""} ${s2.sold ? "off" : ""}"><img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(i.p)}</b></span></button>`; };
+  const total = x ? x.p * azQty : 0, after = have - total;
+  const det = !x ? `<div class="az-sdet empty"><small>בחר פריט כדי לראות את פרטיו</small></div>` : `<div class="az-sdet">
+      <b class="title-font az-sdn">${x.n}</b><span class="az-sdi">${shopImg(x)}</span><small class="az-sdd">${AZ_DESC[x.k] ? AZ_DESC[x.k]() : ""}</small>
+      <div class="az-slim ${st.sold ? "red" : ""}">${x.lim ? `<b>מגבלת רכישה יומית</b><small>${st.sold ? "הגעת למגבלת הרכישה · מתאפס בחצות" : azLimTxt(x, st)}</small>` : "<small>ללא מגבלת רכישה</small>"}</div>
+      <div class="az-qty"><button data-q="-1" aria-label="פחות" ${azQty <= 1 || st.sold ? "disabled" : ""}>−</button><b dir="ltr">${azQty}</b><button data-q="1" aria-label="יותר" ${azQty >= Math.min(st.left, 99) || st.sold ? "disabled" : ""}>+</button><button class="az-max" data-q="max" ${st.sold ? "disabled" : ""}>MAX</button></div>
+      <div class="az-sums"><span>מחיר ליחידה<b><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${fmt(x.p)}</i></b></span><span>מחיר כולל<b><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${fmt(total)}</i></b></span>
+        <span>יתרה לאחר רכישה<b class="${after < 0 ? "neg" : "pos"}"><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${fmt(after)}</i></b></span></div>
+      <button class="az-buy ${st.sold ? "sold" : after < 0 ? "poor" : ""}" id="azBuy">${st.sold ? "הגעת למגבלה" : after < 0 ? "אין מספיק מטבעות" : "רכישה"}</button></div>`;
+  L.innerHTML = `<div class="az-shop2">${det}<div class="az-spanel">
+      <div class="az-shead"><b class="title-font az-stitle">${azi("sw")}חנות הזירה</b><span class="az-bal"><img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(have)}</b></span></div>
+      <div class="az-cats">${AZ_CATS.map(([c, n, im]) => `<button class="${azShopCat === c ? "on" : ""}" data-c="${c}"><img src="assets/${im}.webp" alt=""><span>${n}</span></button>`).join("")}</div>
+      ${list.length ? `<div class="az-items" style="--cols:${per === 4 ? 2 : 3}">${list.map(card).join("")}</div>`
+        : `<div class="az-sempty"><img src="assets/cur_glory.webp" alt=""><b class="title-font">אין פריטים בקטגוריה זו</b><small>כרגע אין פריטים זמינים בקטגוריה הזאת. חזור מאוחר יותר.</small></div>`}
+      ${pages > 1 ? `<div class="az-nav slim"><span class="az-pager"><button data-pg="-1" aria-label="עמוד קודם" ${azShopPage <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${azShopPage} / ${pages}</b><button data-pg="1" aria-label="עמוד הבא" ${azShopPage >= pages ? "disabled" : ""}>${azi("next")}</button></span></div>` : ""}</div></div>`;
+  L.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { azShopCat = b.dataset.c; azShopPage = 1; azShopSel = null; azQty = 1; renderArena(); });
+  L.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { if (azShopSel !== b.dataset.s) azQty = 1; azShopSel = b.dataset.s; renderArena(); });
+  L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { azShopPage += +b.dataset.pg; renderArena(); });
+  L.querySelectorAll("[data-q]").forEach(b => b.onclick = () => { const s2 = azItemState(x), q = b.dataset.q;
+    azQty = q === "max" ? Math.max(1, s2.max) : Math.max(1, Math.min(azQty + +q, Math.min(s2.left, 99))); renderArena(); });
+  if ($("azBuy")) $("azBuy").onclick = () => azBuyDialog(x);
+}
+function azBuyDialog(x, mode) {                      // confirm / not enough / limit reached / done / failed: compact windows with only the actions that apply
+  const st = azItemState(x), have = azGlory(), total = x.p * azQty, head = `<div class="az-bh"><span class="az-bi">${shopImg(x)}</span><span><b>${x.n}</b><small>${AZ_DESC[x.k] ? AZ_DESC[x.k]() : ""}</small></span></div>`;
+  const row = (t, v, c) => `<div class="az-brow"><span>${t}</span><b class="${c || ""}"><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${v}</i></b></div>`;
+  mode = mode || (st.sold ? "limit" : have < total ? "poor" : "confirm");
+  $("modalCard").classList.add("azbuy");
+  if (mode === "limit") openModal(`<h3 class="az-bt red">מגבלת רכישה הושגה</h3>${head}<p class="az-bmsg">נרכשו ${st.used} מתוך ${x.lim} היום</p><p class="az-bwarn">הגעת למגבלת הרכישה היומית · מתאפס בחצות</p>
+    <div class="az-bbtns"><button class="btn blue" onclick="closeModal()">הבנתי</button></div>`);
+  else if (mode === "poor") openModal(`<h3 class="az-bt red">אין מספיק מטבעות</h3>${head}${row(`מחיר כולל (${azQty})`, fmt(total), "neg")}${row("יתרה נוכחית", fmt(have))}
+    <p class="az-bwarn">חסרות ${fmt(total - have)} תהילה. תהילה מרוויחים בקרבות זירה: 12 על ניצחון, 3 על הפסד.</p>
+    <div class="az-bbtns"><button class="btn ghost" onclick="closeModal()">סגור</button><button class="btn blue" id="azToFight">לקרבות הזירה</button></div>`);
+  else if (mode === "done") openModal(`<h3 class="az-bt green">הרכישה הושלמה</h3>${head}<p class="az-bmsg">קיבלת: ${x.n}${azQty > 1 ? ` ×${azQty}` : ""}</p>${row("יתרה חדשה", fmt(have))}
+    <div class="az-bbtns"><button class="btn" onclick="closeModal()">מעולה</button></div>`);
+  else if (mode === "fail") openModal(`<h3 class="az-bt red">הרכישה נכשלה</h3>${head}<p class="az-bwarn">הרכישה לא בוצעה: היתרה או המגבלה השתנו. לא חויבת ולא נוסף פריט.</p>
+    <div class="az-bbtns"><button class="btn ghost" onclick="closeModal()">סגור</button><button class="btn blue" id="azRetry">לנסות שוב</button></div>`);
+  else openModal(`<h3 class="az-bt">אישור רכישה</h3>${head}<div class="az-brow"><span>כמות</span><b dir="ltr">${azQty}</b></div>${row("מחיר כולל", fmt(total))}${row("יתרה לאחר רכישה", fmt(have - total), "pos")}
+    <div class="az-bbtns"><button class="btn ghost" onclick="closeModal()">ביטול</button><button class="btn" id="azConfirm">אשר רכישה</button></div>`);
+  if ($("azToFight")) $("azToFight").onclick = () => { closeModal(); arenaTab = "fight"; renderArena(); };
+  if ($("azRetry")) $("azRetry").onclick = () => { closeModal(); renderArena(); azBuyDialog(x); };
+  if ($("azConfirm")) $("azConfirm").onclick = e => {
+    if (azBuying) return; azBuying = true; e.currentTarget.disabled = true; e.currentTarget.textContent = "מבצע רכישה…";   // one purchase at a time
+    const ok = storeBuy("arena", x, azQty);                                              // the game's purchase: re-checks glory and the daily limit now, then pays and gives
+    azBuying = false; if ($("arena").classList.contains("on")) renderArena();
+    azBuyDialog(x, ok ? "done" : "fail");
+  };
 }
 function arenaHelp() {
   openModal(`<h3 style="margin:0 0 8px;color:var(--gold2)">זירת השמיים</h3>
@@ -6002,16 +6193,19 @@ function renderStore() {
     <button class="btn" id="stBuy" style="width:100%" ${!afford || left === 0 ? "disabled" : ""}>${left === 0 ? "נגמר להיום" : afford ? "לקנות" : "אין מספיק"}</button>`;
   $("stBuy").onclick = () => storeBuy(stTab, x);
 }
-function storeBuy(tab, x) {
-  const D = shopDay(), used = D.b[x.k] || 0;
-  if (x.lim && used >= x.lim) return toast("נגמר להיום");
-  if (tab === "shop") { if (S.gem < x.p) return toast("אין מספיק גבישים"); S.gem -= x.p; vipAdd(Math.floor(x.p / 10)); }
-  else if (tab === "guild") { const G = S.guild; if (!G || G.coins < x.p) return toast("אין מספיק מטבעות גילדה"); G.coins -= x.p; }
-  else if (tab === "arena") { const A = arenaState(); if ((A.glory || 0) < x.p) return toast("אין מספיק תהילה"); A.glory -= x.p; }
-  else return;
-  if (x.lim) D.b[x.k] = used + 1;
-  giveRew(x.r); SFX.up(); save(true); renderTop(); toast(`נקנה: ${x.n}`);
+function storeBuy(tab, x, qty) {                     // the one purchase routine: checks the daily limit and the balance for the whole quantity, then pays and gives; true on success
+  qty = Math.max(1, Math.floor(qty || 1));
+  const D = shopDay(), used = D.b[x.k] || 0, cost = x.p * qty;
+  if (x.lim && used + qty > x.lim) { toast("נגמר להיום"); return false; }
+  if (tab === "shop") { if (S.gem < cost) { toast("אין מספיק גבישים"); return false; } S.gem -= cost; vipAdd(Math.floor(cost / 10)); }
+  else if (tab === "guild") { const G = S.guild; if (!G || G.coins < cost) { toast("אין מספיק מטבעות גילדה"); return false; } G.coins -= cost; }
+  else if (tab === "arena") { const A = arenaState(); if ((A.glory || 0) < cost) { toast("אין מספיק תהילה"); return false; } A.glory -= cost; }
+  else return false;
+  if (x.lim) D.b[x.k] = used + qty;
+  for (let i = 0; i < qty; i++) giveRew(x.r);
+  SFX.up(); save(true); renderTop(); toast(`נקנה: ${x.n}${qty > 1 ? ` ×${qty}` : ""}`);
   if ($("store").classList.contains("on")) renderStore(); else if ($("guild").classList.contains("on")) renderGuild(); else if ($("arena").classList.contains("on")) renderArena();
+  return true;
 }
 $("stBack").onclick = () => show(stBack === "store" ? "home" : stBack);
 function shopModal() { openStore("shop"); }
@@ -7892,7 +8086,7 @@ const bindTips = tips => $("modalCard").querySelectorAll("[data-ti]").forEach(b 
 
 /* ============================== MODAL / BOX ============================== */
 function openModal(html) { $("modalCard").innerHTML = html; $("modal").classList.add("on"); }
-function closeModal() { clearTimeout(repTimer); vipView = null; $("modal").classList.remove("on", "vic", "def"); $("modalCard").classList.remove("vipcard", "profcard", "viccard", "defcard", "pickcard", "skwcard", "cfcard", "dlycard"); }
+function closeModal() { clearTimeout(repTimer); vipView = null; $("modal").classList.remove("on", "vic", "def"); $("modalCard").classList.remove("vipcard", "profcard", "viccard", "defcard", "pickcard", "skwcard", "cfcard", "dlycard", "azbuy"); }
 // element emblems (also used by the box tabs); simple bold glyphs that read at 18px
 const EL_ICON = {
   fire:'<path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-3 2-4 2-7 2 1 3 3 3 5 1-1 1-3 0-9z"/>',
