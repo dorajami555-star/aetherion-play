@@ -2649,18 +2649,22 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 @keyframes hhRiseSoft{from{opacity:0;transform:translateY(8%) scale(.92)}to{opacity:1;transform:none}}
 .rv-hero.soft.in .hh-rays{animation:hhRays 1.4s ease-out forwards,b5Spin 40s linear infinite}
 .scf-el{font-size:max(10px,6cqw);padding:0 max(5px,3cqw);max-width:96%;overflow:hidden;text-overflow:ellipsis}   /* element · role stays readable on a small card */
-/* hero page layout: two areas that never overlap - the stats panel in a fixed column, the monster in the rest, sized inside it with a set gap;
-   the background (rays, glow, circle) is centred on the monster's area; the buttons stay centred at the bottom */
-.rv-hero{--pl:max(18px,env(safe-area-inset-left));--pr:max(18px,env(safe-area-inset-right));--iw:clamp(220px,31vw,330px);--cg:clamp(18px,3vw,40px);--bh:calc(66px + env(safe-area-inset-bottom));
-  grid-template-columns:var(--iw) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) auto!important;column-gap:var(--cg)!important}
-.rv-hero .hh-info{grid-column:1;grid-row:1;justify-self:stretch;width:auto;align-self:center;max-height:100%}
-.rv-hero .hh-fig{grid-column:2;grid-row:1 / 3;height:100%;min-width:0;padding-bottom:var(--bh);align-self:stretch;box-sizing:border-box;overflow:visible}
-.rv-hero .hh-fig img,.rv-hero .hh-fig svg{max-width:100%!important;max-height:100%!important;width:auto;height:auto;object-fit:contain}
-.rv-hero .hh-btns{grid-column:1 / -1;grid-row:2;justify-self:center}
-.rv-hero .hh-rays,.rv-hero .hh-glow,.rv-hero .hh-floor{left:calc(var(--pl) + (100% - var(--pl) - var(--pr) - var(--iw) - var(--cg)) / 2)}
-.rv-hero .hh-floor{bottom:calc(var(--bh) - 4%);width:min(70vh,560px,calc((100% - var(--pl) - var(--pr) - var(--iw) - var(--cg)) * .9))}
-.rv-hero .hh-glow{width:min(70vh,calc((100% - var(--iw)) * .7));height:auto;aspect-ratio:1}
-@media (max-height:500px){.rv-hero{--iw:clamp(210px,31vw,300px);--bh:calc(48px + env(safe-area-inset-bottom))}}
+/* hero page composition: one stage on the left - the monster stands on (or hovers above) its summoning circle, the rays and glow behind it, all on one
+   axis that follows the drawn art (hhAlign reads the silhouette); the right column holds the stats panel with the buttons under it - the two never overlap */
+.rv-hero{display:flex!important;flex-direction:row;align-items:stretch;direction:ltr;gap:var(--cg);overflow:hidden;--iw:clamp(250px,31vw,330px);--cg:clamp(20px,3vw,40px);
+  padding:max(10px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))}
+.hh-stage{position:relative;flex:1 1 0;min-width:0;container-type:size;--fw:min(80cqw,58cqh,600px);--fb:calc(var(--fw) * .22 + 6px)}
+.rv-hero .hh-bg{position:absolute;inset:0;overflow:visible}
+.rv-hero .hh-rays{left:var(--cx,50%);top:var(--cy,45%);width:min(125cqw,135cqh);translate:-50% -50%;-webkit-mask:radial-gradient(closest-side,#000 55%,transparent);mask:radial-gradient(closest-side,#000 55%,transparent)}
+.rv-hero .hh-glow{left:var(--cx,50%);top:var(--cy,45%);width:min(90cqw,80cqh);height:auto;aspect-ratio:1;translate:-50% -50%}
+.rv-hero .hh-floor{left:var(--fx,50%);top:var(--fy,calc(100% - var(--fb)));bottom:auto;width:var(--fw);translate:-50% -50%;transform:perspective(900px) rotateX(68deg);transform-origin:50% 50%}
+.rv-hero .hh-fig{position:absolute;inset:0 0 var(--fb) 0;height:auto;padding:0;align-self:stretch;justify-self:stretch;display:flex;align-items:flex-end;justify-content:center;z-index:2}
+.rv-hero .hh-fig img,.rv-hero .hh-fig svg{max-width:100%!important;max-height:100%!important;width:auto;height:auto;object-fit:contain;translate:var(--sx,0) var(--sy,0)}
+.hh-side{flex:0 0 var(--iw);min-width:0;display:flex;flex-direction:column;justify-content:center;gap:8px;direction:rtl;position:relative;z-index:3}
+.rv-hero .hh-info{flex:0 1 auto;min-height:0;width:auto;max-height:none;align-self:stretch;justify-self:auto;box-sizing:border-box}
+.rv-hero .hh-btns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.rv-hero .hh-btns .btn{flex:1 1 auto;min-width:0;padding-inline:10px;white-space:nowrap;font-size:13.5px}
+@media (max-height:500px){.rv-hero{--iw:clamp(240px,33vw,300px)}.rv-hero .hh-btns .btn{min-height:40px;font-size:12.5px;padding-inline:8px}}
 </style>
 
 <div class="app" dir="rtl">
@@ -8028,10 +8032,10 @@ function rvHero(m, mode, now) {                       // the hero page: the summ
   const h = document.createElement("div");
   h.className = `rv-hero soft t${st} ${mys ? "mys" : ""} ${now ? "now" : ""}`; h.id = "rvHero";
   h.style.cssText = `--ec:${ec};--tc:${mys ? "#ff2d55" : CT[st].c}`;
-  h.innerHTML = `<div class="hh-bg">${img("summon_burst") ? `<img class="hh-rays" src="${img("summon_burst")}" alt="">` : ""}<i class="hh-glow"></i>
+  h.innerHTML = `<div class="hh-stage"><div class="hh-bg">${img("summon_burst") ? `<img class="hh-rays" src="${img("summon_burst")}" alt="">` : ""}<i class="hh-glow"></i>
       ${img("summon_circle") ? `<div class="hh-floor"><img src="${img("summon_circle")}" alt=""></div>` : ""}</div>
-    <div class="hh-fig">${sprite(m.id)}</div>
-    <div class="hh-info">
+    <div class="hh-fig">${sprite(m.id)}</div></div>
+    <div class="hh-side"><div class="hh-info">
       ${m.isNew ? '<span class="hh-new">מפלצת חדשה!</span>' : ""}
       <div class="hh-rar">${rarTag(m.id)}</div>
       <h2 class="title-font">${esc(d.n)}</h2>
@@ -8040,8 +8044,8 @@ function rvHero(m, mode, now) {                       // the hero page: the summ
       <div class="hh-stats lp in">${lpStats(m)}</div>
       <div class="hh-sks">${sks.map((x, i) => `<div class="hh-sk ${x.ult ? "ult" : ""}" style="--i:${i}"><span class="ic">${x.ic}</span><b>${esc(x.k.n)}</b></div>`).join("")}</div>
     </div>
-    <div class="hh-btns">${grid ? '<button class="btn" id="hhBack">חזרה לקלפים</button>' : '<button class="btn" id="hhOk">מעולה</button>'}<button class="btn hh-leg" id="rvLeg">✦ דף אגדה</button><button class="btn ghost" id="hhSee">לפרטים</button></div>`;
-  $("reveal").appendChild(h);
+    <div class="hh-btns">${grid ? '<button class="btn" id="hhBack">חזרה לקלפים</button>' : '<button class="btn" id="hhOk">מעולה</button>'}<button class="btn hh-leg" id="rvLeg">✦ דף אגדה</button><button class="btn ghost" id="hhSee">לפרטים</button></div></div>`;
+  $("reveal").appendChild(h); hhAlign(h);
   const closed = new Promise(res => { h._close = res; });
   const back = () => { if (!h.isConnected) return; h.classList.add("out"); setTimeout(() => { h.remove(); h._close(); }, 320); };
   if ($("hhOk")) $("hhOk").onclick = () => rvLeave();
@@ -8051,6 +8055,36 @@ function rvHero(m, mode, now) {                       // the hero page: the summ
   const go = () => { if (!h.isConnected) return; h.classList.add("in"); try { SFX.up(); } catch (e) {} if (!now) popStars(st); };
   if (now) go(); else setTimeout(go, 120);
   return closed;
+}
+function hhAlign(h) {                                 // puts the circle under the monster's real feet and the rays behind its real body, from the drawn pixels
+  const st = h.querySelector(".hh-stage"), im = h.querySelector(".hh-fig img");
+  if (!st || !im) return;
+  let box = null;
+  const run = () => {
+    if (!h.isConnected || !im.naturalWidth) return;
+    if (!box) try {                                  // the opaque silhouette, read once on a small canvas: its bounds and the middle of its lowest part
+      const W = 120, H = Math.max(1, Math.round(W * im.naturalHeight / im.naturalWidth)), c = document.createElement("canvas"); c.width = W; c.height = H;
+      const g = c.getContext("2d", {willReadFrequently:true}); g.drawImage(im, 0, 0, W, H); const px = g.getImageData(0, 0, W, H).data;
+      let x0 = W, x1 = -1, y0 = H, y1 = -1;
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (px[(y * W + x) * 4 + 3] > 60) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+      if (x1 < 0) return;
+      let sx = 0, n = 0; const fy = y1 - Math.max(1, (y1 - y0) * .12);
+      for (let y = Math.floor(fy); y <= y1; y++) for (let x = x0; x <= x1; x++) if (px[(y * W + x) * 4 + 3] > 60) { sx += x; n++; }
+      box = {x0:x0 / W, x1:(x1 + 1) / W, y0:y0 / H, y1:(y1 + 1) / H, feet:n ? (sx / n + .5) / W : (x0 + x1 + 1) / 2 / W};
+    } catch (e) { box = {x0:0, x1:1, y0:0, y1:1, feet:.5}; }
+    const fig = im.parentElement, SW = st.clientWidth;                         // layout boxes (offset*), so the entrance animation's transform never skews the numbers
+    const r = {width:im.offsetWidth, height:im.offsetHeight}, L = fig.offsetLeft + im.offsetLeft, T = fig.offsetTop + im.offsetTop;
+    const xs = v => L + v * r.width, ys = v => T + v * r.height;
+    let dx = SW / 2 - xs(box.feet);                                             // the feet on the stage's middle line...
+    const lo = 4 - xs(box.x0), hi = SW - 4 - xs(box.x1);                      // ...as long as the whole silhouette stays on the stage (a full-width one is centred)
+    dx = lo > hi ? (lo + hi) / 2 : Math.min(Math.max(dx, lo), hi);
+    const dy = r.height * (1 - box.y1);                                         // empty rows under the feet: lower the art onto the circle
+    im.style.setProperty("--sx", dx + "px"); im.style.setProperty("--sy", dy + "px");
+    st.style.setProperty("--fx", xs(box.feet) + dx + "px"); st.style.setProperty("--fy", ys(box.y1) + dy + "px");
+    st.style.setProperty("--cx", (xs(box.x0) + xs(box.x1)) / 2 + dx + "px"); st.style.setProperty("--cy", (ys(box.y0) + ys(box.y1)) / 2 + dy + "px");
+  };
+  if (im.complete) run(); else im.addEventListener("load", run, {once:true});
+  const ro = new ResizeObserver(() => { if (!h.isConnected) return ro.disconnect(); run(); }); ro.observe(st);
 }
 function rvClearHero() { const h = $("rvHero"); if (h) { h.remove(); if (h._close) h._close(); } }
 function rvSkip() {                                  // skip: every card open at once, no more waiting; nothing is pulled again
