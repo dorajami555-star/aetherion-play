@@ -3092,6 +3092,119 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 @media (max-width:720px){.az-page{--sw:150px}.az-th,.az-tr{grid-template-columns:30px minmax(0,1fr) 24px 52px 56px auto 54px;gap:4px}.az-tr .az-mons{--mt:20px}.az-c-pts .azi,.az-c-pow .azi{display:none}.az-c-name .pav{display:none}.az-th span:nth-child(5),.az-th span:nth-child(4){font-size:10px}
   .az-view{font-size:11.5px}.az-view .azi{display:none}.az-merow{grid-template-columns:auto minmax(96px,1fr) auto auto 104px}.az-merow .az-mons{display:none}.az-merow .az-c-tier small{display:none}.az-nb{min-width:0;padding:0 10px;font-size:12px}
   .az-team .az-mons{--mt:min(74cqh,calc((100cqw - 120px) / 5.4))}.az-edit{font-size:11.5px!important;padding:0 6px!important}}
+/* ---- arena, concept pass (2026-11-01): a title banner and a corner box in the header row, the side panel and menu as drawn, bigger cards and monster tiles ---- */
+#topbar.az-top.az-nores{display:none!important}
+.az-page{--hbw:clamp(132px,19%,190px)}
+.az-banner{grid-column:2;grid-row:1;justify-self:center;align-self:stretch;container-type:inline-size;width:min(420px,calc(100% - 2 * var(--hbw) - 16px));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:0;direction:rtl;line-height:1.05;
+  background:linear-gradient(90deg,transparent,rgba(10,16,48,.94) 16%,rgba(10,16,48,.94) 84%,transparent);border-bottom:1.5px solid rgba(226,184,87,.6)}
+.az-banner[hidden],.az-hbox[hidden]{display:none}
+.az-banner b{display:inline-flex;align-items:center;gap:7px;font-size:clamp(18px,5.6dvh,25px);white-space:nowrap}
+.az-banner b span{color:transparent;background:linear-gradient(#fff6d2,#f0c766 50%,#c08a2c);-webkit-background-clip:text;background-clip:text}
+.az-banner b .azi{width:24px;height:24px;color:#ffd75a}
+.az-banner small{font-size:11px;color:#e8ecff;white-space:nowrap}
+@container (max-width:290px){.az-banner small{display:none}}
+.az-hbox{grid-column:2;grid-row:1;justify-self:end;align-self:center;height:calc(var(--hh) - 2px);max-width:var(--hbw);display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;padding:0 10px;border-radius:12px;direction:rtl;
+  background:linear-gradient(#101b4cf2,#080d2cf2);border:1.5px solid var(--line);box-shadow:0 0 0 1px #3a2506}
+.az-hbox>span:not(.az-hb-ic){display:flex;flex-direction:column;align-items:center;line-height:1.05;min-width:0}
+.az-hbox small{font-size:10.5px;color:#e8ecff;white-space:nowrap}.az-hbox b{font-size:14px;color:#fff;white-space:nowrap}
+.az-hb-ic{display:grid;place-items:center}.az-hb-ic .azi{width:24px;height:24px;color:#ffd75a}
+.az-hbox.ranks b{font-size:clamp(16px,5dvh,20px);letter-spacing:.5px}
+.az-hb-u{display:grid!important;grid-template-columns:repeat(3,1fr);width:100%;direction:ltr;text-align:center}.az-hb-u i{font-style:normal;font-size:10px}
+.az-hbox.shop{gap:8px;padding:0 14px}.az-hbox.shop img{width:28px;height:28px}.az-hbox.shop b{font-size:clamp(16px,5dvh,20px)}
+.az-hbox .w{color:#6dff9c}.az-hbox .l{color:#ff9a8a}.az-hbox.hist b{font-size:12px}
+/* side panel: the next rank's reward is always shown (as in every concept); menu rows: icon left, name centred, arrow right */
+.az-next{display:block!important;padding:3px 5px 4px;flex:none}
+.az-next .az-nh{font-size:11px;margin-bottom:2px}.az-next .az-rw{width:clamp(30px,8.6dvh,46px)}
+.az-menu button{flex-direction:row-reverse;min-height:30px}.az-menu button span{text-align:center}.az-menu button .chev{color:#ffd75a}
+@media (min-height:520px){.az-crest{grid-template-columns:1fr;justify-items:center;row-gap:3px}.az-crest .rankic.big{grid-row:auto;width:clamp(56px,11dvh,84px)}.az-crest .az-prog{width:100%}.az-place{grid-column:1}}
+/* fight: opponent cards as drawn (round portrait + name/power on one side, rank on the other, five big tiles), one bottom bar with my team and the battle button */
+.az-oc{grid-template-rows:30% minmax(0,1fr) 20%;gap:3%;padding:6px 10px}
+.az-oc-top{flex-direction:row}.az-oc-id{align-items:flex-start}
+.az-oc-av .pav{width:min(46px,100%)!important}
+.az-oc-rk{flex-direction:row;gap:5px}.az-oc-rk small{font-size:12px;font-weight:800}
+.az-oc .az-mons{--mt:min(calc((100cqw - 34px) / 5),44cqh,64px);gap:5px}
+.az-oc .az-mt small{font-size:10.5px}
+.az-bottom{grid-template-columns:minmax(0,1fr) clamp(170px,27%,250px);gap:0;padding:4px;border-radius:16px;background:linear-gradient(#101b4cf2,#080d2cf2);border:1.5px solid var(--line);box-shadow:0 0 0 1px #3a2506,0 8px 22px rgba(0,0,0,.45)}
+.az-bottom .az-team{background:none;border:0;padding:2px 8px}
+.az-team .az-mons{--mt:min(84cqh,calc((100cqw - 160px) / 5.3),68px);justify-content:center;gap:6px}
+/* rank rewards as drawn: the two tabs centred under the banner; ranks, milestones and both tracks run low → high from left to right;
+   season: chest on the left, the chosen rank's reward in the middle, the info box (or the mailbox) on the right */
+.az-bottom{box-sizing:border-box}.az-bottom>*{min-height:0;height:100%;box-sizing:border-box}.az-tm-h{gap:1px}.az-tm-h>b{font-size:clamp(13px,18cqh,18px)}
+@container (min-width:240px){.az-oc-rk small{display:inline}}
+.az-oc{grid-template-rows:34% minmax(0,1fr) 19%}
+@media (max-height:420px){.az-next{display:flex!important;align-items:center;gap:5px;padding:3px 5px}.az-next .az-nh{flex:1;margin:0;white-space:normal;line-height:1.15;font-size:10.5px}.az-next .az-rw{width:30px}.az-next .az-rws{gap:3px}
+  .az-side{gap:4px;padding:6px}.az-menu{gap:3px}.az-menu button{min-height:34px}.az-crest .az-prog{height:14px}}
+/* ranking as drawn: the podium rises into the header row (this view shows no resources); 1st in the middle, raised, with wings;
+   each place a portrait medallion with its number, a name plate with points, and the defence team under it */
+.az-head{position:relative;z-index:3}
+.az-main[data-v="board"]{grid-row:1 / 3}
+.az-podium{gap:clamp(8px,2vw,18px)}
+.az-pod{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto;justify-items:center;align-items:end;row-gap:2px;width:27%;padding:4px 6px 5px;overflow:visible;border-radius:18px 18px 12px 12px;
+  background:linear-gradient(#18276aee,#0a1236f2 60%,#070c28f5)}
+.az-pod.p1{width:30%;background:linear-gradient(#3a2a10ee,#141a46f2 55%,#070c28f5)}
+.az-pod.p2,.az-pod.p3{height:76%}
+.az-pavw{grid-column:1;grid-row:1;height:min(100%,96px);align-self:end}
+.az-pnum{top:-4px;right:auto;left:50%;translate:-50% 0;width:26px;height:26px;font-size:15px;border-radius:8px 8px 50% 50%}
+.az-pplate{grid-column:1;grid-row:2;align-items:center;width:100%;text-align:center}.az-pplate>b{max-width:100%}
+.az-pplate span b{font-size:clamp(14px,4.4dvh,20px)}
+.az-pod .az-mons{grid-column:1;grid-row:3;justify-content:center;--mt:min(calc((100cqw - 22px) / 5.1),26px,17cqh);gap:3px}
+.az-pplate{position:relative;z-index:2;padding:1px 8px;border-radius:9px;background:rgba(6,10,34,.82);border:1px solid rgba(226,184,87,.45)}
+.az-pod.p1 .az-pplate{border-color:#ffd75a}
+.az-pavw{height:min(100%,104px)}.az-pod.p1 .az-wings{width:175%}
+/* defence log as drawn: result block on the left, the attacker (portrait, name, power, points change), his team with the time above it, the arrow on the right */
+.az-dl{grid-template-columns:clamp(170px,30%,270px) minmax(0,1fr)}
+.az-lr{direction:ltr;grid-template-columns:clamp(70px,20cqw,118px) minmax(96px,1fr) auto 24px;align-items:center;gap:8px;padding:4px 6px 4px 4px}
+.az-lr>*{direction:rtl}.az-lres{align-self:stretch}
+.az-lwho2{display:flex;align-items:center;gap:6px;min-width:0;direction:ltr}.az-lwho2 .pav{flex:none;width:min(44px,calc(100cqh - 10px))!important;height:auto!important;aspect-ratio:1}
+.az-lwho2>span{display:flex;flex-direction:column;align-items:flex-start;min-width:0;line-height:1.12;direction:rtl}.az-lwho2 .az-pow b{font-size:12.5px}
+.az-lr .az-d{display:inline-flex;align-items:center;gap:2px;font-size:13px}.az-dar{width:11px;height:11px}
+.az-lteam{display:flex;flex-direction:column;align-items:flex-end;gap:1px;min-width:0}.az-lteam .az-lago{margin:0}
+.az-lr .az-mons{--mt:clamp(22px,min(calc(100cqh - 24px),calc((100cqw - 330px) / 5.3)),46px)}
+.az-lr{grid-template-columns:clamp(70px,19cqw,112px) minmax(128px,1fr) auto 24px}   /* cqw here: the row list (lrows) */.az-lname{max-width:100%;white-space:normal!important;overflow-wrap:anywhere;line-height:1.05}
+.az-lago{white-space:nowrap}
+.az-lrows{container:lrows / size}
+@container lrows (max-width:440px){.az-lr{grid-template-columns:60px minmax(0,1fr) auto 20px;gap:5px}.az-lwho2 .pav{display:none}.az-lres small{display:none}.az-lr .az-mons{--mt:20px;gap:2px}.az-lchev{display:grid!important;width:20px}}
+.az-rwv.season .az-dt{height:auto}.az-rwv.season .az-dt-ic{height:clamp(64px,19dvh,110px)}
+@media (max-height:470px){.az-rwv.season .az-rw.big{width:clamp(30px,8dvh,40px)}.az-sinfo .az-info2 li:nth-child(n+2){display:none}.az-dt-txt small{font-size:11px}}
+.az-lchev{height:min(80%,40px)}
+@container (max-width:380px){.az-lr{grid-template-columns:62px minmax(0,1fr) auto}.az-lwho2 .pav{display:none}}
+/* arena shop as drawn: title and glory in the header row, categories across the top of the grid, cards with a short description and a dark price pill */
+.az-spanel{grid-template-rows:auto minmax(0,1fr) auto}
+@container (min-height:118px){.az-itd{display:block!important}}
+.az-it{grid-template-rows:auto auto minmax(0,1fr) auto auto}.az-it .az-it-ic img{height:clamp(26px,calc(100cqh - 76px),104px)}
+.az-it .az-price{background:linear-gradient(#1a2a6a,#0b1338);color:#fff;border:1.5px solid rgba(226,184,87,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.az-it.on .az-price{border-color:#ffd75a;box-shadow:0 0 8px rgba(255,200,80,.45)}
+.az-it.poor .az-price{background:linear-gradient(#1a2a6a,#0b1338);color:#ff8a8a;border-color:#a8505a}
+.az-it.on{border:2px solid #ffb347;box-shadow:0 0 0 1px #6a4206,0 0 10px rgba(255,170,60,.45)}
+.az-slim b{display:inline-flex;align-items:center;gap:4px}.az-slim .az-pi{width:15px;height:15px}
+.az-bx{position:absolute;top:8px;left:8px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;color:#fff;background:#0b1338;border:1.5px solid var(--gold,#e2b857)}.az-bx .azi{width:16px;height:16px}
+.modal .card.azbuy{position:relative}.az-bq{margin:4px 0 6px}
+.az-rwhead{justify-content:center}.az-tabs2{gap:6px}.az-tabs2 button{min-width:clamp(150px,32%,280px)}
+.az-tcs,.az-tcrow,.az-trb,.az-msrow,.az-pmid,.az-pcards,.az-pline,.az-dt,.az-dt-main,.az-pdet{direction:ltr}
+.az-tc,.az-pc,.az-ms,.az-pnode,.az-dt-txt,.az-pact,.az-sinfo,.az-mail{direction:rtl}
+.az-msline i{right:auto;left:0;background:linear-gradient(90deg,#e2a43a,#ffe08a)}
+.az-dt{grid-template-columns:minmax(0,1fr) clamp(160px,32%,250px);height:auto;min-height:0}
+.az-rwv.season{grid-template-rows:auto minmax(0,1fr) auto auto}
+.az-dt-main{gap:12px}.az-dt-txt{gap:3px}.az-dt-txt b{display:inline-flex;align-items:center;gap:5px;color:#fff2c8}.az-dt-txt b .rankic{width:24px;height:24px}
+.az-dt-txt .az-rws{justify-content:flex-start;gap:6px}
+.az-sinfo,.az-mail{display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0;padding:4px 8px;border-radius:10px;background:rgba(6,10,34,.75);border:1px solid rgba(226,184,87,.45)}
+.az-sinfo>b{display:flex;align-items:center;gap:5px;font-size:13px;color:#ffd75a}.az-sinfo .az-info2{display:block;padding-right:14px;font-size:11px;line-height:1.3}
+.az-snum{font-size:10.5px;color:#9fb0e0}
+.az-pi{width:18px;height:18px;padding:2px;border-radius:50%;border:1.5px solid #ffd75a;color:#ffd75a;box-sizing:border-box;stroke-width:2.6}
+.az-mail{align-items:center;text-align:center;border-color:#ffd75a;box-shadow:0 0 12px rgba(255,200,80,.35)}
+.az-mail>b{display:flex;align-items:center;gap:5px;font-size:15px;color:#ffd75a}.az-mail small{font-size:11.5px;color:#e8ecff}.az-mail .az-rw{width:clamp(30px,8dvh,40px)}.az-mail .az-pbtn{height:34px;flex:1;min-width:64px;padding:0 8px;font-size:14px}.az-mrow{display:flex;align-items:center;gap:6px;width:100%}.az-mail{gap:1px;padding:3px 8px}
+.az-pnext{display:flex;flex-direction:row;align-items:center;gap:8px}.az-pnext>span{display:flex;flex-direction:column;line-height:1.15}
+.az-pme{flex-direction:row}.az-pme>span{align-items:flex-end}
+.az-rwv.season .az-dt{height:clamp(74px,21dvh,118px)}.az-rwv.season .az-tc{padding-top:13px}.az-tc .az-rw{width:min(30cqw,26cqh,40px)}
+.az-pc .az-rw{width:min(40cqw,40cqh,58px)}.az-pc .az-rw b{font-size:11.5px}
+.az-pdet,.az-pdet .az-dt-ic{height:clamp(78px,24dvh,132px)!important}
+.az-tic{width:100%;max-width:100%;aspect-ratio:auto;overflow:hidden}.az-tic .az-chest{max-width:100%;max-height:100%;object-fit:contain}.az-tic .rankic{max-width:42%;max-height:46%}
+@container (max-width:270px){.az-oc-rk small{display:none!important}}
+@media (max-width:720px){.az-main[data-v="board"]{grid-row:2}.az-pod.p2,.az-pod.p3{height:86%}}
+@media (max-height:400px){.az-pod .az-mons{display:none}.az-pavw{height:min(100%,60px)}
+  .az-rwv.season .az-dt-txt small{display:none}.az-rwv.season .az-dt-txt .az-rws{display:none}.az-rwv.season .az-dt-txt b{font-size:15px}}
+@media (max-height:470px){.az-sinfo .az-info2 li:nth-child(n+3){display:none}.az-snum{display:none}}
+@media (max-width:720px){.az-dt{grid-template-columns:minmax(0,1fr) 150px}.az-sinfo .az-info2{display:none}}
 </style>
 
 <div class="app" dir="rtl">
@@ -3264,6 +3377,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
     <div class="az-page">
       <div class="az-head"><button class="az-back" data-go="home" aria-label="חזרה"><svg class="azi" viewBox="0 0 24 24"><path d="M14 5l7 7-7 7M21 12H4"/></svg></button><span class="title-font">זירת השמיים</span>
         <button class="az-info" id="arInfo" aria-label="הסבר">!</button></div>
+      <div class="az-banner" id="azBanner" hidden></div><div class="az-hbox" id="azHBox" hidden></div>
       <aside class="az-side"><div class="az-crest" id="arenaCrest"></div><nav class="az-menu" id="arenaTabs"></nav><div class="az-next" id="arenaNext"></div></aside>
       <main class="az-main" id="arenaMain">
         <div id="arenaList"></div>
@@ -4171,7 +4285,7 @@ setInterval(() => { if (S) renderTop(); }, 1000);
 
 function show(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.toggle("on", s.id === id));
-  $("topbar").classList.toggle("az-top", id === "arena");
+  $("topbar").classList.toggle("az-top", id === "arena"); if (id !== "arena") $("topbar").classList.remove("az-nores");
   $("topbar").style.display = id === "battle" || id === "mdet" || (id === "team" && innerHeight <= 500) ? "none" : "flex";
   if (typeof paintNav === "function") paintNav(id);
   $("quick").classList.toggle("full", ["runes", "codex", "guild", "store", "bag", "arena", "team", "box", "mdet"].includes(id));   // full-width designed screens keep their own back button
@@ -4766,9 +4880,33 @@ function arenaState() {
   if (A.t >= ticketMax()) A.ts = Date.now();
   else { if (A.ts > Date.now()) A.ts = Date.now(); const add = Math.floor((Date.now() - A.ts) / TICKET_MS); if (add > 0) { A.t = Math.min(ticketMax(), A.t + add); A.ts += add * TICKET_MS; } }
   if (!A.seed || A.bots || !A.bo) { A.seed = A.seed || Math.floor(Math.random() * 1e9); delete A.bots; A.bo = {}; A.boV = 0; A.log = []; A.opp = null; A.day = today(); A.tier = A.tier || 0; }
+  if (seasonRoll(A)) save();
   if (A.day !== today()) arenaNewDay(A);
   return A;
 }
+/* ---- arena seasons: 28 days each from a fixed start. When a season ends, the rank the player holds pays SEASON_REW once, into the arena mailbox (A.mail);
+   points are not reset (the user's decision, 2026-11-01). The rollover runs in arenaState(), so it always happens before a fight or a defence changes the points. ---- */
+const SEASON_0 = new Date(2026, 10, 1).getTime(), SEASON_LEN = 28 * 864e5;
+const SEASON_REW = [{gem:50}, {gem:100, m:1}, {gem:200, m:2}, {gem:300, m:3}, {gem:500, l:1}, {gem:800, l:2}, {gem:1200, l:3}, {gem:2000, l:3, ld:1}];   // by RANKS index; amounts approved by the user
+const seasonNow = () => Math.max(1, Math.floor((Date.now() - SEASON_0) / SEASON_LEN) + 1);
+const seasonEnd = n => SEASON_0 + n * SEASON_LEN;
+function seasonRoll(A) {
+  const n = seasonNow();
+  if (!A.season) { A.season = n; return true; }
+  if (A.season >= n) return false;
+  A.mail = A.mail || [];
+  if (!A.mail.some(x => x.s === A.season)) A.mail.push({s:A.season, k:RANKS.indexOf(rankOf(A.r)), at:seasonEnd(A.season)});
+  A.season = n; return true;
+}
+const seasonMail = A => (A.mail || []).filter(x => !x.got);
+function claimSeason(s) {                             // the only way a season reward is paid: in the mailbox, not taken yet → pay, mark, save
+  const A = arenaState(), x = (A.mail || []).find(m => m.s === s && !m.got);
+  if (!x) return false;
+  const g = SEASON_REW[x.k] || SEASON_REW[0];
+  S.gem += g.gem || 0; S.scrolls.m += g.m || 0; S.scrolls.l += g.l || 0; S.scrolls.ld += g.ld || 0;
+  x.got = 1; save(true); renderTop(); return true;
+}
+function seasonLeft() { const ms = Math.max(0, seasonEnd(seasonNow()) - Date.now()); return {d:Math.floor(ms / 864e5), h:Math.floor(ms / 36e5) % 24, m:Math.floor(ms / 6e4) % 60}; }
 function botTouch(A, i, dr, win) { const o = A.bo[i] || (A.bo[i] = {dr:0, w:0, l:0}); o.dr += dr; if (win) o.w++; else o.l++; A.boV = (A.boV || 0) + 1; }
 function nearBots(A, span, n) {
   const R0 = ratingsSorted(A), out = [];
@@ -4813,14 +4951,14 @@ const AZI = {                                        // small gold line icons fo
   back:'<path d="M14 5l7 7-7 7M21 12H4"/>', next:'<path d="M15 5l-7 7 7 7"/>', prev:'<path d="M9 5l7 7-7 7"/>',
   list:'<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
   lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
-  refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>', check:'<path d="M4 12.5l5 5L20 6.5"/>', info:'<path d="M12 10v7M12 6.5v.5"/>'};
+  refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>', clock:'<path d="M6 3h12M6 21h12M7 3c0 4 4 6 5 9-1 3-5 5-5 9M17 3c0 4-4 6-5 9 1 3 5 5 5 9"/>', check:'<path d="M4 12.5l5 5L20 6.5"/>', x:'<path d="M6 6l12 12M18 6L6 18"/>', up:'<path d="M12 6l7 11H5z" fill="currentColor" stroke="none"/>', down:'<path d="M12 18L5 7h14z" fill="currentColor" stroke="none"/>', info:'<path d="M12 10v7M12 6.5v.5"/>'};
 const azi = (k, c) => `<svg class="azi ${c || ""}" viewBox="0 0 24 24" aria-hidden="true">${AZI[k]}</svg>`;
 const azMon = (id, lv, st) => { const d = MON[id];               // one monster tile: art, element, level, stars (real data)
   return `<span class="az-mt" style="--ec:${EL[d.el].c};--rc:${RAR[Math.max(0, Math.min(4, (st || d.st) - 1))].c}">${sprite(id)}${HAVE.has("el_" + d.el) ? `<img class="az-el" src="assets/el_${d.el}.webp" alt="">` : ""}<small dir="ltr">Lv.${lv}</small><em dir="ltr">${st || d.st}★</em></span>`; };
 const azMine = () => S.team.map(u => S.mons.find(m => m.uid === u)).filter(Boolean);
 const azPodFrame = ["gold", "silver", "bronze"];
 const azNm = n => `<b class="${n.length > 14 ? "lg xl" : n.length > 10 ? "lg" : ""}">${esc(n)}</b>`;   // long player names get a smaller font, never cut
-let azBoard = {mode:"top", page:1, flash:false}, azLogPage = 1, azHistPage = 1, azShopCat = "all", azBuyArm = null;
+let azTick = 0, azBoard = {mode:"top", page:1, flash:false}, azLogPage = 1, azHistPage = 1, azShopCat = "all", azBuyArm = null;
 const AZ_TOP = 100, AZ_PER = 5;
 function azLadder(A) {                               // the real ranking: 10,000 players sorted by today's rating, me inserted at my place
   const R0 = ratingsSorted(A), pos = myRank(A), total = NBOTS + 1;
@@ -4837,9 +4975,23 @@ function renderArena() {
   $("arenaCrest").innerHTML = `${rankIc(A.r).replace('class="rankic', 'class="rankic big')}<b class="title-font" style="color:${rc}">${rn}</b>
     <div class="az-prog"><i style="width:${pct}%"></i><span dir="ltr">${A.r}${next ? ` / ${next[0]}` : ""}</span></div>
     <div class="az-place">מקום <b>${fmt(pos)}</b>${next ? ` · עוד ${next[0] - A.r} ל${next[1]}` : " · הדרגה הגבוהה ביותר!"}</div>`;
-  const newLog = A.log.filter(x => x.day === today() && !x.seen).length;
-  $("arenaTabs").innerHTML = [["board", "trophy", "דירוג"], ["ranks", "gift", `פרסי דירוג${tierReady(A) ? ` (${tierReady(A)})` : ""}`], ["log", "shield", `יומן הגנה${newLog ? ` (${newLog})` : ""}`], ["fight", "sw", "קרב"], ["shop", "shop", "חנות הזירה"], ["hist", "chart", "היסטוריה"]]
-    .map(([t, ic, n]) => `<button class="${arenaTab === t ? "on" : ""}" data-t="${t}">${azi(ic)}<span>${n}</span>${azi("next", "chev")}</button>`).join("");
+  const newLog = A.log.filter(x => x.day === today() && !x.seen).length, rwReady = tierReady(A) + seasonMail(A).length;
+  $("arenaTabs").innerHTML = [["board", "trophy", "דירוג"], ["ranks", "gift", `פרסי דירוג${rwReady ? ` (${rwReady})` : ""}`], ["log", "shield", `יומן הגנה${newLog ? ` (${newLog})` : ""}`], ["fight", "sw", "קרב"], ["shop", "shop", "חנות הזירה"], ["hist", "chart", "היסטוריה"]]
+    .map(([t, ic, n]) => `<button class="${arenaTab === t ? "on" : ""}" data-t="${t}">${azi(ic)}<span>${n}</span>${azi("prev", "chev")}</button>`).join("");   // as in the concept: icon on the left, name in the middle, arrow on the right
+  // the header row: a title banner for the views that have one; the right corner holds that view's own box (season clock, glory, last attack) instead of the resources
+  const ban = {ranks:["gift", "פרסי דירוג", "קבל פרסים יקרי ערך על הדירוג שלך בזירת השמיים"], log:["shield", "יומן ההגנה", "רשימת ההתקפות על ההגנה שלך"],
+    shop:["sw", "חנות הזירה", "פריטים ייחודיים בתמורה לתהילה"], hist:["chart", "היסטוריה", "הקרבות שלך בזירה"]}[arenaTab];
+  $("azBanner").hidden = !ban; $("azBanner").innerHTML = ban ? `<b class="title-font">${azi(ban[0])}<span>${ban[1]}</span></b><small>${ban[2]}</small>` : "";
+  const sl = seasonLeft(), hbox = arenaTab === "ranks" ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>סיום העונה בעוד</small><b id="azClock" dir="ltr">${String(sl.d).padStart(2, "0")}:${String(sl.h).padStart(2, "0")}:${String(sl.m).padStart(2, "0")}</b><small class="az-hb-u"><i>ימים</i><i>שעות</i><i>דקות</i></small></span>`
+    : arenaTab === "shop" ? `<img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(A.glory || 0)}</b>`
+    : arenaTab === "log" && A.log.length && A.log[0].ts ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>התקפה אחרונה</small><b>${azAgo(A.log[0])}</b></span>`
+    : arenaTab === "hist" ? `<span><small>המאזן שלך</small><b><span class="w" dir="ltr">${fmt(A.w)}</span> ניצחונות · <span class="l" dir="ltr">${fmt(A.l)}</span> הפסדים</b></span>` : "";
+  $("azHBox").hidden = !hbox; $("azHBox").innerHTML = hbox; $("azHBox").className = `az-hbox ${arenaTab}`;
+  $("topbar").classList.toggle("az-nores", !!(ban || hbox) || arenaTab === "board");
+  clearInterval(azTick); if (arenaTab === "ranks") azTick = setInterval(() => { const A2 = arenaState(), e = $("azClock");
+    if (!e || !$("arena").classList.contains("on")) return clearInterval(azTick);
+    if (A2.season !== +e.dataset.s && e.dataset.s) return renderArena();                                  // the season ended while the screen was open
+    const t = seasonLeft(); e.dataset.s = A2.season; e.textContent = [t.d, t.h, t.m].map(v => String(v).padStart(2, "0")).join(":"); }, 15000);
   $("arenaTabs").querySelectorAll("[data-t]").forEach(b => b.onclick = () => { arenaTab = b.dataset.t; azBuyArm = null; renderArena(); });
   const rewTile = (img, n) => `<span class="az-rw"><img src="assets/${img}.webp" alt=""><b dir="ltr">${fmt(n)}</b></span>`;
   const rewTiles = r => r ? [r.gem && rewTile("cur_gem", r.gem), r.m && rewTile("scroll_m", r.m), r.l && rewTile("scroll_l", r.l), r.ld && rewTile("scroll_ld", r.ld)].filter(Boolean).join("") : "";
@@ -4914,9 +5066,9 @@ function azRanking(A, L) {
       <span class="az-c-pow">${azi("shield")}<b dir="ltr">${fmt(powOf(me))}</b></span>
       <span class="az-mons sm">${teamOf(me).map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span>
       <button class="btn blue az-tome" id="azMe">${azi("pin")}מעבר למיקום שלי</button></div>
-    <div class="az-nav"><button class="az-nb ${azBoard.mode === "top" ? "on" : ""}" id="azTop">${azi("crown")}100 הראשונים</button>
+    <div class="az-nav"><button class="az-nb ${azBoard.mode === "all" ? "on" : ""}" id="azNear">${azi("users")}שחקנים סביבי</button>
       <span class="az-pager"><button id="azPrev" aria-label="עמוד קודם" ${azBoard.page <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${fmt(azBoard.page)}/${fmt(pages)}</b><button id="azNext" aria-label="עמוד הבא" ${azBoard.page >= pages ? "disabled" : ""}>${azi("next")}</button></span>
-      <button class="az-nb ${azBoard.mode === "all" ? "on" : ""}" id="azNear">${azi("users")}שחקנים סביבי</button></div></div>`;
+      <button class="az-nb ${azBoard.mode === "top" ? "on" : ""}" id="azTop">${azi("crown")}100 הראשונים</button></div></div>`;
   azBoard.flash = false;
   const myPage = () => Math.max(1, Math.ceil((lad.pos - 3) / AZ_PER));
   L.querySelectorAll("[data-i]").forEach(b => b.onclick = () => botProfile(getBot(A, +b.dataset.i)));
@@ -4935,11 +5087,11 @@ function claimTier(j) {                              // the only way a rank rewa
   got.push(j); save(true); renderTop(); return true;
 }
 const tierReady = A => RANKS.map((_, j) => j).filter(j => j > 0 && j <= (A.tier || 0) && !tierGot(A).includes(j)).length;
-let azRw = {tab:"prog", sel:null, off:null, page:null, ms:null};
+let azRw = {tab:"prog", sel:null, off:null, page:null, ms:null};   // the title of this screen is in the header banner; the view keeps only its two tabs
 const AZ_CHEST_TINT = ["sepia(.6) saturate(1.6) hue-rotate(-18deg)", "grayscale(.7) brightness(1.15)", "none", "hue-rotate(160deg) saturate(1.2)", "hue-rotate(185deg) saturate(1.6) brightness(1.1)", "hue-rotate(-28deg) saturate(1.8)", "hue-rotate(235deg) saturate(1.5)", "hue-rotate(-50deg) saturate(2.2)"];
 const azChest = j => `<img class="az-chest" src="assets/ic_q_chest.webp" alt="" style="filter:${AZ_CHEST_TINT[j] || "none"}">`;
-const azRwHead = season => `<div class="az-rwhead"><span class="az-rwt">${azi("gift")}<b class="title-font">פרסי דירוג</b></span>
-      <span class="az-tabs2"><button class="${season ? "on" : ""}" data-tab="season"><b>פרסי עונה</b><small>בסוף העונה, לפי הדרגה</small></button><button class="${season ? "" : "on"}" data-tab="prog"><b>פרסי התקדמות</b><small>פרס על כל דרגה חדשה</small></button></span></div>`;
+const azRwHead = season => `<div class="az-rwhead">
+      <span class="az-tabs2"><button class="${season ? "on" : ""}" data-tab="season"><b>פרסי עונה</b><small>מתקבלים בסיום העונה לפי הדרגה</small></button><button class="${season ? "" : "on"}" data-tab="prog"><b>פרסי התקדמות</b><small>אסוף פרס על כל דרגה חדשה</small></button></span></div>`;
 let azClaiming = false;
 function azProgress(A, L, state, rewT) {               // progression: every rewarded rank is a milestone; card, bottom panel and button all read state(j)
   const MS = RANKS.map((r, i) => i).filter(i => i > 0), pages = Math.ceil(MS.length / AZ_PER);
@@ -4964,13 +5116,13 @@ function azProgress(A, L, state, rewT) {               // progression: every rew
     : sj === "ready" ? `<button class="az-pbtn ready" data-c="${j}" ${azClaiming ? "disabled" : ""}>${azClaiming ? "אוסף…" : "אסוף פרס"}</button>`
     : `<button class="az-pbtn lock" disabled>${azi("lock")}נעול כרגע</button>`;
   L.innerHTML = `<div class="az-rwv prog">${azRwHead(false)}
-    <div class="az-ptop"><span class="az-pme">${azi("sw")}<span><small>נקודות הזירה שלך</small><b dir="ltr">${fmt(A.r)}</b></span></span>
+    <div class="az-ptop"><span class="az-pnext">${azi("info", "az-pi")}<span><b>${nextLock != null ? `עוד <span dir="ltr">${fmt(toNext)}</span> נקודות לפרס הבא` : "הגעת לכל אבני הדרך!"}</b><small>כל דרגה חדשה פותחת פרס חד־פעמי</small></span></span>
       <span class="az-pbar"><i style="width:${nextLock != null ? pct(nextLock) : 100}%"></i></span>
-      <span class="az-pnext"><b>${nextLock != null ? `עוד <span dir="ltr">${fmt(toNext)}</span> נקודות לפרס הבא` : "הגעת לכל אבני הדרך!"}</b><small>כל דרגה חדשה פותחת פרס חד־פעמי</small></span></div>
-    <div class="az-pmid"><button class="az-arr" data-pg="-1" aria-label="עמוד קודם" ${azRw.page <= 1 ? "disabled" : ""}>${azi("prev")}</button>
+      <span class="az-pme"><span><small>נקודות הזירה שלך</small><b dir="ltr">${fmt(A.r)}</b></span>${azi("sw")}</span></div>
+    <div class="az-pmid"><button class="az-arr" data-pg="-1" aria-label="עמוד קודם" ${azRw.page <= 1 ? "disabled" : ""}>${azi("next")}</button>
       <div class="az-pcols"><div class="az-pcards" style="--n:${ms.length}">${ms.map(card).join("")}</div>
         <div class="az-pline" style="--n:${ms.length}"><span class="az-msline"><i style="width:${fill}%"></i></span>${ms.map(i => `<span class="az-pnode ${state(i)}">${state(i) === "lock" ? azi("lock") : ""}<b dir="ltr">${fmt(RANKS[i][0])}</b></span>`).join("")}</div></div>
-      <button class="az-arr" data-pg="1" aria-label="עמוד הבא" ${azRw.page >= pages ? "disabled" : ""}>${azi("next")}</button>
+      <button class="az-arr" data-pg="1" aria-label="עמוד הבא" ${azRw.page >= pages ? "disabled" : ""}>${azi("prev")}</button>
       <span class="az-pgi" dir="ltr">${azRw.page} / ${pages}</span></div>
     <div class="az-pdet ${sj}"><span class="az-dt-ic">${azChest(j)}</span>
       <span class="az-dt-txt"><b class="title-font">${j === nextLock ? "הפרס הבא" : sj === "got" ? "פרס שנאסף" : sj === "ready" ? "פרס זמין" : "פרס עתידי"} · <span style="color:${c}">${n}</span></b><small><span dir="ltr">${fmt(min)}</span> נקודות</small><span class="az-rws">${rewT(TIER_REW[j], true)}</span></span>
@@ -4994,26 +5146,22 @@ function azRewards(A, L) {
   azRw.off = Math.max(0, Math.min(RANKS.length - per, azRw.off));
   const rewT = (r, big) => r ? [r.gem && ["cur_gem", r.gem], r.m && ["scroll_m", r.m], r.l && ["scroll_l", r.l], r.ld && ["scroll_ld", r.ld]].filter(Boolean)
     .map(([im, n]) => `<span class="az-rw ${big ? "big" : ""}"><img src="assets/${im}.webp" alt=""><b dir="ltr">${fmt(n)}</b></span>`).join("") : "";
-  const range = j => RANKS[j + 1] ? `${fmt(RANKS[j][0])} - ${fmt(RANKS[j + 1][0] - 1)} נק׳` : `${fmt(RANKS[j][0])}+ נק׳`;
+  const range = j => RANKS[j + 1] ? `<span dir="ltr">${fmt(RANKS[j][0])} - ${fmt(RANKS[j + 1][0] - 1)}</span> נק׳` : `<span dir="ltr">${fmt(RANKS[j][0])}+</span> נק׳`;
   const state = j => j === 0 ? "base" : got.includes(j) ? "got" : j <= reached ? "ready" : "lock";
   const season = azRw.tab === "season";
   if (!season) return azProgress(A, L, state, rewT);
-  const cards = RANKS.slice(azRw.off, azRw.off + per).map(([min, n, c], i) => { const j = azRw.off + i, st = state(j);
+  const cards = RANKS.slice(azRw.off, azRw.off + per).map(([min, n, c], i) => { const j = azRw.off + i;
     return `<button class="az-tc ${j === azRw.sel ? "sel" : ""} ${j === k ? "mine" : ""}" data-j="${j}" style="--tc:${c}">
       ${j === k ? '<span class="az-tag me">הדרגה שלי</span>' : ""}${j === azRw.sel && j !== k ? '<span class="az-tag">הדרגה הנבחרת</span>' : ""}
       <b class="az-tn" style="color:${c}">${n}</b><span class="az-tic">${rankIc(min)}${azChest(j)}</span>
-      <span class="az-rws">${season ? "" : rewT(TIER_REW[j]) || '<small class="muted">דרגת פתיחה</small>'}</span><small class="az-trange" dir="rtl">${range(j)}</small>
-      ${!season && st === "got" ? `<i class="az-tst got">${azi("check")}</i>` : !season && st === "ready" ? '<i class="az-tst ready">!</i>' : ""}</button>`; }).join("");
-  const j = azRw.sel, [min, n, c] = RANKS[j], st = state(j), g = TIER_REW[j];
-  const detail = season
-    ? `<div class="az-dt-main"><span class="az-dt-ic">${azChest(j)}</span><span class="az-dt-txt"><b class="title-font" style="color:${c}">פרסי עונה · ${n}</b><small>${range(j)}</small>
-        <span class="az-soon">עונות הזירה ייפתחו בקרוב</span></span></div>`
-    : `<div class="az-dt-main"><span class="az-dt-ic">${azChest(j)}</span><span class="az-dt-txt"><b class="title-font" style="color:${c}">פרס דרגה · ${n}</b>
-        <small>${j === 0 ? "דרגת הפתיחה, אין פרס" : `מגיעים ל-${fmt(min)} נקודות זירה, פעם אחת בלבד`}</small></span>
-        <span class="az-rws">${rewT(g, true)}</span>
-        ${j === 0 ? "" : st === "got" ? `<span class="az-st got">${azi("check")}נאסף</span>` : st === "ready" ? `<button class="btn az-claim" data-c="${j}">לאסוף</button>` : `<span class="az-st lock">${azi("lock")}עוד ${fmt(min - A.r)} נק׳</span>`}</div>`;
-  const info = season ? ["הפרס יחושב לפי הדרגה בסוף העונה.", "ככל שהדרגה גבוהה יותר, הפרס גדול יותר."]
-    : ["כל דרגה נותנת פרס פעם אחת.", "הפרס נשאר שמור עד שאוספים אותו.", "ירידה בנקודות לא מבטלת פרס שהושג."];
+      <span class="az-rws">${rewT(SEASON_REW[j])}</span><small class="az-trange" dir="rtl">${range(j)}</small></button>`; }).join("");
+  const j = azRw.sel, [min, n, c] = RANKS[j], mail = seasonMail(A)[0];
+  const detail = `<div class="az-dt-main"><span class="az-dt-ic">${azChest(j)}</span><span class="az-dt-txt"><b class="title-font">${rankIc(min, 1)}פרסי עונה · <span style="color:${c}">${n}</span></b>
+        <small>מתקבלים בסיום העונה לפי הדרגה הסופית שלך</small><span class="az-rws">${rewT(SEASON_REW[j], true)}</span></span></div>`;
+  const info = mail   // a season that ended: its reward waits in the mailbox until collected (once)
+    ? `<div class="az-mail"><b class="title-font">${azi("gift")}תיבת הדואר</b><small>פרס עונה ${mail.s} · דרגת <span style="color:${RANKS[mail.k][2]}">${RANKS[mail.k][1]}</span></small><span class="az-mrow"><span class="az-rws">${rewT(SEASON_REW[mail.k])}</span>
+        <button class="az-pbtn ready" data-ms="${mail.s}" ${azClaiming ? "disabled" : ""}>${azClaiming ? "אוסף…" : "אסוף"}</button></span></div>`
+    : `<div class="az-sinfo"><b>${azi("info", "az-pi")}מידע על פרסי העונה</b><ul class="az-info2">${["הפרס מחושב לפי הדרגה שלך בסיום העונה.", "ככל שהדרגה גבוהה יותר, הפרס יקר יותר.", "בסיום העונה הפרס נשלח לתיבת הדואר כאן, ונאסף פעם אחת."].map(x => `<li>${x}</li>`).join("")}</ul><small class="az-snum">עונה ${A.season} · 28 ימים</small></div>`;
   // the progress track: rewarded ranks, five per page
   const MS = RANKS.map((r, i) => i).filter(i => i > 0), pages = Math.ceil(MS.length / AZ_PER);
   if (azRw.page == null) { const f = MS.findIndex(i => state(i) === "ready"), cur = MS.findIndex(i => state(i) === "lock"); azRw.page = Math.floor(Math.max(0, f >= 0 ? f : cur >= 0 ? cur : MS.length - 1) / AZ_PER) + 1; }
@@ -5028,12 +5176,12 @@ function azRewards(A, L) {
     return p / Math.max(1, ms.length - 1) * 100; })();
   L.innerHTML = `<div class="az-rwv ${season ? "season" : ""}">
     ${azRwHead(true)}
-    <div class="az-tcs"><button class="az-arr" data-off="-1" aria-label="דרגות קודמות" ${azRw.off <= 0 ? "disabled" : ""}>${azi("prev")}</button><div class="az-tcrow" style="--n:${per}">${cards}</div><button class="az-arr" data-off="1" aria-label="דרגות הבאות" ${azRw.off >= RANKS.length - per ? "disabled" : ""}>${azi("next")}</button></div>
-    <div class="az-dt">${detail}<ul class="az-info2">${info.map(x => `<li>${x}</li>`).join("")}</ul></div>
+    <div class="az-tcs"><button class="az-arr" data-off="-1" aria-label="דרגות קודמות" ${azRw.off <= 0 ? "disabled" : ""}>${azi("next")}</button><div class="az-tcrow" style="--n:${per}">${cards}</div><button class="az-arr" data-off="1" aria-label="דרגות הבאות" ${azRw.off >= RANKS.length - per ? "disabled" : ""}>${azi("prev")}</button></div>
+    <div class="az-dt">${detail}${info}</div>
     <div class="az-track"><div class="az-trh"><b class="title-font">${azi("chart")}פרסי התקדמות</b><span>נקודות זירה נוכחיות: <b dir="ltr">${fmt(A.r)}</b></span></div>
-      <div class="az-trb"><button class="az-arr" data-pg="-1" aria-label="עמוד קודם" ${azRw.page <= 1 ? "disabled" : ""}>${azi("prev")}</button>
+      <div class="az-trb"><button class="az-arr" data-pg="-1" aria-label="עמוד קודם" ${azRw.page <= 1 ? "disabled" : ""}>${azi("next")}</button>
         <div class="az-msrow"><span class="az-msline"><i style="width:${fill}%"></i></span>${ms.map(node).join("")}</div>
-        <button class="az-arr" data-pg="1" aria-label="עמוד הבא" ${azRw.page >= pages ? "disabled" : ""}>${azi("next")}</button></div>
+        <button class="az-arr" data-pg="1" aria-label="עמוד הבא" ${azRw.page >= pages ? "disabled" : ""}>${azi("prev")}</button></div>
       <span class="az-pgi" dir="ltr">${azRw.page}/${pages}</span></div></div>`;
   L.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { azRw.tab = b.dataset.tab; renderArena(); });
   L.querySelectorAll(".az-tc").forEach(b => b.onclick = () => { azRw.sel = +b.dataset.j; renderArena(); });
@@ -5042,6 +5190,11 @@ function azRewards(A, L) {
   L.querySelectorAll("[data-c]").forEach(b => b.onclick = e => { e.stopPropagation(); const t = +b.dataset.c;
     if (!claimTier(t)) return toast("הפרס הזה לא זמין לאיסוף");
     SFX.legend(); toast(`קיבלת את פרס דרגת ${RANKS[t][1]}!`); renderArena(); });
+  L.querySelectorAll("[data-ms]").forEach(b => b.onclick = () => {           // the mailbox: one claim at a time, paid by claimSeason only
+    if (azClaiming) return; const s2 = +b.dataset.ms; azClaiming = true; renderArena();
+    setTimeout(() => { const ok = claimSeason(s2); azClaiming = false;
+      if (ok) { SFX.legend(); toast(`קיבלת את פרס עונה ${s2}!`); } else toast("הפרס הזה כבר נאסף");
+      if ($("arena").classList.contains("on")) renderArena(); }, 250); });
 }
 function azFit(root) {                               // a long player name steps its font down (to 10px) instead of being cut
   root.querySelectorAll(".az-oc-id>b,.az-c-name b,.az-pplate>b,.az-go-sub span,.az-lname,.az-lside .az-lwho b,.az-sdn,.az-it>b").forEach(e => { let f = parseFloat(getComputedStyle(e).fontSize); while (e.scrollWidth > e.clientWidth + 1 && f > 10) { f -= .5; e.style.setProperty("font-size", f + "px", "important"); } });
@@ -5068,10 +5221,10 @@ function azLog(A, L) {
   const res = x => `<span class="az-lres ${x.win ? "w" : "l"}">${azi(x.win ? "shield" : "sw")}<b>${x.win ? "ניצחון" : "הפסד"}</b><small>${x.win ? "ההגנה שלך הצליחה" : "ההגנה שלך נכשלה"}</small></span>`;
   const row = ({x, k}) => { const b = getBot(A, x.bi), pw = x.pow || null;
     return `<button class="az-lr ${x.win ? "w" : "l"} ${k === azLogSel ? "on" : ""}" data-l="${k}">${res(x)}
-      <span class="az-lmain"><span class="az-ltop">${framedAvatar(28, {k:"", c1:rankOf(x.ar || b.r)[2], c2:"#0b1338"}, ART[b.team[0][0]] || "")}<b class="az-lname">${esc(b.name)}</b>
-        ${pw ? `<span class="az-pow">${azi("sw")}<b dir="ltr">${fmt(pw)}</b></span>` : ""}<b class="az-d ${x.win ? "w" : "l"}" dir="ltr">${x.d > 0 ? "+" : ""}${x.d}</b><small class="az-lago">${azAgo(x)}</small></span>
-        <span class="az-mons">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span></span>
-      <span class="az-lchev">${azi("next")}</span></button>`; };
+      <span class="az-lwho2">${framedAvatar(44, {k:"", c1:rankOf(x.ar || b.r)[2], c2:"#0b1338"}, ART[b.team[0][0]] || "")}<span><b class="az-lname">${esc(b.name)}</b>
+        ${pw ? `<span class="az-pow">${azi("sw")}<b dir="ltr">${fmt(pw)}</b></span>` : ""}<b class="az-d ${x.win ? "w" : "l"}" dir="ltr">${x.d > 0 ? "+" : ""}${x.d}${azi(x.d > 0 ? "up" : "down", "az-dar")}</b></span></span>
+      <span class="az-lteam"><small class="az-lago">${azAgo(x)}</small><span class="az-mons">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span></span>
+      <span class="az-lchev">${azi("prev")}</span></button>`; };
   let body;
   if (!all.length) body = `<div class="az-lempty"${HAVE.has("ui_deflog_empty") ? ` style="--em:url(${assetUrl("ui_deflog_empty")})"` : ""}><span class="az-lem-art"></span>
       <b class="title-font">עדיין לא תקפו את ההגנה שלך</b><small>כאן תופיע רשימת ההתקפות על ההגנה שלך, ברגע ששחקנים אחרים יתקפו אותך.</small>
@@ -5117,6 +5270,7 @@ const AZ_CATS = [["all", "הכל", "cur_glory"], ["sc", "מגילות", "scroll_
 const AZ_DESC = {                                   // facts already in the game (scroll odds, rune rule, awakening cost, energy cap)
   al:() => `זימון: ${SCR.l.rates}. ${SCR.l.note}.`, ald:() => `זימון: ${SCR.ld.rates}. ${SCR.ld.note}.`, am:() => `5 מגילות. זימון: ${SCR.m.rates}.`,
   ar6:() => "רון אקראי של 6 כוכבים, עם 3 תכונות משנה.", amg:() => "חומר להתעוררות מפלצות (8 בכל התעוררות).", aen:() => "אנרגיה לקרבות (עד 99)."};
+const AZ_SHORT = {al:"תמיד 4 כוכבים ומעלה", ald:"רק מפלצות אור וחושך", am:"חבילה של 5 מגילות", ar6:"רון אקראי, 6 כוכבים", amg:"חומר להתעוררות", aen:"אנרגיה לקרבות"};   // one line for the cards, from the same facts
 let azShopPage = 1, azShopSel = null, azQty = 1, azBuying = false;
 const azGlory = () => arenaState().glory || 0;
 function azItemState(x) {                           // one place for an item's state: limit, bought today, how many can still be bought now
@@ -5133,20 +5287,19 @@ function azShop(A, L) {
   const have = azGlory(), x = ASHOP.find(i => i.k === azShopSel), st = x ? azItemState(x) : null;
   if (st) azQty = Math.max(1, Math.min(azQty, Math.max(1, Math.min(st.left, 99))));
   const card = i => { const s2 = azItemState(i);
-    return `<button class="az-it ${s2.sold ? "sold" : s2.poor ? "poor" : ""} ${i.k === azShopSel ? "on" : ""}" data-s="${i.k}"><b>${i.n}</b><small class="az-itd">${AZ_DESC[i.k] ? AZ_DESC[i.k]() : ""}</small>
+    return `<button class="az-it ${s2.sold ? "sold" : s2.poor ? "poor" : ""} ${i.k === azShopSel ? "on" : ""}" data-s="${i.k}"><b>${i.n}</b><small class="az-itd">${AZ_SHORT[i.k] || ""}</small>
       <span class="az-it-ic">${shopImg(i)}${i.x ? `<span class="qty" dir="ltr">×${i.x}</span>` : ""}</span>
       ${s2.sold ? '<small class="az-itlim red">הגעת למגבלת הרכישה</small>' : `<small class="az-itlim">${azLimTxt(i, s2) || "&nbsp;"}</small>`}
       <span class="az-price ${s2.poor && !s2.sold ? "poor" : ""} ${s2.sold ? "off" : ""}"><img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(i.p)}</b></span></button>`; };
   const total = x ? x.p * azQty : 0, after = have - total;
   const det = !x ? `<div class="az-sdet empty"><small>בחר פריט כדי לראות את פרטיו</small></div>` : `<div class="az-sdet">
       <b class="title-font az-sdn">${x.n}</b><span class="az-sdi">${shopImg(x)}</span><small class="az-sdd">${AZ_DESC[x.k] ? AZ_DESC[x.k]() : ""}</small>
-      <div class="az-slim ${st.sold ? "red" : ""}">${x.lim ? `<b>מגבלת רכישה יומית</b><small>${st.sold ? "הגעת למגבלת הרכישה · מתאפס בחצות" : azLimTxt(x, st)}</small>` : "<small>ללא מגבלת רכישה</small>"}</div>
+      <div class="az-slim ${st.sold ? "red" : ""}">${x.lim ? `<b>${azi("info", "az-pi")}מגבלת רכישה יומית</b><small>${st.sold ? "הגעת למגבלת הרכישה · מתאפס בחצות" : azLimTxt(x, st)}</small>` : "<small>ללא מגבלת רכישה</small>"}</div>
       <div class="az-qty"><button data-q="-1" aria-label="פחות" ${azQty <= 1 || st.sold ? "disabled" : ""}>−</button><b dir="ltr">${azQty}</b><button data-q="1" aria-label="יותר" ${azQty >= Math.min(st.left, 99) || st.sold ? "disabled" : ""}>+</button><button class="az-max" data-q="max" ${st.sold ? "disabled" : ""}>MAX</button></div>
       <div class="az-sums"><span>מחיר ליחידה<b><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${fmt(x.p)}</i></b></span><span>מחיר כולל<b><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${fmt(total)}</i></b></span>
         <span>יתרה לאחר רכישה<b class="${after < 0 ? "neg" : "pos"}"><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${fmt(after)}</i></b></span></div>
       <button class="az-buy ${st.sold ? "sold" : after < 0 ? "poor" : ""}" id="azBuy">${st.sold ? "הגעת למגבלה" : after < 0 ? "אין מספיק מטבעות" : "רכישה"}</button></div>`;
   L.innerHTML = `<div class="az-shop2">${det}<div class="az-spanel">
-      <div class="az-shead"><b class="title-font az-stitle">${azi("sw")}חנות הזירה</b><span class="az-bal"><img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(have)}</b></span></div>
       <div class="az-cats">${AZ_CATS.map(([c, n, im]) => `<button class="${azShopCat === c ? "on" : ""}" data-c="${c}"><img src="assets/${im}.webp" alt=""><span>${n}</span></button>`).join("")}</div>
       ${list.length ? `<div class="az-items" style="--cols:${per === 4 ? 2 : 3}">${list.map(card).join("")}</div>`
         : `<div class="az-sempty"><img src="assets/cur_glory.webp" alt=""><b class="title-font">אין פריטים בקטגוריה זו</b><small>כרגע אין פריטים זמינים בקטגוריה הזאת. חזור מאוחר יותר.</small></div>`}
@@ -5172,8 +5325,13 @@ function azBuyDialog(x, mode) {                      // confirm / not enough / l
     <div class="az-bbtns"><button class="btn" onclick="closeModal()">מעולה</button></div>`);
   else if (mode === "fail") openModal(`<h3 class="az-bt red">הרכישה נכשלה</h3>${head}<p class="az-bwarn">הרכישה לא בוצעה: היתרה או המגבלה השתנו. לא חויבת ולא נוסף פריט.</p>
     <div class="az-bbtns"><button class="btn ghost" onclick="closeModal()">סגור</button><button class="btn blue" id="azRetry">לנסות שוב</button></div>`);
-  else openModal(`<h3 class="az-bt">אישור רכישה</h3>${head}<div class="az-brow"><span>כמות</span><b dir="ltr">${azQty}</b></div>${row("מחיר כולל", fmt(total))}${row("יתרה לאחר רכישה", fmt(have - total), "pos")}
+  else openModal(`<button class="az-bx" onclick="closeModal()" aria-label="סגירה">${azi("x")}</button><h3 class="az-bt">אישור רכישה</h3>${head}
+    <div class="az-qty az-bq"><button data-bq="-1" aria-label="פחות" ${azQty <= 1 ? "disabled" : ""}>−</button><b dir="ltr">${azQty}</b><button data-bq="1" aria-label="יותר" ${azQty >= st.max ? "disabled" : ""}>+</button><button class="az-max" data-bq="max">MAX</button></div>
+    ${row("מחיר כולל", fmt(total))}${row("יתרה לאחר רכישה", fmt(have - total), "pos")}
     <div class="az-bbtns"><button class="btn ghost" onclick="closeModal()">ביטול</button><button class="btn" id="azConfirm">אשר רכישה</button></div>`);
+  document.querySelectorAll("#modalCard [data-bq]").forEach(b => b.onclick = () => {   // the quantity can still change here, within what the balance and the limit allow
+    const q = b.dataset.bq; azQty = q === "max" ? Math.max(1, st.max) : Math.max(1, Math.min(azQty + +q, Math.max(1, st.max)));
+    if ($("arena").classList.contains("on")) renderArena(); azBuyDialog(x, "confirm"); });
   if ($("azToFight")) $("azToFight").onclick = () => { closeModal(); arenaTab = "fight"; renderArena(); };
   if ($("azRetry")) $("azRetry").onclick = () => { closeModal(); renderArena(); azBuyDialog(x); };
   if ($("azConfirm")) $("azConfirm").onclick = e => {
@@ -5196,8 +5354,8 @@ function botProfile(b) {
       <div><h3 style="margin:0">${esc(b.name)} <span style="color:var(--muted);font-size:13px">${esc(b.g)}</span></h3>
       <div style="color:${rankOf(b.r)[2]};font-weight:700">${rankOf(b.r)[1]} · <span dir="ltr">${b.r}</span> · מקום ${fmt(pos)}</div>
       <div style="font-size:12px;color:var(--muted)">${fmt(b.w)} ניצחונות · ${fmt(b.l)} הפסדים · "${esc(b.motto)}"</div></div></div>
-    <div class="xp-list" style="margin-top:10px">${b.team.map(([id, lv], k) => `<div class="mcard ${rarCls(id)}">${k === 0 ? '<span class="leadtag">👑</span>' : ""}<div class="pic">${sprite(id)}</div>${starRow(id, MON[id].st)}<span class="nm">${esc(MON[id].n)}</span><span class="lv">רמה ${lv}</span></div>`).join("")}</div>
-    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn" id="bpFight">⚔ להילחם (כרטיס 1)</button><button class="btn ghost" onclick="closeModal()">סגירה</button></div>`);
+    <div class="xp-list" style="margin-top:10px">${b.team.map(([id, lv], k) => `<div class="mcard ${rarCls(id)}">${k === 0 ? `<span class="leadtag">${azi("crown")}</span>` : ""}<div class="pic">${sprite(id)}</div>${starRow(id, MON[id].st)}<span class="nm">${esc(MON[id].n)}</span><span class="lv">רמה ${lv}</span></div>`).join("")}</div>
+    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn" id="bpFight">${azi("sw")}להילחם (כרטיס 1)</button><button class="btn ghost" onclick="closeModal()">סגירה</button></div>`);
   $("bpFight").onclick = () => { closeModal(); fightBot(b); };
 }
 function fightBot(b, logEntry) {
@@ -5221,10 +5379,10 @@ function arenaResult(win, st) {                    // st: a fight that was cut o
   openModal(`<h2 class="title-font" style="margin:0;color:${win ? "var(--gold2)" : "#ff9a8a"};text-align:center;font-size:32px">${win ? (rev ? "הנקמה הושלמה!" : "ניצחון בזירה!") : "הפסד בזירה"}</h2>
     <p style="text-align:center;margin:2px 0 6px;color:var(--muted)">נגד ${esc(b.name)}</p>
     <div class="rew" style="justify-content:center"><span class="res" style="color:${win ? "#6dff9c" : "#ff9a8a"}">דירוג <span dir="ltr">${delta > 0 ? "+" : ""}${delta}</span> → <span dir="ltr">${A.r}</span></span>
-      <span class="res">${IC.MANA}+${fmt(mana)}</span>${gem ? `<span class="res">${IC.GEM}+${gem}</span>` : ""}<span class="res">🏆 +${win ? 12 : 3} תהילה</span></div>
+      <span class="res">${IC.MANA}+${fmt(mana)}</span>${gem ? `<span class="res">${IC.GEM}+${gem}</span>` : ""}<span class="res"><img src="assets/cur_glory.webp" alt="" style="width:20px;height:20px;vertical-align:middle"> +${win ? 12 : 3} תהילה</span></div>
     <p style="text-align:center;margin:4px 0 4px;color:${rankOf(A.r)[2]};font-weight:800">${rankOf(A.r)[1]} · מקום ${fmt(myRank(A))}</p>
-    ${tierUp ? `<p style="text-align:center;margin:0 0 10px;color:var(--gold2);font-weight:800">🏆 דרגה חדשה! הפרס מחכה לך בפרסי דירוג</p>` : ""}${tips.length ? tipsHtml(tips) : ""}
-    <div style="display:flex;gap:8px;justify-content:center"><button class="btn" id="arBack">חזרה לזירה</button><button class="btn ghost" id="arHome">🏰 לעיר</button></div>`);
+    ${tierUp ? `<p style="text-align:center;margin:0 0 10px;color:var(--gold2);font-weight:800">דרגה חדשה! הפרס מחכה לך בפרסי דירוג</p>` : ""}${tips.length ? tipsHtml(tips) : ""}
+    <div style="display:flex;gap:8px;justify-content:center"><button class="btn" id="arBack">חזרה לזירה</button><button class="btn ghost" id="arHome">לעיר</button></div>`);
   bindTips(tips);
   $("arBack").onclick = () => { closeModal(); show("arena"); };
   $("arHome").onclick = () => { closeModal(); show("home"); };
