@@ -3276,6 +3276,13 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-lteam,.az-lago{min-width:max-content}   /* the attack time is never narrower than its text */
 @media (max-height:450px){.az-pnum{width:22px;height:25px;font-size:13px;top:-13px;padding-bottom:4px}.az-pcr{top:-22px;width:18px;height:14px}}   /* phones: the place shield sits on the medallion edge without covering the portrait */
 .az-pavw .pin{display:grid;place-items:center}.az-pavw .pin img{width:86%;height:86%;object-fit:contain;object-position:50% 50%}   /* the podium shows the rarest monster of that player whole, centred in the circle */
+/* arena brightness (option B, chosen by the user 2026-11-03): the sky 25% darker with a vignette and a darker foot, so the panels, monsters and numbers lead;
+   gold kept bright only where it marks something (1st place, my place, the chosen button); the table and navigation frames in a muted gold */
+#arenaSky{filter:brightness(.75) saturate(.92)}
+#arena .az-shade{background:radial-gradient(120% 90% at 50% 40%,transparent 45%,rgba(4,6,22,.55)),linear-gradient(180deg,rgba(6,10,30,.2),rgba(6,10,30,.35) 55%,rgba(4,7,24,.7))}
+.az-table,.az-nb,.az-pager,.az-pager button{border-color:rgba(201,154,58,.45)}
+.az-table{box-shadow:0 0 0 1px #1a1206,inset 0 0 0 1px rgba(255,215,120,.08)}
+.az-pod.p2 .az-ppanel,.az-pod.p3 .az-ppanel,.az-pod.p2 .az-mons,.az-pod.p3 .az-mons{box-shadow:none}
 </style>
 
 <div class="app" dir="rtl">
