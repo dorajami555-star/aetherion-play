@@ -3446,6 +3446,118 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .sg-hole.m3 .sg-glow{background:radial-gradient(circle at 50% 46%,rgba(214,140,110,.36) 0%,rgba(150,90,200,.16) 38%,transparent 64%)}
 .sg-hole::after{content:"";position:absolute;left:24%;right:24%;bottom:12%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.65),transparent);pointer-events:none}
 .az-sg .sg-hole img{position:relative;z-index:1;width:82%;height:82%;object-fit:contain;object-position:50% 58%;filter:drop-shadow(0 3px 4px rgba(0,0,0,.75)) drop-shadow(0 0 2px rgba(var(--gl),.55))}
+/* progression rewards on the user's template (2026-11-03) */
+.az-rwv.pg2{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:clamp(4px,1.2dvh,8px);height:100%;min-height:0}
+.az-rwv.pg2 .az-rwhead{justify-content:center}
+.az-rwv.pg2 .az-tabs2{gap:clamp(14px,3vw,34px);position:relative}
+.az-rwv.pg2 .az-tabs2 button{min-width:clamp(140px,26%,300px);height:clamp(30px,8dvh,52px);min-height:0;border-radius:24px;border:2px solid #c99a3a;background:linear-gradient(#141c48,#070b26);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.az-rwv.pg2 .az-tabs2 button.on{background:linear-gradient(#ffe9a6,#f0b53a 50%,#b87812);border-color:#fff2c0;box-shadow:0 0 8px rgba(255,200,80,.4)}
+.az-rwv.pg2 .az-tabs2 button small{display:none}
+.az-rwv.pg2 .az-tabs2::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;translate:-50% -50%;rotate:45deg;background:linear-gradient(#ffe9a6,#b87812);box-shadow:0 0 6px rgba(255,200,80,.6)}
+.pg-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:10px;height:clamp(30px,8dvh,50px);padding:0 10px;border-radius:12px;direction:rtl;
+  background:linear-gradient(#0d1438f5,#070b26f5);border:1.5px solid #c99a3a}
+.pg-me{display:flex;align-items:center;gap:6px}.pg-me>.azi{width:22px;height:22px;color:#ffd75a}.pg-me>span{display:flex;flex-direction:column;line-height:1.05}.pg-me small{font-size:11px;color:#c8d2f0}.pg-me b{font-size:clamp(15px,4.2dvh,20px);color:#ffd75a}
+.pg-bar{position:relative;display:grid;place-items:center;height:clamp(14px,3.6dvh,20px);border-radius:10px;overflow:hidden;background:#050818;border:1.5px solid #8a6a2a}
+.pg-bar i{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#1c4fd8,#5fc8ff 70%,#9fe8ff);transform-origin:left;transform:scaleX(0);transition:transform .6s ease-out}
+.pg-bar i.go,.pg-line i.go{transform:scaleX(1)}
+.pg-bar b{position:relative;font-size:11.5px;color:#fff;text-shadow:0 1px 2px #000}
+.pg-left{font-size:clamp(11.5px,3.2dvh,14px);color:#e8ecff;white-space:nowrap}.pg-left b{color:#ffd75a}
+.pg-info{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;color:#ffd75a;background:#0b1338;border:1.5px solid #c99a3a}.pg-info .azi{width:18px;height:18px}
+.pg-mid{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:6px;min-height:0;padding:4px 6px;border-radius:14px;
+  background:linear-gradient(#0b1236f0,#060a22f0);border:1.5px solid #c99a3a;direction:ltr}
+.pg-arr{width:clamp(28px,4.4vw,38px);height:clamp(44px,14dvh,64px);border-radius:9px;display:grid;place-items:center;padding:0;cursor:pointer;color:#ffd75a;background:linear-gradient(#162460,#0a1134);border:1.5px solid #c99a3a}
+.pg-arr:disabled{opacity:.35;cursor:default}.pg-arr .azi{width:18px;height:18px}
+.pg-pgi{position:absolute;bottom:3px;right:10px;font-size:11px;color:#c8d2f0}
+.pg-cols{display:grid;grid-template-rows:minmax(0,1fr) auto;height:100%;min-height:0;min-width:0}
+.pg-cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:clamp(4px,1vw,12px);min-height:0;align-items:end;justify-items:center}
+.pg-card{position:relative;height:100%;max-width:100%;aspect-ratio:262/338;cursor:pointer;direction:rtl;transition:transform .2s,filter .2s}
+.pg-fr{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.pg-card.lock .pg-fr{filter:brightness(.62) saturate(.7)}
+.pg-card.next .pg-fr{filter:drop-shadow(0 0 6px rgba(110,170,255,.7))}
+.pg-card.ready .pg-fr{filter:drop-shadow(0 0 7px rgba(255,200,80,.85)) brightness(1.08);animation:pgPulse 2.2s ease-in-out infinite}
+.pg-card.got .pg-fr{filter:brightness(.82) saturate(.8)}
+.pg-card.pick{transform:translateY(-3px)}.pg-card.pick::after{content:"";position:absolute;inset:3% 2% 2%;border-radius:10%;box-shadow:0 0 0 2px rgba(255,235,170,.85);pointer-events:none}
+.pg-card.fx{animation:pgFx .9s ease-out 1}
+@keyframes pgPulse{0%,100%{filter:drop-shadow(0 0 4px rgba(255,200,80,.6)) brightness(1.04)}50%{filter:drop-shadow(0 0 10px rgba(255,210,100,.95)) brightness(1.14)}}
+@keyframes pgFx{0%{transform:scale(1)}30%{transform:scale(1.06);filter:brightness(1.5)}100%{transform:scale(1)}}
+.pg-crest{position:absolute;left:30%;top:1%;width:40%;height:24%;display:grid;place-items:center;background:radial-gradient(closest-side,#0a1030 70%,transparent)}.pg-crest img{max-width:100%;max-height:100%;object-fit:contain}
+.pg-tag{position:absolute;top:24%;left:50%;translate:-50% 0;z-index:2;font-style:normal;font-size:max(10.5px,7.5cqw);font-weight:900;white-space:nowrap;padding:1px 7px;border-radius:8px;color:#fff;background:linear-gradient(#3a78f0,#1840b0);border:1px solid #9cc0ff}
+.pg-tag.rd{left:84%;top:3%;width:max(18px,13cqw);height:max(18px,13cqw);padding:0;display:grid;place-items:center;border-radius:50%;color:#3a2200;background:linear-gradient(#ffe9a6,#e2a43a);border-color:#fff2c0;animation:pgPulse 1.6s ease-in-out infinite}
+.pg-plate{position:absolute;left:11.5%;right:10.3%;top:28.4%;height:14.2%;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.pg-plate b{font-size:max(11px,11cqw);white-space:nowrap}.pg-plate small{font-size:max(10.5px,8cqw);color:#e8ecff;font-weight:800}
+.pg-items{position:absolute;left:17%;right:16%;top:53%;height:23.6%;display:grid;grid-template-columns:1fr 1fr;gap:12%}
+.pg-items.many{left:10%;right:10%;grid-template-columns:repeat(3,1fr);gap:4%;padding:0;background:#070b22;border-radius:8%;box-shadow:inset 0 0 0 1px rgba(201,154,58,.6)}
+.pg-it{position:relative;display:grid;place-items:center;min-width:0}
+.pg-it img{width:76%;height:76%;object-fit:contain}
+.pg-it b{position:absolute;bottom:0;right:4%;font-size:max(10.5px,8cqw);color:#fff;text-shadow:0 1px 2px #000,0 0 3px #000}
+.pg-act{position:absolute;left:13.4%;right:12.2%;top:80.5%;height:11.8%;display:flex;align-items:center;justify-content:center;gap:3px;padding:0;border:0;border-radius:40%/90%;font:inherit;font-size:max(10.5px,8.5cqw);font-weight:900;color:#fff;background:none;cursor:default}
+.pg-act .azi{width:max(11px,8cqw);height:max(11px,8cqw);flex:none}.pg-act b{color:#ffd75a}
+.pg-act.ready{cursor:pointer;color:#2a1800;background:linear-gradient(#ffe9a6,#e2a43a 55%,#a86a10);box-shadow:0 0 8px rgba(255,200,80,.6)}
+.pg-act.got{color:#7dffb0}.pg-act.got .azi{color:#45d483}
+.pg-act.lock,.pg-act.next{color:#c8d2f0}
+.pg-track{position:relative;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));height:clamp(48px,14dvh,78px);align-items:end}
+.pg-line{position:absolute;left:0;right:0;bottom:clamp(14px,3.6dvh,20px);height:6px;border-radius:3px;background:linear-gradient(90deg,#1a3a9a,#3a5adf,#7a3adf);box-shadow:0 0 6px rgba(80,120,255,.5)}
+.pg-line i{position:absolute;inset:0 auto 0 0;border-radius:3px;background:linear-gradient(90deg,#c98a1c,#ffd75a);box-shadow:0 0 6px rgba(255,200,80,.7);transform-origin:left;transform:scaleX(0);transition:transform .6s ease-out}
+.pg-mark{position:absolute;bottom:calc(clamp(14px,3.6dvh,20px) - 7px);width:20px;height:20px;translate:-50% 0;rotate:45deg;z-index:3;border-radius:4px;background:linear-gradient(135deg,#fff2c0,#e2a43a);border:2px solid #6a4206;box-shadow:0 0 8px rgba(255,200,80,.9);pointer-events:none}
+.pg-node{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1px;padding:0;background:none;border:0;cursor:pointer;color:#fff;font:inherit}
+.pg-ncr{width:clamp(30px,9dvh,52px);height:auto;aspect-ratio:80/50;object-fit:contain;display:grid;place-items:center}.pg-ncr img{max-height:100%;max-width:100%}
+.pg-node:not(.on) .pg-ncr{filter:brightness(.6) saturate(.7)}
+.pg-dot{display:grid;place-items:center;width:clamp(18px,5dvh,26px);height:clamp(18px,5dvh,26px);border-radius:50%;background:#070b22;border:2px solid #8a9ac8;color:#8a9ac8}
+.pg-dot .azi{width:60%;height:60%}
+.pg-node.on .pg-dot{border-color:#ffd75a;color:#45d483;background:#0d2a1a}
+.pg-node.pick .pg-dot{box-shadow:0 0 0 2px #fff2c0,0 0 8px rgba(255,220,140,.7)}
+.pg-node small{position:absolute;bottom:-14px;font-size:10.5px;color:#c8d2f0;white-space:nowrap}
+.pg-track{margin-bottom:14px}
+.pg-bot{position:relative;display:grid;grid-template-columns:auto auto auto 2px minmax(0,1fr);align-items:center;gap:clamp(6px,1.4vw,16px);height:clamp(58px,17dvh,110px);padding:4px 12px;direction:rtl;border-radius:14px;
+  background:linear-gradient(90deg,#1a0f3a,#0b1236 45%,#140a30);border:2px solid #c99a3a;box-shadow:inset 0 0 0 1px rgba(255,215,120,.15)}
+.pg-chest{height:118%;width:auto;align-self:end;margin-bottom:-6%;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,.6))}
+.pg-bot{grid-template-columns:auto minmax(0,auto) auto 2px minmax(0,1fr)}
+.pg-bt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding:3px 12px;border-radius:10px;background:linear-gradient(#0d1438,#060a22);border:1.5px solid #c99a3a}
+.pg-btt{display:flex;align-items:center;gap:5px;min-width:0}.pg-btt .rankic{width:22px;height:22px}.pg-btt b{font-size:clamp(13px,3.8dvh,18px);white-space:nowrap}
+.pg-bt small{font-size:11px;color:#c8d2f0}
+.pg-bits{display:flex;gap:6px}.pg-bits .pg-it{width:clamp(34px,10dvh,62px);aspect-ratio:1;border-radius:10px;background:#070b22;border:1.5px solid #c99a3a}.pg-bits .pg-it b{font-size:12px}
+.pg-div{align-self:stretch;margin:6px 0;background:linear-gradient(transparent,#c99a3a,transparent)}
+.pg-bp{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:10px;row-gap:3px;align-items:center;min-width:0}
+.pg-bp .pg-bar{grid-column:1}.pg-bp small{grid-column:1;font-size:11.5px;color:#e8ecff}.pg-bp .pg-big{grid-column:2;grid-row:1 / 3}
+.pg-big{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:clamp(96px,16vw,180px);height:clamp(34px,9dvh,46px);border-radius:24px;font:inherit;font-size:clamp(13px,3.8dvh,17px);font-weight:900;color:#fff;cursor:default;
+  background:linear-gradient(#3a4466,#1c2240);border:1.5px solid #8a96c0}
+.pg-big .azi{width:16px;height:16px}
+.pg-big.ready{cursor:pointer;color:#2a1800;background:linear-gradient(#ffe9a6,#e2a43a 55%,#a86a10);border-color:#fff2c0;box-shadow:0 0 8px rgba(255,200,80,.55)}
+.pg-big.got{color:#7dffb0;background:linear-gradient(#0f3a24,#08241a);border-color:#3fd27a}
+@media (max-height:450px){.pg-bt small,.pg-me small{display:none}.pg-bot{padding:3px 8px}.pg-track{margin-bottom:12px}}
+@media (max-width:720px){.pg-left{display:none}.pg-bits .pg-it{width:30px}.pg-chest{display:none}.pg-bot{grid-template-columns:minmax(0,auto) auto 2px minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.pg-card.ready .pg-fr,.pg-tag.rd,.pg-card.fx{animation:none}.pg-bar i,.pg-line i{transition:none}}
+.pg-in{position:absolute;inset:0;container-type:size}   /* the card measures its own size here: a container on the card itself fed back into its aspect-ratio sizing and looped the layout */
+/* progression, fit pass: the template art blends into the dark panels (its dark corners disappear), the bottom panel laid out as drawn
+   (chest on the left, title over the reward slots, a divider, the bar over the button), the header banner wears the template's wings */
+
+.pg-tag{top:3%;left:4%;translate:none;padding:1px 6px;border-radius:7px}
+.pg-bot{direction:ltr;grid-template-columns:auto minmax(0,auto) 2px minmax(0,1fr)!important;height:clamp(58px,17dvh,108px);overflow:hidden}
+.pg-chest{height:100%;width:auto;max-width:clamp(80px,16vw,240px);margin:0;align-self:center}
+.pg-bm{display:flex;flex-direction:column;align-items:center;gap:4px;direction:rtl;min-width:0}
+.pg-bm .pg-bits{direction:ltr}
+.pg-bp{direction:rtl}
+.az-banner.prg{background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-color:transparent!important;border:0!important;box-shadow:none!important;min-width:clamp(260px,40vw,560px)}
+.az-banner.prg small{display:none}.az-banner.prg b{color:#fff2c8;text-shadow:0 2px 4px #000}
+@media (max-width:720px){.pg-chest{display:block;max-width:60px}}
+.pg-bp{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto}.pg-bp .pg-bar{grid-column:1 / 3}.pg-bp small{grid-column:1;grid-row:2}.pg-bp .pg-big{grid-column:2;grid-row:2}
+.pg-bot{grid-template-columns:auto minmax(0,auto) 2px minmax(0,1fr)!important}
+.pg-bm{flex-direction:row;gap:8px}.pg-bt{align-items:center}
+
+@media (max-height:450px){.pg-bits .pg-it{width:clamp(30px,9dvh,40px)}.pg-big{height:30px;min-width:96px;font-size:13px}.pg-bt{padding:2px 8px}.pg-btt b{font-size:13px}}
+.pg-chest{height:clamp(50px,15dvh,100px)!important;max-height:none}.pg-bits .pg-it{width:clamp(32px,8.6dvh,60px)!important}
+@media (max-height:450px){.pg-bits .pg-it{width:34px!important}.pg-bot{height:66px}.pg-chest{height:58px!important}}
+@media (max-height:410px){.pg-bp small{display:none}.pg-bp .pg-big{grid-row:2;grid-column:1 / 3;justify-self:end}}
+/* card art cut to the frame's own shape (rounded panel + the crest on top), so no dark rectangle shows around it; the state glow is a soft rim on the same shape */
+.pg-fr{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 262 335%27 preserveAspectRatio=%27none%27%3E%3Crect x=%273%27 y=%2728%27 width=%27256%27 height=%27302%27 rx=%2726%27/%3E%3Cellipse cx=%27131%27 cy=%2744%27 rx=%2774%27 ry=%2744%27/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 262 335%27 preserveAspectRatio=%27none%27%3E%3Crect x=%273%27 y=%2728%27 width=%27256%27 height=%27302%27 rx=%2726%27/%3E%3Cellipse cx=%27131%27 cy=%2744%27 rx=%2774%27 ry=%2744%27/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.pg-card .pg-fr{filter:none!important;animation:none!important}.pg-card.lock .pg-fr{filter:brightness(.62) saturate(.7)!important}.pg-card.got .pg-fr{filter:brightness(.82) saturate(.8)!important}
+.pg-in::before{content:"";position:absolute;left:1.5%;right:1.5%;top:8.5%;bottom:1.5%;border-radius:9%;pointer-events:none;transition:box-shadow .3s}
+.pg-card.next .pg-in::before{box-shadow:0 0 10px rgba(110,170,255,.7)}
+.pg-card.ready .pg-in::before{box-shadow:0 0 12px rgba(255,200,80,.85);animation:pgRim 2.2s ease-in-out infinite}
+@keyframes pgRim{0%,100%{box-shadow:0 0 6px rgba(255,200,80,.55)}50%{box-shadow:0 0 16px rgba(255,210,100,.95)}}
+.pg-card.pick::after{top:8.5%;left:1.5%;right:1.5%;bottom:1.5%;inset:auto;border-radius:9%}
+.pg-node,.pg-node:focus,.pg-node.pick{outline:0!important;border:0!important;background:none!important}
+@media (prefers-reduced-motion:reduce){.pg-card.ready .pg-in::before{animation:none}}
 </style>
 
 <div class="app" dir="rtl">
@@ -4022,7 +4134,7 @@ const AWN = {sun_empress:"קיסרית השמש", kraken_king:"קיסר התהו
   harpy:"מלכת הסערה", mermaid:"כוהנת המעמקים", salamander:"מלך הלבה", obsidian:"אביר הגעש", yeti:"יטי הפסגות", snowowl:"ינשוף הסערה הלבנה", frostserpent:"לוויתן הכפור", aurora:"מלכת הזוהר", sphinx:"ספינקס הנצח", vampire:"אדון הדם", ghostqueen:"קיסרית הרפאים", seraph:"השרף העליון", celestlion:"מלך השמיים", starsage:"נביא הכוכבים", voidknight:"אביר האינסוף", djinn:"סולטן הג'ינים", scarab:"אביר השמש", mummy:"הפרעה המקולל", werewolf:"אלפא הירח", banshee:"מלכת היבבות", winddancer:"מלכת הלהבות", phoenix:"עוף החול הנצחי", skeleton:"אביר הקבר", frostwitch:"מלכת החורף", stormmage:"ארכימאג הסערה", sprite:"רוחון אתר"};
 // art files that exist in assets/ (add names here when new art arrives)
 const HAVE = new Set([   // generated by sync_have.py from assets/ — do not edit by hand
-  "ui_rank_template","aether_sprite","aether_titan","arena","ash_golem","aurora_spirit","aurora_spirit_awakened","bag_medal","bagtab_all","bagtab_gear","bagtab_mats","bagtab_misc","bagtab_runes",
+  "ui_rank_template","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","aether_sprite","aether_titan","arena","ash_golem","aurora_spirit","aurora_spirit_awakened","bag_medal","bagtab_all","bagtab_gear","bagtab_mats","bagtab_misc","bagtab_runes",
   "banshee","banshee_awakened","battle_celestial","battle_desert","battle_essence_cave","battle_forest","battle_glacier","battle_guild_boss","battle_meadow","battle_shadow","battle_sky_tower","battle_sprite_garden",
   "battle_volcano","card_frame_2","card_frame_3","card_frame_4","card_frame_5","celestial_lion","celestial_lion_awakened","cinder_hound","cloud_slime","crystal_beetle","crystal_guardian","cur_energy",
   "cur_gem","cur_glory","cur_guild","cur_mana","cur_ticket","desert_bandit","djinn","djinn_awakened","dragon","dragon_awakened","dune_worm","dungeon_crystal",
@@ -4075,7 +4187,7 @@ const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"au
 const ART = {battle:"assets/battle_meadow.webp", forest:"assets/battle_forest.webp", hub:"assets/sky_hub.webp", altar:"assets/summon_altar.webp"};
 // the published game page holds at most ~510 files, so newer art lives in its asset store; everywhere else (GitHub, local) it is read from assets/
 const ARTAR = {"aether_sprite":1.094,"aether_titan":1.037,"ash_golem":1.094,"aurora_spirit":0.503,"aurora_spirit_awakened":0.667,"banshee":0.658,"banshee_awakened":0.664,"celestial_lion":1.039,"celestial_lion_awakened":1.094,"cinder_hound":1.094,"cloud_slime":1.095,"crystal_beetle":1.493,"crystal_guardian":1.38,"desert_bandit":1.094,"djinn":0.613,"djinn_awakened":0.665,"dragon":1.228,"dragon_awakened":1.228,"dune_worm":1.094,"elf_archer":1.215,"elf_archer_awakened":1.228,"fairy":1.225,"fairy_awakened":1.231,"frost_serpent":1.088,"frost_serpent_awakened":1.092,"frost_witch":0.641,"frost_witch_awakened":0.667,"frost_wyrm":1.185,"gargoyle":1.093,"ghost_queen":0.669,"ghost_queen_awakened":0.667,"ghoul":1.099,"giant_spider":1.096,"golem":1.21,"golem_awakened":1.087,"griffin":1.228,"griffin_awakened":1.228,"harpy":1.206,"harpy_awakened":1.206,"ice_troll":1.092,"imp_fire":0.995,"imp_fire_awakened":1.094,"lava_titan":1.094,"legend_dawn_unicorn":1.382,"legend_dawn_unicorn_awakened":1.504,"legend_eclipse_dragon":1.508,"legend_eclipse_dragon_awakened":1.499,"legend_forest_dryad":0.668,"legend_forest_dryad_awakened":0.665,"legend_kraken_king":0.663,"legend_kraken_king_awakened":0.669,"legend_mountain_behemoth":1.499,"legend_mountain_behemoth_awakened":1.495,"legend_storm_roc":1.094,"legend_storm_roc_awakened":1.094,"legend_sun_empress":0.667,"legend_sun_empress_awakened":0.667,"legend_wind_centaur":0.667,"legend_wind_centaur_awakened":0.667,"magma_bat":1.508,"marble_guardian":1.086,"mermaid":0.842,"mermaid_awakened":0.843,"moon_priestess":0.642,"moon_priestess_awakened":0.67,"moss_wolf":1.405,"mummy":0.629,"mummy_awakened":0.667,"mushroom":1.202,"mushroom_awakened":1.228,"obsidian_knight":1.095,"obsidian_knight_awakened":1.093,"phoenix":1.098,"phoenix_awakened":1.094,"pixie_thief":1.1,"salamander":1.522,"salamander_awakened":1.495,"sand_colossus":1.094,"sand_scorpion":1.073,"scarab_knight":1.093,"scarab_knight_awakened":1.099,"seraph":0.66,"seraph_awakened":0.671,"shadow_lord":1.04,"shadow_ninja":1.057,"shadow_ninja_awakened":1.094,"shadow_wraith":1.1,"skeleton_knight":1.094,"skeleton_knight_awakened":1.093,"sky_boar":1.301,"sky_ray":1.504,"snow_owl":1.205,"snow_owl_awakened":1.208,"snow_sprite":1.094,"sphinx":1.094,"sphinx_awakened":1.094,"star_sage":0.667,"star_sage_awakened":0.666,"star_wisp":1.077,"storm_mage":0.665,"storm_mage_awakened":0.663,"treant_boss":1.094,"valkyrie":1.18,"valkyrie_awakened":1.18,"vampire":0.661,"vampire_awakened":0.668,"void_knight":0.661,"void_knight_awakened":0.668,"werewolf":1.103,"werewolf_awakened":1.094,"will_wisp":1.096,"wind_dancer":0.656,"wind_dancer_awakened":0.67,"wolf_spirit":1.247,"wolf_spirit_awakened":1.228,"yeti":1.082,"yeti_awakened":1.093};   // generated by sync_have.py: image width/height per monster art
-const BLOB = {ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
+const BLOB = {ui_prg_banner:"/_blob/1e6600da085d591f96ac94f6c1fa256e", ui_prg_card_1:"/_blob/f0dcd73400a50d15cf3a0bd20f770296", ui_prg_card_2:"/_blob/1ed773f12c3dd1d04c8961fa0f67235a", ui_prg_card_3:"/_blob/3d0f4fa00a7b4d300d6a989fb853db2d", ui_prg_card_4:"/_blob/a30407abba87f1587bb8b5e713b3956e", ui_prg_card_5:"/_blob/36a759922d49faf8492b09898209359d", ui_prg_chest:"/_blob/ca68f2826b264366a518b4def4b79892", ui_prg_crest_1:"/_blob/8d351c779594dbdb6649ec7b82ea9724", ui_prg_crest_2:"/_blob/7b1b5e0590fed1d2628941fd32dea21d", ui_prg_crest_3:"/_blob/c0dc6ed4f33672f4784d6bc123cedb00", ui_prg_crest_4:"/_blob/d757c7f76ed5fd3dc1077052f150ab87", ui_prg_crest_5:"/_blob/6dfc6c508a4d12c393dd5ed32048a74d", ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
   legend_kraken_king:"/_blob/57d4de9adf5506c59e8ea01766077092", legend_kraken_king_awakened:"/_blob/a907bb70c41aed676b48211f21842e02",
   legend_storm_roc:"/_blob/5de16d93d25a10eae9d5ab74af515700", legend_storm_roc_awakened:"/_blob/49a68678138e764c50648c52583da5d3",
   legend_wind_centaur:"/_blob/7f98d07d3382ce05e3da69c5960d6b15", legend_wind_centaur_awakened:"/_blob/0c00c92a8a6668fd211c977f066c398b",
@@ -5241,6 +5353,7 @@ function renderArena() {
   // the header row: a title banner for the views that have one; the right corner holds that view's own box (season clock, glory, last attack) instead of the resources
   const ban = {ranks:["gift", "פרסי דירוג", "קבל פרסים יקרי ערך על הדירוג שלך בזירת השמיים"], log:["shield", "יומן ההגנה", "רשימת ההתקפות על ההגנה שלך"],
     shop:["sw", "חנות הזירה", "פריטים ייחודיים בתמורה לתהילה"], hist:["chart", "היסטוריה", "הקרבות שלך בזירה"]}[arenaTab];
+  $("azBanner").classList.toggle("prg", arenaTab === "ranks"); $("azBanner").style.backgroundImage = arenaTab === "ranks" ? `url(${assetUrl("ui_prg_banner")})` : "";
   $("azBanner").hidden = !ban; $("azBanner").innerHTML = ban ? `<b class="title-font">${azi(ban[0])}<span>${ban[1]}</span></b><small>${ban[2]}</small>` : "";
   const sl = seasonLeft(), hbox = arenaTab === "ranks" ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>סיום העונה בעוד</small><b id="azClock" dir="ltr">${String(sl.d).padStart(2, "0")}:${String(sl.h).padStart(2, "0")}:${String(sl.m).padStart(2, "0")}</b><small class="az-hb-u"><i>ימים</i><i>שעות</i><i>דקות</i></small></span>`
     : arenaTab === "shop" ? `<img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(A.glory || 0)}</b>`
@@ -5448,48 +5561,76 @@ const azChest = j => `<img class="az-chest" src="assets/ic_q_chest.webp" alt="" 
 const azRwHead = season => `<div class="az-rwhead">
       <span class="az-tabs2"><button class="${season ? "on" : ""}" data-tab="season"><b>פרסי עונה</b><small>מתקבלים בסיום העונה לפי הדרגה</small></button><button class="${season ? "" : "on"}" data-tab="prog"><b>פרסי התקדמות</b><small>אסוף פרס על כל דרגה חדשה</small></button></span></div>`;
 let azClaiming = false;
-function azProgress(A, L, state, rewT) {               // progression: every rewarded rank is a milestone; card, bottom panel and button all read state(j)
-  const MS = RANKS.map((r, i) => i).filter(i => i > 0), pages = Math.ceil(MS.length / AZ_PER);
+/* ---- progression rewards, built from the user's final template (2026-11-03): real components (cards, track, panels) with the template's own art as decoration
+   (card frames, crests, the chest). Data and rules are the existing ones: TIER_REW, RANKS, A.tier (the highest rank ever reached — eligibility keeps, as before),
+   tierGot / claimTier (the only payer). States per milestone: lock, next (the nearest locked one), ready, got. ---- */
+const AZP_FRAME = [0, 1, 2, 3, 4, 5, 4, 5];            // rank -> card art: silver, gold, platinum, diamond, master; legend and mythic reuse the violet / red frames
+const AZP_FLOOR = 800;                                  // arena points never go below 800 (arena result), so the first milestone's bar starts there
+let azpFx = null;
+function azProgress(A, L, state) {
+  let MS; try { MS = RANKS.map((r, i) => i).filter(i => i > 0 && TIER_REW[i]); }
+  catch (e) { L.innerHTML = `<div class="az-state err">לא הצלחנו לטעון את הפרסים.<button class="btn" id="azRetry">לנסות שוב</button></div>`; $("azRetry").onclick = () => renderArena(); return; }
+  if (!MS.length) { L.innerHTML = `<div class="az-rwv pg2">${azRwHead(false)}<div class="az-state">אין כרגע פרסי התקדמות.</div></div>`; L.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { azRw.tab = b.dataset.tab; renderArena(); }); return; }
+  const W = L.clientWidth || 640, per = W >= 560 ? 5 : W >= 430 ? 4 : 3, pages = Math.ceil(MS.length / per);
   const nextLock = MS.find(i => state(i) === "lock"), firstReady = MS.find(i => state(i) === "ready");
   if (azRw.ms == null || !MS.includes(azRw.ms)) azRw.ms = firstReady || nextLock || MS[MS.length - 1];
-  if (azRw.page == null) azRw.page = Math.floor(MS.indexOf(azRw.ms) / AZ_PER) + 1;
+  if (azRw.page == null) azRw.page = Math.floor(MS.indexOf(azRw.ms) / per) + 1;
   azRw.page = Math.max(1, Math.min(pages, azRw.page));
-  const ms = MS.slice((azRw.page - 1) * AZ_PER, azRw.page * AZ_PER);
+  const ms = MS.slice((azRw.page - 1) * per, azRw.page * per);
+  const base = i => i === 1 ? AZP_FLOOR : RANKS[i - 1][0];                 // the bar of a milestone runs from the milestone below it
+  const pct = i => Math.max(0, Math.min(100, (A.r - base(i)) / (RANKS[i][0] - base(i)) * 100));
   const need = i => Math.max(0, RANKS[i][0] - A.r);
-  const toNext = nextLock != null ? need(nextLock) : 0;
-  const prevPts = i => RANKS[i - 1][0];                                   // the bar for a milestone runs from the rank below it
-  const pct = i => Math.max(0, Math.min(100, (A.r - prevPts(i)) / (RANKS[i][0] - prevPts(i)) * 100));
-  const lbl = {got:`${azi("check")}נאסף`, ready:"זמין לאיסוף", lock:`${azi("lock")}נעול`};
-  const card = i => { const s2 = state(i);
-    return `<button class="az-pc ${s2} ${i === azRw.ms ? "pick" : ""} ${i === nextLock ? "goal" : ""}" data-m="${i}" style="--tc:${RANKS[i][2]}">
-      <b class="az-pcpt"><span dir="ltr">${fmt(RANKS[i][0])}</span> <span class="lw">נקודות</span><span class="sw">נק׳</span></b><span class="az-pcst">${lbl[s2]}</span>
-      <span class="az-rws">${rewT(TIER_REW[i])}</span><small class="az-pcrk" style="color:${RANKS[i][2]}">${rankIc(RANKS[i][0], 1)}${RANKS[i][1]}</small></button>`; };
-  const fill = (() => { if (A.r <= RANKS[ms[0]][0]) return A.r >= prevPts(ms[0]) ? pct(ms[0]) / 100 * (50 / ms.length) : 0;
-    let p = 0; for (let t = 0; t < ms.length; t++) { const i = ms[t]; if (A.r >= RANKS[i][0]) p = (t + .5) / ms.length * 100; else { if (t > 0) p += pct(i) / 100 * (100 / ms.length); break; } } return p; })();
-  const j = azRw.ms, sj = state(j), [min, n, c] = RANKS[j];
-  const act = sj === "got" ? `<button class="az-pbtn got" disabled>${azi("check")}נאסף</button>`
-    : sj === "ready" ? `<button class="az-pbtn ready" data-c="${j}" ${azClaiming ? "disabled" : ""}>${azClaiming ? "אוסף…" : "אסוף פרס"}</button>`
-    : `<button class="az-pbtn lock" disabled>${azi("lock")}נעול כרגע</button>`;
-  L.innerHTML = `<div class="az-rwv prog">${azRwHead(false)}
-    <div class="az-ptop"><span class="az-pnext">${azi("info", "az-pi")}<span><b>${nextLock != null ? `עוד <span dir="ltr">${fmt(toNext)}</span> נקודות לפרס הבא` : "הגעת לכל אבני הדרך!"}</b><small>כל דרגה חדשה פותחת פרס חד־פעמי</small></span></span>
-      <span class="az-pbar"><i style="width:${nextLock != null ? pct(nextLock) : 100}%"></i></span>
-      <span class="az-pme"><span><small>נקודות הזירה שלך</small><b dir="ltr">${fmt(A.r)}</b></span>${azi("sw")}</span></div>
-    <div class="az-pmid"><button class="az-arr" data-pg="-1" aria-label="עמוד קודם" ${azRw.page <= 1 ? "disabled" : ""}>${azi("next")}</button>
-      <div class="az-pcols"><div class="az-pcards" style="--n:${ms.length}">${ms.map(card).join("")}</div>
-        <div class="az-pline" style="--n:${ms.length}"><span class="az-msline"><i style="width:${fill}%"></i></span>${ms.map(i => `<span class="az-pnode ${state(i)}">${state(i) === "lock" ? azi("lock") : ""}<b dir="ltr">${fmt(RANKS[i][0])}</b></span>`).join("")}</div></div>
-      <button class="az-arr" data-pg="1" aria-label="עמוד הבא" ${azRw.page >= pages ? "disabled" : ""}>${azi("prev")}</button>
-      <span class="az-pgi" dir="ltr">${azRw.page} / ${pages}</span></div>
-    <div class="az-pdet ${sj}"><span class="az-dt-ic">${azChest(j)}</span>
-      <span class="az-dt-txt"><b class="title-font">${j === nextLock ? "הפרס הבא" : sj === "got" ? "פרס שנאסף" : sj === "ready" ? "פרס זמין" : "פרס עתידי"} · <span style="color:${c}">${n}</span></b><small><span dir="ltr">${fmt(min)}</span> נקודות</small><span class="az-rws">${rewT(TIER_REW[j], true)}</span></span>
-      <span class="az-pact"><b dir="ltr">${fmt(Math.min(A.r, min))} / ${fmt(min)}</b><span class="az-pbar"><i style="width:${sj === "lock" ? pct(j) : 100}%"></i></span>
-        <small>${sj === "lock" ? `נותרו ${fmt(need(j))} נקודות כדי לפתוח את הפרס` : sj === "ready" ? "הגעת לדרגה! אפשר לאסוף" : "הפרס כבר נאסף"}</small>${act}</span></div></div>`;
+  const items = r => [r.gem && ["cur_gem", r.gem, "גבישים"], r.m && ["scroll_m", r.m, "מגילת אתר"], r.l && ["scroll_l", r.l, "מגילה אגדית"], r.ld && ["scroll_ld", r.ld, "מגילת אור וחושך"]].filter(Boolean);
+  const slot = ([im, n, t]) => `<span class="pg-it" title="${t}"><img src="assets/${im}.webp" alt="${t}"><b dir="ltr">${fmt(n)}</b></span>`;
+  const st = i => { const x = state(i); return x === "lock" && i === nextLock ? "next" : x; };
+  const lbl = i => ({lock:`${azi("lock")}<span>עוד <b dir="ltr">${fmt(need(i))}</b></span>`, next:`${azi("lock")}<span>עוד <b dir="ltr">${fmt(need(i))}</b></span>`,
+    ready:"<span>אסוף פרס</span>", got:`${azi("check")}<span>נאסף</span>`})[st(i)];
+  const card = i => { const x = st(i), it = items(TIER_REW[i]), [min, n, c] = RANKS[i];
+    return `<div class="pg-card ${x} ${i === azRw.ms ? "pick" : ""} ${azpFx === i ? "fx" : ""}" data-m="${i}" role="button" tabindex="0" style="--tc:${c}" aria-label="פרס דרגת ${n}">
+      <span class="pg-in"><img class="pg-fr" src="${assetUrl("ui_prg_card_" + AZP_FRAME[i])}" alt="">${i > 5 ? `<span class="pg-crest">${rankIc(min)}</span>` : ""}
+      ${x === "next" ? '<em class="pg-tag">הבא</em>' : x === "ready" ? '<em class="pg-tag rd">!</em>' : ""}
+      <span class="pg-plate"><b class="title-font" style="color:${c}">${n}</b><small dir="ltr">${fmt(min)}</small></span>
+      <span class="pg-items ${it.length > 2 ? "many" : ""}">${it.map(slot).join("")}</span>
+      <button class="pg-act ${x}" ${x === "ready" ? `data-c="${i}"` : "disabled"} ${azClaiming ? "disabled" : ""}>${x === "ready" && azClaiming ? "<span>אוסף…</span>" : lbl(i)}</button></span></div>`; };
+  // the track: one node under each card; the marker sits where the points are (between the column centres of the milestones around them)
+  const fill = (() => { let p = 0; for (let t = 0; t < ms.length; t++) { const i = ms[t];
+      if (A.r >= RANKS[i][0]) p = (t + .5) / ms.length * 100;
+      else { p = t === 0 ? pct(i) / 100 * (50 / ms.length) : p + pct(i) / 100 * (100 / ms.length); break; } } return p; })();
+  const node = i => { const x = st(i), reached = x === "ready" || x === "got";
+    return `<button class="pg-node ${reached ? "on" : ""} ${i === azRw.ms ? "pick" : ""}" data-m="${i}" aria-label="${RANKS[i][1]}">
+      ${i <= 5 ? `<img class="pg-ncr" src="${assetUrl("ui_prg_crest_" + AZP_FRAME[i])}" alt="">` : `<span class="pg-ncr">${rankIc(RANKS[i][0])}</span>`}
+      <span class="pg-dot">${reached ? azi("check") : azi("lock")}</span><small dir="ltr">${fmt(RANKS[i][0])}</small></button>`; };
+  const j = azRw.ms, sj = st(j), [min, n, c] = RANKS[j], it = items(TIER_REW[j]), allDone = MS.every(i => state(i) === "got");
+  const act = sj === "got" ? `<button class="pg-big got" disabled>${azi("check")}נאסף</button>`
+    : sj === "ready" ? `<button class="pg-big ready" data-c="${j}" ${azClaiming ? "disabled" : ""}>${azClaiming ? "אוסף…" : "אסוף פרס"}</button>`
+    : `<button class="pg-big lock" disabled>${azi("lock")}נעול כרגע</button>`;
+  const title = sj === "next" ? "הפרס הבא" : sj === "ready" ? "פרס זמין" : sj === "got" ? "פרס שנאסף" : "פרס עתידי";
+  L.innerHTML = `<div class="az-rwv pg2">${azRwHead(false)}
+    <div class="pg-top"><span class="pg-me">${azi("sw")}<span><small>נקודות הזירה שלך</small><b dir="ltr">${fmt(A.r)}</b></span></span>
+      <span class="pg-bar"><i style="width:${nextLock != null ? pct(nextLock) : 100}%"></i><b dir="ltr">${nextLock != null ? `${fmt(A.r)} / ${fmt(RANKS[nextLock][0])}` : fmt(A.r)}</b></span>
+      <span class="pg-left">${allDone ? "כל הפרסים נאספו" : nextLock != null ? `עוד <b dir="ltr">${fmt(need(nextLock))}</b> לפרס הבא` : "הגעת לכל אבני הדרך"}</span>
+      <button class="pg-info" id="pgInfo" aria-label="הסבר">${azi("info")}</button></div>
+    <div class="pg-mid"><button class="pg-arr" data-pg="-1" aria-label="עמוד קודם" ${azRw.page <= 1 ? "disabled" : ""}>${azi("next")}</button>
+      <div class="pg-cols" style="--n:${ms.length}"><div class="pg-cards">${ms.map(card).join("")}</div>
+        <div class="pg-track"><span class="pg-line"><i style="width:${fill}%"></i></span><span class="pg-mark" style="left:${fill}%" title="${fmt(A.r)}"></span>${ms.map(node).join("")}</div></div>
+      <button class="pg-arr" data-pg="1" aria-label="עמוד הבא" ${azRw.page >= pages ? "disabled" : ""}>${azi("prev")}</button>
+      ${pages > 1 ? `<span class="pg-pgi" dir="ltr">${azRw.page}/${pages}</span>` : ""}</div>
+    <div class="pg-bot ${sj}"><img class="pg-chest" src="${assetUrl("ui_prg_chest")}" alt="">
+      <span class="pg-bm"><span class="pg-bt"><span class="pg-btt">${rankIc(min, 1)}<b class="title-font">${title}: <span style="color:${c}">${n}</span></b></span><small><span dir="ltr">${fmt(min)}</span> נקודות</small></span>
+      <span class="pg-bits">${it.map(slot).join("")}</span></span><i class="pg-div"></i>
+      <span class="pg-bp"><span class="pg-bar"><i style="width:${sj === "got" || sj === "ready" ? 100 : pct(j)}%"></i><b dir="ltr">${fmt(Math.min(A.r, min))} / ${fmt(min)}</b></span>
+        <small>${sj === "got" ? "הפרס כבר נאסף" : sj === "ready" ? "הגעת לדרגה! אפשר לאסוף" : `נותרו ${fmt(need(j))} נקודות`}</small>${act}</span></div></div>`;
+  azpFx = null;
+  requestAnimationFrame(() => L.querySelectorAll(".pg-bar i,.pg-line i").forEach(e => e.classList.add("go")));
   L.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { azRw.tab = b.dataset.tab; renderArena(); });
-  L.querySelectorAll("[data-m]").forEach(b => b.onclick = () => { azRw.ms = +b.dataset.m; renderArena(); });
+  L.querySelectorAll("[data-m]").forEach(b => b.onclick = e => { if (e.target.closest("[data-c]")) return; if (azRw.ms === +b.dataset.m) return; azRw.ms = +b.dataset.m; SFX.tap && SFX.tap(); renderArena(); });
   L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { azRw.page += +b.dataset.pg; renderArena(); });
-  L.querySelectorAll("[data-c]").forEach(b => b.onclick = () => {
-    if (azClaiming) return; const t = +b.dataset.c; azClaiming = true; renderArena();           // one claim at a time: the button shows "collecting…" until it is settled
-    setTimeout(() => { const ok = claimTier(t); azClaiming = false;
-      if (ok) { SFX.legend(); toast(`קיבלת את פרס דרגת ${RANKS[t][1]}!`); } else toast("הפרס הזה לא זמין לאיסוף");
+  $("pgInfo").onclick = () => toast("כל דרגה חדשה בזירה פותחת פרס חד־פעמי. מגיעים לנקודות הדרגה, ואז אוספים את הפרס כאן. הפרס נשאר שלך גם אם הנקודות יורדות.");
+  L.querySelectorAll("[data-c]").forEach(b => b.onclick = e => { e.stopPropagation();
+    if (azClaiming) return; const t = +b.dataset.c; azClaiming = true; renderArena();           // one claim at a time; the button shows "collecting…" until it is settled
+    setTimeout(() => { let ok = false, err = false; try { ok = claimTier(t); } catch (x) { err = true; } azClaiming = false;
+      if (ok) { azpFx = t; azRw.ms = t; SFX.legend(); toast(`קיבלת את פרס דרגת ${RANKS[t][1]}!`); }
+      else toast(err ? "משהו השתבש. הפרס נשאר זמין, נסה שוב" : "הפרס הזה לא זמין לאיסוף");
       if ($("arena").classList.contains("on")) renderArena(); }, 250);
   });
 }
