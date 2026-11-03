@@ -3436,6 +3436,16 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .sg-mypl b{font-size:max(34px,var(--mf))}
 .sg-mp{font-size:max(22px,var(--mf))!important}
 .sg-hit:disabled{opacity:1;background:rgba(5,8,26,.62)!important}
+/* podium medallions, depth pass (2026-11-03): no flat blue disc — a near-black charcoal / deep-violet gradient, a soft radial light in the place's tone
+   (gold-amber / silver-ice / copper-violet) behind the monster, an inner vignette at the rim; the monster whole (contain, ~82%), with a soft contact shadow under it
+   and a faint rim light in the same tone; the template's ring stays on top of everything */
+.az-sg .sg-hole{--gl:255,196,90;background:radial-gradient(circle at 50% 42%,#1a1730 0%,#0d0c1c 55%,#05050c 100%)!important;box-shadow:inset 0 0 calc(var(--d,120px) * .16) rgba(0,0,0,.9),inset 0 -6px 14px rgba(0,0,0,.6)}
+.az-sg .sg-hole.m2{--gl:190,215,255;background:radial-gradient(circle at 50% 42%,#171c2a 0%,#0b0e18 55%,#04050a 100%)!important}
+.az-sg .sg-hole.m3{--gl:214,140,110;background:radial-gradient(circle at 50% 42%,#1e1424 0%,#110b18 55%,#06040a 100%)!important}
+.sg-glow{position:absolute;inset:0;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 50% 46%,rgba(var(--gl),.5) 0%,rgba(var(--gl),.18) 36%,transparent 64%)}
+.sg-hole.m3 .sg-glow{background:radial-gradient(circle at 50% 46%,rgba(214,140,110,.36) 0%,rgba(150,90,200,.16) 38%,transparent 64%)}
+.sg-hole::after{content:"";position:absolute;left:24%;right:24%;bottom:12%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.65),transparent);pointer-events:none}
+.az-sg .sg-hole img{position:relative;z-index:1;width:82%;height:82%;object-fit:contain;object-position:50% 58%;filter:drop-shadow(0 3px 4px rgba(0,0,0,.75)) drop-shadow(0 0 2px rgba(var(--gl),.55))}
 </style>
 
 <div class="app" dir="rtl">
@@ -5284,9 +5294,9 @@ const azRarest = team => team.reduce((b, x) => { const k = ([id, lv, st]) => ((M
 const azBig = () => innerHeight >= 560;                // tall screens show level and stars on the team icons, as drawn
 /* ---- the ranking screen drawn on the user's template (ui_rank_template, 1774x887, 2026-11-03): the whole picture is the screen, scaled to fit the
    safe area; every value sits in the exact spot the template leaves for it (coordinates measured on the template, in its own pixels) ---- */
-const AZS = {pods:[{r:2, cx:592, cy:162, R:68, bx:592, by:96, plate:[478, 240, 226, 44], slots:[452, 508, 564, 620, 676], sy:292, ss:51},
-                   {r:1, cx:1028, cy:140, R:78, bx:1028, by:58, plate:[908, 231, 240, 46], slots:[879, 940, 1002, 1063, 1124], sy:287, ss:55},
-                   {r:3, cx:1481, cy:165, R:61, bx:1481, by:104, plate:[1375, 243, 212, 44], slots:[1345, 1401, 1457, 1513, 1569], sy:292, ss:51}],
+const AZS = {pods:[{r:2, cx:596, cy:176, R:56, bx:592, by:96, plate:[478, 240, 226, 44], slots:[452, 508, 564, 620, 676], sy:292, ss:51},
+                   {r:1, cx:1032, cy:154, R:64, bx:1028, by:58, plate:[908, 231, 240, 46], slots:[879, 940, 1002, 1063, 1124], sy:287, ss:55},
+                   {r:3, cx:1481, cy:179, R:51, bx:1481, by:104, plate:[1375, 243, 212, 44], slots:[1345, 1401, 1457, 1513, 1569], sy:292, ss:51}],
   rows:[502, 552, 603, 653, 703], tslots:[485, 528, 571, 614, 658], mslots:[600, 639, 677, 714, 751],
   menu:[304, 371, 434, 496, 558, 620, 682]};
 function azStageFit() {
@@ -5311,7 +5321,7 @@ function azStage(A) {
   const menu = [["board", "trophy", "דירוג"], ["ranks", "gift", `פרסי דירוג${rwReady ? ` (${rwReady})` : ""}`], ["log", "shield", `יומן הגנה${newLog ? ` (${newLog})` : ""}`], ["fight", "sw", "קרב"], ["shop", "shop", "חנות הזירה"], ["hist", "chart", "היסטוריה"]];
   const nextRew = next ? TIER_REW[k + 1] : null;
   const pod = AZS.pods.map(q => { const e = lad.at(q.r), t = teamOf(e), top = azRarest(t);
-    return `<button class="sg-hole" ${e.me ? "" : `data-i="${e.b.i}"`} style="${P(q.cx - q.R, q.cy - q.R, q.R * 2, q.R * 2)}" aria-label="מקום ${q.r}"><img src="${ART[top[0]] || ""}" alt=""></button>
+    return `<button class="sg-hole m${q.r}" ${e.me ? "" : `data-i="${e.b.i}"`} style="${P(q.cx - q.R, q.cy - q.R, q.R * 2, q.R * 2)}" aria-label="מקום ${q.r}"><i class="sg-glow"></i><img src="${ART[top[0]] || ""}" alt=""></button>
       <b class="sg-badge" style="${P(q.bx - 22, q.by - 20, 44, 40)}">${q.r}</b>
       <span class="sg-plate" style="${P(...q.plate)}"><b class="sf">${esc(nameOf(e))}</b><span class="sg-v">${vic}<b dir="ltr">${fmt(val(e))}</b></span></span>
       ${t.slice(0, 5).map((m, j) => tile(m, q.slots[j], q.sy, q.ss)).join("")}`; }).join("");
