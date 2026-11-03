@@ -3421,6 +3421,21 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-sg .sg-hit::after{content:"";position:absolute;inset:-14px}.az-sg .sg-hit{position:absolute}
 .sg-plate{padding:0 2px}.sg-plate>b{width:114%;max-width:none!important;letter-spacing:-.4px;text-align:center}   /* long names fit the plate on small phones */
 .xs .sg-name{left:1262px!important;width:326px!important;letter-spacing:-.5px}   /* SE: the name column takes the free space next to the rank */
+/* polish pass (2026-11-03, the user's list): calmer glows, bigger headers, the selected row softly lit, separators and emphasis in my row,
+   the two template slots with no role (7th menu button, bottom-right button) filled with the template's own panel / floor instead of dark boxes */
+.sg-tab.on{box-shadow:inset 0 0 0 2px #ffd75a,0 0 7px rgba(80,140,255,.4)}
+.sg-tab{border-radius:27px}
+.sg-nav.on{box-shadow:0 0 5px rgba(255,200,80,.35)}
+.sg-th{font-size:max(22px,var(--mf))}
+.sg-row.sel{background:rgba(60,100,200,.22);box-shadow:inset 0 0 0 1.5px rgba(140,190,255,.7)}
+.az-sg .sg-fill{background-image:var(--tpl);background-repeat:no-repeat;box-shadow:none;border:0}
+.az-sg .sg-fill.sg-fp{background-size:1774px 1534px;background-position:-18px -320px;border-radius:10px}
+.az-sg .sg-fill.sg-ff{background-size:3667px 887px;background-position:-2480px -812px}
+.sg-sep{background:linear-gradient(transparent,rgba(226,184,87,.6),transparent)}
+.sg-mv{align-items:center}.sg-mv small{font-size:max(17px,var(--mf))}.sg-mv b{font-size:max(30px,var(--mf));color:#ffd75a}
+.sg-mypl b{font-size:max(34px,var(--mf))}
+.sg-mp{font-size:max(22px,var(--mf))!important}
+.sg-hit:disabled{opacity:1;background:rgba(5,8,26,.62)!important}
 </style>
 
 <div class="app" dir="rtl">
@@ -5303,7 +5318,7 @@ function azStage(A) {
   const first = 4 + (azBoard.page - 1) * AZ_PER, rows = [];
   for (let r = first; r < first + AZ_PER && r <= last; r++) rows.push(lad.at(r));
   const row = (e, j) => { const y = AZS.rows[j];
-    return `<div class="sg-row ${e.me ? "me" : ""} ${e.me && azBoard.flash ? "flash" : ""}" data-rank="${e.rank}" ${e.me ? "" : `data-i="${e.b.i}"`} style="${P(318, y - 24, 1432, 48)}"></div>
+    return `<div class="sg-row ${e.me ? "me" : ""} ${!e.me && azBoard.sel === e.b.i ? "sel" : ""} ${e.me && azBoard.flash ? "flash" : ""}" data-rank="${e.rank}" ${e.me ? "" : `data-i="${e.b.i}"`} style="${P(318, y - 24, 1432, 48)}"></div>
       ${e.me ? "" : `<button class="sg-view" data-i="${e.b.i}" style="${P(337, y - 18, 116, 36)}"><span class="sf">צפייה</span></button>`}
       ${teamOf(e).slice(0, 5).map((m, i) => tile(m, AZS.tslots[i], y - 21, 42)).join("")}
       <span class="sg-num" style="${P(745, y - 20, 170, 40)}">${azi("shield")}<b dir="ltr" class="sf">${fmt(powOf(e))}</b></span>
@@ -5321,12 +5336,12 @@ function azStage(A) {
     <span class="sg-bar" style="${P(24, 227, 256, 21)}"><i style="width:${pct}%"></i><b dir="ltr" class="sf">${A.r}${next ? ` / ${next[0]}` : ""}</b></span>
     <span class="sg-place" style="${P(20, 252, 270, 48)}"><span class="sf">מקום <b dir="ltr">${fmt(pos)}</b></span><span class="sf">${next ? `עוד ${next[0] - A.r} ל${next[1]}` : "הדרגה הגבוהה ביותר!"}</span></span>
     ${menu.map(([t, ic, n], j) => `<button class="sg-menu ${t === "board" ? "on" : ""}" data-t="${t}" style="${P(22, AZS.menu[j], 238, AZS.menu[j + 1] - AZS.menu[j] - 8)}">${azi(ic)}<span class="sf">${n}</span></button>`).join("")}
-    <span class="sg-patch sq" style="${P(20, 680, 268, 60)}"></span>
+    <span class="sg-fill sg-fp" style="${P(18, 678, 272, 64)}"></span>
     <span class="sg-nh" style="${P(26, 756, 258, 30)}"><span class="sf nl">${next ? `פרס הדרגה הבאה (${next[1]})` : "כל פרסי הדרגות נאספו"}</span><span class="sf ns">${next ? `פרס ל${next[1]}` : "הכל נאסף"}</span></span>
     <span class="sg-rw" style="${P(68, 785, 174, 72)}">${($("arenaNext").querySelector(".az-rws") || {}).innerHTML || ""}</span>
     ${pod}
-    <button class="sg-tab ${lad.world ? "" : "on"}" data-sc="arena" style="${P(1012, 377, 386, 52)}">${azi("sw")}<span class="sf">דירוג הזירה</span></button>
-    <button class="sg-tab ${lad.world ? "on" : ""}" data-sc="world" style="${P(597, 377, 382, 52)}">${azi("globe")}<span class="sf">דירוג עולמי</span></button>
+    <button class="sg-tab ${lad.world ? "" : "on"}" data-sc="arena" style="${P(1000, 376, 402, 54)}">${azi("sw")}<span class="sf">דירוג הזירה</span></button>
+    <button class="sg-tab ${lad.world ? "on" : ""}" data-sc="world" style="${P(590, 376, 402, 54)}">${azi("globe")}<span class="sf">דירוג עולמי</span></button>
     ${[["מקום", 1652, 88], ["שם שחקן", 1300, 285], ["דרגה", 1180, 100], [lad.world ? "כוח כולל" : "נקודות זירה", 965, 185], ["כוח הגנה", 745, 170], ["הרכב הגנה", 485, 214], ["פעולות", 337, 116]].map(([n, x, w]) => `<span class="sg-th sf" style="${P(x, 443, w, 30)}">${n}</span>`).join("")}
     ${rows.map(row).join("")}
     <button class="sg-me" id="sgMe" style="${P(360, 756, 220, 48)}"><span class="sf">מעבר למיקום שלי</span></button>
@@ -5334,27 +5349,27 @@ function azStage(A) {
     <span class="sg-patch rk" style="${P(866, 750, 84, 60)}"></span><b class="sg-mp sf" dir="ltr" style="${P(830, 762, 110, 36)}">${fmt(powOf(me))}</b>
     <span class="sg-rk" style="${P(976, 756, 52, 48)}">${rankIc(A.r, 1)}</span>
     <b class="sg-mr sf" style="${P(1032, 762, 150, 36)};color:${rc}">${rn}</b>
-    <span class="sg-mv" style="${P(1370, 756, 186, 48)}"><small class="sf">${lad.world ? "כוח כולל" : "נקודות זירה"}</small><span>${vic}<b dir="ltr" class="sf">${fmt(val(me))}</b></span></span>
+    <i class="sg-sep" style="${P(1196, 760, 2, 40)}"></i><i class="sg-sep" style="${P(800, 760, 2, 40)}"></i><span class="sg-mv" style="${P(1214, 754, 344, 52)}"><small class="sf">${lad.world ? "כוח כולל" : "נקודות זירה"}</small><span>${vic}<b dir="ltr" class="sf">${fmt(val(me))}</b></span></span>
     <span class="sg-mypl" style="${P(1614, 754, 134, 52)}"><small class="sf">המיקום שלי</small><b dir="ltr" class="sf">${fmt(lad.pos)}</b></span>
     <button class="sg-nav ${azBoard.mode === "top" ? "on" : ""}" id="sgTop" style="${P(318, 820, 267, 52)}"><span class="sf">100 הראשונים</span></button>
     <button class="sg-nav ${azBoard.mode === "all" ? "on" : ""}" id="sgNear" style="${P(598, 820, 250, 52)}"><span class="sf">שחקנים סביבי</span></button>
     <button class="sg-hit" id="sgNext" style="${P(930, 822, 52, 48)}" aria-label="עמוד הבא" ${azBoard.page >= pages ? "disabled" : ""}></button>
     <b class="sg-pg sf" dir="ltr" style="${P(986, 826, 148, 40)}">${fmt(azBoard.page)}/${fmt(pages)}</b>
     <button class="sg-hit" id="sgPrev" style="${P(1138, 822, 52, 48)}" aria-label="עמוד קודם" ${azBoard.page <= 1 ? "disabled" : ""}></button>
-    <span class="sg-patch nav" style="${P(1386, 818, 360, 56)}"></span>`;
+    <span class="sg-fill sg-ff" style="${P(1380, 812, 372, 68)}"></span>`;
   azBoard.flash = false;
   const myPage = () => Math.max(1, Math.ceil((lad.pos - 3) / AZ_PER));
-  g.querySelectorAll("[data-i]").forEach(b => b.onclick = () => botProfile(getBot(A, +b.dataset.i)));
+  g.querySelectorAll("[data-i]").forEach(b => b.onclick = () => { azBoard.sel = +b.dataset.i; g.querySelectorAll(".sg-row.sel").forEach(r => r.classList.remove("sel")); const r = g.querySelector(`.sg-row[data-i="${b.dataset.i}"]`); if (r) r.classList.add("sel"); botProfile(getBot(A, +b.dataset.i)); });
   g.querySelectorAll("[data-t]").forEach(b => b.onclick = () => { if (b.dataset.t === arenaTab) return; arenaTab = b.dataset.t; SFX.tap && SFX.tap(); renderArena(); });
   g.querySelectorAll("[data-sc]").forEach(b => b.onclick = () => { if (azScope === b.dataset.sc) return; azScope = b.dataset.sc; azBoard = {mode:"top", page:1}; SFX.tap && SFX.tap(); renderArena(); });
   $("sgBack").onclick = () => document.querySelector("#arena .az-back").click();
   $("sgInfo").onclick = () => $("arInfo").click();
   $("sgPrev").onclick = () => { azBoard.page--; renderArena(); };
   $("sgNext").onclick = () => { azBoard.page++; renderArena(); };
-  $("sgTop").onclick = () => { azBoard = {mode:"top", page:1}; renderArena(); };
+  $("sgTop").onclick = () => { if (azBoard.mode === "top") return; azBoard = {mode:"top", page:1}; renderArena(); };
   $("sgNear").onclick = () => { azBoard = {mode:"all", page:myPage()}; renderArena(); };
   $("sgMe").onclick = () => { azBoard = {mode:lad.pos <= AZ_TOP ? "top" : "all", page:myPage(), flash:true}; renderArena(); };
-  g.style.backgroundImage = `url(${assetUrl("ui_rank_template")})`;   // the blob on the claude page, the file in the app
+  g.style.backgroundImage = `url(${assetUrl("ui_rank_template")})`; g.style.setProperty("--tpl", `url(${assetUrl("ui_rank_template")})`);   // the blob on the claude page, the file in the app
   azStageFit(); requestAnimationFrame(azStageFit);
 }
 function azRanking(A, L) {
