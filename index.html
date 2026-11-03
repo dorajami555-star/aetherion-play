@@ -3283,6 +3283,73 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-table,.az-nb,.az-pager,.az-pager button{border-color:rgba(201,154,58,.45)}
 .az-table{box-shadow:0 0 0 1px #1a1206,inset 0 0 0 1px rgba(255,215,120,.08)}
 .az-pod.p2 .az-ppanel,.az-pod.p3 .az-ppanel,.az-pod.p2 .az-mons,.az-pod.p3 .az-mons{box-shadow:none}
+/* podium, second concept (2026-11-03): no dark boxes; each place stands on a round metal pedestal (gold / silver / violet-bronze) — the big medallion with a
+   hexagon number badge above, the name plate on the pedestal's top and the defence team set into its front; the places stand close together */
+.az-podium{gap:clamp(2px,.6vw,8px)}
+.az-pod{width:31.5%}.az-pod.p1{width:34%}
+.az-pod.p1{--m1:#fff0b8;--m2:#c8922a;--m3:#4a2e06}.az-pod.p2{--m1:#f4f7ff;--m2:#8c9cc4;--m3:#1e2848}.az-pod.p3{--m1:#e6c4ff;--m2:#8a5aa8;--m3:#26143a}
+.az-pod{--av:min(calc(100cqh - var(--tm) - 64px),60cqw,170px);padding:18px 0 0}
+.az-pbase{position:relative;z-index:1;grid-column:1;grid-row:2 / 4;justify-self:stretch;align-self:stretch;margin-top:16px;
+  border-radius:50% 50% 46% 46% / 22px 22px 34px 34px;background:radial-gradient(120% 60% at 50% 0,var(--m1),var(--m2) 38%,var(--m3) 100%);
+  box-shadow:inset 0 3px 0 rgba(255,255,255,.55),inset 0 -10px 16px rgba(0,0,0,.55),0 10px 18px rgba(0,0,0,.6),0 0 16px var(--pg)}
+.az-pbase::before{content:"";position:absolute;left:5%;right:5%;top:-7px;height:16px;border-radius:50%;background:linear-gradient(var(--m1),var(--m2));box-shadow:0 2px 4px rgba(0,0,0,.5)}
+.az-ppanel{display:none}
+.az-pplate{width:min(76%,260px);margin:0 0 3px;background:linear-gradient(#141c48,#070b26);border:2px solid var(--m2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 3px 8px rgba(0,0,0,.6)}
+.az-pod .az-mons{justify-self:center;width:84%;margin-bottom:9px;background:rgba(5,8,26,.88);border:1.5px solid var(--m2);box-shadow:inset 0 2px 6px rgba(0,0,0,.7)}
+.az-pnum{width:34px;height:32px;top:-18px;padding-bottom:0;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);font-size:18px}
+.az-pod.p1 .az-pnum{background:linear-gradient(#ffe9a6,#c98a1c);color:#2a1800}.az-pod.p2 .az-pnum{background:linear-gradient(#f4f7ff,#8090b8);color:#0e1838}.az-pod.p3 .az-pnum{background:linear-gradient(#f0c08a,#8a4a20);color:#2a1200}
+.az-pcr{top:-30px}
+@media (max-height:450px){.az-pod{--av:min(calc(100cqh - var(--tm) - 56px),60cqw,170px);padding-top:15px}.az-pbase{margin-top:12px}.az-pod .az-mons{margin-bottom:6px}.az-pnum{width:26px;height:24px;top:-14px;font-size:14px}.az-pcr{top:-23px}}
+@media (max-height:400px){.az-pbase{margin-top:8px}}
+.az-pavw{margin-bottom:-12px}.az-pod{--av:min(calc(100cqh - var(--tm) - 52px),60cqw,170px)}@media (max-height:450px){.az-pavw{margin-bottom:-10px}.az-pod{--av:min(calc(100cqh - var(--tm) - 44px),60cqw,170px)}}@media (max-height:400px){.az-pod{--av:16px}.az-pavw{margin-bottom:0}}   /* the name plate overlaps the medallion foot, as drawn */
+/* the team under each of the top three, as drawn: five big tiles filling the strip, element and stars on top, level below, framed by rarity */
+.az-pod{--tm:min(calc((84cqw - 34px) / 5),27cqh,58px)}
+.az-pod .az-mons{gap:clamp(2px,.8cqw,6px);padding:clamp(3px,1cqw,6px) clamp(4px,1.4cqw,8px);border-radius:10px}
+.az-pod .az-mt{border-radius:8px}
+@media (max-height:450px){.az-pcr{top:-19px}}
+@media (max-height:410px){.az-podium{padding-left:26px}}   /* 17 Pro: the 2nd place keeps clear of the header info button */
+@media (max-height:450px){.az-pod{--tm:min(calc((96cqw - 18px) / 5),27cqh,58px)}.az-pod .az-mons{width:96%;gap:2px;padding:2px}.az-pod .az-mt small{font-size:10px;letter-spacing:-.3px}}   /* phones: the strip spans the pedestal so the level fits each tile */
+/* ranking scope tabs (arena / world), between the podium and the table as drawn: two wide framed tabs, the chosen one lit blue with a gold rim */
+.az-board{grid-template-rows:minmax(0,1fr) auto auto auto auto}
+.az-scope{display:flex;justify-content:center;gap:clamp(6px,1.4vw,14px);height:clamp(26px,6.4dvh,42px)}
+.az-scope button{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:min(36%,330px);height:100%;padding:0 12px;border-radius:10px;font:inherit;font-size:clamp(13px,3.6dvh,18px);font-weight:900;color:#fff;cursor:pointer;
+  background:linear-gradient(#141c48,#080c28);border:1.5px solid rgba(201,154,58,.6);clip-path:polygon(4% 0,96% 0,100% 50%,96% 100%,4% 100%,0 50%)}
+.az-scope button .azi{width:clamp(16px,4.4dvh,24px);height:auto;color:#ffd75a}
+.az-scope button.on{background:linear-gradient(#2a5ad8,#123088);border-color:#ffd75a;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 0 12px rgba(80,140,255,.5)}
+/* stand out without clutter: only the chosen tab is lit; the other is quiet (dim text and icon, thin muted rim, no glow) */
+.az-scope button:not(.on){color:#9aa6cc;background:linear-gradient(#0e1438,#070a22);border-color:rgba(201,154,58,.3)}.az-scope button:not(.on) .azi{color:#8a7a52}
+.az-scope button.on .azi{filter:drop-shadow(0 0 4px rgba(255,210,100,.6))}
+/* navigation with a clear hierarchy, as drawn (2026-11-03): one primary action on the right (go to my place, blue), the pager, then the two list modes —
+   the chosen mode lit gold, the other quiet; "my place" row: place, my avatar with the scope's number, a divider, the rank emblem and name, defence power, team */
+.az-nav{display:grid;grid-template-columns:1.25fr auto 1fr 1fr;gap:clamp(6px,1.2vw,14px);justify-content:stretch}
+.az-nav .az-nb{min-width:0;width:100%;white-space:nowrap}.az-nav .az-nb span{overflow:hidden;text-overflow:ellipsis}
+.az-nb:not(.on):not(.pri){color:#c8d2f0;background:linear-gradient(#121a46,#080c28);border-color:rgba(201,154,58,.35)}
+.az-nb.on{color:#2a1800;background:linear-gradient(#ffe08a,#d39a2c);border-color:#fff0b8;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 0 10px rgba(255,200,80,.45)}
+.az-nb.on .azi,.az-nb.on .chev{color:#3a2200}
+.az-nb.pri{color:#fff;background:linear-gradient(#3a78f0,#1840b0);border-color:#9cc0ff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 10px rgba(70,130,255,.45)}
+.az-nb.pri .azi{color:#ffd75a}
+.az-merow{grid-template-columns:auto auto minmax(0,1fr) auto auto!important}
+.az-merow .az-c-name>span{display:flex;flex-direction:column;line-height:1.1}.az-merow .az-c-name small{font-size:11px;color:#ffd75a;font-weight:700}
+.az-merow .az-c-tier{justify-self:end;display:flex;align-items:center;gap:5px}.az-merow .az-c-tier small{display:inline!important;font-size:13px;font-weight:800}
+.az-merow .az-mons{display:flex!important}
+@media (max-width:720px){.az-nav{grid-template-columns:1.2fr auto 1fr 1fr;gap:4px}.az-nav .az-nb{padding:0 6px;gap:4px;font-size:11.5px}.az-pager b{min-width:44px}.az-merow .az-mons{display:none!important}}
+@media (max-height:410px){.az-pod .az-mt small{letter-spacing:-.7px;font-size:10px}}
+@media (max-height:450px){.az-nav{grid-template-columns:auto auto minmax(0,1fr) minmax(0,1fr)}.az-nav .az-nb .chev{display:none}.az-nav .az-nb{padding:0 8px;gap:4px}.az-pager b{min-width:40px;padding:0 2px}.az-pager{gap:2px}}   /* phones: the four nav items fit without cutting their names */
+@media (max-width:720px) and (max-height:410px){.az-nav .az-nb:not(.pri) .azi{display:none}.az-nav .az-nb{padding:0 5px;font-size:11px}}
+/* subtle effects, as drawn: a slow breathing glow behind the 1st medallion and on the lit tabs, a soft blue rim on the row under the finger or the pointer;
+   all gentle (low opacity, slow) and off for players who ask for reduced motion */
+@keyframes azBreath{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes azSheen{0%{background-position:-160% 0}60%,100%{background-position:260% 0}}
+.az-pod.p1 .az-pavw::before{animation:azBreath 3.2s ease-in-out infinite}
+.az-scope button.on,.az-nb.on,.az-nb.pri{background-image:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%),var(--azbg,none);background-size:250% 100%,100% 100%;animation:azSheen 6s ease-in-out infinite}
+.az-scope button.on{--azbg:linear-gradient(#2a5ad8,#123088)}.az-nb.on{--azbg:linear-gradient(#ffe08a,#d39a2c)}.az-nb.pri{--azbg:linear-gradient(#3a78f0,#1840b0)}
+.az-tr{transition:box-shadow .2s,border-color .2s,background .2s}
+.az-tr:hover,.az-tr:active,.az-tr:focus-within{border-color:#6fa8ff;background:linear-gradient(90deg,rgba(36,64,150,.9),rgba(20,36,96,.9));box-shadow:0 0 10px rgba(90,150,255,.45),inset 0 0 0 1px rgba(140,190,255,.35)}
+.az-pbase{transition:filter .3s}.az-pod:hover .az-pbase{filter:brightness(1.12)}
+@media (prefers-reduced-motion:reduce){.az-pod.p1 .az-pavw::before,.az-scope button.on,.az-nb.on,.az-nb.pri{animation:none}}
+.az-nbw{font-style:normal}@media (max-width:720px) and (max-height:410px){.az-nbw{display:none}.az-nav .az-nb:not(.pri) .azi{display:inline-block}}   /* SE: the crown and "100" say it */
+@media (max-width:720px) and (max-height:410px){#azNear .azi{display:none!important}}
+@media (max-height:410px){.az-pod .az-mt small{display:none}}   /* 17 Pro / SE: the podium tiles are too small for the level; stars and element stay (the level is in the player profile) */
 </style>
 
 <div class="app" dir="rtl">
@@ -5023,6 +5090,7 @@ const AZI = {                                        // small gold line icons fo
   shop:'<path d="M4 9h16l-1 11H5zM3 5h18l-1 4H4zM9 13h6"/>',
   chart:'<path d="M4 20h16M6 16v-3M10 16V9M14 16v-5M18 16V6M6 11l4-4 4 3 5-5"/>',
   crown:'<path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/>',
+  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/>',
   users:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2c3 0 5.5 2.2 5.5 5.8"/>',
   pin:'<path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2.3"/>',
   eye:'<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/>',
@@ -5036,12 +5104,30 @@ const azMon = (id, lv, st) => { const d = MON[id];               // one monster 
 const azMine = () => S.team.map(u => S.mons.find(m => m.uid === u)).filter(Boolean);
 const azPodFrame = ["gold", "silver", "bronze"];
 const azNm = n => `<b class="${n.length > 14 ? "lg xl" : n.length > 10 ? "lg" : ""}">${esc(n)}</b>`;   // long player names get a smaller font, never cut
-let azTick = 0, azBoard = {mode:"top", page:1, flash:false}, azLogPage = 1, azHistPage = 1, azShopCat = "all", azBuyArm = null;
+let azTick = 0, azScope = "arena", azBoard = {mode:"top", page:1, flash:false}, azLogPage = 1, azHistPage = 1, azShopCat = "all", azBuyArm = null;
 const AZ_TOP = 100, AZ_PER = 5;
 function azLadder(A) {                               // the real ranking: 10,000 players sorted by today's rating, me inserted at my place
   const R0 = ratingsSorted(A), pos = myRank(A), total = NBOTS + 1;
   const at = r => r === pos ? {me:true, r:A.r, rank:r} : (() => { const i = R0.idx[r - 1 - (r > pos ? 1 : 0)], b = getBot(A, i); return {b, r:b.r, rank:r}; })();
   return {pos, total, at};
+}
+/* world ranking (chosen by the user 2026-11-03): everyone ranked by the power of their whole monster collection.
+   me: the sum of power() over every monster I own (food excluded); the other players are generated, so their collection is too —
+   their defence team's power times a collection size drawn once from their own seed (3.5x to 7x), fixed for the session */
+const myWorldPow = () => Math.round(S.mons.filter(m => !MON[m.id].food).reduce((s, m) => s + power(m), 0));
+let worldCache = null;
+function worldSorted(A) {
+  if (worldCache && worldCache.seed === A.seed) return worldCache;
+  const idx = new Int32Array(NBOTS), v = new Float64Array(NBOTS);
+  for (let i = 0; i < NBOTS; i++) { const b = getBot(A, i), k = 3.5 + srng(A.seed * 3 + i * 104729)() * 3.5;
+    v[i] = Math.round(teamPow(b.team) * (1 + Math.max(0, Math.min(1, (botBase(i) - 1000) / 1400)) * .3) * k); idx[i] = i; }
+  idx.sort((x, y) => v[y] - v[x]);
+  return worldCache = {seed:A.seed, idx, v};
+}
+function azWorld(A) {
+  const W = worldSorted(A), me = myWorldPow(); let pos = 1; for (let k = 0; k < NBOTS; k++) if (W.v[W.idx[k]] > me) pos++; else break;
+  const at = r => r === pos ? {me:true, r:A.r, wp:me, rank:r} : (() => { const i = W.idx[r - 1 - (r > pos ? 1 : 0)], b = getBot(A, i); return {b, r:b.r, wp:W.v[i], rank:r}; })();
+  return {pos, total:NBOTS + 1, at, world:true};
 }
 function renderArena() {
   const A = arenaState(); if (!A.opp || !A.opp.length || typeof A.opp[0] !== "number") makeOpponents();
@@ -5112,7 +5198,7 @@ const azBig = () => innerHeight >= 560;                // tall screens show leve
 function azRanking(A, L) {
   L.innerHTML = `<div class="az-state">טוען את הדירוג…</div>`;
   let lad;
-  try { lad = azLadder(A); }
+  try { lad = azScope === "world" ? azWorld(A) : azLadder(A); }
   catch (e) { L.innerHTML = `<div class="az-state err">לא הצלחנו לטעון את הדירוג.<button class="btn" id="azRetry">לנסות שוב</button></div>`; $("azRetry").onclick = () => renderArena(); return; }
   if (lad.total <= 3) { L.innerHTML = `<div class="az-state">עוד אין מספיק שחקנים בדירוג.</div>`; return; }
   const last = azBoard.mode === "top" ? Math.min(AZ_TOP, lad.total) : lad.total, pages = Math.max(1, Math.ceil((last - 3) / AZ_PER));
@@ -5121,39 +5207,41 @@ function azRanking(A, L) {
   const avOf = (e, size, fr) => framedAvatar(size, fr || (e.me ? undefined : {k:"", c1:rankOf(e.r)[2], c2:"#0b1338"}), e.me ? undefined : ART[e.b.team[0][0]] || "");
   const pod = [2, 1, 3].map(r => { const e = lad.at(r);
     return `<button class="az-pod p${r} ${e.me ? "me" : ""}" ${e.me ? "" : `data-i="${e.b.i}"`} aria-label="מקום ${r}">
-      <span class="az-ppanel"></span><span class="az-pavw">${r === 1 && HAVE.has("summon_wings") ? `<img class="az-wings" src="${assetUrl("summon_wings")}" alt="">` : ""}<span class="az-pnum">${r}</span>${r === 1 ? azi("crown", "az-pcr") : ""}
+      <span class="az-pbase"></span><span class="az-pavw">${r === 1 && HAVE.has("summon_wings") ? `<img class="az-wings" src="${assetUrl("summon_wings")}" alt="">` : ""}<span class="az-pnum">${r}</span>${r === 1 ? azi("crown", "az-pcr") : ""}
       ${framedAvatar(r === 1 ? 62 : 52, {k:azPodFrame[r - 1], c1:["#ffd75a", "#c9d1ea", "#c98a5a"][r - 1], c2:"#0b1338"}, ART[azRarest(teamOf(e))[0]] || "")}</span>
-      <span class="az-pplate">${azNm(nameOf(e))}<span>${azi("sw")}<b dir="ltr">${fmt(e.r)}</b></span></span>
-      <span class="az-mons ${azBig() ? "" : "sm"}">${teamOf(e).map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span></button>`; }).join("");
+      <span class="az-pplate">${azNm(nameOf(e))}<span>${azi(lad.world ? "globe" : "sw")}<b dir="ltr">${fmt(lad.world ? e.wp : e.r)}</b></span></span>
+      <span class="az-mons">${teamOf(e).map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span></button>`; }).join("");
   const first = 4 + (azBoard.page - 1) * AZ_PER, rows = [];
   for (let r = first; r < first + AZ_PER && r <= last; r++) rows.push(lad.at(r));
   const row = e => `<div class="az-tr ${e.me ? "me" : ""} ${e.me && azBoard.flash ? "flash" : ""}" data-rank="${e.rank}">
       <span class="az-c-rank"><b dir="ltr">${fmt(e.rank)}</b></span>
       <span class="az-c-name">${avOf(e, 30)}${azNm(nameOf(e) + (e.me ? " (אתה)" : ""))}</span>
       <span class="az-c-tier">${rankIc(e.r, 1)}</span>
-      <span class="az-c-pts">${azi("sw")}<b dir="ltr">${fmt(e.r)}</b></span>
+      <span class="az-c-pts">${azi(lad.world ? "globe" : "sw")}<b dir="ltr">${fmt(lad.world ? e.wp : e.r)}</b></span>
       <span class="az-c-pow">${azi("shield")}<b dir="ltr">${fmt(powOf(e))}</b></span>
       <span class="az-c-team az-mons ${azBig() ? "" : "sm"}">${teamOf(e).map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span>
       <span class="az-c-act">${e.me ? "" : `<button class="az-view" data-i="${e.b.i}">${azi("eye")}צפייה</button>`}</span></div>`;
   const me = lad.at(lad.pos);
   L.innerHTML = `<div class="az-board">
     <div class="az-podium">${pod}</div>
-    <div class="az-table"><div class="az-th"><span>מקום</span><span>שם שחקן</span><span>דרגה</span><span>נקודות זירה ${azi("sw")}</span><span>כוח הגנה</span><span>הרכב הגנה</span><span>פעולות</span></div>
+    <div class="az-scope"><button class="${lad.world ? "" : "on"}" data-sc="arena">${azi("sw")}<span>דירוג הזירה</span></button><button class="${lad.world ? "on" : ""}" data-sc="world">${azi("globe")}<span>דירוג עולמי</span></button></div>
+    <div class="az-table"><div class="az-th"><span>מקום</span><span>שם שחקן</span><span>דרגה</span><span>${lad.world ? `כוח כולל ${azi("globe")}` : `נקודות זירה ${azi("sw")}`}</span><span>כוח הגנה</span><span>הרכב הגנה</span><span>פעולות</span></div>
       ${rows.length ? rows.map(row).join("") : `<div class="az-state">אין שחקנים בעמוד הזה.</div>`}</div>
     <div class="az-merow"><span class="az-me-pos"><small>המיקום שלי</small><b dir="ltr">${fmt(lad.pos)}</b></span>
-      <span class="az-c-name">${framedAvatar(34)}<span><b>${esc(prof().name)}</b><span class="az-pow">${azi("sw")}<b dir="ltr">${fmt(A.r)}</b></span></span></span>
-      <span class="az-c-tier">${rankIc(A.r, 1)}</span>
+      <span class="az-c-name">${framedAvatar(34)}<span><small>${lad.world ? "כוח כולל" : "נקודות זירה"}</small><span class="az-pow">${azi(lad.world ? "globe" : "sw")}<b dir="ltr">${fmt(lad.world ? me.wp : A.r)}</b></span></span></span>
+      <span class="az-c-tier">${rankIc(A.r, 1)}<small style="color:${rankOf(A.r)[2]}">${rankOf(A.r)[1]}</small></span>
       <span class="az-c-pow">${azi("shield")}<b dir="ltr">${fmt(powOf(me))}</b></span>
-      <span class="az-mons sm">${teamOf(me).map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span>
-      <button class="btn blue az-tome" id="azMe">${azi("pin")}מעבר למיקום שלי</button></div>
-    <div class="az-nav"><button class="az-nb ${azBoard.mode === "all" ? "on" : ""}" id="azNear">${azi("users")}שחקנים סביבי</button>
+      <span class="az-mons sm">${teamOf(me).map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span></div>
+    <div class="az-nav"><button class="az-nb pri" id="azMe">${azi("pin")}<span>מעבר למיקום שלי</span></button>
       <span class="az-pager"><button id="azPrev" aria-label="עמוד קודם" ${azBoard.page <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${fmt(azBoard.page)}/${fmt(pages)}</b><button id="azNext" aria-label="עמוד הבא" ${azBoard.page >= pages ? "disabled" : ""}>${azi("next")}</button></span>
-      <button class="az-nb ${azBoard.mode === "top" ? "on" : ""}" id="azTop">${azi("crown")}<span>100 הראשונים</span>${azi("prev", "chev")}</button></div></div>`;
+      <button class="az-nb ${azBoard.mode === "all" ? "on" : ""}" id="azNear">${azi("users")}<span>שחקנים סביבי</span></button>
+      <button class="az-nb ${azBoard.mode === "top" ? "on" : ""}" id="azTop">${azi("crown")}<span>100 <i class="az-nbw">הראשונים</i></span>${azi("prev", "chev")}</button></div></div>`;
   azBoard.flash = false;
   const myPage = () => Math.max(1, Math.ceil((lad.pos - 3) / AZ_PER));
   L.querySelectorAll("[data-i]").forEach(b => b.onclick = () => botProfile(getBot(A, +b.dataset.i)));
   $("azPrev").onclick = () => { azBoard.page--; renderArena(); };
   $("azNext").onclick = () => { azBoard.page++; renderArena(); };
+  L.querySelectorAll("[data-sc]").forEach(b => b.onclick = () => { if (azScope === b.dataset.sc) return; azScope = b.dataset.sc; azBoard = {mode:"top", page:1}; SFX.tap && SFX.tap(); renderArena(); });
   $("azTop").onclick = () => { azBoard = {mode:"top", page:1}; renderArena(); };
   $("azNear").onclick = () => { azBoard = {mode:"all", page:myPage()}; renderArena(); };
   $("azMe").onclick = () => { azBoard = {mode:lad.pos <= AZ_TOP ? "top" : "all", page:myPage(), flash:true}; renderArena(); };
