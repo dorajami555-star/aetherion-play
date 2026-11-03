@@ -1172,7 +1172,7 @@ img.awglow,.unit .spr img.awglow,.mdet .big img.awglow,.mcard .pic img.awglow,.r
 @keyframes legSpin{to{rotate:360deg}}
 .pav .pspark{position:absolute;inset:0;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 20% 25%,#fff 0 2px,transparent 3px),radial-gradient(circle at 80% 70%,#fff 0 1.5px,transparent 3px);animation:spk 2s ease-in-out infinite}
 @keyframes spk{50%{opacity:.2}}
-.pav.painted{background:none;padding:calc(var(--ps,40px) * .12);box-shadow:none}   /* 12% of the avatar, not of its parent (a % padding follows the parent's width and blew the avatar up in wide rows) */
+.pav.painted{background:none;padding:calc(var(--ps,40px) * var(--fp,.12));box-shadow:none}   /* 12% of the avatar, not of its parent (a % padding follows the parent's width and blew the avatar up in wide rows) */
 .pav.painted::before,.pav.painted::after{display:none}
 .pav .pfr{position:absolute;inset:-8%;width:116%;height:116%;object-fit:contain;pointer-events:none}
 .vipcrest.painted{position:relative;display:inline-grid;place-items:center}
@@ -3220,7 +3220,8 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-ppanel{grid-column:1;grid-row:1 / 3;justify-self:center;align-self:end;height:calc(var(--av) + 54px);width:min(calc(var(--av) + 30px),66%);border-radius:8px 8px 2px 2px;
   background:linear-gradient(#18224f,#0a0f2c 55%,#060920);border:2px solid var(--pc);box-shadow:0 0 14px var(--pg),inset 0 0 0 1px rgba(0,0,0,.6),inset 0 10px 18px rgba(255,255,255,.05)}
 .az-pavw{position:relative;z-index:2;height:var(--av);margin:0 0 -4px}
-.az-pavw .pav.painted{--ps:min(150px,100%)}
+.az-pavw .pav{position:absolute!important;inset:0;width:auto!important;height:auto!important;box-sizing:border-box}   /* the medallion is exactly the square of its slot */
+.az-pavw .pav.painted{padding:calc(100% * var(--fp,.12))}   /* % of the slot width: the portrait fills the frame opening, never more */
 .az-pod.p1 .az-pavw::before{content:"";position:absolute;inset:-14%;border-radius:50%;background:radial-gradient(circle,rgba(255,215,110,.45),transparent 68%);z-index:0}
 .az-pod.p1 .az-wings{z-index:0;width:190%}
 .az-pnum{top:-16px;left:50%;right:auto;translate:-50% 0;z-index:3;width:30px;height:34px;display:grid;place-items:center;border-radius:0;font-size:17px;box-shadow:none;
@@ -3267,6 +3268,14 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 @media (max-height:400px){.az-pod{padding-top:18px;--av:16px}.az-ppanel{display:none}}   /* SE: no room for the medallions; plates and the place shields stay */
 @media (max-height:410px){.az-merow .az-c-name .pav{width:28px!important;height:28px!important}}
 @media (max-width:720px) and (max-height:410px){.az-place-n{display:none}.az-merow{grid-template-columns:auto minmax(0,1fr) auto auto auto}.az-tome{font-size:11.5px!important;padding:0 6px!important;gap:3px}}
+/* painted frames: the portrait fills exactly the frame's opening (measured on each frame: opening width and how far its centre sits above the image centre),
+   so the art never shows outside the ring; the strip under some frame images (bits of neighbouring art) is clipped off */
+.pav.painted.gold{--fp:.177}.pav.painted.silver{--fp:.14}.pav.painted.bronze{--fp:.153}.pav.painted.legend{--fp:.208}.pav.painted.diamond{--fp:.177}.pav.painted.platinum{--fp:.183}
+.pav.painted.gold .pfr{translate:0 1.6%;clip-path:inset(0 0 10% 0)}.pav.painted.silver .pfr{translate:0 3.1%;clip-path:inset(0 0 7% 0)}.pav.painted.bronze .pfr{translate:0 3.1%;clip-path:inset(0 0 7% 0)}
+.pav.painted.legend .pfr{translate:0 4.7%}.pav.painted.diamond .pfr{translate:0 3.1%}.pav.painted.platinum .pfr{translate:0 .6%}
+.az-lteam,.az-lago{min-width:max-content}   /* the attack time is never narrower than its text */
+@media (max-height:450px){.az-pnum{width:22px;height:25px;font-size:13px;top:-13px;padding-bottom:4px}.az-pcr{top:-22px;width:18px;height:14px}}   /* phones: the place shield sits on the medallion edge without covering the portrait */
+.az-pavw .pin{display:grid;place-items:center}.az-pavw .pin img{width:86%;height:86%;object-fit:contain;object-position:50% 50%}   /* the podium shows the rarest monster of that player whole, centred in the circle */
 </style>
 
 <div class="app" dir="rtl">
@@ -5091,6 +5100,7 @@ function azFight(A, L) {
   $("arenaGo").classList.toggle("empty", A.t < 1);
   $("arenaGo").onclick = () => { if (A.t < 1) { toast("אין כרטיסי זירה. כרטיס חדש כל 30 דקות, או בחנות"); return openStore("shop"); } fightBot(sb); };
 }
+const azRarest = team => team.reduce((b, x) => { const k = ([id, lv, st]) => ((MON[id].st * 2 + (rarKey(id) === "mystic" ? 1 : 0)) * 100 + (st || MON[id].st)) * 1000 + (lv || 0); return k(x) > k(b) ? x : b; });   // rarity first (mystic above legendary), then stars, then level
 const azBig = () => innerHeight >= 560;                // tall screens show level and stars on the team icons, as drawn
 function azRanking(A, L) {
   L.innerHTML = `<div class="az-state">טוען את הדירוג…</div>`;
@@ -5105,7 +5115,7 @@ function azRanking(A, L) {
   const pod = [2, 1, 3].map(r => { const e = lad.at(r);
     return `<button class="az-pod p${r} ${e.me ? "me" : ""}" ${e.me ? "" : `data-i="${e.b.i}"`} aria-label="מקום ${r}">
       <span class="az-ppanel"></span><span class="az-pavw">${r === 1 && HAVE.has("summon_wings") ? `<img class="az-wings" src="${assetUrl("summon_wings")}" alt="">` : ""}<span class="az-pnum">${r}</span>${r === 1 ? azi("crown", "az-pcr") : ""}
-      ${avOf(e, r === 1 ? 62 : 52, {k:azPodFrame[r - 1], c1:["#ffd75a", "#c9d1ea", "#c98a5a"][r - 1], c2:"#0b1338"})}</span>
+      ${framedAvatar(r === 1 ? 62 : 52, {k:azPodFrame[r - 1], c1:["#ffd75a", "#c9d1ea", "#c98a5a"][r - 1], c2:"#0b1338"}, ART[azRarest(teamOf(e))[0]] || "")}</span>
       <span class="az-pplate">${azNm(nameOf(e))}<span>${azi("sw")}<b dir="ltr">${fmt(e.r)}</b></span></span>
       <span class="az-mons ${azBig() ? "" : "sm"}">${teamOf(e).map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span></button>`; }).join("");
   const first = 4 + (azBoard.page - 1) * AZ_PER, rows = [];
