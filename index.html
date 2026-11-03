@@ -3558,6 +3558,72 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .pg-card.pick::after{top:8.5%;left:1.5%;right:1.5%;bottom:1.5%;inset:auto;border-radius:9%}
 .pg-node,.pg-node:focus,.pg-node.pick{outline:0!important;border:0!important;background:none!important}
 @media (prefers-reduced-motion:reduce){.pg-card.ready .pg-in::before{animation:none}}
+/* season rewards on the user's template (2026-11-03): cards with their chests, the season panel (chest, reward, eligibility, info or mailbox), the track */
+.az-rwv.ss2{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;gap:clamp(4px,1.2dvh,8px);height:100%;min-height:0}
+.az-rwv.ss2 .az-rwhead{justify-content:center}
+.az-rwv.ss2 .az-tabs2{gap:clamp(8px,1.6vw,16px)}
+.az-rwv.ss2 .az-tabs2 button{min-width:clamp(140px,26%,300px);height:clamp(30px,8dvh,52px);min-height:0;border-radius:14px;border:2px solid #c99a3a;background:linear-gradient(#141c48,#070b26)}
+.az-rwv.ss2 .az-tabs2 button.on{background:linear-gradient(#ffe9a6,#f0b53a 50%,#b87812);border-color:#fff2c0;box-shadow:0 0 8px rgba(255,200,80,.4)}
+.az-rwv.ss2 .az-tabs2 button small{display:none}
+.ss-cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:clamp(4px,.9vw,10px);min-height:0;padding:4px 8px;align-items:end;justify-items:center;direction:ltr;
+  border-radius:14px;background:linear-gradient(#0b1236f0,#060a22f0);border:1.5px solid #c99a3a}
+.ss-card{position:relative;height:100%;max-width:100%;aspect-ratio:236/388;cursor:pointer;direction:rtl;transition:transform .2s}
+.ss-in{position:absolute;inset:0;container-type:size}
+.ss-fr{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 236 388%27 preserveAspectRatio=%27none%27%3E%3Crect x=%273%27 y=%2722%27 width=%27230%27 height=%27364%27 rx=%2730%27/%3E%3Cellipse cx=%27118%27 cy=%2746%27 rx=%2776%27 ry=%2746%27/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 236 388%27 preserveAspectRatio=%27none%27%3E%3Crect x=%273%27 y=%2722%27 width=%27230%27 height=%27364%27 rx=%2730%27/%3E%3Cellipse cx=%27118%27 cy=%2746%27 rx=%2776%27 ry=%2746%27/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.ss-in::before{content:"";position:absolute;left:1.5%;right:1.5%;top:6%;bottom:.8%;border-radius:12%;pointer-events:none;transition:box-shadow .25s}
+.ss-card.pick .ss-in::before{box-shadow:0 0 0 2px rgba(255,235,170,.9),0 0 10px rgba(255,210,120,.55)}
+.ss-card.pick{transform:translateY(-2px)}
+.ss-crest{position:absolute;left:28%;top:0;width:44%;height:24%;display:grid;place-items:center;background:radial-gradient(closest-side,#0a1030 72%,transparent)}.ss-crest img{max-width:100%;max-height:100%;object-fit:contain}
+.ss-name{position:absolute;left:13%;right:13%;top:24%;height:10.5%;display:grid;place-items:center;font-size:max(11px,11.5cqw);white-space:nowrap;text-shadow:0 1px 3px #000}
+.ss-items{position:absolute;left:17%;right:17%;top:65.2%;height:16.6%;display:grid;grid-template-columns:1fr 1fr;gap:9%}
+.ss-items.many{left:9%;right:9%;grid-template-columns:repeat(3,1fr);gap:3%;background:#070b22;border-radius:9%;box-shadow:inset 0 0 0 1px rgba(201,154,58,.6)}
+.ss-items .pg-it b{font-size:max(10.5px,8.5cqw)}
+.ss-range{position:absolute;left:13%;right:13%;top:85%;height:8.5%;display:grid;place-items:center;font-size:max(10.5px,8.6cqw);font-weight:800;color:#e8ecff;white-space:nowrap}
+.ss-panel{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,.9fr);align-items:center;gap:clamp(6px,1.4vw,16px);height:clamp(64px,19dvh,120px);padding:4px 12px;direction:ltr;border-radius:14px;
+  background:linear-gradient(90deg,#1a0f3a,#0b1236 40%,#140a30);border:2px solid #c99a3a}
+.ss-chest{height:100%;width:auto;max-width:clamp(70px,13vw,190px);object-fit:contain}
+.ss-pm{display:flex;flex-direction:column;align-items:center;gap:3px;direction:rtl;min-width:0;text-align:center}
+.ss-pt{display:flex;align-items:center;gap:5px;padding:2px 14px;border-radius:10px;background:linear-gradient(#0d1438,#060a22);border:1.5px solid #c99a3a}.ss-pt .rankic{width:22px;height:22px}.ss-pt b{font-size:clamp(13px,3.8dvh,18px);white-space:nowrap}
+.ss-pm small{font-size:11.5px;color:#c8d2f0;line-height:1.2}
+.ss-pm .pg-bits{direction:ltr}
+.ss-info,.ss-mail{position:relative;direction:rtl;align-self:stretch;display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0;padding:4px 10px;border-radius:10px;background:rgba(6,10,34,.75);border:1.5px solid #c99a3a}
+.ss-info b{font-size:13.5px;color:#ffd75a}.ss-info ul{margin:0;padding-right:16px;font-size:11.5px;line-height:1.3;color:#e8ecff}.ss-info small{font-size:10.5px;color:#9fb0e0}
+.ss-i{position:absolute;top:4px;left:4px;width:26px;height:26px}
+.ss-mail{align-items:center;text-align:center;border-color:#ffd75a;box-shadow:0 0 10px rgba(255,200,80,.3)}.ss-mail>b{display:flex;align-items:center;gap:5px;color:#ffd75a;font-size:14px}.ss-mail small{font-size:11.5px}
+.ss-mrow{display:flex;align-items:center;gap:8px}.ss-mrow .pg-big{min-width:96px;height:32px;font-size:13px}
+.ss-track{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;padding:4px 8px;direction:ltr;border-radius:14px;background:linear-gradient(#0b1236f0,#060a22f0);border:2px solid #c99a3a}
+.ss-tc{position:relative;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));height:clamp(50px,14dvh,92px);align-items:end;padding-bottom:16px}
+.ss-tc .pg-line{bottom:calc(16px + clamp(9px,2.5dvh,13px) - 3px);background:linear-gradient(90deg,#1a3a9a,#3a8adf,#1a3a9a)}
+.ss-tc .pg-mark{bottom:calc(16px + clamp(9px,2.5dvh,13px) - 10px)}
+.ss-node{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1px;padding:0;background:none!important;border:0!important;outline:0!important;cursor:pointer;color:#fff;font:inherit}
+.ss-ncr{width:clamp(30px,9dvh,56px);height:auto;aspect-ratio:80/72;object-fit:contain;display:grid;place-items:center}.ss-ncr img{max-width:100%;max-height:100%}
+.ss-node:not(.on) .ss-ncr{filter:brightness(.62) saturate(.7)}
+.ss-dot{width:clamp(18px,5dvh,26px);height:clamp(18px,5dvh,26px);border-radius:50%;background:#070b22;border:2.5px solid #9aa6cc}
+.ss-node.on .ss-dot{border-color:#ffd75a}
+.ss-node.cur .ss-dot{background:radial-gradient(#ffe9a6,#e2a43a);border-color:#fff2c0;box-shadow:0 0 8px rgba(255,200,80,.8)}
+.ss-node.pick .ss-dot{box-shadow:0 0 0 2px #fff2c0,0 0 8px rgba(255,220,140,.7)}
+.ss-node small{position:absolute;bottom:-15px;font-size:10.5px;color:#c8d2f0;white-space:nowrap;padding:0 6px;border-radius:6px;background:#070b22;border:1px solid rgba(201,154,58,.6)}
+.az-banner.ssn{justify-content:center;padding-right:0}.az-banner.ssn b .azi{display:none}.az-banner.ssn b{padding-right:24%}
+.az-hbox.ranks{background-size:100% 100%;background-repeat:no-repeat;background-color:transparent!important;border:0!important;box-shadow:none!important;padding-left:clamp(26px,5vw,60px);padding-right:clamp(22px,4vw,50px)}
+.az-hbox.ranks .az-hb-ic{visibility:hidden}
+@media (max-height:450px){.ss-pm small{display:none}.ss-info ul li:nth-child(n+2){display:none}.ss-info small{display:none}.ss-panel{height:clamp(60px,16dvh,80px)}.ss-tc{height:clamp(46px,12dvh,60px)}}
+@media (max-width:720px){.ss-info ul{display:none}.ss-chest{max-width:56px}}
+.ss-node.on.pick,.ss-node.pick,.pg-node.on.pick,.ss-card.pick,.pg-card.pick{outline:0!important}   /* the app-wide .on.pick outline does not belong on these */
+.az-banner.prg{-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.az-hbox.ranks .az-hb-u{display:grid;grid-template-columns:repeat(4,1fr);direction:ltr;text-align:center}
+.ss-ncr{-webkit-mask:radial-gradient(closest-side,#000 70%,transparent);mask:radial-gradient(closest-side,#000 70%,transparent)}
+@media (max-height:450px){.ss-panel{height:84px}.ss-pm .pg-bits .pg-it{width:30px}.ss-pt{padding:1px 10px}.ss-pt b{font-size:13px}.ss-info ul{display:none}.ss-info b{font-size:12px}}
+.az-hbox.ranks .az-hb-u{display:grid!important;grid-template-columns:repeat(4,1fr)!important;direction:ltr!important;gap:4px;width:100%}.az-hbox.ranks .az-hb-u i{font-style:normal;text-align:center}
+.az-hbox.ranks>span:last-child{width:100%;display:flex;flex-direction:column;align-items:center}.az-hbox.ranks .az-hb-u i{font-size:10px;white-space:nowrap}
+.ss-range .rs{display:none}@container (max-width:118px){.ss-range .rf{display:none}.ss-range .rs{display:inline}}   /* narrow cards: the lower bound only (the next card starts the next range) */
+.az-hbox.ranks .az-hb-u{direction:rtl!important}
+@media (max-height:450px){.ss-tc{height:44px;padding-bottom:15px}.ss-ncr{width:30px}.ss-panel{height:74px}.ss-track{padding:2px 8px}}
+.az-banner.prg{max-width:calc(100% - 4px)}@media (max-width:1000px){.az-banner.prg{min-width:0;width:min(360px,38vw)}}
+@media (max-height:450px){.ss-node small{bottom:-12px;font-size:10px;padding:0 4px}.ss-tc{padding-bottom:13px}}
+#azHBox{position:relative;z-index:5}@media (max-width:900px){.az-banner.prg{width:min(300px,34vw)}}   /* the timer stays above the banner wings on small phones */
+.ss-panel>*{min-height:0;max-height:100%;box-sizing:border-box}.ss-info,.ss-mail{overflow:hidden}
+@media (max-height:450px){.ss-mail{padding:2px 8px;gap:1px}.ss-mail small{display:none}.ss-mail>b{font-size:12.5px}.ss-mrow .pg-big{height:28px;min-width:84px;font-size:12px}.ss-mrow .pg-bits .pg-it{width:28px}}
+.az-lteam .az-lago{width:max-content;max-width:none;flex:none;overflow:visible}   /* the attack time keeps its own width whatever the attacker name beside it */
 </style>
 
 <div class="app" dir="rtl">
@@ -4134,7 +4200,7 @@ const AWN = {sun_empress:"קיסרית השמש", kraken_king:"קיסר התהו
   harpy:"מלכת הסערה", mermaid:"כוהנת המעמקים", salamander:"מלך הלבה", obsidian:"אביר הגעש", yeti:"יטי הפסגות", snowowl:"ינשוף הסערה הלבנה", frostserpent:"לוויתן הכפור", aurora:"מלכת הזוהר", sphinx:"ספינקס הנצח", vampire:"אדון הדם", ghostqueen:"קיסרית הרפאים", seraph:"השרף העליון", celestlion:"מלך השמיים", starsage:"נביא הכוכבים", voidknight:"אביר האינסוף", djinn:"סולטן הג'ינים", scarab:"אביר השמש", mummy:"הפרעה המקולל", werewolf:"אלפא הירח", banshee:"מלכת היבבות", winddancer:"מלכת הלהבות", phoenix:"עוף החול הנצחי", skeleton:"אביר הקבר", frostwitch:"מלכת החורף", stormmage:"ארכימאג הסערה", sprite:"רוחון אתר"};
 // art files that exist in assets/ (add names here when new art arrives)
 const HAVE = new Set([   // generated by sync_have.py from assets/ — do not edit by hand
-  "ui_rank_template","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","aether_sprite","aether_titan","arena","ash_golem","aurora_spirit","aurora_spirit_awakened","bag_medal","bagtab_all","bagtab_gear","bagtab_mats","bagtab_misc","bagtab_runes",
+  "ui_rank_template","ui_prg_banner","ui_ssn_card_0","ui_ssn_card_1","ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_chest_0","ui_ssn_chest_1","ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2","ui_ssn_crest_3","ui_ssn_crest_4","ui_ssn_crest_5","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","aether_sprite","aether_titan","arena","ash_golem","aurora_spirit","aurora_spirit_awakened","bag_medal","bagtab_all","bagtab_gear","bagtab_mats","bagtab_misc","bagtab_runes",
   "banshee","banshee_awakened","battle_celestial","battle_desert","battle_essence_cave","battle_forest","battle_glacier","battle_guild_boss","battle_meadow","battle_shadow","battle_sky_tower","battle_sprite_garden",
   "battle_volcano","card_frame_2","card_frame_3","card_frame_4","card_frame_5","celestial_lion","celestial_lion_awakened","cinder_hound","cloud_slime","crystal_beetle","crystal_guardian","cur_energy",
   "cur_gem","cur_glory","cur_guild","cur_mana","cur_ticket","desert_bandit","djinn","djinn_awakened","dragon","dragon_awakened","dune_worm","dungeon_crystal",
@@ -4187,7 +4253,7 @@ const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"au
 const ART = {battle:"assets/battle_meadow.webp", forest:"assets/battle_forest.webp", hub:"assets/sky_hub.webp", altar:"assets/summon_altar.webp"};
 // the published game page holds at most ~510 files, so newer art lives in its asset store; everywhere else (GitHub, local) it is read from assets/
 const ARTAR = {"aether_sprite":1.094,"aether_titan":1.037,"ash_golem":1.094,"aurora_spirit":0.503,"aurora_spirit_awakened":0.667,"banshee":0.658,"banshee_awakened":0.664,"celestial_lion":1.039,"celestial_lion_awakened":1.094,"cinder_hound":1.094,"cloud_slime":1.095,"crystal_beetle":1.493,"crystal_guardian":1.38,"desert_bandit":1.094,"djinn":0.613,"djinn_awakened":0.665,"dragon":1.228,"dragon_awakened":1.228,"dune_worm":1.094,"elf_archer":1.215,"elf_archer_awakened":1.228,"fairy":1.225,"fairy_awakened":1.231,"frost_serpent":1.088,"frost_serpent_awakened":1.092,"frost_witch":0.641,"frost_witch_awakened":0.667,"frost_wyrm":1.185,"gargoyle":1.093,"ghost_queen":0.669,"ghost_queen_awakened":0.667,"ghoul":1.099,"giant_spider":1.096,"golem":1.21,"golem_awakened":1.087,"griffin":1.228,"griffin_awakened":1.228,"harpy":1.206,"harpy_awakened":1.206,"ice_troll":1.092,"imp_fire":0.995,"imp_fire_awakened":1.094,"lava_titan":1.094,"legend_dawn_unicorn":1.382,"legend_dawn_unicorn_awakened":1.504,"legend_eclipse_dragon":1.508,"legend_eclipse_dragon_awakened":1.499,"legend_forest_dryad":0.668,"legend_forest_dryad_awakened":0.665,"legend_kraken_king":0.663,"legend_kraken_king_awakened":0.669,"legend_mountain_behemoth":1.499,"legend_mountain_behemoth_awakened":1.495,"legend_storm_roc":1.094,"legend_storm_roc_awakened":1.094,"legend_sun_empress":0.667,"legend_sun_empress_awakened":0.667,"legend_wind_centaur":0.667,"legend_wind_centaur_awakened":0.667,"magma_bat":1.508,"marble_guardian":1.086,"mermaid":0.842,"mermaid_awakened":0.843,"moon_priestess":0.642,"moon_priestess_awakened":0.67,"moss_wolf":1.405,"mummy":0.629,"mummy_awakened":0.667,"mushroom":1.202,"mushroom_awakened":1.228,"obsidian_knight":1.095,"obsidian_knight_awakened":1.093,"phoenix":1.098,"phoenix_awakened":1.094,"pixie_thief":1.1,"salamander":1.522,"salamander_awakened":1.495,"sand_colossus":1.094,"sand_scorpion":1.073,"scarab_knight":1.093,"scarab_knight_awakened":1.099,"seraph":0.66,"seraph_awakened":0.671,"shadow_lord":1.04,"shadow_ninja":1.057,"shadow_ninja_awakened":1.094,"shadow_wraith":1.1,"skeleton_knight":1.094,"skeleton_knight_awakened":1.093,"sky_boar":1.301,"sky_ray":1.504,"snow_owl":1.205,"snow_owl_awakened":1.208,"snow_sprite":1.094,"sphinx":1.094,"sphinx_awakened":1.094,"star_sage":0.667,"star_sage_awakened":0.666,"star_wisp":1.077,"storm_mage":0.665,"storm_mage_awakened":0.663,"treant_boss":1.094,"valkyrie":1.18,"valkyrie_awakened":1.18,"vampire":0.661,"vampire_awakened":0.668,"void_knight":0.661,"void_knight_awakened":0.668,"werewolf":1.103,"werewolf_awakened":1.094,"will_wisp":1.096,"wind_dancer":0.656,"wind_dancer_awakened":0.67,"wolf_spirit":1.247,"wolf_spirit_awakened":1.228,"yeti":1.082,"yeti_awakened":1.093};   // generated by sync_have.py: image width/height per monster art
-const BLOB = {ui_prg_banner:"/_blob/1e6600da085d591f96ac94f6c1fa256e", ui_prg_card_1:"/_blob/f0dcd73400a50d15cf3a0bd20f770296", ui_prg_card_2:"/_blob/1ed773f12c3dd1d04c8961fa0f67235a", ui_prg_card_3:"/_blob/3d0f4fa00a7b4d300d6a989fb853db2d", ui_prg_card_4:"/_blob/a30407abba87f1587bb8b5e713b3956e", ui_prg_card_5:"/_blob/36a759922d49faf8492b09898209359d", ui_prg_chest:"/_blob/ca68f2826b264366a518b4def4b79892", ui_prg_crest_1:"/_blob/8d351c779594dbdb6649ec7b82ea9724", ui_prg_crest_2:"/_blob/7b1b5e0590fed1d2628941fd32dea21d", ui_prg_crest_3:"/_blob/c0dc6ed4f33672f4784d6bc123cedb00", ui_prg_crest_4:"/_blob/d757c7f76ed5fd3dc1077052f150ab87", ui_prg_crest_5:"/_blob/6dfc6c508a4d12c393dd5ed32048a74d", ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
+const BLOB = {ui_ssn_card_0:"/_blob/e1f70d304e7472d2b77be4a1863d2f2c", ui_ssn_card_1:"/_blob/40a4dc02e0542012b8f3e14239f37a36", ui_ssn_card_2:"/_blob/dd6174a1d7bc9ca2852095a6dfe08579", ui_ssn_card_3:"/_blob/0784f2c1e999c5768fe4e06a6e30e27d", ui_ssn_card_4:"/_blob/cec5c5405d1923479c6a1d01bca77246", ui_ssn_card_5:"/_blob/5a26d9ef75253329a4dd039e37e7cdde", ui_ssn_chest_0:"/_blob/6528a59cf405969df18b991cbcf21d4b", ui_ssn_chest_1:"/_blob/f618d3d2272894474c7ed995b5dd102e", ui_ssn_chest_2:"/_blob/26820338e8fc04e0c61b4a37aa310238", ui_ssn_chest_3:"/_blob/613e7ad50e2620766d730e1c9edb1b6d", ui_ssn_chest_4:"/_blob/671f05d96d39a1b34c4a494574c11d8c", ui_ssn_chest_5:"/_blob/6775a656f5f10d6e23529f47802ad6f9", ui_ssn_crest_0:"/_blob/d86b12979c9e6439ca3e61501508ed2e", ui_ssn_crest_1:"/_blob/2aee51939e3fdda7b7b960b5112e307c", ui_ssn_crest_2:"/_blob/efa296db1f5a0231794ea7d449b909aa", ui_ssn_crest_3:"/_blob/fc5216c7bb69eb6e7159daf433b3232d", ui_ssn_crest_4:"/_blob/f2f61d8a063d0c6004045f3129e37c97", ui_ssn_crest_5:"/_blob/0a5fa85bda7299554c6f57783c425029", ui_prg_banner:"/_blob/1e6600da085d591f96ac94f6c1fa256e", ui_prg_card_1:"/_blob/f0dcd73400a50d15cf3a0bd20f770296", ui_prg_card_2:"/_blob/1ed773f12c3dd1d04c8961fa0f67235a", ui_prg_card_3:"/_blob/3d0f4fa00a7b4d300d6a989fb853db2d", ui_prg_card_4:"/_blob/a30407abba87f1587bb8b5e713b3956e", ui_prg_card_5:"/_blob/36a759922d49faf8492b09898209359d", ui_prg_chest:"/_blob/ca68f2826b264366a518b4def4b79892", ui_prg_crest_1:"/_blob/8d351c779594dbdb6649ec7b82ea9724", ui_prg_crest_2:"/_blob/7b1b5e0590fed1d2628941fd32dea21d", ui_prg_crest_3:"/_blob/c0dc6ed4f33672f4784d6bc123cedb00", ui_prg_crest_4:"/_blob/d757c7f76ed5fd3dc1077052f150ab87", ui_prg_crest_5:"/_blob/6dfc6c508a4d12c393dd5ed32048a74d", ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
   legend_kraken_king:"/_blob/57d4de9adf5506c59e8ea01766077092", legend_kraken_king_awakened:"/_blob/a907bb70c41aed676b48211f21842e02",
   legend_storm_roc:"/_blob/5de16d93d25a10eae9d5ab74af515700", legend_storm_roc_awakened:"/_blob/49a68678138e764c50648c52583da5d3",
   legend_wind_centaur:"/_blob/7f98d07d3382ce05e3da69c5960d6b15", legend_wind_centaur_awakened:"/_blob/0c00c92a8a6668fd211c977f066c398b",
@@ -5259,7 +5325,7 @@ function claimSeason(s) {                             // the only way a season r
   S.gem += g.gem || 0; S.scrolls.m += g.m || 0; S.scrolls.l += g.l || 0; S.scrolls.ld += g.ld || 0;
   x.got = 1; save(true); renderTop(); return true;
 }
-function seasonLeft() { const ms = Math.max(0, seasonEnd(seasonNow()) - Date.now()); return {d:Math.floor(ms / 864e5), h:Math.floor(ms / 36e5) % 24, m:Math.floor(ms / 6e4) % 60}; }
+function seasonLeft() { const ms = Math.max(0, seasonEnd(seasonNow()) - Date.now()); return {d:Math.floor(ms / 864e5), h:Math.floor(ms / 36e5) % 24, m:Math.floor(ms / 6e4) % 60, s:Math.floor(ms / 1000) % 60}; }
 function botTouch(A, i, dr, win) { const o = A.bo[i] || (A.bo[i] = {dr:0, w:0, l:0}); o.dr += dr; if (win) o.w++; else o.l++; A.boV = (A.boV || 0) + 1; }
 function nearBots(A, span, n) {
   const R0 = ratingsSorted(A), out = [];
@@ -5355,7 +5421,7 @@ function renderArena() {
     shop:["sw", "חנות הזירה", "פריטים ייחודיים בתמורה לתהילה"], hist:["chart", "היסטוריה", "הקרבות שלך בזירה"]}[arenaTab];
   $("azBanner").classList.toggle("prg", arenaTab === "ranks"); $("azBanner").style.backgroundImage = arenaTab === "ranks" ? `url(${assetUrl("ui_prg_banner")})` : "";
   $("azBanner").hidden = !ban; $("azBanner").innerHTML = ban ? `<b class="title-font">${azi(ban[0])}<span>${ban[1]}</span></b><small>${ban[2]}</small>` : "";
-  const sl = seasonLeft(), hbox = arenaTab === "ranks" ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>סיום העונה בעוד</small><b id="azClock" dir="ltr">${String(sl.d).padStart(2, "0")}:${String(sl.h).padStart(2, "0")}:${String(sl.m).padStart(2, "0")}</b><small class="az-hb-u"><i>ימים</i><i>שעות</i><i>דקות</i></small></span>`
+  const sl = seasonLeft(), hbox = arenaTab === "ranks" ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>סיום העונה בעוד</small><b id="azClock" dir="ltr">${[sl.d, sl.h, sl.m, sl.s].map(v => String(v).padStart(2, "0")).join(":")}</b><small class="az-hb-u"><i>שנ׳</i><i>דק׳</i><i>שעה</i><i>יום</i></small></span>`
     : arenaTab === "shop" ? `<img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(A.glory || 0)}</b>`
     : arenaTab === "log" && A.log.length && A.log[0].ts ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>התקפה אחרונה</small><b>${azAgo(A.log[0])}</b></span>`
     : arenaTab === "hist" ? `<span><small>המאזן שלך</small><b><span class="w" dir="ltr">${fmt(A.w)}</span> ניצחונות · <span class="l" dir="ltr">${fmt(A.l)}</span> הפסדים</b></span>` : "";
@@ -5364,7 +5430,7 @@ function renderArena() {
   clearInterval(azTick); if (arenaTab === "ranks") azTick = setInterval(() => { const A2 = arenaState(), e = $("azClock");
     if (!e || !$("arena").classList.contains("on")) return clearInterval(azTick);
     if (A2.season !== +e.dataset.s && e.dataset.s) return renderArena();                                  // the season ended while the screen was open
-    const t = seasonLeft(); e.dataset.s = A2.season; e.textContent = [t.d, t.h, t.m].map(v => String(v).padStart(2, "0")).join(":"); }, 15000);
+    const t = seasonLeft(); e.dataset.s = A2.season; e.textContent = [t.d, t.h, t.m, t.s].map(v => String(v).padStart(2, "0")).join(":"); }, 1000);
   $("arenaTabs").querySelectorAll("[data-t]").forEach(b => b.onclick = () => { arenaTab = b.dataset.t; azBuyArm = null; renderArena(); });
   const rewTile = (img, n) => `<span class="az-rw"><img src="assets/${img}.webp" alt=""><b dir="ltr">${fmt(n)}</b></span>`;
   const rewTiles = r => r ? [r.gem && rewTile("cur_gem", r.gem), r.m && rewTile("scroll_m", r.m), r.l && rewTile("scroll_l", r.l), r.ld && rewTile("scroll_ld", r.ld)].filter(Boolean).join("") : "";
@@ -5636,7 +5702,7 @@ function azProgress(A, L, state) {
 }
 function azRewards(A, L) {
   const k = RANKS.indexOf(rankOf(A.r)), got = tierGot(A), reached = A.tier || 0;
-  if (azRw.sel == null) azRw.sel = Math.min(RANKS.length - 1, k + 1);
+  if (azRw.sel == null) azRw.sel = k;
   const W = L.clientWidth || 600, per = Math.max(3, Math.min(6, Math.floor((W - 64) / 112)));
   if (azRw.off == null) azRw.off = Math.max(0, Math.min(RANKS.length - per, azRw.sel - Math.floor(per / 2)));
   azRw.off = Math.max(0, Math.min(RANKS.length - per, azRw.off));
@@ -5644,52 +5710,61 @@ function azRewards(A, L) {
     .map(([im, n]) => `<span class="az-rw ${big ? "big" : ""}"><img src="assets/${im}.webp" alt=""><b dir="ltr">${fmt(n)}</b></span>`).join("") : "";
   const range = j => RANKS[j + 1] ? `<span dir="ltr">${fmt(RANKS[j][0])} - ${fmt(RANKS[j + 1][0] - 1)}</span> נק׳` : `<span dir="ltr">${fmt(RANKS[j][0])}+</span> נק׳`;
   const state = j => j === 0 ? "base" : got.includes(j) ? "got" : j <= reached ? "ready" : "lock";
-  const season = azRw.tab === "season";
-  if (!season) return azProgress(A, L, state, rewT);
-  const cards = RANKS.slice(azRw.off, azRw.off + per).map(([min, n, c], i) => { const j = azRw.off + i;
-    return `<button class="az-tc ${j === azRw.sel ? "sel" : ""} ${j === k ? "mine" : ""}" data-j="${j}" style="--tc:${c}">
-      ${j === k ? '<span class="az-tag me">הדרגה שלי</span>' : ""}${j === azRw.sel && j !== k ? '<span class="az-tag">הדרגה הנבחרת</span>' : ""}
-      <b class="az-tn" style="color:${c}">${n}</b><span class="az-tic">${rankIc(min)}${azChest(j)}</span>
-      <span class="az-rws">${rewT(SEASON_REW[j])}</span><small class="az-trange" dir="rtl">${range(j)}</small></button>`; }).join("");
-  const j = azRw.sel, [min, n, c] = RANKS[j], mail = seasonMail(A)[0];
-  const detail = `<div class="az-dt-main"><span class="az-dt-ic">${azChest(j)}</span><span class="az-dt-txt"><b class="title-font">${rankIc(min, 1)}פרסי עונה · <span style="color:${c}">${n}</span></b>
-        <small>מתקבלים בסיום העונה לפי הדרגה הסופית שלך</small><span class="az-rws">${rewT(SEASON_REW[j], true)}</span></span></div>`;
-  const info = mail   // a season that ended: its reward waits in the mailbox until collected (once)
-    ? `<div class="az-mail"><b class="title-font">${azi("gift")}תיבת הדואר</b><small>פרס עונה ${mail.s} · דרגת <span style="color:${RANKS[mail.k][2]}">${RANKS[mail.k][1]}</span></small><span class="az-mrow"><span class="az-rws">${rewT(SEASON_REW[mail.k])}</span>
-        <button class="az-pbtn ready" data-ms="${mail.s}" ${azClaiming ? "disabled" : ""}>${azClaiming ? "אוסף…" : "אסוף"}</button></span></div>`
-    : `<div class="az-sinfo"><b>${azi("info", "az-pi")}מידע על פרסי העונה</b><ul class="az-info2">${["הפרס מחושב לפי הדרגה שלך בסיום העונה.", "ככל שהדרגה גבוהה יותר, הפרס יקר יותר.", "בסיום העונה הפרס נשלח לתיבת הדואר כאן, ונאסף פעם אחת."].map(x => `<li>${x}</li>`).join("")}</ul><small class="az-snum">עונה ${A.season} · 28 ימים</small></div>`;
-  // the progress track: rewarded ranks, five per page
-  const MS = RANKS.map((r, i) => i).filter(i => i > 0), pages = Math.ceil(MS.length / AZ_PER);
-  if (azRw.page == null) { const f = MS.findIndex(i => state(i) === "ready"), cur = MS.findIndex(i => state(i) === "lock"); azRw.page = Math.floor(Math.max(0, f >= 0 ? f : cur >= 0 ? cur : MS.length - 1) / AZ_PER) + 1; }
-  azRw.page = Math.max(1, Math.min(pages, azRw.page));
-  const ms = MS.slice((azRw.page - 1) * AZ_PER, azRw.page * AZ_PER);
-  const node = i => { const s2 = state(i), r = TIER_REW[i], main = r.l ? ["scroll_l", r.l] : ["cur_gem", r.gem];
-    return `<div class="az-ms ${s2}" data-j="${i}"><span class="az-msr"><img src="assets/${main[0]}.webp" alt=""><b dir="ltr">${fmt(main[1])}</b>${s2 === "got" ? `<i>${azi("check")}</i>` : ""}</span>
-      <span class="az-msd"></span><b class="az-mspt" dir="ltr">${fmt(RANKS[i][0])}</b>
-      ${s2 === "got" ? '<small class="ok">נאסף</small>' : s2 === "ready" ? `<button class="az-msb" data-c="${i}">לאסוף</button>` : `<small class="lk">${azi("lock")}נעול</small>`}</div>`; };
-  const fill = (() => { const a = ms[0], b = ms[ms.length - 1], lo = RANKS[a][0], hi = RANKS[b][0]; if (A.r <= lo) return 0; if (A.r >= hi) return 100;
-    let p = 0; for (let t = 0; t < ms.length - 1; t++) { const x0 = RANKS[ms[t]][0], x1 = RANKS[ms[t + 1]][0]; if (A.r >= x1) p = t + 1; else if (A.r > x0) { p = t + (A.r - x0) / (x1 - x0); break; } else break; }
-    return p / Math.max(1, ms.length - 1) * 100; })();
-  L.innerHTML = `<div class="az-rwv ${season ? "season" : ""}">
-    ${azRwHead(true)}
-    <div class="az-tcs"><button class="az-arr" data-off="-1" aria-label="דרגות קודמות" ${azRw.off <= 0 ? "disabled" : ""}>${azi("next")}</button><div class="az-tcrow" style="--n:${per}">${cards}</div><button class="az-arr" data-off="1" aria-label="דרגות הבאות" ${azRw.off >= RANKS.length - per ? "disabled" : ""}>${azi("prev")}</button></div>
-    <div class="az-dt">${detail}${info}</div>
-    <div class="az-track"><div class="az-trh"><b class="title-font">${azi("chart")}פרסי התקדמות</b><span>נקודות זירה נוכחיות: <b dir="ltr">${fmt(A.r)}</b></span></div>
-      <div class="az-trb"><button class="az-arr" data-pg="-1" aria-label="עמוד קודם" ${azRw.page <= 1 ? "disabled" : ""}>${azi("next")}</button>
-        <div class="az-msrow"><span class="az-msline"><i style="width:${fill}%"></i></span>${ms.map(node).join("")}</div>
-        <button class="az-arr" data-pg="1" aria-label="עמוד הבא" ${azRw.page >= pages ? "disabled" : ""}>${azi("prev")}</button></div>
-      <span class="az-pgi" dir="ltr">${azRw.page}/${pages}</span></div></div>`;
+  if (azRw.tab !== "season") return azProgress(A, L, state, rewT);
+  azSeason(A, L);
+}
+/* ---- season rewards, built from the user's final template (2026-11-03). Season rewards are only ever paid by the season-end mechanism:
+   seasonRoll (at the season's end, the rank held then → one mail per season) and claimSeason (pays a mail once). Nothing here reads A.tier or
+   calls claimTier — progression rewards live only in their own tab. Cards and the track are information: picking a card changes nothing. ---- */
+const AZS_FRAME = [0, 1, 2, 3, 4, 5, 4, 5];            // rank -> card art: bronze, silver, gold, platinum, diamond, master; legend and mythic reuse violet / red
+function azSeason(A, L) {
+  const k = RANKS.indexOf(rankOf(A.r)), n = RANKS.length;
+  const W = L.clientWidth || 640, per = Math.min(n, W >= 760 ? 6 : W >= 520 ? 5 : 4);   // fewer, readable cards on phones; the arrows move the window
+  if (azRw.sel == null) azRw.sel = k;
+  if (azRw.off == null) azRw.off = Math.max(0, Math.min(n - per, k - Math.floor(per / 2)));
+  azRw.off = Math.max(0, Math.min(n - per, azRw.off));
+  const win = RANKS.map((r, j) => j).slice(azRw.off, azRw.off + per);
+  const items = r => r ? [r.gem && ["cur_gem", r.gem, "גבישים"], r.m && ["scroll_m", r.m, "מגילת אתר"], r.l && ["scroll_l", r.l, "מגילה אגדית"], r.ld && ["scroll_ld", r.ld, "מגילת אור וחושך"]].filter(Boolean) : [];
+  const slot = ([im, q, t]) => `<span class="pg-it" title="${t}"><img src="assets/${im}.webp" alt="${t}"><b dir="ltr">${fmt(q)}</b></span>`;
+  const range = j => RANKS[j + 1] ? `${fmt(RANKS[j][0])} - ${fmt(RANKS[j + 1][0] - 1)}` : `${fmt(RANKS[j][0])}+`;
+  const card = j => { const [, nm, c] = RANKS[j], it = items(SEASON_REW[j]);
+    return `<div class="ss-card ${j === azRw.sel ? "pick" : ""} ${j === k ? "mine" : ""}" data-j="${j}" role="button" tabindex="0" aria-label="פרס עונה, דרגת ${nm}"><span class="ss-in">
+      <img class="ss-fr" src="${assetUrl("ui_ssn_card_" + AZS_FRAME[j])}" alt="">${j > 5 ? `<span class="ss-crest">${rankIc(RANKS[j][0])}</span>` : ""}
+      <b class="ss-name title-font" style="color:${c}">${nm}</b>
+      <span class="ss-items ${it.length > 2 ? "many" : ""}">${it.map(slot).join("")}</span>
+      <small class="ss-range"><span class="rf" dir="ltr">${range(j)}</span><span class="rs">מ-<span dir="ltr">${fmt(RANKS[j][0])}</span></span></small></span></div>`; };
+  // the track: one node per card; the marker is the player's real points between the thresholds around them
+  const fill = (() => { let q = 0; for (let t = 0; t < win.length; t++) { const j = win[t];
+      if (A.r >= RANKS[j][0]) q = (t + .5) / win.length * 100;
+      else { const lo = t ? RANKS[win[t - 1]][0] : (j ? RANKS[j - 1][0] : 0), f = Math.max(0, Math.min(1, (A.r - lo) / (RANKS[j][0] - lo)));
+        q = t === 0 ? (A.r >= lo ? f * 50 / win.length : 0) : q + f * 100 / win.length; break; } } return q; })();
+  const node = j => `<button class="ss-node ${A.r >= RANKS[j][0] ? "on" : ""} ${j === k ? "cur" : ""} ${j === azRw.sel ? "pick" : ""}" data-j="${j}" aria-label="${RANKS[j][1]}">
+      ${j <= 5 ? `<img class="ss-ncr" src="${assetUrl("ui_ssn_crest_" + AZS_FRAME[j])}" alt="">` : `<span class="ss-ncr">${rankIc(RANKS[j][0])}</span>`}
+      <span class="ss-dot"></span><small dir="ltr">${fmt(RANKS[j][0])}</small></button>`;
+  const j = azRw.sel, [min, nm, c] = RANKS[j], mail = seasonMail(A)[0];
+  const info = mail   // a season that ended: its reward waits in the mailbox (sent by seasonRoll) until collected once (claimSeason)
+    ? `<div class="ss-mail"><b class="title-font">${azi("gift")}תיבת הדואר</b><small>פרס עונה ${mail.s} · דרגת <span style="color:${RANKS[mail.k][2]}">${RANKS[mail.k][1]}</span></small>
+        <span class="ss-mrow"><span class="pg-bits">${items(SEASON_REW[mail.k]).map(slot).join("")}</span><button class="pg-big ready" data-ms="${mail.s}" ${azClaiming ? "disabled" : ""}>${azClaiming ? "מקבל…" : "קבל מהדואר"}</button></span></div>`
+    : `<div class="ss-info"><b>מידע על פרסי העונה</b><ul>${["הפרס נקבע לפי הדרגה שלך בסיום העונה.", "בסוף העונה הפרס נשלח לתיבת הדואר כאן, ונאסף פעם אחת.", "הנקודות לא מתאפסות בין עונות."].map(x => `<li>${x}</li>`).join("")}</ul><small>עונה ${A.season} · 28 ימים</small>
+        <button class="pg-info ss-i" id="ssInfo" aria-label="הסבר">${azi("info")}</button></div>`;
+  L.innerHTML = `<div class="az-rwv ss2">${azRwHead(true)}
+    <div class="ss-cards" style="--n:${win.length}">${win.map(card).join("")}</div>
+    <div class="ss-panel"><img class="ss-chest" src="${assetUrl("ui_ssn_chest_" + AZS_FRAME[j])}" alt="">
+      <span class="ss-pm"><span class="ss-pt">${rankIc(min, 1)}<b class="title-font">פרס עונה · <span style="color:${c}">${nm}</span></b></span>
+        <span class="pg-bits">${items(SEASON_REW[j]).map(slot).join("")}</span>
+        <small>${j === k ? "זו הדרגה שלך עכשיו. אם תסיים בה את העונה, זה הפרס שתקבל." : `מתקבל אם תסיים את העונה בדרגת ${nm} (${range(j)} נקודות).`}</small></span>
+      ${info}</div>
+    <div class="ss-track"><button class="pg-arr" data-off="-1" aria-label="דרגות קודמות" ${azRw.off <= 0 ? "disabled" : ""}>${azi("next")}</button>
+      <div class="ss-tc" style="--n:${win.length}"><span class="pg-line"><i class="go" style="width:${fill}%"></i></span><span class="pg-mark" style="left:${fill}%" title="${fmt(A.r)}"></span>${win.map(node).join("")}</div>
+      <button class="pg-arr" data-off="1" aria-label="דרגות הבאות" ${azRw.off >= n - per ? "disabled" : ""}>${azi("prev")}</button></div></div>`;
   L.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { azRw.tab = b.dataset.tab; renderArena(); });
-  L.querySelectorAll(".az-tc").forEach(b => b.onclick = () => { azRw.sel = +b.dataset.j; renderArena(); });
+  L.querySelectorAll("[data-j]").forEach(b => b.onclick = () => { if (azRw.sel === +b.dataset.j) return; azRw.sel = +b.dataset.j; SFX.tap && SFX.tap(); renderArena(); });
   L.querySelectorAll("[data-off]").forEach(b => b.onclick = () => { azRw.off += +b.dataset.off * Math.max(1, per - 1); renderArena(); });
-  L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { azRw.page += +b.dataset.pg; renderArena(); });
-  L.querySelectorAll("[data-c]").forEach(b => b.onclick = e => { e.stopPropagation(); const t = +b.dataset.c;
-    if (!claimTier(t)) return toast("הפרס הזה לא זמין לאיסוף");
-    SFX.legend(); toast(`קיבלת את פרס דרגת ${RANKS[t][1]}!`); renderArena(); });
+  if ($("ssInfo")) $("ssInfo").onclick = () => toast("פרסי העונה לא נאספים במהלך העונה. בסופה, הדרגה שבה אתה נמצא קובעת את הפרס, והוא מגיע לתיבת הדואר כאן.");
   L.querySelectorAll("[data-ms]").forEach(b => b.onclick = () => {           // the mailbox: one claim at a time, paid by claimSeason only
     if (azClaiming) return; const s2 = +b.dataset.ms; azClaiming = true; renderArena();
-    setTimeout(() => { const ok = claimSeason(s2); azClaiming = false;
-      if (ok) { SFX.legend(); toast(`קיבלת את פרס עונה ${s2}!`); } else toast("הפרס הזה כבר נאסף");
+    setTimeout(() => { let ok = false; try { ok = claimSeason(s2); } catch (x) {} azClaiming = false;
+      if (ok) { SFX.legend(); toast(`קיבלת את פרס עונה ${s2}!`); } else toast("לא הצלחנו לקבל את הפרס. הוא נשאר בתיבת הדואר");
       if ($("arena").classList.contains("on")) renderArena(); }, 250); });
 }
 function azFit(root) {                               // a long player name steps its font down (to 10px) instead of being cut
