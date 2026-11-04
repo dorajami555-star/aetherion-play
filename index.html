@@ -3357,7 +3357,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-stage[hidden]{display:none}
 .az-sg{position:relative;width:1774px;height:887px;flex:none;transform:scale(var(--k,.5));transform-origin:center;margin:calc((1 - var(--k,.5)) * -443.5px) calc((1 - var(--k,.5)) * -887px);
   background:url(assets/ui_rank_template.webp) center/100% 100% no-repeat;direction:rtl;color:#fff;font-weight:800}
-.az-sg>*{position:absolute;box-sizing:border-box}
+.az-sg>*,.sg-layer>*{position:absolute;box-sizing:border-box}.az-sg>.sg-layer{inset:0}
 .az-sg .sf{display:block;min-width:0;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .az-sg button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 .sg-hit{border-radius:26px}.sg-hit:disabled{opacity:.6;background:rgba(5,8,26,.55)!important;cursor:default}
@@ -3624,6 +3624,22 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .ss-panel>*{min-height:0;max-height:100%;box-sizing:border-box}.ss-info,.ss-mail{overflow:hidden}
 @media (max-height:450px){.ss-mail{padding:2px 8px;gap:1px}.ss-mail small{display:none}.ss-mail>b{font-size:12.5px}.ss-mrow .pg-big{height:28px;min-width:84px;font-size:12px}.ss-mrow .pg-bits .pg-it{width:28px}}
 .az-lteam .az-lago{width:max-content;max-width:none;flex:none;overflow:visible}   /* the attack time keeps its own width whatever the attacker name beside it */
+/* ArenaLayout (2026-11-04): the ranking screen is the master layout of the whole arena. The stage (the template, scaled into the safe area) is shown for every tab;
+   its side menu (#azSide) is the only arena menu; every other tab renders inside the box the ranking's own content uses (AZS.box → --azx/--azy/--azw/--azh) */
+#azSide{pointer-events:none}#azSide>*{pointer-events:auto}#azSide>.sg-sideart,#azSide>.sg-mbg{pointer-events:none}
+.sg-sideart{display:none;left:0;top:0;width:300px;height:887px;background:var(--tpl) 0 0/1774px 887px no-repeat}
+.az-sg.sh{background-image:none!important}.az-sg.sh .sg-sideart{display:block}
+.sg-mbg{background-image:var(--tpl);background-repeat:no-repeat}
+.sg-sky{left:290px;top:0;width:1484px;height:887px;background-size:cover;background-position:center}
+#arena.az-shell .az-page{position:fixed;inset:auto;left:var(--azx);top:var(--azy);width:var(--azw);height:var(--azh);padding:0;grid-template-columns:minmax(0,1fr)}
+#arena.az-shell .az-head,#arena.az-shell .az-side{display:none}
+#arena.az-shell .az-banner,#arena.az-shell .az-hbox,#arena.az-shell .az-main{grid-column:1;position:relative;z-index:31}
+#topbar.az-top.az-sh{position:fixed;inset:auto;left:var(--azx);top:var(--azy);width:var(--azw);padding:2px 0 0;justify-content:flex-start;z-index:33}
+.sg-nh.short .nl{display:none}.sg-nh.short .ns{display:block}
+@media (max-width:720px){.az-dl{grid-template-columns:1fr}}   /* narrow screens: the details open over the list, so the list takes the whole width (a later column rule had squeezed it into the details column) */
+@media (max-height:380px){.az-lres small{display:none}.az-lwho2>span{line-height:1}.az-lwho2 .az-pow b{font-size:11.5px}.az-lr{padding-block:2px}}   /* short phones: the rows are short in the arena frame; the result keeps its word, the attacker block its three lines */
+@container (max-height:80px){.pg-items,.pg-tag:not(.rd){display:none}}
+.pg-act{white-space:nowrap}@container (max-width:76px){.pg-act .azi{display:none}}   /* the smallest cards (short phones in the arena frame): the rewards show in the bottom panel of the picked card */
 </style>
 
 <div class="app" dir="rtl">
@@ -3796,7 +3812,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
     <div class="az-page">
       <div class="az-head"><button class="az-back" data-go="home" aria-label="חזרה"><svg class="azi" viewBox="0 0 24 24"><path d="M14 5l7 7-7 7M21 12H4"/></svg></button><span class="title-font">זירת השמיים</span>
         <button class="az-info" id="arInfo" aria-label="הסבר">!</button></div>
-      <div class="az-stage" id="azStage" hidden><div class="az-sg" id="azSg"></div></div><div class="az-banner" id="azBanner" hidden></div><div class="az-hbox" id="azHBox" hidden></div>
+      <div class="az-stage" id="azStage" hidden><div class="az-sg" id="azSg"><div class="sg-layer" id="azBd"></div><div class="sg-layer" id="azSide"></div></div></div><div class="az-banner" id="azBanner" hidden></div><div class="az-hbox" id="azHBox" hidden></div>
       <aside class="az-side"><div class="az-crest" id="arenaCrest"></div><nav class="az-menu" id="arenaTabs"></nav><div class="az-next" id="arenaNext"></div></aside>
       <main class="az-main" id="arenaMain">
         <div id="arenaList"></div>
@@ -5409,13 +5425,17 @@ function renderArena() {
   $("topbar").classList.add("az-top");
   const k = RANKS.indexOf(rankOf(A.r)), [lo, rn, rc] = RANKS[k], next = RANKS[k + 1], pos = myRank(A), nextRew = next ? TIER_REW[k + 1] : null;
   const pct = next ? Math.round((A.r - lo) / (next[0] - lo) * 100) : 100;
-  const left = A.t < ticketMax() ? Math.ceil((TICKET_MS - (Date.now() - A.ts)) / 60000) : 0;
+  const shell = HAVE.has("ui_rank_template");          // ArenaLayout: every tab sits in the ranking screen's frame, with its one side menu (azSide)
+  if (!shell) {
   $("arenaCrest").innerHTML = `${rankIc(A.r).replace('class="rankic', 'class="rankic big')}<b class="title-font" style="color:${rc}">${rn}</b>
     <div class="az-prog"><i style="width:${pct}%"></i><span dir="ltr">${A.r}${next ? ` / ${next[0]}` : ""}</span></div>
     <div class="az-place">מקום <b>${fmt(pos)}</b><span class="az-place-n"><i> · </i>${next ? `עוד ${next[0] - A.r} ל${next[1]}` : "הדרגה הגבוהה ביותר!"}</span></div>`;
   const newLog = A.log.filter(x => x.day === today() && !x.seen).length, rwReady = tierReady(A) + seasonMail(A).length;
   $("arenaTabs").innerHTML = [["board", "trophy", "דירוג"], ["ranks", "gift", `פרסי דירוג${rwReady ? ` (${rwReady})` : ""}`], ["log", "shield", `יומן הגנה${newLog ? ` (${newLog})` : ""}`], ["fight", "sw", "קרב"], ["shop", "shop", "חנות הזירה"], ["hist", "chart", "היסטוריה"]]
     .map(([t, ic, n]) => `<button class="${arenaTab === t ? "on" : ""}" data-t="${t}">${azi(ic)}<span>${n}</span>${azi("prev", "chev")}</button>`).join("");   // as in the concept: icon on the left, name in the middle, arrow on the right
+  $("arenaTabs").querySelectorAll("[data-t]").forEach(b => b.onclick = () => { arenaTab = b.dataset.t; azBuyArm = null; renderArena(); });
+  $("arenaNext").innerHTML = next ? `<div class="az-nh">פרס הדרגה הבאה (${next[1]})</div><div class="az-rws">${azRewTiles(nextRew)}</div>` : `<div class="az-nh">כל פרסי הדרגות נאספו</div>`;
+  } else ["arenaCrest", "arenaTabs", "arenaNext"].forEach(id => $(id).innerHTML = "");
   // the header row: a title banner for the views that have one; the right corner holds that view's own box (season clock, glory, last attack) instead of the resources
   const ban = {ranks:["gift", "פרסי דירוג", "קבל פרסים יקרי ערך על הדירוג שלך בזירת השמיים"], log:["shield", "יומן ההגנה", "רשימת ההתקפות על ההגנה שלך"],
     shop:["sw", "חנות הזירה", "פריטים ייחודיים בתמורה לתהילה"], hist:["chart", "היסטוריה", "הקרבות שלך בזירה"]}[arenaTab];
@@ -5426,26 +5446,26 @@ function renderArena() {
     : arenaTab === "log" && A.log.length && A.log[0].ts ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>התקפה אחרונה</small><b>${azAgo(A.log[0])}</b></span>`
     : arenaTab === "hist" ? `<span><small>המאזן שלך</small><b><span class="w" dir="ltr">${fmt(A.w)}</span> ניצחונות · <span class="l" dir="ltr">${fmt(A.l)}</span> הפסדים</b></span>` : "";
   $("azHBox").hidden = !hbox; $("azHBox").innerHTML = hbox; $("azHBox").className = `az-hbox ${arenaTab}`;
-  $("topbar").classList.toggle("az-nores", !!(ban || hbox) || arenaTab === "board");
+  $("topbar").classList.toggle("az-nores", !!(ban || hbox) || arenaTab === "board"); $("topbar").classList.toggle("az-sh", shell);
   clearInterval(azTick); if (arenaTab === "ranks") azTick = setInterval(() => { const A2 = arenaState(), e = $("azClock");
     if (!e || !$("arena").classList.contains("on")) return clearInterval(azTick);
     if (A2.season !== +e.dataset.s && e.dataset.s) return renderArena();                                  // the season ended while the screen was open
     const t = seasonLeft(); e.dataset.s = A2.season; e.textContent = [t.d, t.h, t.m, t.s].map(v => String(v).padStart(2, "0")).join(":"); }, 1000);
-  $("arenaTabs").querySelectorAll("[data-t]").forEach(b => b.onclick = () => { arenaTab = b.dataset.t; azBuyArm = null; renderArena(); });
-  const rewTile = (img, n) => `<span class="az-rw"><img src="assets/${img}.webp" alt=""><b dir="ltr">${fmt(n)}</b></span>`;
-  const rewTiles = r => r ? [r.gem && rewTile("cur_gem", r.gem), r.m && rewTile("scroll_m", r.m), r.l && rewTile("scroll_l", r.l), r.ld && rewTile("scroll_ld", r.ld)].filter(Boolean).join("") : "";
-  $("arenaNext").innerHTML = next ? `<div class="az-nh">פרס הדרגה הבאה (${next[1]})</div><div class="az-rws">${rewTiles(nextRew)}</div>` : `<div class="az-nh">כל פרסי הדרגות נאספו</div>`;
-  $("azStage").hidden = !(arenaTab === "board" && HAVE.has("ui_rank_template")); $("arena").classList.toggle("az-staged", !$("azStage").hidden);
+  $("azStage").hidden = !shell; $("arena").classList.toggle("az-shell", shell); $("arena").classList.toggle("az-staged", shell && arenaTab === "board");
+  if (shell) { $("azSg").classList.toggle("sh", arenaTab !== "board"); azSide(A); azStageFit();   // the menu and the content box are in place before the view renders into it
+    if (arenaTab !== "board") $("azBd").innerHTML = `<span class="sg-sky" style="background-image:linear-gradient(rgba(6,10,30,.25),rgba(6,10,30,.5) 60%,rgba(6,10,30,.62))${ART.arena || ART.hub ? `,url(${ART.arena || ART.hub})` : ""}"></span>`; }
   $("arenaMain").dataset.v = arenaTab;
   requestAnimationFrame(() => azFit($("arena")));
   const L = $("arenaList");
   if (arenaTab === "fight") azFight(A, L);
-  else if (arenaTab === "board") { if (HAVE.has("ui_rank_template")) azStage(A); else azRanking(A, L); }
+  else if (arenaTab === "board") { if (shell) azStage(A); else azRanking(A, L); }
   else if (arenaTab === "ranks") azRewards(A, L);
   else if (arenaTab === "log") azLog(A, L);
   else if (arenaTab === "hist") azHist(A, L);
   else if (arenaTab === "shop") azShop(A, L);
 }
+const azRewTile = (img, n) => `<span class="az-rw"><img src="assets/${img}.webp" alt=""><b dir="ltr">${fmt(n)}</b></span>`;
+const azRewTiles = r => r ? [r.gem && azRewTile("cur_gem", r.gem), r.m && azRewTile("scroll_m", r.m), r.l && azRewTile("scroll_l", r.l), r.ld && azRewTile("scroll_ld", r.ld)].filter(Boolean).join("") : "";
 function azFight(A, L) {
   if (arenaSel == null || !A.opp.includes(arenaSel)) arenaSel = A.opp[0];
   const mp = myPow();
@@ -5477,18 +5497,54 @@ const AZS = {pods:[{r:2, cx:596, cy:176, R:56, bx:592, by:96, plate:[478, 240, 2
                    {r:1, cx:1032, cy:154, R:64, bx:1028, by:58, plate:[908, 231, 240, 46], slots:[879, 940, 1002, 1063, 1124], sy:287, ss:55},
                    {r:3, cx:1481, cy:179, R:51, bx:1481, by:104, plate:[1375, 243, 212, 44], slots:[1345, 1401, 1457, 1513, 1569], sy:292, ss:51}],
   rows:[502, 552, 603, 653, 703], tslots:[485, 528, 571, 614, 658], mslots:[600, 639, 677, 714, 751],
-  menu:[304, 371, 434, 496, 558, 620, 682]};
+  menu:[304, 371, 434, 496, 558, 620, 682], box:[308, 8, 1764, 879]};
+const AZ_MENU = [["board", "trophy", "דירוג"], ["ranks", "gift", "פרסי דירוג"], ["log", "shield", "יומן הגנה"], ["fight", "sw", "קרב"], ["shop", "shop", "חנות הזירה"], ["hist", "chart", "היסטוריה"]];
+/* ---- ArenaSidebar: the ranking template's side menu, the one menu of every arena tab. Drawn once on the stage; a tab change only moves the lit button
+   (the template's own lit / plain button art, copied from it) and refreshes the live values ---- */
+let azSideHtml = "";
+function azSide(A) {
+  const g = $("azSide"), P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+  const k = RANKS.indexOf(rankOf(A.r)), [lo, rn, rc] = RANKS[k], next = RANKS[k + 1], pos = myRank(A), pct = next ? Math.round((A.r - lo) / (next[0] - lo) * 100) : 100;
+  const newLog = A.log.filter(x => x.day === today() && !x.seen).length, rwReady = tierReady(A) + seasonMail(A).length, cnt = {ranks:rwReady, log:newLog};
+  const slot = j => { const y0 = j ? AZS.menu[j] - 3 : 297, h = AZS.menu[j + 1] - 3 - y0, [sy, sh] = AZ_MENU[j][0] === arenaTab ? [297, 74] : [368, 63], s = h / sh;
+    return `<i class="sg-mbg${AZ_MENU[j][0] === arenaTab ? " on" : ""}" style="${P(14, y0, 276, h)};background-size:1774px ${(887 * s).toFixed(1)}px;background-position:-14px ${(-sy * s).toFixed(1)}px"></i>`; };
+  const html = `<span class="sg-sideart"></span>${AZ_MENU.map((_, j) => slot(j)).join("")}
+    <button class="sg-hit" id="sgBack" style="${P(8, 3, 64, 64)}" aria-label="חזרה"></button><button class="sg-hit" id="sgInfo" style="${P(213, 3, 64, 64)}" aria-label="הסבר"></button>
+    <span class="sg-title title-font sf" style="${P(72, 13, 142, 42)}">זירת השמיים</span>
+    <span class="sg-patch" style="${P(70, 74, 160, 124)}"></span><span class="sg-crest" style="${P(90, 78, 120, 116)}">${rankIc(A.r)}</span>
+    <b class="sg-rn title-font sf" style="${P(24, 192, 262, 34)};color:${rc}">${rn}</b>
+    <span class="sg-bar" style="${P(24, 227, 256, 21)}"><i style="width:${pct}%"></i><b dir="ltr" class="sf">${A.r}${next ? ` / ${next[0]}` : ""}</b></span>
+    <span class="sg-place" style="${P(20, 252, 270, 48)}"><span class="sf">מקום <b dir="ltr">${fmt(pos)}</b></span><span class="sf">${next ? `עוד ${next[0] - A.r} ל${next[1]}` : "הדרגה הגבוהה ביותר!"}</span></span>
+    ${AZ_MENU.map(([t, ic, n], j) => `<button class="sg-menu ${t === arenaTab ? "on" : ""}" data-t="${t}" style="${P(14, j ? AZS.menu[j] - 3 : 297, 276, AZS.menu[j + 1] - 3 - (j ? AZS.menu[j] - 3 : 297))}">${azi(ic)}<span class="sf">${n}${cnt[t] ? ` (${cnt[t]})` : ""}</span></button>`).join("")}
+    <span class="sg-fill sg-fp" style="${P(18, 678, 272, 64)}"></span>
+    <span class="sg-nh" style="${P(26, 756, 258, 30)}"><span class="sf nl">${next ? `פרס הדרגה הבאה (${next[1]})` : "כל פרסי הדרגות נאספו"}</span><span class="sf ns">${next ? `פרס ל${next[1]}` : "הכל נאסף"}</span></span>
+    <span class="sg-rw" style="${P(68, 785, 174, 72)}">${next ? azRewTiles(TIER_REW[k + 1]) : ""}</span>`;
+  const sg = $("azSg"), tpl = `url(${assetUrl("ui_rank_template")})`;   // the blob on the claude page, the file in the app
+  if (sg.style.getPropertyValue("--tpl") !== tpl) { sg.style.backgroundImage = tpl; sg.style.setProperty("--tpl", tpl); }
+  if (html === azSideHtml && g.firstChild) return;                       // nothing changed: the menu stays exactly as it is
+  azSideHtml = html; g.innerHTML = html;
+  g.querySelectorAll("[data-t]").forEach(b => b.onclick = () => { if (b.dataset.t === arenaTab) return; arenaTab = b.dataset.t; azBuyArm = null; SFX.tap && SFX.tap(); renderArena(); });
+  $("sgBack").onclick = () => document.querySelector("#arena .az-back").click();
+  $("sgInfo").onclick = () => $("arInfo").click();
+}
 function azStageFit() {
   const st = $("azStage"); if (!st || st.hidden) return;
   const cs = getComputedStyle(st), W = st.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), H = st.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+  if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1774, H / 887), g = $("azSg");
-  g.style.setProperty("--k", k); g.style.setProperty("--mf", (10.5 / k).toFixed(1) + "px"); g.classList.toggle("lo", k < .5); g.classList.toggle("xs", k < .4); g.classList.toggle("big", k >= .65);
-  g.querySelectorAll(".sf").forEach(e => { e.style.fontSize = ""; let f = parseFloat(getComputedStyle(e).fontSize); const m = 10.5 / k;
-    while ((e.scrollWidth > e.clientWidth + 1 || e.scrollHeight > e.clientHeight + 1) && f > m) { f = Math.max(m, f - 1); e.style.fontSize = f + "px"; } });
+  g.style.setProperty("--k", k);
+  const r = g.getBoundingClientRect(), d = document.documentElement.style;   // the content box of every arena tab: where the ranking's own content starts and ends on the template
+  d.setProperty("--azx", r.left + AZS.box[0] * k + "px"); d.setProperty("--azy", r.top + AZS.box[1] * k + "px");
+  d.setProperty("--azw", (AZS.box[2] - AZS.box[0]) * k + "px"); d.setProperty("--azh", (AZS.box[3] - AZS.box[1]) * k + "px"); g.style.setProperty("--mf", (10.5 / k).toFixed(1) + "px"); g.classList.toggle("lo", k < .5); g.classList.toggle("xs", k < .4); g.classList.toggle("big", k >= .65);
+  const fit = e => { e.style.fontSize = ""; let f = parseFloat(getComputedStyle(e).fontSize); const m = 10.5 / k;
+    while ((e.scrollWidth > e.clientWidth + 1 || e.scrollHeight > e.clientHeight + 1) && f > m) { f = Math.max(m, f - 1); e.style.fontSize = f + "px"; } };
+  const nh = g.querySelector(".sg-nh"); if (nh) nh.classList.remove("short");
+  g.querySelectorAll(".sf").forEach(fit);
+  const nl = nh && nh.querySelector(".nl"); if (nl && nl.offsetWidth && nl.scrollWidth > nl.clientWidth + 1) { nh.classList.add("short"); fit(nh.querySelector(".ns")); }   // a long rank name: the short label
 }
 addEventListener("resize", () => azStageFit());
 function azStage(A) {
-  const g = $("azSg"), P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+  const g = $("azBd"), P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
   let lad; try { lad = azScope === "world" ? azWorld(A) : azLadder(A); } catch (e) { g.innerHTML = `<div class="az-state err" style="${P(500, 400, 900, 120)}">לא הצלחנו לטעון את הדירוג.</div>`; return; }
   const last = azBoard.mode === "top" ? Math.min(AZ_TOP, lad.total) : lad.total, pages = Math.max(1, Math.ceil((last - 3) / AZ_PER));
   azBoard.page = Math.max(1, Math.min(pages, azBoard.page));
@@ -5496,9 +5552,6 @@ function azStage(A) {
   const nameOf = e => e.me ? prof().name : e.b.name, teamOf = e => e.me ? azMine().map(m => [m.id, m.lvl, mst(m)]) : e.b.team, powOf = e => e.me ? myPow() : botPow(e.b);
   const val = e => lad.world ? e.wp : e.r, vic = azi(lad.world ? "globe" : "sw");
   const tile = ([id, lv, st], x, y, z) => { const d = MON[id]; return `<span class="sg-t ${z < 48 ? "s" : ""}" style="${P(x + 3, y + 3, z - 6, z - 6)};--rc:${RAR[Math.max(0, Math.min(4, (st || d.st) - 1))].c}">${sprite(id)}${HAVE.has("el_" + d.el) ? `<img class="sg-el" src="assets/el_${d.el}.webp" alt="">` : ""}<small dir="ltr">${st || d.st}★</small><em dir="ltr">Lv.${lv}</em></span>`; };
-  const newLog = A.log.filter(x => x.day === today() && !x.seen).length, rwReady = tierReady(A) + seasonMail(A).length;
-  const menu = [["board", "trophy", "דירוג"], ["ranks", "gift", `פרסי דירוג${rwReady ? ` (${rwReady})` : ""}`], ["log", "shield", `יומן הגנה${newLog ? ` (${newLog})` : ""}`], ["fight", "sw", "קרב"], ["shop", "shop", "חנות הזירה"], ["hist", "chart", "היסטוריה"]];
-  const nextRew = next ? TIER_REW[k + 1] : null;
   const pod = AZS.pods.map(q => { const e = lad.at(q.r), t = teamOf(e), top = azRarest(t);
     return `<button class="sg-hole m${q.r}" ${e.me ? "" : `data-i="${e.b.i}"`} style="${P(q.cx - q.R, q.cy - q.R, q.R * 2, q.R * 2)}" aria-label="מקום ${q.r}"><i class="sg-glow"></i><img src="${ART[top[0]] || ""}" alt=""></button>
       <b class="sg-badge" style="${P(q.bx - 22, q.by - 20, 44, 40)}">${q.r}</b>
@@ -5518,16 +5571,6 @@ function azStage(A) {
       <b class="sg-pl sf" dir="ltr" style="${P(1653, y - 18, 86, 36)}">${fmt(e.rank)}</b>`; };
   const me = lad.at(lad.pos);
   g.innerHTML = `
-    <button class="sg-hit" id="sgBack" style="${P(14, 9, 52, 52)}" aria-label="חזרה"></button><button class="sg-hit" id="sgInfo" style="${P(219, 9, 52, 52)}" aria-label="הסבר"></button>
-    <span class="sg-title title-font sf" style="${P(72, 13, 142, 42)}">זירת השמיים</span>
-    <span class="sg-patch" style="${P(70, 74, 160, 124)}"></span><span class="sg-crest" style="${P(90, 78, 120, 116)}">${rankIc(A.r)}</span>
-    <b class="sg-rn title-font sf" style="${P(24, 192, 262, 34)};color:${rc}">${rn}</b>
-    <span class="sg-bar" style="${P(24, 227, 256, 21)}"><i style="width:${pct}%"></i><b dir="ltr" class="sf">${A.r}${next ? ` / ${next[0]}` : ""}</b></span>
-    <span class="sg-place" style="${P(20, 252, 270, 48)}"><span class="sf">מקום <b dir="ltr">${fmt(pos)}</b></span><span class="sf">${next ? `עוד ${next[0] - A.r} ל${next[1]}` : "הדרגה הגבוהה ביותר!"}</span></span>
-    ${menu.map(([t, ic, n], j) => `<button class="sg-menu ${t === "board" ? "on" : ""}" data-t="${t}" style="${P(22, AZS.menu[j], 238, AZS.menu[j + 1] - AZS.menu[j] - 8)}">${azi(ic)}<span class="sf">${n}</span></button>`).join("")}
-    <span class="sg-fill sg-fp" style="${P(18, 678, 272, 64)}"></span>
-    <span class="sg-nh" style="${P(26, 756, 258, 30)}"><span class="sf nl">${next ? `פרס הדרגה הבאה (${next[1]})` : "כל פרסי הדרגות נאספו"}</span><span class="sf ns">${next ? `פרס ל${next[1]}` : "הכל נאסף"}</span></span>
-    <span class="sg-rw" style="${P(68, 785, 174, 72)}">${($("arenaNext").querySelector(".az-rws") || {}).innerHTML || ""}</span>
     ${pod}
     <button class="sg-tab ${lad.world ? "" : "on"}" data-sc="arena" style="${P(1000, 376, 402, 54)}">${azi("sw")}<span class="sf">דירוג הזירה</span></button>
     <button class="sg-tab ${lad.world ? "on" : ""}" data-sc="world" style="${P(590, 376, 402, 54)}">${azi("globe")}<span class="sf">דירוג עולמי</span></button>
@@ -5549,16 +5592,12 @@ function azStage(A) {
   azBoard.flash = false;
   const myPage = () => Math.max(1, Math.ceil((lad.pos - 3) / AZ_PER));
   g.querySelectorAll("[data-i]").forEach(b => b.onclick = () => { azBoard.sel = +b.dataset.i; g.querySelectorAll(".sg-row.sel").forEach(r => r.classList.remove("sel")); const r = g.querySelector(`.sg-row[data-i="${b.dataset.i}"]`); if (r) r.classList.add("sel"); botProfile(getBot(A, +b.dataset.i)); });
-  g.querySelectorAll("[data-t]").forEach(b => b.onclick = () => { if (b.dataset.t === arenaTab) return; arenaTab = b.dataset.t; SFX.tap && SFX.tap(); renderArena(); });
   g.querySelectorAll("[data-sc]").forEach(b => b.onclick = () => { if (azScope === b.dataset.sc) return; azScope = b.dataset.sc; azBoard = {mode:"top", page:1}; SFX.tap && SFX.tap(); renderArena(); });
-  $("sgBack").onclick = () => document.querySelector("#arena .az-back").click();
-  $("sgInfo").onclick = () => $("arInfo").click();
   $("sgPrev").onclick = () => { azBoard.page--; renderArena(); };
   $("sgNext").onclick = () => { azBoard.page++; renderArena(); };
   $("sgTop").onclick = () => { if (azBoard.mode === "top") return; azBoard = {mode:"top", page:1}; renderArena(); };
   $("sgNear").onclick = () => { azBoard = {mode:"all", page:myPage()}; renderArena(); };
   $("sgMe").onclick = () => { azBoard = {mode:lad.pos <= AZ_TOP ? "top" : "all", page:myPage(), flash:true}; renderArena(); };
-  g.style.backgroundImage = `url(${assetUrl("ui_rank_template")})`; g.style.setProperty("--tpl", `url(${assetUrl("ui_rank_template")})`);   // the blob on the claude page, the file in the app
   azStageFit(); requestAnimationFrame(azStageFit);
 }
 function azRanking(A, L) {
