@@ -219,6 +219,13 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 .multi{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;width:min(720px,94vw)}
 .toast{position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:200;background:var(--panel2);border:1px solid var(--gold);border-radius:12px;padding:8px 14px;font-size:13px;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,.5);display:none}
 .toast.on{display:block;animation:banner 2.4s ease forwards}
+body:has(#modal.on) .toast{top:auto;bottom:max(12px,env(safe-area-inset-bottom))}   /* over an open window: at the bottom, never on its buttons */
+.nmwin{display:flex;flex-direction:column;align-items:center;gap:10px;padding:6px 4px;text-align:center}
+.nmwin h3{margin:0;color:var(--gold2);font-size:clamp(20px,6dvh,28px)}
+.nmwin input{width:min(320px,78vw);padding:10px 14px;border-radius:12px;border:1.5px solid var(--gold);background:rgba(8,13,34,.88);color:var(--ink);font:inherit;font-size:18px;font-weight:700;text-align:center;outline:none;box-shadow:inset 0 2px 8px rgba(0,0,0,.5)}
+.nmwin input:focus{box-shadow:inset 0 2px 8px rgba(0,0,0,.5),0 0 0 3px rgba(226,184,87,.35)}
+.nmwin small{color:var(--muted);font-size:12px}.nmwin small.bad{color:#ff9a8a}
+.nmrow{display:flex;gap:10px}.nmrow .btn{min-width:110px;min-height:44px}
 /* ---------- runes ---------- */
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .chip{display:flex;align-items:center;gap:4px;padding:5px 10px;border-radius:999px;background:rgba(8,13,34,.7);border:1px solid var(--line);font-size:12px;font-weight:600}
@@ -1504,6 +1511,11 @@ body:has(.modal.on) .home-title{opacity:0;transition:opacity .2s}
 .eltab small{font-size:11px;color:var(--muted);font-weight:700}
 .eltab.on{border-color:var(--ec,var(--gold));box-shadow:0 0 12px var(--ec,var(--gold)),inset 0 0 10px rgba(255,255,255,.06);background:linear-gradient(rgba(60,74,140,.95),rgba(30,40,96,.95))}
 .eltab .elic{filter:drop-shadow(0 0 4px currentColor)}
+#cxEls{overflow:visible}#cxEls .eltab{flex:1 1 0;min-width:0;justify-content:center}   /* codex: all seven element tabs always fit (the last ones were cut off) */
+@media (max-width:1000px){#cxEls{gap:4px}#cxEls .eltab{padding:6px 4px;gap:3px}#cxEls .eltab b{font-size:11.5px}}
+@media (max-width:920px){#cxEls .eltab:not([data-el=all]) b{display:none}}   /* phones: the icon alone (its name stays for screen readers) */
+@media (max-width:1000px) and (max-height:520px){   /* battle prep on a phone: the element tabs get their own row (on an SE only one tab was left visible) */
+  .prep .pr-bar{flex-wrap:wrap;row-gap:4px}.prep .pr-els{flex:1 0 100%;order:-1;overflow:visible}.prep .pr-els .bx-el{flex:1 1 0;min-width:0;width:auto}}
 .mcard .inteam{z-index:2}
 /* mid-island elite enemy: golden aura + crown */
 .unit.elite .spr{filter:drop-shadow(0 0 10px rgba(255,200,80,.9)) drop-shadow(0 0 22px rgba(255,160,40,.55))}
@@ -1872,7 +1884,7 @@ details.rules>div{font-size:12.5px!important;line-height:1.65!important;margin-t
   #box .bx-codex{position:static;transform:none;grid-area:1/4;height:38px;padding:0 10px;font-size:12px}
   #box .bx-tools{grid-area:2/1/3/4;min-width:0}
   #box .bx-drawer{grid-area:2/4;align-self:stretch;padding:2px 6px;position:relative}
-  #box .bx-drawer .essbar:not([hidden]){position:absolute;bottom:calc(100% + 4px);inset-inline-end:0;z-index:6;padding:6px 10px;border-radius:12px;
+  #box .bx-drawer .essbar:not([hidden]){position:absolute;top:calc(100% + 4px);inset-inline-end:0;z-index:6;padding:6px 10px;border-radius:12px;
     background:linear-gradient(rgba(10,16,44,.96),rgba(6,10,30,.98));border:1.5px solid rgba(201,154,63,.65)}
   #box .bx-dbtn{height:100%;min-height:34px}
   #box .bx-grid{grid-area:3/1/4/5;align-self:stretch;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:7px;padding:7px}
@@ -2629,7 +2641,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .dly-tt{flex:1;min-width:0}
 .modal .card.dlycard .dly-tt h3{margin:0;padding:2px 0;text-shadow:none;font-size:clamp(22px,8dvh,42px);line-height:1.2;color:transparent;background:linear-gradient(#fff6d2,#f0c766 50%,#c08a2c);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 2px 0 #000)}
 .dly-tt p{margin:2px 0 0;font-size:clamp(11px,3.2dvh,15px);color:#d8def5}
-.dly-x{position:absolute;left:clamp(8px,1.4vw,14px);top:50%;translate:0 -50%;width:clamp(36px,10dvh,52px);aspect-ratio:1;border-radius:50%;font:inherit;font-size:clamp(16px,4.6dvh,24px);font-weight:900;color:#fff;cursor:pointer;
+.dly-x{position:absolute;z-index:3;left:clamp(8px,1.4vw,14px);top:50%;translate:0 -50%;width:clamp(36px,10dvh,52px);aspect-ratio:1;border-radius:50%;font:inherit;font-size:clamp(16px,4.6dvh,24px);font-weight:900;color:#fff;cursor:pointer;
   background:radial-gradient(circle at 50% 35%,#2b3f8a,#101a48);border:2px solid #e2b857;box-shadow:0 0 0 2px #3a2506,0 0 12px rgba(226,184,87,.45)}
 .dly-all{min-height:min(44px,calc(100% - 8px));padding:0 14px;font-size:14px;white-space:nowrap;position:relative;z-index:1}
 .dly-track{display:flex;align-items:center;gap:clamp(8px,1.6vw,16px);padding:0 clamp(10px,2vw,20px);direction:rtl;border-bottom:1px solid rgba(226,184,87,.25);background:linear-gradient(#0a1236,#0d1844);min-height:0}
@@ -3517,42 +3529,52 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 @container dlrows (max-width:430px){.dl-who .pav{display:none}.dl-r{grid-template-columns:clamp(44px,10.5cqw,60px) minmax(0,clamp(96px,24cqw,150px)) minmax(0,1fr) auto clamp(20px,4.6cqw,26px)}}
 @container dldet (max-height:370px){.dl-meta{flex-wrap:nowrap;padding:2px 6px}.dl-meta .azi{display:none}.dl-meta .dl-dt,.dl-sc{font-size:11px}}
 .dl-when small:first-child{font-size:clamp(11px,3.2dvh,13px)}
-/* ---- summoning altar (the user's concept + painted pieces, 2026-11-05) ---- */
+/* ---- summoning altar (the user's concept + painted pieces, 2026-11-05; polished from the user's review the same day) ---- */
 .alt{display:none;position:absolute;inset:0;background:#0b1330 center 42%/cover no-repeat}
 #summon.alt-on .alt{display:block}#summon.alt-on>.page,#summon.alt-on>.sky,#summon.alt-on>.shade{display:none}
-.alt::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(6,10,30,.55),transparent 22%,transparent 70%,rgba(6,10,30,.45));pointer-events:none}
+.alt::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(34% 22% at 50% 21%,rgba(6,10,30,.5),transparent 75%),linear-gradient(rgba(6,10,30,.55),transparent 22%,transparent 70%,rgba(6,10,30,.45))}   /* a soft shade where the title and the event line sit over the portal */
 .alt-in{position:absolute;top:calc(max(4px,env(safe-area-inset-top)) + 46px);bottom:max(4px,env(safe-area-inset-bottom));left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));container-type:size;direction:rtl}
-.alt-head{position:absolute;top:0;left:25cqw;right:25cqw;height:15cqh;display:flex;align-items:center;justify-content:center}
-.alt-title{display:grid;place-items:center;height:100%;aspect-ratio:1000/346;max-width:100%;padding:0 6% 3%;box-sizing:border-box;background:center/100% 100% no-repeat;font-size:clamp(15px,5.2cqh,26px);color:#ffe9a6;text-shadow:0 2px 0 #3a1a5a,0 0 10px rgba(255,210,120,.45);white-space:nowrap}
-.alt-back{position:absolute;right:0;top:50%;translate:0 -50%;display:inline-flex;align-items:center;gap:4px;height:clamp(30px,9cqh,40px);min-height:0!important;padding:0 12px;border-radius:999px;font:inherit;font-weight:800;font-size:13px;color:#ffe9a6;
+.alt-head{position:absolute;top:0;left:26cqw;right:26cqw;height:14cqh;display:flex;align-items:center;justify-content:center}
+.alt-title{display:grid;place-items:center;height:100%;aspect-ratio:1000/346;max-width:100%;padding:0 6% 3%;box-sizing:border-box;background:center/100% 100% no-repeat;font-size:clamp(15px,5cqh,26px);color:#ffe9a6;text-shadow:0 2px 0 #3a1a5a,0 0 10px rgba(255,210,120,.45);white-space:nowrap}
+.alt-back{position:absolute;right:0;top:50%;translate:0 -50%;display:inline-flex;align-items:center;gap:4px;height:clamp(32px,9cqh,40px);min-height:0!important;padding:0 12px;border-radius:999px;font:inherit;font-weight:800;font-size:13px;color:#ffe9a6;
   background:linear-gradient(#1c2a66,#0b1238);border:1.5px solid #c99a3a;cursor:pointer}.alt-back .azi{width:14px;height:14px}
-.alt-ev{position:absolute;top:15.5cqh;left:25cqw;right:25cqw;text-align:center;font-size:11.5px;font-weight:800;text-shadow:0 1px 3px #000,0 0 6px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.alt-c{position:absolute;width:24cqw;height:49cqh;display:flex;flex-direction:column;align-items:center;gap:1.2cqh;min-height:0}
+.alt-ev{position:absolute;top:15cqh;left:50%;translate:-50% 0;max-width:46cqw;padding:2px 12px;border-radius:999px;text-align:center;font-size:clamp(11px,3.3cqh,13px);font-weight:800;color:#fff;text-shadow:0 1px 2px #000;
+  background:rgba(6,10,30,.72);border:1px solid rgba(201,154,58,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box}
+.alt-c{position:absolute;width:25cqw;height:50cqh;display:flex;flex-direction:column;align-items:center;gap:.7cqh;min-height:0}
 .alt-c.tl{left:0;top:0}.alt-c.tr{right:0;top:0}.alt-c.bl{left:0;bottom:0}.alt-c.br{right:0;bottom:0}
 .alt-ped{position:relative;flex:1;min-height:0;aspect-ratio:1;max-width:100%;padding:0;border:0;background:none;cursor:pointer;display:block}
+.alt-ped::before{content:"";position:absolute;left:4%;right:4%;bottom:-2%;height:30%;border-radius:50%;pointer-events:none;opacity:0;transition:opacity .25s;
+  background:radial-gradient(closest-side,rgba(255,214,110,.55),rgba(255,190,60,.18) 60%,transparent);box-shadow:0 0 0 1.5px rgba(255,215,110,.0)}
+.alt-c.on .alt-ped::before{opacity:1}   /* the chosen pedestal: a soft gold light under its base (one at a time) */
 .alt-pi{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(0,0,0,.6));transition:filter .2s}
-.alt-c.on .alt-pi{filter:drop-shadow(0 0 7px var(--pc)) drop-shadow(0 6px 8px rgba(0,0,0,.6))}
-.alt-scr{position:absolute;left:24%;width:52%;top:8%;height:46%;display:grid;place-items:center;animation:altF 3.2s ease-in-out infinite}
+.alt-c.on .alt-pi{filter:drop-shadow(0 0 3px rgba(255,220,130,.9)) drop-shadow(0 0 9px var(--pc)) drop-shadow(0 6px 8px rgba(0,0,0,.6))}
+.alt-scr{position:absolute;left:16%;width:68%;top:3%;height:56%;display:grid;place-items:center;animation:altF 3.2s ease-in-out infinite}   /* larger in the arch, so a smaller pedestal never means a smaller scroll */
 .alt-scr img,.alt-scr svg{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 8px var(--pc)) drop-shadow(0 4px 4px rgba(0,0,0,.55))}
 .alt-c.tr .alt-scr{animation-delay:-.8s}.alt-c.bl .alt-scr{animation-delay:-1.6s}.alt-c.br .alt-scr{animation-delay:-2.4s}
 @keyframes altF{50%{translate:0 -4%}}
 @media (prefers-reduced-motion:reduce){.alt-scr{animation:none}}
-.alt-nm{flex:none;display:grid;place-items:center;width:100%;height:clamp(24px,7.5cqh,36px);padding:0 9%;box-sizing:border-box;background:var(--plate) center/100% 100% no-repeat;font-size:clamp(12px,3.9cqh,17px);color:#fff;text-shadow:0 1px 2px #000;white-space:nowrap;cursor:pointer}
+.alt-nm{flex:none;display:grid;place-items:center;width:100%;height:clamp(26px,8.6cqh,38px);padding:0 9%;box-sizing:border-box;background:var(--plate) center/100% 100% no-repeat;font-size:clamp(13px,4.5cqh,19px);color:#fff;text-shadow:0 1px 2px #000;white-space:nowrap;cursor:pointer}
 .alt-c.on .alt-nm{color:#ffe9a6}
-.alt-have{flex:none;font-size:clamp(11px,3.3cqh,13.5px);color:#e8ecff;text-shadow:0 1px 2px #000;line-height:1}.alt-have b{color:#ffd75a}
-.alt-bs{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:4%;width:100%;height:clamp(30px,10.5cqh,46px)}
-.alt-b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:0;min-height:0!important;height:100%;padding:0 4px;border:0;font:inherit;font-weight:900;line-height:1.1;cursor:pointer;background:center/100% 100% no-repeat;white-space:nowrap}
+.alt-have{flex:none;font-size:clamp(12px,3.9cqh,15px);font-weight:700;color:#e8ecff;text-shadow:0 1px 2px #000,0 0 4px #000;line-height:1.1}.alt-have b{color:#ffd75a;font-size:1.1em}
+.alt-bs{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:5%;width:100%;height:clamp(36px,12.4cqh,52px)}
+.alt-b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:0;min-height:0!important;height:100%;padding:0 6px;border:0;font:inherit;font-weight:900;line-height:1.05;cursor:pointer;background:center/100% 100% no-repeat;white-space:nowrap;
+  transition:transform .08s,filter .15s}
 .alt-b.g{background-image:var(--bg-g);color:#2a1800}.alt-b.b{background-image:var(--bg-b);color:#fff;text-shadow:0 1px 2px #000}
-.alt-b>span{font-size:clamp(11px,3.4cqh,14px)}.alt-b em{display:inline-flex;align-items:center;gap:2px;font-style:normal;font-size:clamp(10px,3cqh,12.5px)}
-.alt-gem{width:clamp(11px,3.4cqh,15px);height:auto}
-.alt-b:active{translate:0 1px;filter:brightness(1.1)}
-.alt-od{position:absolute;left:50%;translate:-50% 0;bottom:0;width:min(47cqw,calc(31cqh * 1000 / 315));display:flex;flex-direction:column;align-items:center;gap:2px}
-.alt-oh{padding:2px 14px;border-radius:999px;font-size:clamp(11px,3.4cqh,14px);color:#fff;background:rgba(6,10,30,.82);border:1.5px solid #c99a3a;white-space:nowrap}
+.alt-b>span{font-size:clamp(12px,4cqh,16px)}
+.alt-b em{display:inline-flex;align-items:center;gap:2px;font-style:normal;font-size:clamp(11px,3.5cqh,14px)}.alt-b em img{width:clamp(13px,4cqh,17px);height:clamp(13px,4cqh,17px);object-fit:contain}
+.alt-b em i{font-style:normal;opacity:.8;margin:0 1px}
+.alt-b:not(.off):active{transform:scale(.95);filter:brightness(1.12)}   /* a light press, nothing heavy */
+.alt-b.busy{filter:brightness(.85);pointer-events:none}
+.alt-b.off{filter:grayscale(.85) brightness(.62);cursor:default}.alt-b.off em{color:#ffb0b0}.alt-b.g.off{color:#1a1206}
+.alt-od{position:absolute;left:50%;translate:-50% 0;bottom:0;width:min(42cqw,calc(27cqh * 1000 / 315));display:flex;flex-direction:column;align-items:center;gap:2px}   /* ~13% lower than first built: more of the circle shows */
+.alt-oh{display:inline-flex;align-items:center;gap:5px;padding:2px 14px;border-radius:999px;font-size:clamp(12px,3.7cqh,15px);color:#fff;background:rgba(6,10,30,.85);border:1.5px solid #c99a3a;white-space:nowrap}
+.alt-oh img{width:clamp(16px,5cqh,22px);height:clamp(16px,5cqh,22px);object-fit:contain}
 .alt-op{position:relative;display:block;width:100%;aspect-ratio:1000/315;background:center/100% 100% no-repeat}
-.alt-ov{position:absolute;top:56%;height:21%;width:15.4%;display:grid;place-items:center;font-size:clamp(11px,3.9cqh,17px);color:#fff;text-shadow:0 1px 2px #000}
+.alt-ov{position:absolute;top:55%;height:23%;width:15.4%;display:grid;place-items:center;font-size:clamp(12px,4.2cqh,18px);color:#fff;text-shadow:0 1px 2px #000}
 .alt-ov.no{color:#7f8ab0}
 .alt-ov[data-st="1"]{left:5.6%}.alt-ov[data-st="2"]{left:24.1%}.alt-ov[data-st="3"]{left:42.5%}.alt-ov[data-st="4"]{left:60.8%}.alt-ov[data-st="5"]{left:79.1%}
-.alt-note{max-width:100%;font-size:11px;color:#e8ecff;text-shadow:0 1px 3px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.alt-note{max-width:100%;padding:0 8px;border-radius:999px;font-size:11px;color:#e8ecff;background:rgba(6,10,30,.6);text-shadow:0 1px 3px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box}
 /* ---- arena history (2026-11-05, the user's two concepts): the defence log's frame, filters, pager and panel shell, with its own rows
    (foe + date, result chip with laurels, my five, details) and its own panel (foe, my five vs his five, result, change, date | hour, replay off) ---- */
 .hs-r{position:relative;min-height:0;display:grid;grid-template-columns:minmax(0,max(24cqw,124px)) clamp(96px,18cqw,140px) minmax(0,1fr) clamp(60px,12cqw,96px);align-items:center;gap:clamp(4px,1cqw,10px);
@@ -5169,6 +5191,18 @@ function framedAvatar(size, fr, src) {
     ${fr.k === "legend" || fr.k === "diamond" ? '<i class="pspark"></i>' : ""}</span>`;
 }
 function paintProfBtn() { const b = $("profBtn"); if (!b || !S) return; b.innerHTML = framedAvatar(44) + `<span class="plv">${summLv()}</span>`; }
+function nameModal(p, tab) {                         // change the player name in a game window (was the browser's prompt)
+  openModal(`<div class="nmwin"><h3 class="title-font">השם שלך במשחק</h3>
+    <input id="nmIn" maxlength="18" value="${esc(p.name)}" dir="auto" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" aria-label="השם שלך">
+    <small id="nmMsg">עד 18 תווים</small>
+    <div class="nmrow"><button class="btn" id="nmOk">שמירה</button><button class="btn ghost" id="nmNo">ביטול</button></div></div>`);
+  const i = $("nmIn"), back = () => profileModal(tab);
+  setTimeout(() => { try { i.focus(); i.select(); } catch (e) {} }, 60);
+  const ok = () => { const n = i.value.trim(); if (!n) { $("nmMsg").textContent = "צריך לפחות אות אחת"; $("nmMsg").classList.add("bad"); return; }
+    p.name = n.slice(0, 18); save(); back(); toast("השם עודכן: " + p.name); };
+  $("nmOk").onclick = ok; $("nmNo").onclick = back;
+  i.onkeydown = e => { if (e.key === "Enter") ok(); else if (e.key === "Escape") back(); };
+}
 function profileModal(tab) {
   tab = tab || "info"; const p = prof(), fr = curFrame(), v = vipLv(), A = S.arena;
   const stat = (ic, n, val) => `<div class="pstat"><span>${ic}</span><small>${n}</small><b dir="ltr">${val}</b></div>`;
@@ -5193,7 +5227,7 @@ function profileModal(tab) {
   $("modalCard").querySelectorAll(".chip[data-t]").forEach(b => b.onclick = () => profileModal(b.dataset.t));
   $("modalCard").querySelectorAll("[data-a]").forEach(b => b.onclick = () => { p.avatar = b.dataset.a; save(); paintProfBtn(); profileModal("avatar"); });
   $("modalCard").querySelectorAll("[data-f]").forEach(b => b.onclick = () => { const f = FRAMES.find(x => x.k === b.dataset.f); if (v < f.vip) return toast(`המסגרת נפתחת ב-VIP ${f.vip}`); p.frame = f.k; save(); paintProfBtn(); profileModal("frame"); });
-  $("pEdit").onclick = () => { const n = prompt("השם שלך במשחק:", p.name); if (n && n.trim()) { p.name = n.trim().slice(0, 18); save(); profileModal(tab); } };
+  $("pEdit").onclick = () => nameModal(p, tab);
 }
 $("profBtn").onclick = () => profileModal();
 let vipView = null;
@@ -6167,36 +6201,60 @@ function azHist(A, L) {
    four scrolls on their own coloured pedestals (as in the concept: unknown top left, aether top right, legendary bottom left, light & dark bottom
    right), each with its name plate, how many you have, a gold ×1 and a blue ×10 button with the real price, and the odds panel at the bottom,
    which shows the odds of the scroll you tapped (the user's choice; a star count a scroll cannot give shows "—"). Prices, odds and the summon
-   itself are the game's own (SCR, rollStars, spend, summon); nothing here changes them. ---- */
+   itself are the game's own (SCR, rollStars, spend, summon); nothing here changes them.
+   Polish (the user's review, 2026-11-05): every button shows what it costs with the resource's own icon (your scrolls first, then gems) and is
+   clearly off when you cannot pay; one tap = one summon (a short lock), a summon that throws is rolled back whole; the chosen pedestal gets a
+   gold light at its base; the odds panel is lower and names its scroll; the texts over the portal sit on a dark plate. ---- */
 const ALT_ODDS = {u:{2:70, 3:30}, m:{3:85, 4:13.5, 5:1.5}, l:{4:92, 5:8}, ld:{4:90, 5:10}};   // the same numbers rollStars uses (tests/altar_check.mjs compares them)
 const ALT_PED = {u:["silver", "#7ec4ff", "tl"], m:["purple", "#c48bff", "tr"], l:["red", "#ff6a6a", "bl"], ld:["gold", "#ffd36a", "br"]};
-let altSel = "u";
+const ALT_SCR = {u:"scroll_u", m:"scroll_m", l:"scroll_l", ld:"scroll_ld"};
+let altSel = "u", altBusy = false;
 const altOk = () => ["ui_alt_bg", "ui_alt_ped_silver", "ui_alt_ped_purple", "ui_alt_ped_red", "ui_alt_ped_gold", "ui_alt_plate", "ui_alt_btn_gold", "ui_alt_btn_blue", "ui_alt_title", "ui_alt_odds"].every(n => HAVE.has(n));
 const altPct = v => `${String(v).replace(/\.0$/, "")}%`;
+function altCost(k, n) {                             // what one press really takes, by spend()'s own rule: your scrolls first, then gems for the rest
+  const c = scrollCount(k), use = Math.min(c, n), gems = (n - use) * (SCR[k].gem || 0);
+  const ok = use >= n || (!!SCR[k].gem && S.gem >= gems);
+  return {use, gems, ok, can:use >= n || !!SCR[k].gem, c};   // can: this kind can pay this way at all (unknown scrolls have no gem price)
+}
 function renderAltar() {
-  const ev = curEvent(), u = n => `url(${assetUrl(n)})`, gem = `<img class="alt-gem" src="assets/cur_gem.webp" alt="גבישים">`;
-  const card = ([k, s]) => { const [col, pc, pos] = ALT_PED[k], c = scrollCount(k), g10 = gemPart(k, 10);
-    const one = c >= 1 ? "" : s.gem ? `<em>${gem}<b dir="ltr">${fmt(s.gem)}</b></em>` : "";
-    const ten = c >= 10 ? "" : s.gem ? `<em>${gem}<b dir="ltr">${fmt(g10)}</b></em>` : `<em><b dir="ltr">${fmt(c)}/10</b></em>`;
+  const ev = curEvent(), u = n => `url(${assetUrl(n)})`, gemI = `<img src="assets/cur_gem.webp" alt="גבישים">`;
+  const price = (k, n) => { const p = altCost(k, n), sc = `<img src="assets/${ALT_SCR[k]}.webp" alt="מגילות">`;
+    if (!p.can) return `<em class="need">${sc}<b dir="ltr">${fmt(p.c)}/${n}</b></em>`;   // unknown ×10 without 10 scrolls: how many you have of the 10
+    return `<em>${p.use ? `${sc}<b dir="ltr">${fmt(p.use)}</b>` : ""}${p.use && p.gems ? "<i>+</i>" : ""}${p.gems ? `${gemI}<b dir="ltr">${fmt(p.gems)}</b>` : ""}</em>`; };
+  const btn = (k, n) => { const p = altCost(k, n);
+    return `<button class="alt-b ${n === 1 ? "g" : "b"} ${p.ok ? "" : "off"}" data-k="${k}" data-n="${n}" aria-disabled="${!p.ok}"><span>זימון ×${n}</span>${price(k, n)}</button>`; };
+  const card = ([k, s]) => { const [col, pc, pos] = ALT_PED[k], c = scrollCount(k);
     return `<div class="alt-c ${pos} ${altSel === k ? "on" : ""}" style="--pc:${pc}" data-s="${k}">
       <button class="alt-ped" data-pick="${k}" aria-pressed="${altSel === k}" aria-label="${s.n}: הצג סיכויים"><img class="alt-pi" src="${assetUrl("ui_alt_ped_" + col)}" alt=""><span class="alt-scr">${IC[s.ic]}</span></button>
       <b class="alt-nm title-font">${s.n}</b><small class="alt-have">יש לך: <b dir="ltr">${fmt(c)}</b></small>
-      <span class="alt-bs"><button class="alt-b g" data-k="${k}" data-n="1"><span>זימון ×1</span>${one}</button><button class="alt-b b" data-k="${k}" data-n="10"><span>זימון ×10</span>${ten}</button></span></div>`; };
+      <span class="alt-bs">${btn(k, 1)}${btn(k, 10)}</span></div>`; };
   const od = ALT_ODDS[altSel], s0 = SCR[altSel];
   $("altar").innerHTML = `<div class="alt-in" style="--plate:${u("ui_alt_plate")};--bg-g:${u("ui_alt_btn_gold")};--bg-b:${u("ui_alt_btn_blue")}">
     <div class="alt-head"><button class="alt-back">${azi("prev")}<span>חזרה</span></button>
       <b class="alt-title title-font" style="background-image:${u("ui_alt_title")}">מזבח הזימון</b></div>
-    <small class="alt-ev" style="color:${EL[ev.el].c}">${ev.n}: פי 3 סיכוי לזמן מפלצות ${EL[ev.el].n}</small>
+    <small class="alt-ev"><span style="color:${EL[ev.el].c}">${ev.n}:</span> פי 3 סיכוי לזמן מפלצות ${EL[ev.el].n}</small>
     ${Object.entries(SCR).map(card).join("")}
-    <div class="alt-od"><b class="alt-oh">סיכויי זימון · <span style="color:${ALT_PED[altSel][1]}">${s0.n}</span></b>
+    <div class="alt-od"><b class="alt-oh"><img src="assets/${ALT_SCR[altSel]}.webp" alt="">סיכויי זימון · <span style="color:${ALT_PED[altSel][1]}">${s0.n}</span></b>
       <span class="alt-op" style="background-image:${u("ui_alt_odds")}">${[1, 2, 3, 4, 5].map(st => `<b class="alt-ov ${od[st] ? "" : "no"}" data-st="${st}" dir="ltr">${od[st] ? altPct(od[st]) : "—"}</b>`).join("")}</span>
       <small class="alt-note">${s0.note}</small></div></div>`;
   $("altar").style.backgroundImage = u("ui_alt_bg");
   $("altar").querySelectorAll("[data-pick]").forEach(b => b.onclick = () => { altSel = b.dataset.pick; renderAltar(); });
   $("altar").querySelectorAll(".alt-c").forEach(c => c.querySelector(".alt-nm").onclick = () => { altSel = c.dataset.s; renderAltar(); });
-  $("altar").querySelectorAll("[data-k]").forEach(b => b.onclick = () => { const k = b.dataset.k, n = +b.dataset.n; altSel = k;
-    if ($("reveal").classList.contains("on")) return; if (spend(k, n)) summon(k, n); else renderAltar(); });   // one reveal at a time; the summon itself is the game's own
+  $("altar").querySelectorAll("[data-k]").forEach(b => b.onclick = () => altSummon(b.dataset.k, +b.dataset.n, b));
   $("altar").querySelector(".alt-back").onclick = () => show("home");
+}
+function altSummon(k, n, b) {                        // one press = one summon; spend() and summon() are the game's own
+  if (altBusy || $("reveal").classList.contains("on")) return;
+  altSel = k;
+  if (!altCost(k, n).ok) { spend(k, n); renderAltar(); return; }   // off: spend() takes nothing and its message says what is missing
+  altBusy = true; b.classList.add("busy"); setTimeout(() => { altBusy = false; }, 900);
+  const snap = JSON.stringify(S);
+  try { if (spend(k, n)) summon(k, n); else renderAltar(); }
+  catch (e) {                                        // a summon that breaks half way: the whole save goes back to before the press (nothing paid, nothing given)
+    const o = JSON.parse(snap); Object.keys(S).forEach(x => delete S[x]); Object.assign(S, o); save(true);
+    try { rvLeave(); } catch (e2) { $("reveal").classList.remove("on"); }
+    renderTop(); show("summon"); toast("הזימון נכשל. לא חויבת ולא נוספו מפלצות, נסה שוב");
+  }
 }
 const AZ_CATS = [["all", "הכל", "cur_glory"], ["sc", "מגילות", "scroll_l"], ["ru", "רונים", "rune_blade"], ["rs", "משאבים", "cur_energy"]];
 const AZ_DESC = {                                   // facts already in the game (scroll odds, rune rule, awakening cost, energy cap)
@@ -6841,7 +6899,7 @@ function renderCodex() {
   $("cxTabs").querySelectorAll(".chip").forEach(b => b.onclick = () => { cxTab = b.dataset.t; renderCodex(); });
   $("cxStars").innerHTML = [1, 2, 3, 4, 5].map(n => `<label><input type="checkbox" data-st="${n}" ${cxStars[n] ? "checked" : ""}><span class="stars">${"★".repeat(n)}</span></label>`).join("");
   $("cxStars").querySelectorAll("[data-st]").forEach(c => c.onchange = () => { cxStars[c.dataset.st] = c.checked; renderCodex(); });
-  $("cxEls").innerHTML = `<button class="eltab ${cxEl === "all" ? "on" : ""}" data-el="all"><b>הכל</b></button>` + ELS.map(el => `<button class="eltab ${cxEl === el ? "on" : ""}" data-el="${el}" style="--ec:${EL[el].c}">${elIcon(el, 18)}<b>${EL[el].n}</b></button>`).join("");
+  $("cxEls").innerHTML = `<button class="eltab ${cxEl === "all" ? "on" : ""}" data-el="all"><b>הכל</b></button>` + ELS.map(el => `<button class="eltab ${cxEl === el ? "on" : ""}" data-el="${el}" style="--ec:${EL[el].c}" aria-label="${EL[el].n}" title="${EL[el].n}">${elIcon(el, 18)}<b>${EL[el].n}</b></button>`).join("");
   $("cxEls").querySelectorAll("[data-el]").forEach(b => b.onclick = () => { cxEl = b.dataset.el; renderCodex(); });
   const anyStar = Object.values(cxStars).some(Boolean);
   const ids = Object.keys(MON).filter(id => cxKind(id) === cxTab && (cxEl === "all" || MON[id].el === cxEl) && (!anyStar || cxStars[MON[id].st])).sort((a, b) => MON[a].st - MON[b].st || MON[a].el.localeCompare(MON[b].el));
@@ -6919,7 +6977,7 @@ function placeHots(box, img, list, onClick, minTop) {
   if (!img || !img.naturalWidth) { box.innerHTML = ""; return; }
   const W = box.clientWidth, H = box.clientHeight, s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
   const dw = img.naturalWidth * s, dh = img.naturalHeight * s, ox = (W - dw) / 2, oy = (H - dh) / 2;
-  box.innerHTML = list.map((h, i) => `<button class="hot ${h.cls || ""}" data-i="${i}" ${h.id ? `id="${h.id}"` : ""} data-k="${h.k || ""}" style="--hc:${h.c};left:${Math.min(W - 64 - SAFE().r, Math.max(64 + SAFE().l, ox + h.x * dw))}px;top:${Math.min(H - (H < 520 && getComputedStyle($("quick")).display !== "none" ? 96 : 30), Math.max(H < 520 ? (minTop >= 150 ? 112 : 74) : (minTop || 110), oy + h.y * dh))}px"><i></i><span>${h.n}</span></button>`).join("");
+  box.innerHTML = list.map((h, i) => `<button class="hot ${h.cls || ""}" data-i="${i}" ${h.id ? `id="${h.id}"` : ""} data-k="${h.k || ""}" style="--hc:${h.c};left:${Math.min(W - 64 - SAFE().r, Math.max(64 + SAFE().l, ox + h.x * dw))}px;top:${Math.min(H - (H < 520 && getComputedStyle($("quick")).display !== "none" ? 118 : 30), Math.max(H < 520 ? (minTop >= 150 ? 112 : 74) : (minTop || 110), oy + h.y * dh))}px"><i></i><span>${h.n}</span></button>`).join("");
   box.querySelectorAll(".hot").forEach(b => b.onclick = () => onClick(list[+b.dataset.i]));
 }
 /* ----- interiors: walk into a building, then tap something inside ----- */
