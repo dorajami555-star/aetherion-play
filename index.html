@@ -10372,7 +10372,7 @@ async function rvPick(c) {                           // ×10: the chosen card co
 function popStars(n) { for (let i = 0; i < n; i++) setTimeout(() => tone(600 + i * 140, .18, "triangle", .07), 150 + i * 180); }
 
 /* ----- one-time gifts for the owner (versioned, so each is given once) ----- */
-const GRANTS = [{id:4, msg:"מתנה: 200 מכל מגילה ו-100,000 גבישים!", unknown:200, scrolls:{m:200, l:200, ld:200}, gem:100000}, {id:3, msg:"מתנה: כל המפלצות שחסרו לך (כולל כל האגדיות) וכל הציוד במשחק, באיכות אגדית!", missingMons:1, allGear:4}, {id:2, msg:"מתנה: VIP 2! מהירויות ×2 ו-×3 פתוחות לך", vip:300}, {id:1, msg:"מתנה ממני: הרבה גבישים, זהב, מגילות, אבני אתר, רונים ורוחונים!", gem:50000, mana:5000000, unknown:40, scrolls:{m:60, l:15, ld:15}, ess:250, magic:150, energy:99, sprites:12, runes:12}];
+const GRANTS = [{id:5, msg:"מתנה: 300 מכל מגילה (לא ידועה, אתר, אגדית, אור וחושך)!", unknown:300, scrolls:{m:300, l:300, ld:300}}, {id:4, msg:"מתנה: 200 מכל מגילה ו-100,000 גבישים!", unknown:200, scrolls:{m:200, l:200, ld:200}, gem:100000}, {id:3, msg:"מתנה: כל המפלצות שחסרו לך (כולל כל האגדיות) וכל הציוד במשחק, באיכות אגדית!", missingMons:1, allGear:4}, {id:2, msg:"מתנה: VIP 2! מהירויות ×2 ו-×3 פתוחות לך", vip:300}, {id:1, msg:"מתנה ממני: הרבה גבישים, זהב, מגילות, אבני אתר, רונים ורוחונים!", gem:50000, mana:5000000, unknown:40, scrolls:{m:60, l:15, ld:15}, ess:250, magic:150, energy:99, sprites:12, runes:12}];
 function applyGrants() {
   S.grant = S.grant || 0; let msg = "";
   GRANTS.filter(g => g.id > S.grant).sort((a, b) => a.id - b.id).forEach(g => {
