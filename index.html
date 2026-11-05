@@ -3431,7 +3431,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .dl-tm button.on{background:#1c2a66;color:#ffd75a}
 @keyframes dlIn{from{opacity:0;translate:0 -4px}}
 .dl-rows{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:5px;min-height:0;container:dlrows / size}
-.dl-r{position:relative;min-height:0;display:grid;grid-template-columns:clamp(56px,14cqw,92px) auto minmax(0,1fr) auto clamp(22px,4.6cqw,30px);align-items:center;gap:clamp(5px,1.4cqw,10px);padding:3px 3px 3px 6px;border-radius:12px;
+.dl-r{position:relative;min-height:0;display:grid;grid-template-columns:clamp(44px,10cqw,66px) minmax(0,clamp(100px,28.6cqw,200px)) minmax(0,1fr) auto clamp(20px,4cqw,28px);align-items:center;gap:clamp(4px,1.1cqw,10px);padding:3px;border-radius:12px;
   font:inherit;color:#fff;text-align:right;cursor:pointer;direction:rtl;background:linear-gradient(90deg,#131d4e,#0b1238);border:1.5px solid #34407a;transition:border-color .2s,box-shadow .2s;animation:dlIn .18s ease-out}
 .dl-r.on{border-color:#ffd75a;box-shadow:0 0 0 1px #6a4206,0 0 12px rgba(255,200,80,.45)}
 .dl-res{align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:9px;line-height:1.1}
@@ -3445,7 +3445,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .dl-pow{display:inline-flex;align-items:center;gap:3px;color:#ffd75a;font-size:12.5px;font-weight:800}.dl-pow .azi{width:13px;height:13px}
 .dl-r .dl-mons{--mt:clamp(22px,min(calc((100cqh - 15px) / 4 - 9px),7.2cqw),46px);gap:3px;justify-content:flex-start}
 .dl-chev{display:grid;place-items:center;width:100%;aspect-ratio:1;border-radius:8px;background:#0a1032;border:1.5px solid #c99a3a;color:#ffd75a}.dl-chev .azi{width:14px;height:14px}
-@container dlrows (max-width:470px){.dl-who .pav{display:none}.dl-r{gap:5px}}@container dlrows (max-width:380px){.dl-when small+small{display:none}}   /* narrower lists: the avatar goes first, the date last */
+@container dlrows (max-width:380px){.dl-when small+small{display:none}}   /* narrower lists: the avatar goes first, the date last */
 @container dlrows (max-height:195px){.dl-res>.azi{display:none}}   /* short cards (small phones): the result keeps its word, colour and points */
 .dl-empty{position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto auto auto;justify-items:center;gap:4px;min-height:0;padding:0 10px 10px;border-radius:10px;overflow:hidden;text-align:center;background:linear-gradient(#0b1236,#070b26)}
 .dl-art{width:100%;height:100%;min-height:0;background:var(--hall) center 40%/cover no-repeat;-webkit-mask:linear-gradient(#000 72%,transparent);mask:linear-gradient(#000 72%,transparent)}
@@ -3496,6 +3496,25 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
   .dl.open .dl-dh{grid-area:dh}.dl.open .dl-sum{grid-area:sum}.dl.open .dl-att{grid-area:att}.dl.open .dl-det>.dl-mons{grid-area:mons;--mt:clamp(26px,calc((100cqw - 90px) / 10),44px)}.dl.open .dl-me{grid-area:me;align-self:start}.dl.open .dl-me .dl-mons{--mt:clamp(26px,calc((100cqw - 90px) / 10),44px)}
   .dl.open .dl-vs{grid-area:vs;flex-direction:column}.dl.open .dl-vs::before,.dl.open .dl-vs::after{flex:1;width:1.5px;height:auto;min-height:10px;background:linear-gradient(transparent,#c99a3a)}.dl.open .dl-vs::after{background:linear-gradient(#c99a3a,transparent)}
   .dl.open .dl-meta{grid-area:meta;align-self:end}.dl.open .dl-btns{grid-area:btns;align-self:end}}   /* small phones: the open details cover the list, attacker and defence side by side */
+/* ---- defence log polish (2026-11-05): a compact result chip, the attacker block, his five bigger in the free middle, the time column; the chosen
+   row gets a soft gold frame; the panel shows the full date + hour and the rating before → after; the broken-save state ---- */
+.dl-r .dl-res{align-self:center;justify-content:center;gap:2px;padding:3px 2px;border-radius:8px}
+.dl-rt{display:flex;align-items:center;gap:3px;line-height:1}.dl-rt .azi{width:13px;height:13px;flex:none}.dl-rt>b{font-size:clamp(11.5px,3.2dvh,14px)}
+.dl-r .dl-d{padding:0 6px;border-radius:99px;background:rgba(0,0,0,.35);font-size:clamp(11.5px,3.2dvh,13.5px);font-weight:900;line-height:1.35}
+.dl-r .dl-mons{container-type:inline-size;min-width:0;gap:3px;justify-content:center;--mt:min(calc((100cqw - 14px) / 5),calc((100cqh - 15px) / 4 - 10px),52px)}
+.dl-r .dl-na{font-size:11px;color:#c8d2f0;text-align:center}
+.dl-when{align-items:flex-start}
+.dl-r.on{border:1.5px solid #ffd75a;background:linear-gradient(90deg,#1c2760,#10184a);box-shadow:0 0 0 1px rgba(106,66,6,.8),0 0 10px rgba(255,200,80,.35)}
+.dl-meta{flex-wrap:wrap;row-gap:2px}.dl-meta .dl-dt{font-size:12px}.dl-sc{display:inline-flex;gap:4px;font-size:12.5px}.dl-sc i{font-style:normal}.dl-nosc{font-size:11px;color:#c8d2f0}
+.dl-rev em{display:inline-flex;align-items:center;gap:1px;font-style:normal;font-size:12px}.dl-rev em img{width:16px;height:16px}
+.dl-rev:disabled{cursor:default;filter:grayscale(.8) brightness(.75)}
+.dl-empty .dl-all{margin-bottom:2px}
+@container dlrows (max-height:195px){.dl-rt .azi{display:none}}
+.dl-r .dl-who{gap:5px}.dl-r .dl-who .pav{--ps:clamp(26px,calc((100cqh - 15px) / 4 - 18px),30px)!important;width:var(--ps)!important;height:var(--ps)!important;flex:none}
+@container dlrows (max-width:430px){.dl-who .pav{display:none}.dl-r{grid-template-columns:clamp(44px,10.5cqw,60px) minmax(0,clamp(96px,24cqw,150px)) minmax(0,1fr) auto clamp(20px,4.6cqw,26px)}}
+@container dldet (max-height:370px){.dl-meta{flex-wrap:nowrap;padding:2px 6px}.dl-meta .azi{display:none}.dl-meta .dl-dt,.dl-sc{font-size:11px}}
+.dl-when small:first-child{font-size:clamp(11px,3.2dvh,13px)}
+@container dlrows (max-width:430px){.dl-r .dl-when{white-space:normal;width:44px;align-items:center}.dl-r .dl-when small:first-child{white-space:normal;text-align:center;line-height:1.1;font-size:11px}}
 /* ---- the fight tab (the user's clean concept, 2026-11-05): framed cards 2x2, the bottom panel (fight / opponent / my team), other opponents ---- */
 .fz{display:grid;grid-template-rows:minmax(0,1fr) clamp(62px,21.5%,112px) auto;gap:2.2%;height:100%;min-height:0;padding-top:clamp(6px,2.6%,16px);box-sizing:border-box;direction:rtl}
 .fz-cards{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3% 1.6%;min-height:0}
@@ -5341,12 +5360,13 @@ function nearBots(A, span, n) {
 }
 function arenaNewDay(A) {
   const near = nearBots(A, 220, 3), n = Math.min(near.length, Math.floor(R() * 4));
+  if (!Array.isArray(A.log)) A.log = [];
   for (let k = 0; k < n; k++) {
     const i = pk(near), b = getBot(A, i), defended = R() < .5 + (A.r - b.r) / 800, d = defended ? 6 : -10;
-    A.r = Math.max(800, A.r + d); botTouch(A, i, defended ? -4 : 8, !defended);
-    A.log.unshift({bi:i, win:defended, d, day:today(), ts:Date.now(), pow:botPow(b), ar:b.r, ra:A.r, dp:myPow(), def:S.team.map(u => S.mons.find(m => m.uid === u)).filter(Boolean).map(m => [m.id, m.lvl, mst(m)])});
+    const rb = A.r, ts = Date.now(); A.r = Math.max(800, A.r + d); botTouch(A, i, defended ? -4 : 8, !defended);
+    A.log.unshift({id:ts + "-" + k, bi:i, win:defended, d:A.r - rb, rb, ra:A.r, day:today(), ts, pow:botPow(b), ar:b.r, dp:myPow(), def:S.team.map(u => S.mons.find(m => m.uid === u)).filter(Boolean).map(m => [m.id, m.lvl, mst(m)])});
   }
-  A.log = A.log.slice(0, 15); A.day = today(); A.opp = null; save();
+  A.log = (Array.isArray(A.log) ? A.log : []).slice(0, 15); A.day = today(); A.opp = null; save();
 }
 function makeOpponents() { const A = arenaState(), near = nearBots(A, 120, 4); A.opp = near.sort(() => R() - .5).slice(0, 4); save(); }
 function checkTier(A) {                      // reaching a new rank unlocks its one-time reward; it is collected in "rank rewards" (claimTier)
@@ -5420,7 +5440,7 @@ function renderArena() {
   $("arenaCrest").innerHTML = `${rankIc(A.r).replace('class="rankic', 'class="rankic big')}<b class="title-font" style="color:${rc}">${rn}</b>
     <div class="az-prog"><i style="width:${pct}%"></i><span dir="ltr">${A.r}${next ? ` / ${next[0]}` : ""}</span></div>
     <div class="az-place">מקום <b>${fmt(pos)}</b><span class="az-place-n"><i> · </i>${next ? `עוד ${next[0] - A.r} ל${next[1]}` : "הדרגה הגבוהה ביותר!"}</span></div>`;
-  const newLog = A.log.filter(x => x.day === today() && !x.seen).length, rwReady = tierReady(A) + seasonMail(A).length;
+  const newLog = azLogArr(A).filter(x => x.day === today() && !x.seen).length, rwReady = tierReady(A) + seasonMail(A).length;
   $("arenaTabs").innerHTML = [["board", "trophy", "דירוג"], ["ranks", "gift", `פרסי דירוג${rwReady ? ` (${rwReady})` : ""}`], ["log", "shield", `יומן הגנה${newLog ? ` (${newLog})` : ""}`], ["fight", "sw", "קרב"], ["shop", "shop", "חנות הזירה"], ["hist", "chart", "היסטוריה"]]
     .map(([t, ic, n]) => `<button class="${arenaTab === t ? "on" : ""}" data-t="${t}">${azi(ic)}<span>${n}</span>${azi("prev", "chev")}</button>`).join("");   // as in the concept: icon on the left, name in the middle, arrow on the right
   $("arenaTabs").querySelectorAll("[data-t]").forEach(b => b.onclick = () => { arenaTab = b.dataset.t; azBuyArm = null; renderArena(); });
@@ -5434,7 +5454,7 @@ function renderArena() {
   $("azBanner").hidden = !ban; $("azBanner").innerHTML = ban ? `<b class="title-font">${azi(ban[0])}<span>${ban[1]}</span></b><small>${ban[2]}</small>` : "";
   const sl = seasonLeft(), hbox = arenaTab === "ranks" ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>סיום העונה בעוד</small><b id="azClock" dir="ltr">${[sl.d, sl.h, sl.m, sl.s].map(v => String(v).padStart(2, "0")).join(":")}</b><small class="az-hb-u"><i>שנ׳</i><i>דק׳</i><i>שעה</i><i>יום</i></small></span>`
     : arenaTab === "shop" ? `<img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(A.glory || 0)}</b>`
-    : arenaTab === "log" && A.log.length && A.log[0].ts ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>התקפה אחרונה</small><b>${azAgo(A.log[0])}</b></span>`
+    : arenaTab === "log" && azLogArr(A).length && azLogArr(A)[0].ts ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>התקפה אחרונה</small><b>${azAgo(A.log[0])}</b></span>`
     : arenaTab === "hist" ? `<span><small>המאזן שלך</small><b><span class="w" dir="ltr">${fmt(A.w)}</span> ניצחונות · <span class="l" dir="ltr">${fmt(A.l)}</span> הפסדים</b></span>` : "";
   $("azHBox").hidden = !hbox; $("azHBox").innerHTML = hbox; $("azHBox").className = `az-hbox ${arenaTab}`;
   $("topbar").classList.toggle("az-nores", !!(ban || hbox) || arenaTab === "board"); $("topbar").classList.toggle("az-sh", shell);
@@ -5521,7 +5541,7 @@ let azSideHtml = "";
 function azSide(A) {
   const g = $("azSide"), P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
   const k = RANKS.indexOf(rankOf(A.r)), [lo, rn, rc] = RANKS[k], next = RANKS[k + 1], pos = myRank(A), pct = next ? Math.round((A.r - lo) / (next[0] - lo) * 100) : 100;
-  const newLog = A.log.filter(x => x.day === today() && !x.seen).length, rwReady = tierReady(A) + seasonMail(A).length, cnt = {ranks:rwReady, log:newLog};
+  const newLog = azLogArr(A).filter(x => x.day === today() && !x.seen).length, rwReady = tierReady(A) + seasonMail(A).length, cnt = {ranks:rwReady, log:newLog};
   const slot = j => { const y0 = j ? AZS.menu[j] - 3 : 297, h = AZS.menu[j + 1] - 3 - y0, [sy, sh] = AZ_MENU[j][0] === arenaTab ? [297, 74] : [368, 63], s = h / sh;
     return `<i class="sg-mbg${AZ_MENU[j][0] === arenaTab ? " on" : ""}" style="${P(14, y0, 276, h)};background-size:1774px ${(887 * s).toFixed(1)}px;background-position:-14px ${(-sy * s).toFixed(1)}px"></i>`; };
   const html = `<span class="sg-sideart"></span>${AZ_MENU.map((_, j) => slot(j)).join("")}
@@ -5845,62 +5865,84 @@ function azFit(root) {                               // a long player name steps
 function azPager(id, page, pages) {
   return pages > 1 ? `<div class="az-nav slim"><span class="az-pager"><button data-pg="-1" aria-label="עמוד קודם" ${page <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${page}/${pages}</b><button data-pg="1" aria-label="עמוד הבא" ${page >= pages ? "disabled" : ""}>${azi("next")}</button></span></div>` : "";
 }
-let azLogF = "all", azLogT = "all", azLogTOpen = false, azLogSel = null, azLogOpen = false;   // azLogOpen: on narrow screens the details cover the list until closed
+let azLogF = "all", azLogT = "all", azLogTOpen = false, azLogSel = null, azLogOpen = false;   // azLogSel: the chosen fight's id (not its place, which moves when a new attack comes in); azLogOpen: on narrow screens the details cover the list until closed
 const AZ_LOG_PER = 4;
 const AZ_LOG_T = [["all", "כל הזמנים", Infinity, "כל הזמנים"], ["day", "24 השעות האחרונות", 864e5, "24 שעות"], ["week", "7 הימים האחרונים", 7 * 864e5, "7 ימים"]];   // the time filter: only what the saved attack times allow (menu name, span, button name)
+const azLogArr = A => Array.isArray(A.log) ? A.log.filter(x => x && typeof x === "object") : [];
+const azSgn = d => `${d > 0 ? "+" : d < 0 ? "−" : ""}${Math.abs(d)}`;   // a real minus sign; shown inside dir="ltr" so the sign stays before the number in RTL
+const azDayN = day => Math.round((Date.parse(today()) - Date.parse(day)) / 864e5);
 function azAgo(x) {                                  // relative time from the attack's real timestamp; older entries only kept the day
-  if (!x.ts) return x.day === today() ? "היום" : x.day;
+  if (!x.ts) { const n = x.day ? azDayN(x.day) : NaN; return !isFinite(n) ? "" : n <= 0 ? "היום" : n === 1 ? "אתמול" : `לפני ${n} ימים`; }
   const m = Math.max(0, Math.floor((Date.now() - x.ts) / 60000));
-  return m < 1 ? "לפני רגע" : m < 60 ? `לפני ${m} דק׳` : m < 1440 ? `לפני ${Math.floor(m / 60)} שע׳` : `לפני ${Math.floor(m / 1440)} ימים`;
+  return m < 1 ? "לפני רגע" : m < 60 ? `לפני ${m} דק׳` : m < 1440 ? (m < 120 ? "לפני שעה" : `לפני ${Math.floor(m / 60)} שע׳`) : m < 2880 ? "לפני יום" : `לפני ${Math.floor(m / 1440)} ימים`;
 }
-const azWhen = x => { if (!x.ts) return ["", ""]; const d = new Date(x.ts), p = n => String(n).padStart(2, "0");   // the attack's own date and hour
-  return [`${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()}`, `${p(d.getHours())}:${p(d.getMinutes())}`]; };
-const azLogSig = A => A.log.length + ":" + (A.log[0] ? A.log[0].ts || A.log[0].day : "") + ":" + Math.floor(Date.now() / 60000);   // a new attack, or a new minute for the "x ago" times
-/* ---- the defence log, built from the user's two concepts (2026-11-04): attack cards, a VS panel, filters, a page bar, and the two empty states
-   (no attacks yet / none in this filter). Everything shown comes from A.log (written by arenaNewDay) and the real bots; nothing is made up. ---- */
+const azWhen = x => { const p = n => String(n).padStart(2, "0");   // the attack's own date and hour (only the date when an old entry kept only the day)
+  if (!x.ts) { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(x.day || ""); return m ? [`${m[3]}.${m[2]}.${m[1]}`, ""] : ["", ""]; }
+  const d = new Date(x.ts); return [`${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()}`, `${p(d.getHours())}:${p(d.getMinutes())}`]; };
+const azRb = x => x.rb != null ? x.rb : x.ra != null && !(x.ra <= 800 && x.d < 0) ? x.ra - x.d : null;   // rating before: saved, or after − change (not when the 800 floor may have cut the change)
+const azBotOk = x => Number.isInteger(x.bi) && x.bi >= 0 && x.bi < NBOTS;   // the attacker still exists
+const azLogSig = A => { const g = azLogArr(A); return (Array.isArray(A.log) ? "" : "x") + g.length + ":" + (g[0] ? g[0].id || g[0].ts || g[0].day : "") + ":" + Math.floor(Date.now() / 60000); };   // a new attack, or a new minute for the "x ago" times
+/* ---- the defence log, built from the user's two concepts (2026-11-04), polished 2026-11-05: attack rows (compact result, attacker, his five,
+   time), a VS panel (attacker vs my defence as saved, result, change, rating before → after, full date and hour), filters with counts, 4 a page,
+   the empty / no-match / broken-save states. Everything shown comes from A.log (written by arenaNewDay) and the real bots; nothing is made up:
+   what an old entry did not save is shown as not saved. The log is local save data, so there is no loading wait. ---- */
 function azLog(A, L) {
-  A.log.forEach(x => { if (x.day === today()) x.seen = 1; }); save();
+  if (!Array.isArray(A.log)) {                       // a broken save: say so, offer a retry, keep the rest of the arena working
+    L.innerHTML = `<div class="dl" data-sig="${azLogSig(A)}"><div class="dl-det empty"><b class="dl-dh title-font">פרטי הקרב</b></div><div class="dl-main"><div class="dl-box"><div class="dl-empty dl-err"><span class="dl-art"></span>
+      <b class="title-font">לא ניתן לטעון את יומן ההגנה</b><small>נתוני היומן בשמירה פגומים. הקרבות עצמם והניקוד שלך לא נפגעו.</small><button class="dl-all" id="dlRetry">${azi("refresh")}<span>נסה שוב</span></button></div></div></div></div>`;
+    $("dlRetry").onclick = () => { if (!Array.isArray(A.log)) { A.log = []; save(); } renderArena(); };
+    return;
+  }
+  const recs = azLogArr(A);
+  recs.forEach((x, k) => { if (!x.id) x.id = `${x.ts || x.day || "x"}-${k}-${x.bi}`; if (x.day === today()) x.seen = 1; }); save();   // older entries get a fixed id once
   const [, , span, tl] = AZ_LOG_T.find(t => t[0] === azLogT) || AZ_LOG_T[0];
   const inTime = x => span === Infinity || (x.ts ? Date.now() - x.ts <= span : false);
-  const all = A.log.map((x, k) => ({x, k})).filter(e => inTime(e.x)), wins = all.filter(e => e.x.win), losses = all.filter(e => !e.x.win);
+  const all = recs.filter(inTime), wins = all.filter(x => x.win), losses = all.filter(x => !x.win);
   const list = azLogF === "win" ? wins : azLogF === "loss" ? losses : all;
-  const pages = Math.max(1, Math.ceil(list.length / AZ_LOG_PER)); azLogPage = Math.max(1, Math.min(pages, azLogPage));
-  if (!list.some(e => e.k === azLogSel)) azLogSel = list.length ? list[(azLogPage - 1) * AZ_LOG_PER].k : null;   // the chosen fight left the filter / page: the first one shown
+  const pages = Math.max(1, Math.ceil(list.length / AZ_LOG_PER));
+  const at = list.findIndex(x => x.id === azLogSel);
+  if (at >= 0) azLogPage = Math.floor(at / AZ_LOG_PER) + 1;   // the chosen fight moved (a new attack came in): its page follows it
+  azLogPage = Math.max(1, Math.min(pages, azLogPage));
   const s0 = (azLogPage - 1) * AZ_LOG_PER, view = list.slice(s0, s0 + AZ_LOG_PER);
+  if (at < 0) azLogSel = view.length ? view[0].id : null;   // the chosen fight left the filter / page: the first one shown
   const filt = [["all", "הכל", all.length, "list"], ["win", "ניצחונות", wins.length, "shield"], ["loss", "הפסדים", losses.length, "sw"]]
     .map(([f, n, c, ic]) => `<button class="dl-f ${f} ${azLogF === f ? "on" : ""}" data-f="${f}">${azi(ic)}<span>${n} (<b dir="ltr">${c}</b>)</span></button>`).join("")
     + `<span class="dl-tw"><button class="dl-f t ${azLogTOpen ? "open" : ""}" id="dlT" aria-expanded="${azLogTOpen}">${azi("cal")}<span>${tl}</span>${azi("prev", "chev")}</button>
       ${azLogTOpen ? `<span class="dl-tm">${AZ_LOG_T.map(([t, n]) => `<button class="${azLogT === t ? "on" : ""}" data-tf="${t}">${n}</button>`).join("")}</span>` : ""}</span>`;
-  const delta = x => `<b class="dl-d" dir="ltr">${x.d > 0 ? "+" : ""}${x.d}${azi(x.d > 0 ? "up" : "down", "dl-dar")}</b>`;
   const av = (b, x, n) => framedAvatar(n, {k:"", c1:rankOf(x.ar || b.r)[2], c2:"#0b1338"}, ART[b.team[0][0]] || "");
-  const row = ({x, k}) => { const b = getBot(A, x.bi), [dd, hh] = azWhen(x);
-    return `<button class="dl-r ${x.win ? "w" : "l"} ${k === azLogSel ? "on" : ""}" data-l="${k}">
-      <span class="dl-res">${azi(x.win ? "shield" : "sw")}<b>${x.win ? "ניצחון" : "הפסד"}</b>${delta(x)}</span>
-      <span class="dl-when"><small>${azAgo(x)}</small>${dd ? `<small dir="ltr">${dd}</small><small dir="ltr">${hh}</small>` : ""}</span>
-      <span class="dl-who">${av(b, x, 40)}<span><b class="dl-name">${esc(b.name)}</b>${x.pow ? `<span class="dl-pow">${azi("sw")}<b dir="ltr">${fmt(x.pow)}</b></span>` : ""}</span></span>
-      <span class="az-mons dl-mons">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span>
+  const mons = b => `<span class="az-mons dl-mons">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span>`;
+  const row = x => { const ok = azBotOk(x), b = ok ? getBot(A, x.bi) : null;
+    return `<button class="dl-r ${x.win ? "w" : "l"} ${x.id === azLogSel ? "on" : ""}" data-l="${esc(String(x.id))}">
+      <span class="dl-res"><span class="dl-rt">${azi(x.win ? "shield" : "sw")}<b>${x.win ? "ניצחון" : "הפסד"}</b></span><b class="dl-d" dir="ltr">${azSgn(x.d)}</b></span>
+      <span class="dl-who">${ok ? av(b, x, 40) : ""}<span><b class="dl-name">${ok ? esc(b.name) : "התוקף אינו זמין"}</b>${x.pow ? `<span class="dl-pow">${azi("sw")}<b dir="ltr">${fmt(x.pow)}</b></span>` : ""}</span></span>
+      ${ok ? mons(b) : `<span class="dl-na">פרטי התוקף אינם זמינים</span>`}
+      <span class="dl-when"><small>${azAgo(x)}</small></span>
       <span class="dl-chev">${azi("prev")}</span></button>`; };
   const hall = HAVE.has("ui_deflog_hall") ? ` style="--hall:url(${assetUrl("ui_deflog_hall")})"` : "";
   let body;
-  if (!A.log.length) body = `<div class="dl-empty"${hall}><span class="dl-art"></span><b class="title-font">אין קרבות להצגה</b>
-      <small>עדיין לא בוצעו התקפות על ההגנה שלך.<br>הקרבות יופיעו כאן לאחר שתותקף בזירת השמיים.</small><i class="dl-orn"></i></div>`;
+  if (!recs.length) body = `<div class="dl-empty"${hall}><span class="dl-art"></span><b class="title-font">אין קרבות להצגה</b>
+      <small>עדיין לא בוצעו התקפות על ההגנה שלך.<br>הקרבות יופיעו כאן לאחר שתותקף בזירת השמיים.</small><button class="dl-all" id="dlEdit">${azi("shield")}<span>ערוך הגנה</span></button></div>`;
   else if (!list.length) body = `<div class="dl-empty filt"${hall}><span class="dl-art"></span><b class="title-font">אין קרבות להצגה</b>
       <small>אין קרבות שתואמים לסינון שבחרת.</small><button class="dl-all" id="dlAll">${azi("list")}<span>חזרה להכל</span></button></div>`;
   else body = `<div class="dl-rows">${view.map(row).join("")}</div>`;
-  const sel = azLogSel != null ? A.log[azLogSel] : null;
+  const sel = list.find(x => x.id === azLogSel) || null;
   let det;
   if (!sel) det = `<div class="dl-det empty"><b class="dl-dh title-font">פרטי הקרב</b>
       <span class="dl-scroll"${HAVE.has("ui_deflog_scroll") ? ` style="--sc:url(${assetUrl("ui_deflog_scroll")})"` : ""}></span><b class="title-font dl-pick">בחר קרב</b><small>כדי לצפות בפרטים</small><i class="dl-orn"></i></div>`;
-  else { const b = getBot(A, sel.bi), mine = sel.def;
-    det = `<div class="dl-det"><b class="dl-dh title-font">פרטי הקרב</b><button class="dl-x" id="azLogX" aria-label="סגירה">${azi("x")}</button>
-      <div class="dl-sum ${sel.win ? "w" : "l"}"><b class="dl-sd" dir="ltr">${azi("trophy")}${sel.d > 0 ? "+" : ""}${sel.d}</b><b>${sel.win ? "ניצחון" : "הפסד"}</b>${azi(sel.win ? "shield" : "sw")}</div>
-      <div class="dl-att">${av(b, sel, 40)}<span><small>התוקף</small><b class="dl-name">${esc(b.name)}</b>${sel.pow ? `<span class="dl-pow">${azi("sw")}<b dir="ltr">${fmt(sel.pow)}</b></span>` : ""}</span></div>
-      <span class="az-mons dl-mons">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span>
+  else { const ok = azBotOk(sel), b = ok ? getBot(A, sel.bi) : null, mine = sel.def, [dd, hh] = azWhen(sel), rb = azRb(sel);
+    const canRev = ok && !sel.win && !sel.rev, tk = A.t >= 1;   // revenge: a loss not avenged yet, against an attacker who still exists; it costs one arena ticket like any arena fight
+    det = `<div class="dl-det" data-id="${esc(String(sel.id))}"><b class="dl-dh title-font">פרטי הקרב</b><button class="dl-x" id="azLogX" aria-label="סגירה">${azi("x")}</button>
+      <div class="dl-sum ${sel.win ? "w" : "l"}"><b class="dl-sd" dir="ltr">${azi("trophy")}${azSgn(sel.d)}</b><b>${sel.win ? "ניצחון" : "הפסד"}</b>${azi(sel.win ? "shield" : "sw")}</div>
+      <div class="dl-att">${ok ? av(b, sel, 40) : ""}<span><small>התוקף</small><b class="dl-name">${ok ? esc(b.name) : "התוקף אינו זמין"}</b>${sel.pow ? `<span class="dl-pow">${azi("sw")}<b dir="ltr">${fmt(sel.pow)}</b></span>` : ""}</span></div>
+      ${ok ? mons(b) : `<span class="dl-na">פרטי התוקף כבר אינם זמינים</span>`}
       <div class="dl-vs"><b class="title-font">VS</b></div>
       <div class="dl-me"><div class="dl-meh">${azi("shield")}<span><b>ההגנה שלך</b>${sel.dp ? `<span class="dl-pow">${azi("sw")}<b dir="ltr">${fmt(sel.dp)}</b></span>` : ""}</span>${framedAvatar(34)}</div>
-        ${mine && mine.length ? `<span class="az-mons dl-mons">${mine.map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span>` : `<span class="dl-na">ההרכב לא נשמר בקרב ישן זה</span>`}</div>
-      <div class="dl-meta"><span>${azi("cal")}<b>${azAgo(sel)}</b></span><span>${azi("trophy")}${sel.ra != null ? `<b dir="ltr">${fmt(sel.ra - sel.d)}</b>${azi("next", "dl-to")}<b dir="ltr" class="${sel.win ? "w" : "l"}">${fmt(sel.ra)}</b>` : `<b dir="ltr" class="${sel.win ? "w" : "l"}">${sel.d > 0 ? "+" : ""}${sel.d}</b>`}</span></div>
-      <div class="dl-btns"><button class="dl-prof" data-i="${b.i}">${azi("users")}<span>פרופיל התוקף</span></button>${!sel.win && !sel.rev ? `<button class="dl-rev" data-k="${azLogSel}">${azi("sw")}<span>נקמה</span></button>` : sel.rev ? '<small class="dl-done">נקמה בוצעה</small>' : ""}</div></div>`; }
+        ${mine && mine.length ? `<span class="az-mons dl-mons">${mine.filter(m => MON[m[0]]).map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span>` : `<span class="dl-na">ההרכב לא נשמר בקרב זה</span>`}</div>
+      <div class="dl-meta"><span>${azi("cal")}<b class="dl-dt" dir="ltr">${dd ? `${dd}${hh ? ` · ${hh}` : ""}` : "התאריך לא נשמר"}</b></span>
+        <span>${azi("trophy")}${rb != null && sel.ra != null ? `<b class="dl-sc" dir="ltr">${fmt(rb)} → <i class="${sel.win ? "w" : "l"}">${fmt(sel.ra)}</i></b>` : `<small class="dl-nosc">ללא ניקוד</small>`}</span></div>
+      <div class="dl-btns">${ok ? `<button class="dl-prof" data-i="${b.i}">${azi("users")}<span>פרופיל התוקף</span></button>` : ""}${canRev
+        ? `<button class="dl-rev" data-k="${esc(String(sel.id))}" ${tk ? "" : "disabled"}>${azi("sw")}<span>${tk ? "נקמה" : "אין כרטיסים"}</span>${tk ? `<em dir="ltr"><img src="assets/cur_ticket.webp" alt="כרטיס זירה">1</em>` : ""}</button>`
+        : sel.rev ? '<small class="dl-done">נקמה בוצעה</small>' : ""}</div></div>`; }
   const pb = (k, ic, on, lbl) => `<button class="dl-pb" data-pg="${k}" aria-label="${lbl}" ${on ? "" : "disabled"}>${azi(ic)}</button>`;
   const has = list.length > 0;
   const nav = `<div class="dl-nav"><span class="dl-cnt">${azi("doc")}<span>${has ? `מציג <b dir="ltr">${s0 + 1}–${s0 + view.length}</b> מתוך <b dir="ltr">${list.length}</b>` : "מציג <b>0</b> קרבות"}</span></span>
@@ -5909,15 +5951,17 @@ function azLog(A, L) {
       ${pb("1", "next", has && azLogPage < pages, "עמוד הבא")}${pb("last", "dnext", has && azLogPage < pages, "עמוד אחרון")}</span></div>`;
   L.innerHTML = `<div class="dl ${azLogOpen && sel ? "open" : ""}" data-sig="${azLogSig(A)}">${det}<div class="dl-main"><div class="dl-box"><div class="dl-fs">${filt}</div>${body}</div>${nav}</div></div>`;
   azFit(L);
-  L.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { azLogF = b.dataset.f; azLogTOpen = false; azLogPage = 1; azLogSel = null; azLogOpen = false; renderArena(); });
+  const go = (f) => { f(); azLogTOpen = false; renderArena(); };
+  L.querySelectorAll("[data-f]").forEach(b => b.onclick = () => go(() => { azLogF = b.dataset.f; azLogPage = 1; azLogSel = null; azLogOpen = false; }));
   $("dlT").onclick = () => { azLogTOpen = !azLogTOpen; renderArena(); };
-  L.querySelectorAll("[data-tf]").forEach(b => b.onclick = () => { azLogT = b.dataset.tf; azLogTOpen = false; azLogPage = 1; azLogSel = null; azLogOpen = false; renderArena(); });
-  if ($("dlAll")) $("dlAll").onclick = () => { azLogF = "all"; azLogT = "all"; azLogPage = 1; azLogSel = null; renderArena(); };
-  L.querySelectorAll("[data-l]").forEach(b => b.onclick = () => { azLogTOpen = false; azLogSel = +b.dataset.l; azLogOpen = true; renderArena(); });
-  L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { const g = b.dataset.pg; azLogPage = g === "first" ? 1 : g === "last" ? pages : azLogPage + +g; azLogSel = null; azLogOpen = false; azLogTOpen = false; renderArena(); });
+  L.querySelectorAll("[data-tf]").forEach(b => b.onclick = () => go(() => { azLogT = b.dataset.tf; azLogPage = 1; azLogSel = null; azLogOpen = false; }));
+  if ($("dlAll")) $("dlAll").onclick = () => go(() => { azLogF = "all"; azLogT = "all"; azLogPage = 1; azLogSel = null; });
+  if ($("dlEdit")) $("dlEdit").onclick = () => { pickedStage = null; show("team"); };   // the defence is the main team (there is no separate defence team)
+  L.querySelectorAll("[data-l]").forEach(b => b.onclick = () => go(() => { azLogSel = b.dataset.l; azLogOpen = true; }));
+  L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { if (b.disabled) return; const g = b.dataset.pg; go(() => { azLogPage = g === "first" ? 1 : g === "last" ? pages : azLogPage + +g; azLogSel = null; azLogOpen = false; }); });
   if ($("azLogX")) $("azLogX").onclick = () => { azLogOpen = false; renderArena(); };
   L.querySelectorAll(".dl-prof").forEach(b => b.onclick = () => botProfile(getBot(A, +b.dataset.i)));
-  L.querySelectorAll(".dl-rev").forEach(b => b.onclick = () => { const x = A.log[+b.dataset.k]; fightBot(getBot(A, x.bi), x); });
+  L.querySelectorAll(".dl-rev").forEach(b => b.onclick = () => { const x = recs.find(e => e.id === b.dataset.k); if (!x || !azBotOk(x) || A.t < 1) return; fightBot(getBot(A, x.bi), x); });
 }
 function azHist(A, L) {
   const H = A.hist || [], pages = Math.max(1, Math.ceil(H.length / AZ_PER)); azHistPage = Math.max(1, Math.min(pages, azHistPage));
@@ -6059,7 +6103,7 @@ function arenaResult(win, st) {                    // st: a fight that was cut o
   A.r = Math.max(800, A.r + delta); if (win) A.w++; else A.l++;
   A.glory = (A.glory || 0) + (win ? 12 : 3);
   botTouch(A, b.i, win ? -Math.round(delta / 2) : Math.round(-delta / 2), !win);
-  if (rev && win) { const e = A.log.find(x => x.bi === rev.bi && x.day === rev.day && !x.rev); if (e) e.rev = 1; }
+  if (rev && win && Array.isArray(A.log)) { const e = A.log.find(x => x && !x.rev && (rev.id ? x.id === rev.id : x.bi === rev.bi && x.day === rev.day)); if (e) e.rev = 1; }
   A.hist = [{bi:b.i, name:b.name, win, d:delta, day:today(), rev:!!rev}, ...(A.hist || [])].slice(0, 30);   // my own fights, for the arena history view
   const gem = win ? (rev ? 25 : 10) : 0, mana = win ? 800 + Math.round(A.r / 2) : 200;
   S.gem += gem; S.mana += mana; if (win) track("win");
