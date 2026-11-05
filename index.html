@@ -2697,7 +2697,6 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-rw img{width:80%;height:80%;object-fit:contain}.az-rw b{position:absolute;bottom:0;left:3px;font-size:11px;color:#fff;text-shadow:0 1px 2px #000,0 0 3px #000}
 /* main view */
 .az-main{grid-column:2;grid-row:2;min-height:0;min-width:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:6px;direction:rtl}
-.az-main:not([data-v="fight"]) .az-bottom{display:none}
 .az-view-wrap,#arenaList{min-height:0;min-width:0}#arenaList>*{margin:0}
 .az-state{display:grid;place-items:center;gap:10px;height:100%;min-height:60px;padding:12px;text-align:center;color:#c8d2f0;font-size:14px}
 .az-state.err{color:#ff9a8a}
@@ -2711,36 +2710,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-mons.sm .az-mt small,.az-mons.sm .az-mt em{display:none}.az-mons.sm .az-mt>img:first-child,.az-mons.sm .az-mt>svg:first-child{inset:4%;width:92%;height:92%}
 .az-pow{display:inline-flex;align-items:center;gap:3px;color:#ffd75a;font-weight:800}.az-pow .azi{width:16px;height:16px}
 /* fight: 4 opponents */
-.az-opps{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;height:100%}
-.az-oc{container-type:size;min-height:0;display:grid;grid-template-rows:31% 1fr 22%;align-items:center;gap:2%;padding:5px 8px;border-radius:14px;font:inherit;color:#fff;cursor:pointer;text-align:right;
-  background:linear-gradient(#101b4cf0,#080d2cf0);border:1.5px solid rgba(226,184,87,.55);box-shadow:inset 0 0 0 1px rgba(255,215,120,.12),0 6px 18px rgba(0,0,0,.45)}
-.az-oc.sel{border-color:#ffd75a;box-shadow:0 0 0 1.5px #ffd75a,0 0 18px rgba(255,200,80,.7),inset 0 0 16px rgba(255,200,80,.18)}
-.az-oc-top{display:flex;align-items:center;gap:6px;min-width:0;height:100%}
-.az-oc-av{flex:none;height:100%;aspect-ratio:1;display:grid;place-items:center;cursor:pointer}
-.az-oc-av .pav{width:min(40px,100%)!important;height:auto!important;aspect-ratio:1}
-.az-oc-id{flex:1;display:flex;flex-direction:column;min-width:0;line-height:1.1}
-.az-oc-id>b{font-size:clamp(12px,11cqh,16px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.az-oc-id .az-pow b{font-size:clamp(11.5px,10cqh,15px)}
-.az-oc-rk{flex:none;display:flex;flex-direction:column;align-items:center;font-size:11px;line-height:1}.az-oc-rk small{font-size:11px}
-@container (max-width:300px){.az-oc-rk small{display:none}}.az-oc-rk .rankic{width:clamp(20px,17cqh,32px);height:auto}
-.az-oc .az-mons{--mt:min(18cqw,42cqh);height:100%;align-items:center}
-.az-pick{justify-self:center;display:inline-flex;align-items:center;gap:4px;height:100%;max-height:30px;min-height:24px;padding:0 18px;border-radius:9px;font-size:clamp(12px,11cqh,15px);font-weight:800;
-  background:linear-gradient(#2a2f45,#171b2c);border:1px solid rgba(226,184,87,.6);color:#f0e6c8}
-.az-oc.sel .az-pick{background:linear-gradient(#2c6af0,#1a3fb0);border-color:#9cc8ff;color:#fff;box-shadow:0 0 10px rgba(80,160,255,.6)}.az-pick .azi{width:16px;height:16px}
 /* fight: my team + battle */
-.az-bottom{display:grid;grid-template-columns:minmax(0,1fr) clamp(170px,28%,250px);gap:8px;height:clamp(68px,20dvh,96px)}
-.az-team{container-type:size;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px;padding:4px 10px;border-radius:14px;background:linear-gradient(#101b4cf0,#080d2cf0);border:1.5px solid var(--line)}
-.az-tm-h{display:flex;flex-direction:column;gap:2px;align-items:flex-start}
-.az-tm-h>b{font-size:clamp(13px,20cqh,18px);color:#fff2c8;line-height:1}
-.az-tm-btns{display:flex;gap:4px}
-.az-edit{display:inline-flex;align-items:center;gap:4px;min-height:0!important;height:clamp(30px,38cqh,38px);padding:0 10px!important;font-size:12.5px!important;white-space:nowrap}
-.az-ref{width:clamp(30px,38cqh,38px);aspect-ratio:1;border-radius:9px;display:grid;place-items:center;padding:0;color:#ffd75a;background:#0b1338;border:1px solid rgba(226,184,87,.6);cursor:pointer}
-.az-team .az-mons{--mt:min(78cqh,calc((100cqw - 150px) / 5.4));justify-content:flex-end}
-.az-go{position:relative;display:grid;grid-template-columns:auto 1fr;grid-template-rows:1fr auto auto;align-items:center;column-gap:6px;padding:4px 12px;border-radius:16px;font:inherit;color:#3a2200;cursor:pointer;
-  background:linear-gradient(#ffe9a6,#f0c048 45%,#c98a1c);border:2px solid #fff2c0;box-shadow:0 0 0 2px #6a4206,0 0 18px rgba(255,200,80,.6),inset 0 -4px 0 rgba(120,70,0,.35)}
-.az-go .azi.big{grid-row:1 / 4;width:clamp(28px,8dvh,40px);height:auto;stroke:#5a3400;stroke-width:2.2}
-.az-go>b{font-size:clamp(20px,6.6dvh,30px);line-height:1;color:#4a2a00;text-shadow:0 1px 0 rgba(255,255,255,.5)}
-.az-go-sub{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:800;min-width:0;max-width:100%}.az-go-sub span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.az-go:disabled{filter:grayscale(.7) brightness(.8);cursor:default}
 /* ranking */
 .az-board{display:grid;grid-template-rows:minmax(0,1fr) auto auto auto;gap:4px;height:100%;--rh:clamp(24px,5.8dvh,36px)}
 .az-podium{min-height:0;display:flex;direction:ltr;justify-content:center;align-items:flex-end;gap:clamp(6px,2vw,22px)}
@@ -2824,9 +2794,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-cats{display:flex;flex-direction:column;gap:5px}
 .az-cats button{display:flex;align-items:center;gap:6px;height:clamp(34px,9dvh,44px);padding:0 8px;border-radius:10px;font:inherit;font-size:13px;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(#162460,#0b1338);border:1px solid rgba(110,130,210,.45)}
 .az-cats button img{width:24px;height:24px;object-fit:contain}.az-cats button.on{background:linear-gradient(#ffe9a6,#c98a1c);color:#3a2200;border-color:#fff2c0}
-.az-c-name b.lg,.az-oc-id b.lg{font-size:11.5px!important}.az-c-name b.xl,.az-oc-id b.xl{font-size:10.5px!important;letter-spacing:-.2px}.az-pplate b.lg{font-size:12px!important;white-space:normal!important;line-height:1.05;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.az-go-tk{display:flex;align-items:center;gap:3px;font-size:11.5px;font-weight:800;color:#4a2a00}.az-go-tk img{width:18px;height:18px}.az-go-tk small{font-size:11px;font-weight:700}
-.az-go.empty{filter:grayscale(.6) brightness(.85)}
+.az-c-name b.lg{font-size:11.5px!important}.az-c-name b.xl{font-size:10.5px!important;letter-spacing:-.2px}.az-pplate b.lg{font-size:12px!important;white-space:normal!important;line-height:1.05;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .az-next{display:none}@media (min-height:520px){.az-next{display:block}}
 .az-menu button{flex:1 1 0;max-height:46px;min-height:36px;height:auto}
 /* ---- rank rewards: header + two tabs, rank cards (selected / mine marked apart), the chosen rank's reward, the progress track (5 a page) ---- */
@@ -2981,7 +2949,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
   .az-board{gap:3px}.az-th{height:14px;font-size:10.5px}.az-merow{gap:6px}.az-shead .az-snote{display:none}.az-shead{grid-template-columns:auto 1fr}.az-stitle{justify-self:end}}
 @media (max-width:720px){.az-page{--sw:150px}.az-th,.az-tr{grid-template-columns:30px minmax(0,1fr) 24px 52px 56px auto 54px;gap:4px}.az-tr .az-mons{--mt:20px}.az-c-pts .azi,.az-c-pow .azi{display:none}.az-c-name .pav{display:none}.az-th span:nth-child(5),.az-th span:nth-child(4){font-size:10px}
   .az-view{font-size:11.5px}.az-view .azi{display:none}.az-merow{grid-template-columns:auto minmax(96px,1fr) auto auto 104px}.az-merow .az-mons{display:none}.az-merow .az-c-tier small{display:none}.az-nb{min-width:0;padding:0 10px;font-size:12px}
-  .az-team .az-mons{--mt:min(74cqh,calc((100cqw - 120px) / 5.4))}.az-edit{font-size:11.5px!important;padding:0 6px!important}}
+  }
 /* ---- arena, concept pass (2026-11-01): a title banner and a corner box in the header row, the side panel and menu as drawn, bigger cards and monster tiles ---- */
 #topbar.az-top.az-nores{display:none!important}
 .az-page{--hbw:clamp(132px,19%,190px)}
@@ -3008,20 +2976,8 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-menu button{flex-direction:row-reverse;min-height:30px}.az-menu button span{text-align:center}.az-menu button .chev{color:#ffd75a}
 @media (min-height:520px){.az-crest{grid-template-columns:1fr;justify-items:center;row-gap:3px}.az-crest .rankic.big{grid-row:auto;width:clamp(56px,11dvh,84px)}.az-crest .az-prog{width:100%}.az-place{grid-column:1}}
 /* fight: opponent cards as drawn (round portrait + name/power on one side, rank on the other, five big tiles), one bottom bar with my team and the battle button */
-.az-oc{grid-template-rows:30% minmax(0,1fr) 20%;gap:3%;padding:6px 10px}
-.az-oc-top{flex-direction:row}.az-oc-id{align-items:flex-start}
-.az-oc-av .pav{width:min(46px,100%)!important}
-.az-oc-rk{flex-direction:row;gap:5px}.az-oc-rk small{font-size:12px;font-weight:800}
-.az-oc .az-mons{--mt:min(calc((100cqw - 34px) / 5),44cqh,64px);gap:5px}
-.az-oc .az-mt small{font-size:10.5px}
-.az-bottom{grid-template-columns:minmax(0,1fr) clamp(170px,27%,250px);gap:0;padding:4px;border-radius:16px;background:linear-gradient(#101b4cf2,#080d2cf2);border:1.5px solid var(--line);box-shadow:0 0 0 1px #3a2506,0 8px 22px rgba(0,0,0,.45)}
-.az-bottom .az-team{background:none;border:0;padding:2px 8px}
-.az-team .az-mons{--mt:min(84cqh,calc((100cqw - 160px) / 5.3),68px);justify-content:center;gap:6px}
 /* rank rewards as drawn: the two tabs centred under the banner; ranks, milestones and both tracks run low → high from left to right;
    season: chest on the left, the chosen rank's reward in the middle, the info box (or the mailbox) on the right */
-.az-bottom{box-sizing:border-box}.az-bottom>*{min-height:0;height:100%;box-sizing:border-box}.az-tm-h{gap:1px}.az-tm-h>b{font-size:clamp(13px,18cqh,18px)}
-@container (min-width:240px){.az-oc-rk small{display:inline}}
-.az-oc{grid-template-rows:34% minmax(0,1fr) 19%}
 @media (max-height:450px){.az-next{display:flex!important;align-items:center;gap:5px;padding:3px 5px}.az-next .az-nh{flex:1;margin:0;white-space:normal;line-height:1.15;font-size:10.5px}.az-next .az-rw{width:30px}.az-next .az-rws{gap:3px}
   .az-side{gap:4px;padding:6px}.az-menu{gap:3px}.az-menu button{min-height:34px}.az-crest .az-prog{height:14px}}
 /* ranking as drawn: the podium rises into the header row (this view shows no resources); 1st in the middle, raised, with wings;
@@ -3076,7 +3032,6 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-pc .az-rw{width:min(40cqw,40cqh,58px)}.az-pc .az-rw b{font-size:11.5px}
 .az-pdet,.az-pdet .az-dt-ic{height:clamp(78px,24dvh,132px)!important}
 .az-tic{width:100%;max-width:100%;aspect-ratio:auto;overflow:hidden}.az-tic .az-chest{max-width:100%;max-height:100%;object-fit:contain}.az-tic .rankic{max-width:42%;max-height:46%}
-@container (max-width:270px){.az-oc-rk small{display:none!important}}
 @media (max-width:720px){.az-main[data-v="board"]{grid-row:2}.az-pod.p2,.az-pod.p3{height:86%}}
 @media (max-height:400px){.az-pod .az-mons{display:none}.az-pavw{height:min(100%,60px)}
   .az-rwv.season .az-dt-txt small{display:none}.az-rwv.season .az-dt-txt .az-rws{display:none}.az-rwv.season .az-dt-txt b{font-size:15px}}
@@ -3087,7 +3042,6 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
    the table spreads its columns like the concept; the side panel fills its height on tall screens */
 .az-merow .az-c-name .pav{width:34px!important;height:34px!important;aspect-ratio:auto}
 .az-merow .az-c-name{display:flex;align-items:center;gap:6px;min-width:0}.az-merow .az-c-name>span:last-child{min-width:0}
-.az-oc-av .pav{width:40px!important;height:40px!important;max-width:100%;aspect-ratio:auto}
 /* podium as drawn: each place is a pedestal — a dark panel framed in its metal (gold / silver / bronze) with the number shield on top (a crown over 1st, wings behind it),
    the portrait medallion inside, the name plate with the points at the panel's foot, and the defence team on a wide strip under it; 2nd and 3rd stand lower */
 .az-pod{--pc:#e2b857;--pg:rgba(255,200,80,.45);background:none!important;border:0!important;box-shadow:none!important;grid-template-rows:minmax(0,1fr) auto auto;row-gap:0;padding:16px 0 0}
@@ -3117,7 +3071,6 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
   .az-th,.az-tr{grid-template-columns:clamp(36px,6%,54px) minmax(0,1.5fr) minmax(28px,.5fr) minmax(70px,.8fr) minmax(76px,.8fr) auto clamp(70px,11%,96px)}
   .az-tr>.az-c-tier,.az-tr>.az-c-pts,.az-tr>.az-c-pow{justify-self:center}.az-th span:nth-child(n+3){text-align:center}}
 .az-board{--rh:clamp(24px,5.8dvh,44px)}
-@media (max-height:450px){.az-go-sub{display:none}}.az-go-tk small{white-space:nowrap}   /* phones in landscape: the battle button keeps the tickets and their timer inside it; the chosen opponent is marked on its card */
 @media (max-height:410px){.az-menu{gap:2px}.az-menu button{min-height:32px}.az-next{padding:2px 5px}.az-next .az-rw{width:26px}}   /* 17 Pro height: crest + 6 menu rows + next reward fit the panel (they spilt by ~22px before) */
 @media (max-width:720px) and (max-height:410px){.az-place-n{display:none}}   /* SE: one line; the points still missing show on the bar and in the next-reward box */
 @media (min-height:560px){.az-menu button{max-height:58px}.az-menu{gap:6px}.az-crest .rankic.big{width:clamp(56px,13dvh,104px)}.az-side{gap:10px}}
@@ -3603,6 +3556,56 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
   .dl.open .dl-dh{grid-area:dh}.dl.open .dl-sum{grid-area:sum}.dl.open .dl-att{grid-area:att}.dl.open .dl-det>.dl-mons{grid-area:mons;--mt:clamp(26px,calc((100cqw - 90px) / 10),44px)}.dl.open .dl-me{grid-area:me;align-self:start}.dl.open .dl-me .dl-mons{--mt:clamp(26px,calc((100cqw - 90px) / 10),44px)}
   .dl.open .dl-vs{grid-area:vs;flex-direction:column}.dl.open .dl-vs::before,.dl.open .dl-vs::after{flex:1;width:1.5px;height:auto;min-height:10px;background:linear-gradient(transparent,#c99a3a)}.dl.open .dl-vs::after{background:linear-gradient(#c99a3a,transparent)}
   .dl.open .dl-meta{grid-area:meta;align-self:end}.dl.open .dl-btns{grid-area:btns;align-self:end}}   /* small phones: the open details cover the list, attacker and defence side by side */
+/* ---- the fight tab (the user's clean concept, 2026-11-05): framed cards 2x2, the bottom panel (fight / opponent / my team), other opponents ---- */
+.fz{display:grid;grid-template-rows:minmax(0,1fr) clamp(62px,21.5%,112px) auto;gap:2.2%;height:100%;min-height:0;padding-top:clamp(6px,2.6%,16px);box-sizing:border-box;direction:rtl}
+.fz-cards{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3% 1.6%;min-height:0}
+.fz-c,.fz-bot,.fz-state{position:relative;isolation:isolate}
+.fz-c::after,.fz-bot::after,.fz-state::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border:14px solid transparent;
+  border-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a6'/%3E%3Cstop offset='.5' stop-color='%23c99a3a'/%3E%3Cstop offset='1' stop-color='%238a5a10'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='4' width='52' height='52' rx='9' fill='none' stroke='url(%23g)' stroke-width='1.6'/%3E%3Cg id='c' fill='none' stroke='%23e8b84a' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M1.5 13V8Q1.5 1.5 8 1.5H13'/%3E%3Ccircle cx='4.3' cy='4.3' r='1.4' fill='%23ffd75a' stroke='none'/%3E%3C/g%3E%3Cuse href='%23c' transform='matrix(-1 0 0 1 60 0)'/%3E%3Cuse href='%23c' transform='matrix(1 0 0 -1 0 60)'/%3E%3Cuse href='%23c' transform='matrix(-1 0 0 -1 60 60)'/%3E%3C/svg%3E") 20 / 14px stretch}
+.fz-c{container-type:size;display:grid;grid-template-rows:46% minmax(0,1fr);row-gap:3%;padding:2.6% 8% 4.4%;min-height:0;min-width:0;border:0;border-radius:12px;cursor:pointer;font:inherit;color:#fff;text-align:right;
+  background:radial-gradient(120% 90% at 50% 0%,#15204e,#0a1034 60%,#070b26);transition:box-shadow .2s,filter .2s}
+.fz-c:not(.sel):hover{filter:brightness(1.08)}
+.fz-c.sel{outline:0!important;box-shadow:0 0 0 1.5px #ffd75a,0 0 12px rgba(255,180,60,.55),inset 0 0 16px rgba(255,190,70,.18)!important}   /* not the app-wide .sel outline: the concept's soft gold glow */
+.fz-c.sel::after{filter:brightness(1.25) saturate(1.2)}
+.fz-gem{position:absolute;z-index:3;left:50%;top:0;width:38%;height:26%;translate:-50% -46%;pointer-events:none;filter:drop-shadow(0 0 5px rgba(90,170,255,.8));
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 60'%3E%3Cdefs%3E%3ClinearGradient id='w' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%233a6aff' stop-opacity='0'/%3E%3Cstop offset='.65' stop-color='%236ab8ff'/%3E%3Cstop offset='1' stop-color='%23e8f4ff'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f2faff'/%3E%3Cstop offset='.45' stop-color='%234aa8ff'/%3E%3Cstop offset='1' stop-color='%231a3ab0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg id='a'%3E%3Cpath d='M104 30Q70 20 4 30Q70 40 104 34Z' fill='url(%23w)' stroke='%23ffd75a' stroke-width='.9'/%3E%3Cpath d='M100 26Q74 14 30 18Q76 22 100 30Z' fill='url(%23w)' opacity='.7'/%3E%3C/g%3E%3Cuse href='%23a' transform='matrix(-1 0 0 1 240 0)'/%3E%3Cpath d='M120 3L140 30L120 57L100 30Z' fill='url(%23d)' stroke='%23ffd75a' stroke-width='2.2'/%3E%3Cpath d='M120 3L129 30L120 57Z' fill='%23fff' opacity='.28'/%3E%3C/svg%3E") center/contain no-repeat}
+.fz-lau{position:absolute;z-index:1;left:2.6%;bottom:9%;height:36%;aspect-ratio:46/84;pointer-events:none;background:var(--lau) center/contain no-repeat}.fz-lau.r{left:auto;right:2.6%;scale:-1 1}
+.fz-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:4cqw;min-height:0;direction:ltr}
+.fz-av{display:grid;place-items:center;cursor:pointer}.fz-av .pav{--ps:min(44px,38cqh)!important;width:var(--ps)!important;height:var(--ps)!important;box-shadow:0 0 0 2px #ffd75a,0 0 8px rgba(255,200,80,.35)}
+.fz-id{display:flex;flex-direction:column;gap:2px;min-width:0;direction:rtl}
+.fz-nm{display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0;padding:2px 10px;border-radius:999px;background:linear-gradient(90deg,#0a1440,#14245e 50%,#0a1440);box-shadow:inset 0 0 0 1px rgba(90,140,255,.35),0 0 6px rgba(60,120,255,.22)}
+.fz-name{font-size:clamp(12px,11cqh,15px);white-space:nowrap;overflow:hidden;min-width:0}
+.fz-nm .az-pow{flex:none;font-size:12px}
+.fz-id>small{font-size:10.5px;color:#c8d2f0;white-space:nowrap;padding-inline:10px}
+.fz-rk{display:grid;place-items:center}.fz-rk .rankic{width:min(42px,36cqh);height:min(42px,36cqh)}
+.fz-c .fz-mons{--mt:min(calc(100cqh * .54),calc((92cqw - 6.4cqw) / 5),56px);gap:1.6cqw;justify-content:center;align-items:center;direction:ltr}
+.fz-bot{container-type:size;display:grid;grid-template-columns:minmax(0,17fr) minmax(0,17fr) auto minmax(0,60fr);gap:clamp(5px,1.2cqw,12px);align-items:stretch;padding:clamp(4px,1.4dvh,10px) clamp(8px,1.6cqw,14px);border-radius:14px;direction:ltr;
+  background:linear-gradient(#0d1540f0,#070b26f0)}
+.fz-go{direction:rtl;display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;padding:0 6px;border-radius:12px;cursor:pointer;font:inherit;color:#2a1800;background:linear-gradient(#ffe9a6,#f5c043 42%,#c98a14);border:1.5px solid #fff2c0;box-shadow:0 0 10px rgba(255,200,80,.45),inset 0 1px 0 rgba(255,255,255,.6)}
+.fz-go b{font-size:clamp(16px,30cqh,26px);white-space:nowrap}.fz-go .azi{flex:none;width:clamp(16px,24cqh,24px);height:clamp(16px,24cqh,24px)}
+.fz-go:disabled{cursor:default;filter:grayscale(.65) brightness(.8);box-shadow:none}
+.fz-foe{display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0;padding:3px 8px;border-radius:10px;direction:rtl;background:#070b22;border:1px solid rgba(201,154,58,.45)}
+.fz-foe>span:first-child{display:flex;flex-direction:column;min-width:0;line-height:1.15}.fz-foe small{font-size:10.5px;color:#c8d2f0}.fz-foe .fz-name{font-size:clamp(12px,19cqh,15px)}
+.fz-cost{display:flex;align-items:center;gap:5px;white-space:nowrap}.fz-cost>b{display:inline-flex;align-items:center;gap:2px;font-size:13px;color:#ffd75a}.fz-cost img{width:18px;height:18px}.fz-tk{white-space:nowrap}.fz-tk b{color:#fff}
+.fz-why{color:#ff9aa6!important;font-weight:800;line-height:1.2}
+.fz-div{position:relative;width:2px;margin:6% 0;background:linear-gradient(transparent,#c99a3a 20%,#c99a3a 80%,transparent)}
+.fz-div::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;translate:-50% -50%;rotate:45deg;border:1.5px solid #ffd75a;background:#0b1236}
+.fz-team{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(6px,1.2cqw,12px);min-width:0;padding:3px 8px;border-radius:10px;background:linear-gradient(#0d1540,#070b26);border:1px solid rgba(201,154,58,.55)}
+.fz-tp{display:flex;align-items:center;gap:5px;direction:rtl}.fz-tp>.azi{flex:none;width:22px;height:22px;color:#ffd75a}.fz-tp>span{display:flex;flex-direction:column;line-height:1.15;white-space:nowrap}
+.fz-tp small{font-size:10.5px;color:#c8d2f0}.fz-tp b{font-size:clamp(13px,22cqh,16px);color:#ffd75a}
+.fz-team .fz-mons{--mt:min(calc(100cqh - 10px),6.6cqw,56px);gap:clamp(3px,.8cqw,8px);justify-content:center;direction:ltr}
+.fz-slot{width:var(--mt);aspect-ratio:1;border-radius:8px;background:#070b22;border:1.5px dashed rgba(201,154,58,.5)}
+.fz-edit{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;align-self:stretch;min-width:clamp(58px,10cqw,96px);padding:2px 8px;border-radius:12px;cursor:pointer;font:inherit;font-weight:900;font-size:12px;color:#fff;
+  background:linear-gradient(#3a7aff,#1440c0);border:1.5px solid #9ab8ff;box-shadow:0 0 8px rgba(60,120,255,.4)}.fz-edit .azi{width:18px;height:18px}.fz-edit span{white-space:nowrap}
+.fz-nav{display:flex;justify-content:center}
+.fz-ref{display:inline-flex;align-items:center;gap:6px;height:clamp(34px,8dvh,38px);padding:0 18px;border-radius:999px;cursor:pointer;font:inherit;font-weight:800;font-size:12.5px;color:#ffd75a;background:linear-gradient(#1c2a66,#0b1238);border:1.5px solid #c99a3a}.fz-ref .azi{width:15px;height:15px}
+.fz-state{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:0;border-radius:14px;text-align:center;background:linear-gradient(#0d1540f0,#070b26f0)}
+.fz-state>.azi{width:40px;height:40px;color:#ffd75a}.fz-state>b{font-size:clamp(16px,5dvh,22px);color:#ffd75a}.fz-state>small{font-size:12.5px;color:#e8ecff}
+.fz>.fz-state:only-child{grid-row:1 / -1}
+.fz-bot>*,.fz-team>*{min-height:0!important}.fz-team,.fz-foe{overflow:hidden}.fz-go,.fz-edit{min-height:0!important;height:auto}   /* the panel's height is the grid's: its buttons shrink with it */
+@container (max-height:84px){.fz-id{gap:1px}.fz-nm{padding-block:0}.fz-name{font-size:12px;line-height:1.25}.fz-id>small{font-size:10px;line-height:1.05}.fz-c .fz-mons{--mt:min(calc(100cqh * .49),calc((92cqw - 6.4cqw) / 5),56px)}}   /* short cards (phones): the rank line stays, everything a little tighter */
+@container (max-width:300px){.fz-top{gap:2.5cqw}.fz-nm{padding:1px 7px;gap:4px}.fz-nm .az-pow .azi{display:none}}.fz-c{padding-inline:clamp(10px,8%,40px)}@media (max-width:720px){.fz-c{padding-inline:4.5%}}@media (max-width:900px){.fz-bot{grid-template-columns:minmax(0,14fr) minmax(0,23fr) auto minmax(0,57fr)}}   /* phones: the opponent's name gets the room, the fight button less */   /* narrow cards: room for long names before the font steps down */
+@container (max-height:70px){.fz-foe>span:first-child small{display:none}.fz-foe{gap:0;padding-block:2px}}   /* a short panel: the opponent box keeps name, cost and tickets left */
 </style>
 
 <div class="app" dir="rtl">
@@ -3779,7 +3782,6 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
       <aside class="az-side"><div class="az-crest" id="arenaCrest"></div><nav class="az-menu" id="arenaTabs"></nav><div class="az-next" id="arenaNext"></div></aside>
       <main class="az-main" id="arenaMain">
         <div id="arenaList"></div>
-        <div class="az-bottom"><div class="az-team" id="arenaTeam"></div><button class="az-go" id="arenaGo"></button></div>
       </main>
     </div>
   </section>
@@ -4220,7 +4222,7 @@ const HAVE = new Set([   // generated by sync_have.py from assets/ — do not ed
   "stage_4_4","stage_4_5","stage_4_6","stage_4_7","stage_5_2","stage_5_3","stage_5_4","stage_5_5","stage_5_6","stage_5_7","stage_6_2","stage_6_3",
   "stage_6_4","stage_6_5","stage_6_6","stage_6_7","stage_7_2","stage_7_3","stage_7_4","stage_7_5","stage_7_6","stage_7_7","star_sage","star_sage_awakened",
   "star_wisp","storm_mage","storm_mage_awakened","summon_altar","summon_burst","summon_card_back","summon_circle","summon_open","summon_temple","summon_wings","summoner_3","summoner_4",
-  "summoner_f","summoner_m","tavern","treant_boss","ui_cardframe","ui_daily_banner","ui_deflog_empty","ui_deflog_hall","ui_deflog_scroll","ui_detbtn_1","ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs",
+  "summoner_f","summoner_m","tavern","treant_boss","ui_cardframe","ui_daily_banner","ui_deflog_empty","ui_deflog_hall","ui_fz_laurel","ui_deflog_scroll","ui_detbtn_1","ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs",
   "ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon","ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon",
   "ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon","ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon",
   "ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon","ui_plaque","ui_runering","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4",
@@ -4232,7 +4234,7 @@ const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"au
 const ART = {battle:"assets/battle_meadow.webp", forest:"assets/battle_forest.webp", hub:"assets/sky_hub.webp", altar:"assets/summon_altar.webp"};
 // the published game page holds at most ~510 files, so newer art lives in its asset store; everywhere else (GitHub, local) it is read from assets/
 const ARTAR = {"aether_sprite":1.094,"aether_titan":1.037,"ash_golem":1.094,"aurora_spirit":0.503,"aurora_spirit_awakened":0.667,"banshee":0.658,"banshee_awakened":0.664,"celestial_lion":1.039,"celestial_lion_awakened":1.094,"cinder_hound":1.094,"cloud_slime":1.095,"crystal_beetle":1.493,"crystal_guardian":1.38,"desert_bandit":1.094,"djinn":0.613,"djinn_awakened":0.665,"dragon":1.228,"dragon_awakened":1.228,"dune_worm":1.094,"elf_archer":1.215,"elf_archer_awakened":1.228,"fairy":1.225,"fairy_awakened":1.231,"frost_serpent":1.088,"frost_serpent_awakened":1.092,"frost_witch":0.641,"frost_witch_awakened":0.667,"frost_wyrm":1.185,"gargoyle":1.093,"ghost_queen":0.669,"ghost_queen_awakened":0.667,"ghoul":1.099,"giant_spider":1.096,"golem":1.21,"golem_awakened":1.087,"griffin":1.228,"griffin_awakened":1.228,"harpy":1.206,"harpy_awakened":1.206,"ice_troll":1.092,"imp_fire":0.995,"imp_fire_awakened":1.094,"lava_titan":1.094,"legend_dawn_unicorn":1.382,"legend_dawn_unicorn_awakened":1.504,"legend_eclipse_dragon":1.508,"legend_eclipse_dragon_awakened":1.499,"legend_forest_dryad":0.668,"legend_forest_dryad_awakened":0.665,"legend_kraken_king":0.663,"legend_kraken_king_awakened":0.669,"legend_mountain_behemoth":1.499,"legend_mountain_behemoth_awakened":1.495,"legend_storm_roc":1.094,"legend_storm_roc_awakened":1.094,"legend_sun_empress":0.667,"legend_sun_empress_awakened":0.667,"legend_wind_centaur":0.667,"legend_wind_centaur_awakened":0.667,"magma_bat":1.508,"marble_guardian":1.086,"mermaid":0.842,"mermaid_awakened":0.843,"moon_priestess":0.642,"moon_priestess_awakened":0.67,"moss_wolf":1.405,"mummy":0.629,"mummy_awakened":0.667,"mushroom":1.202,"mushroom_awakened":1.228,"obsidian_knight":1.095,"obsidian_knight_awakened":1.093,"phoenix":1.098,"phoenix_awakened":1.094,"pixie_thief":1.1,"salamander":1.522,"salamander_awakened":1.495,"sand_colossus":1.094,"sand_scorpion":1.073,"scarab_knight":1.093,"scarab_knight_awakened":1.099,"seraph":0.66,"seraph_awakened":0.671,"shadow_lord":1.04,"shadow_ninja":1.057,"shadow_ninja_awakened":1.094,"shadow_wraith":1.1,"skeleton_knight":1.094,"skeleton_knight_awakened":1.093,"sky_boar":1.301,"sky_ray":1.504,"snow_owl":1.205,"snow_owl_awakened":1.208,"snow_sprite":1.094,"sphinx":1.094,"sphinx_awakened":1.094,"star_sage":0.667,"star_sage_awakened":0.666,"star_wisp":1.077,"storm_mage":0.665,"storm_mage_awakened":0.663,"treant_boss":1.094,"valkyrie":1.18,"valkyrie_awakened":1.18,"vampire":0.661,"vampire_awakened":0.668,"void_knight":0.661,"void_knight_awakened":0.668,"werewolf":1.103,"werewolf_awakened":1.094,"will_wisp":1.096,"wind_dancer":0.656,"wind_dancer_awakened":0.67,"wolf_spirit":1.247,"wolf_spirit_awakened":1.228,"yeti":1.082,"yeti_awakened":1.093};   // generated by sync_have.py: image width/height per monster art
-const BLOB = {ui_ssn_card_0:"/_blob/e1f70d304e7472d2b77be4a1863d2f2c", ui_ssn_card_1:"/_blob/40a4dc02e0542012b8f3e14239f37a36", ui_ssn_card_2:"/_blob/dd6174a1d7bc9ca2852095a6dfe08579", ui_ssn_card_3:"/_blob/0784f2c1e999c5768fe4e06a6e30e27d", ui_ssn_card_4:"/_blob/cec5c5405d1923479c6a1d01bca77246", ui_ssn_card_5:"/_blob/5a26d9ef75253329a4dd039e37e7cdde", ui_ssn_chest_0:"/_blob/6528a59cf405969df18b991cbcf21d4b", ui_ssn_chest_1:"/_blob/f618d3d2272894474c7ed995b5dd102e", ui_ssn_chest_2:"/_blob/26820338e8fc04e0c61b4a37aa310238", ui_ssn_chest_3:"/_blob/613e7ad50e2620766d730e1c9edb1b6d", ui_ssn_chest_4:"/_blob/671f05d96d39a1b34c4a494574c11d8c", ui_ssn_chest_5:"/_blob/6775a656f5f10d6e23529f47802ad6f9", ui_ssn_crest_0:"/_blob/d86b12979c9e6439ca3e61501508ed2e", ui_ssn_crest_1:"/_blob/2aee51939e3fdda7b7b960b5112e307c", ui_ssn_crest_2:"/_blob/efa296db1f5a0231794ea7d449b909aa", ui_ssn_crest_3:"/_blob/fc5216c7bb69eb6e7159daf433b3232d", ui_ssn_crest_4:"/_blob/f2f61d8a063d0c6004045f3129e37c97", ui_ssn_crest_5:"/_blob/0a5fa85bda7299554c6f57783c425029", ui_prg_banner:"/_blob/1e6600da085d591f96ac94f6c1fa256e", ui_prg_card_1:"/_blob/f0dcd73400a50d15cf3a0bd20f770296", ui_prg_card_2:"/_blob/1ed773f12c3dd1d04c8961fa0f67235a", ui_prg_card_3:"/_blob/3d0f4fa00a7b4d300d6a989fb853db2d", ui_prg_card_4:"/_blob/a30407abba87f1587bb8b5e713b3956e", ui_prg_card_5:"/_blob/36a759922d49faf8492b09898209359d", ui_prg_chest:"/_blob/ca68f2826b264366a518b4def4b79892", ui_prg_crest_1:"/_blob/8d351c779594dbdb6649ec7b82ea9724", ui_prg_crest_2:"/_blob/7b1b5e0590fed1d2628941fd32dea21d", ui_prg_crest_3:"/_blob/c0dc6ed4f33672f4784d6bc123cedb00", ui_prg_crest_4:"/_blob/d757c7f76ed5fd3dc1077052f150ab87", ui_prg_crest_5:"/_blob/6dfc6c508a4d12c393dd5ed32048a74d", ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_deflog_hall:"/_blob/9d0972827dcd9b6c220982321a26ed89", ui_deflog_scroll:"/_blob/8286ce95eae86d7a62b48e30dedcb8e4", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
+const BLOB = {ui_ssn_card_0:"/_blob/e1f70d304e7472d2b77be4a1863d2f2c", ui_ssn_card_1:"/_blob/40a4dc02e0542012b8f3e14239f37a36", ui_ssn_card_2:"/_blob/dd6174a1d7bc9ca2852095a6dfe08579", ui_ssn_card_3:"/_blob/0784f2c1e999c5768fe4e06a6e30e27d", ui_ssn_card_4:"/_blob/cec5c5405d1923479c6a1d01bca77246", ui_ssn_card_5:"/_blob/5a26d9ef75253329a4dd039e37e7cdde", ui_ssn_chest_0:"/_blob/6528a59cf405969df18b991cbcf21d4b", ui_ssn_chest_1:"/_blob/f618d3d2272894474c7ed995b5dd102e", ui_ssn_chest_2:"/_blob/26820338e8fc04e0c61b4a37aa310238", ui_ssn_chest_3:"/_blob/613e7ad50e2620766d730e1c9edb1b6d", ui_ssn_chest_4:"/_blob/671f05d96d39a1b34c4a494574c11d8c", ui_ssn_chest_5:"/_blob/6775a656f5f10d6e23529f47802ad6f9", ui_ssn_crest_0:"/_blob/d86b12979c9e6439ca3e61501508ed2e", ui_ssn_crest_1:"/_blob/2aee51939e3fdda7b7b960b5112e307c", ui_ssn_crest_2:"/_blob/efa296db1f5a0231794ea7d449b909aa", ui_ssn_crest_3:"/_blob/fc5216c7bb69eb6e7159daf433b3232d", ui_ssn_crest_4:"/_blob/f2f61d8a063d0c6004045f3129e37c97", ui_ssn_crest_5:"/_blob/0a5fa85bda7299554c6f57783c425029", ui_prg_banner:"/_blob/1e6600da085d591f96ac94f6c1fa256e", ui_prg_card_1:"/_blob/f0dcd73400a50d15cf3a0bd20f770296", ui_prg_card_2:"/_blob/1ed773f12c3dd1d04c8961fa0f67235a", ui_prg_card_3:"/_blob/3d0f4fa00a7b4d300d6a989fb853db2d", ui_prg_card_4:"/_blob/a30407abba87f1587bb8b5e713b3956e", ui_prg_card_5:"/_blob/36a759922d49faf8492b09898209359d", ui_prg_chest:"/_blob/ca68f2826b264366a518b4def4b79892", ui_prg_crest_1:"/_blob/8d351c779594dbdb6649ec7b82ea9724", ui_prg_crest_2:"/_blob/7b1b5e0590fed1d2628941fd32dea21d", ui_prg_crest_3:"/_blob/c0dc6ed4f33672f4784d6bc123cedb00", ui_prg_crest_4:"/_blob/d757c7f76ed5fd3dc1077052f150ab87", ui_prg_crest_5:"/_blob/6dfc6c508a4d12c393dd5ed32048a74d", ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_deflog_hall:"/_blob/9d0972827dcd9b6c220982321a26ed89", ui_fz_laurel:"/_blob/7423f5d21f417380db8adc58e53a5972", ui_deflog_scroll:"/_blob/8286ce95eae86d7a62b48e30dedcb8e4", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
   legend_kraken_king:"/_blob/57d4de9adf5506c59e8ea01766077092", legend_kraken_king_awakened:"/_blob/a907bb70c41aed676b48211f21842e02",
   legend_storm_roc:"/_blob/5de16d93d25a10eae9d5ab74af515700", legend_storm_roc_awakened:"/_blob/49a68678138e764c50648c52583da5d3",
   legend_wind_centaur:"/_blob/7f98d07d3382ce05e3da69c5960d6b15", legend_wind_centaur_awakened:"/_blob/0c00c92a8a6668fd211c977f066c398b",
@@ -5433,28 +5435,49 @@ function renderArena() {
 }
 const azRewTile = (img, n) => `<span class="az-rw"><img src="assets/${img}.webp" alt=""><b dir="ltr">${fmt(n)}</b></span>`;
 const azRewTiles = r => r ? [r.gem && azRewTile("cur_gem", r.gem), r.m && azRewTile("scroll_m", r.m), r.l && azRewTile("scroll_l", r.l), r.ld && azRewTile("scroll_ld", r.ld)].filter(Boolean).join("") : "";
+/* ---- the fight tab, built from the user's clean concept (2026-11-05): four opponents 2x2, my team, the fight button. All values are the real ones:
+   A.opp (makeOpponents: 4 near my points, no pages), getBot / botPow, S.team / myPow, tickets A.t (one per fight). "לקרב!" starts through launch()
+   (pays the ticket, starts the fight); "עריכת צוות" opens the existing team screen with the chosen opponent. ---- */
+let azStarting = false;
 function azFight(A, L) {
-  if (arenaSel == null || !A.opp.includes(arenaSel)) arenaSel = A.opp[0];
-  const mp = myPow();
-  L.innerHTML = `<div class="az-opps">${A.opp.map(i => getBot(A, i)).map(b => { const sel = b.i === arenaSel, rk = rankOf(b.r);
-    return `<button class="oppcard az-oc ${sel ? "sel" : ""}" data-i="${b.i}">
-      <span class="az-oc-top"><span class="az-oc-rk">${rankIc(b.r, 1)}<small style="color:${rk[2]}">${rk[1]}</small></span>
-        <span class="az-oc-id">${azNm(b.name)}<span class="az-pow">${azi("sw")}<b dir="ltr">${fmt(botPow(b))}</b></span></span>
-        <span class="az-oc-av" data-p="${b.i}" role="button" aria-label="פרופיל">${framedAvatar(40, {k:"", c1:rk[2], c2:"#0b1338"}, ART[b.team[0][0]] || "")}</span></span>
-      <span class="az-mons">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span>
-      <span class="az-pick">${sel ? `${azi("check")}נבחר` : "בחר יריב"}</span></button>`; }).join("")}</div>`;
-  L.querySelectorAll(".oppcard").forEach(b => b.onclick = e => { if (e.target.closest("[data-p]")) return botProfile(getBot(A, +b.dataset.i)); arenaSel = +b.dataset.i; SFX.tap && SFX.tap(); renderArena(); });
-  const sb = getBot(A, arenaSel), team = azMine();
-  $("arenaTeam").innerHTML = `<div class="az-tm-h"><b class="title-font">הצוות שלך</b><span class="az-pow">${azi("sw")}<b dir="ltr">${fmt(mp)}</b></span>
-      <span class="az-tm-btns"><button class="btn blue az-edit" id="arEdit">${azi("users")}עריכת צוות</button><button class="az-ref" id="arRefresh" aria-label="יריבים אחרים" title="יריבים אחרים">${azi("refresh")}</button></span></div>
-    <div class="az-mons">${team.map(m => azMon(m.id, m.lvl, mst(m))).join("")}</div>`;
-  $("arEdit").onclick = () => fightBot(sb);
-  $("arRefresh").onclick = () => { makeOpponents(); arenaSel = null; renderArena(); };
+  let opps;
+  try { opps = (A.opp || []).map(i => getBot(A, i)); }
+  catch (e) { L.innerHTML = `<div class="fz"><div class="fz-state">${azi("sw")}<b class="title-font">לא הצלחנו לטעון את היריבים</b><button class="fz-ref" id="fzRetry">${azi("refresh")}<span>לנסות שוב</span></button></div></div>`;
+    $("fzRetry").onclick = () => { makeOpponents(); arenaSel = null; renderArena(); }; return; }
+  const lost = arenaSel != null && !opps.some(b => b.i === arenaSel);
+  if (arenaSel == null || lost) arenaSel = opps.length ? opps[0].i : null;
+  if (lost && opps.length) toast("היריב שבחרת כבר לא זמין. נבחר יריב אחר");
+  const card = b => { const rk = rankOf(b.r), sel = b.i === arenaSel;
+    return `<button class="oppcard fz-c ${sel ? "sel" : ""}" data-i="${b.i}" aria-pressed="${sel}">${sel ? `<i class="fz-gem"></i>${HAVE.has("ui_fz_laurel") ? `<i class="fz-lau" style="--lau:url(${assetUrl("ui_fz_laurel")})"></i><i class="fz-lau r" style="--lau:url(${assetUrl("ui_fz_laurel")})"></i>` : ""}` : ""}
+      <span class="fz-top"><span class="fz-av" data-p="${b.i}" role="button" aria-label="פרופיל">${framedAvatar(44, {k:"", c1:"#ffd75a", c2:"#7a4e0e"}, ART[b.team[0][0]] || "")}</span>
+        <span class="fz-id"><span class="fz-nm"><b class="fz-name">${esc(b.name)}</b><span class="az-pow">${azi("sw")}<b dir="ltr">${fmt(botPow(b))}</b></span></span>
+          <small><b style="color:${rk[2]}">${rk[1]}</b> · <span dir="ltr">${fmt(b.r)}</span> נק׳</small></span>
+        <span class="fz-rk">${rankIc(b.r)}</span></span>
+      <span class="az-mons fz-mons">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span></button>`; };
+  const sb = arenaSel != null ? opps.find(b => b.i === arenaSel) : null, team = azMine(), mp = myPow();
   const left = A.t < ticketMax() ? Math.ceil((TICKET_MS - (Date.now() - A.ts)) / 60000) : 0;
-  $("arenaGo").innerHTML = `${azi("sw", "big")}<b class="title-font">לקרב!</b><span class="az-go-sub">${framedAvatar(24, {k:"", c1:rankOf(sb.r)[2], c2:"#0b1338"}, ART[sb.team[0][0]] || "")}<span>${esc(sb.name)}</span></span>
-    <span class="az-go-tk"><img src="assets/cur_ticket.webp" alt=""><b dir="ltr">${A.t}/${ticketMax()}</b>${left ? `<small>עוד ${left} דק׳</small>` : ""}</span>`;
-  $("arenaGo").classList.toggle("empty", A.t < 1);
-  $("arenaGo").onclick = () => { if (A.t < 1) { toast("אין כרטיסי זירה. כרטיס חדש כל 30 דקות, או בחנות"); return openStore("shop"); } fightBot(sb); };
+  const why = !sb ? "אין יריב שנבחר" : !team.length ? "אין מפלצות בצוות. הוסף מפלצות בעריכת צוות" : A.t < 1 ? `אין כרטיסי זירה. כרטיס חדש בעוד ${left} דק׳` : "";
+  L.innerHTML = `<div class="fz">
+    ${opps.length ? `<div class="fz-cards">${opps.map(card).join("")}</div>`
+      : `<div class="fz-state">${azi("users")}<b class="title-font">אין יריבים זמינים כרגע</b><small>אפשר לחפש יריבים אחרים.</small></div>`}
+    <div class="fz-bot">
+      <button class="fz-go" id="arenaGo" ${why || azStarting ? "disabled" : ""}>${azi("sw")}<b class="title-font">${azStarting ? "פותח קרב…" : "לקרב!"}</b></button>
+      <div class="fz-foe"><span><small>היריב</small><b class="fz-name">${sb ? esc(sb.name) : "לא נבחר"}</b></span>
+        ${why ? `<small class="fz-why">${why}</small>`
+          : `<span class="fz-cost"><small>עלות</small><b dir="ltr"><img src="assets/cur_ticket.webp" alt="כרטיס זירה">1</b></span><small class="fz-tk">נותרו <b dir="ltr">${A.t}/${ticketMax()}</b> כרטיסים</small>`}</div>
+      <i class="fz-div"></i>
+      <div class="fz-team" id="arenaTeam"><span class="fz-tp">${azi("shield")}<span><small>הצוות שלי</small><b dir="ltr">${fmt(mp)}</b></span></span>
+        <span class="az-mons fz-mons">${team.map(m => azMon(m.id, m.lvl, mst(m))).join("")}${'<i class="fz-slot"></i>'.repeat(Math.max(0, TEAM_MAX - team.length))}</span>
+        <button class="fz-edit" id="arEdit">${azi("users")}<span>עריכת צוות</span></button></div></div>
+    <div class="fz-nav"><button class="fz-ref" id="arRefresh">${azi("refresh")}<span>יריבים אחרים</span></button></div></div>`;
+  azFit(L);
+  L.querySelectorAll(".oppcard").forEach(b => b.onclick = e => { if (e.target.closest("[data-p]")) return botProfile(getBot(A, +b.dataset.i)); if (arenaSel === +b.dataset.i) return; arenaSel = +b.dataset.i; SFX.tap && SFX.tap(); renderArena(); });
+  $("arEdit").onclick = () => { if (sb) return fightBot(sb); pickedStage = null; show("team"); };
+  $("arRefresh").onclick = () => { if (azStarting) return; makeOpponents(); arenaSel = null; SFX.tap && SFX.tap(); renderArena(); };
+  $("arenaGo").onclick = () => {                     // one start at a time: the button locks until launch() has paid and started, or refused
+    if (azStarting || why) return; azStarting = true; renderArena();
+    setTimeout(() => { let ok = false; try { ok = launch(arenaStage(sb), false); } catch (x) { toast("לא הצלחנו לפתוח את הקרב. נסה שוב"); }
+      azStarting = false; if (!ok && $("arena").classList.contains("on")) renderArena(); }, 150); };
 }
 const azRarest = team => team.reduce((b, x) => { const k = ([id, lv, st]) => ((MON[id].st * 2 + (rarKey(id) === "mystic" ? 1 : 0)) * 100 + (st || MON[id].st)) * 1000 + (lv || 0); return k(x) > k(b) ? x : b; });   // rarity first (mystic above legendary), then stars, then level
 const azBig = () => innerHeight >= 560;                // tall screens show level and stars on the team icons, as drawn
@@ -5791,7 +5814,7 @@ function ssPtsFit() {                                 // the points beside the t
   place("u");
 }
 function azFit(root) {                               // a long player name steps its font down (to 10px) instead of being cut
-  root.querySelectorAll(".az-oc-id>b,.az-c-name b,.az-pplate>b,.az-go-sub span,.dl-name,.az-sdn,.az-it>b").forEach(e => { let f = parseFloat(getComputedStyle(e).fontSize); while (e.scrollWidth > e.clientWidth + 1 && f > 10) { f -= .5; e.style.setProperty("font-size", f + "px", "important"); } });
+  root.querySelectorAll(".fz-name,.az-c-name b,.az-pplate>b,.dl-name,.az-sdn,.az-it>b").forEach(e => { let f = parseFloat(getComputedStyle(e).fontSize); while (e.scrollWidth > e.clientWidth + 1 && f > 10) { f -= .5; e.style.setProperty("font-size", f + "px", "important"); } });
 }
 function azPager(id, page, pages) {
   return pages > 1 ? `<div class="az-nav slim"><span class="az-pager"><button data-pg="-1" aria-label="עמוד קודם" ${page <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${page}/${pages}</b><button data-pg="1" aria-label="עמוד הבא" ${page >= pages ? "disabled" : ""}>${azi("next")}</button></span></div>` : "";
@@ -5975,10 +5998,8 @@ function botProfile(b) {
     <div style="display:flex;gap:8px;margin-top:10px"><button class="btn" id="bpFight">${azi("sw")}להילחם (כרטיס 1)</button><button class="btn ghost" onclick="closeModal()">סגירה</button></div>`);
   $("bpFight").onclick = () => { closeModal(); fightBot(b); };
 }
-function fightBot(b, logEntry) {
-  pickedStage = {id:"זירה", n:b.name, arena:true, opp:{i:b.i, name:b.name, r:b.r}, rev:logEntry || null, bg:"arena", cost:0, waves:[b.team.map(([id, lv]) => [id, lv, null, botMult(b)])]};
-  show("team");
-}
+const arenaStage = (b, logEntry) => ({id:"זירה", n:b.name, arena:true, opp:{i:b.i, name:b.name, r:b.r}, rev:logEntry || null, bg:"arena", cost:0, waves:[b.team.map(([id, lv]) => [id, lv, null, botMult(b)])]});
+function fightBot(b, logEntry) { pickedStage = arenaStage(b, logEntry); show("team"); }
 function arenaResult(win, st) {                    // st: a fight that was cut off (page closed mid-fight), settled on the next load
   st = st || B.stage;
   const A = arenaState(), b = st.opp, diff = (b.r - A.r) / 25, rev = st.rev;
