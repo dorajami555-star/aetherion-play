@@ -6217,6 +6217,7 @@ function altCost(k, n) {                             // what one press really ta
   return {use, gems, ok, can:use >= n || !!SCR[k].gem, c};   // can: this kind can pay this way at all (unknown scrolls have no gem price)
 }
 function renderAltar() {
+  altBusy = false;
   const ev = curEvent(), u = n => `url(${assetUrl(n)})`, gemI = `<img src="assets/cur_gem.webp" alt="גבישים">`;
   const price = (k, n) => { const p = altCost(k, n), sc = `<img src="assets/${ALT_SCR[k]}.webp" alt="מגילות">`;
     if (!p.can) return `<em class="need">${sc}<b dir="ltr">${fmt(p.c)}/${n}</b></em>`;   // unknown ×10 without 10 scrolls: how many you have of the 10
@@ -6247,7 +6248,7 @@ function altSummon(k, n, b) {                        // one press = one summon; 
   if (altBusy || $("reveal").classList.contains("on")) return;
   altSel = k;
   if (!altCost(k, n).ok) { spend(k, n); renderAltar(); return; }   // off: spend() takes nothing and its message says what is missing
-  altBusy = true; b.classList.add("busy"); setTimeout(() => { altBusy = false; }, 900);
+  altBusy = true; b.classList.add("busy");   // released when the altar is drawn again (after the reveal, or right away when nothing was summoned)
   const snap = JSON.stringify(S);
   try { if (spend(k, n)) summon(k, n); else renderAltar(); }
   catch (e) {                                        // a summon that breaks half way: the whole save goes back to before the press (nothing paid, nothing given)
@@ -9852,13 +9853,13 @@ function sumTick(now) {
   }
   const O = SUM.orb;
   if (O) {                                           // ×10 landing: the gathered energy becomes an orb that swells and trembles before it bursts
-    O.t += dt; const k = Math.min(1, O.t / O.D), R = Math.min(SUM.w, SUM.h), r = R * (.03 + .11 * k * k) * (1 + Math.sin(O.t / 45) * .06 * k);
+    O.t += dt; const k = Math.min(1, O.t / O.D), R = Math.min(SUM.w, SUM.h), r = R * (.03 + .11 * k * k) * (1 + Math.sin(O.t / 110) * .04 * k);
     c.save(); c.translate(SUM.w / 2, SUM.h / 2); c.globalCompositeOperation = "lighter";
     const g = c.createRadialGradient(0, 0, 0, 0, 0, r * 2.6);
     g.addColorStop(0, "rgba(255,255,255," + (.55 + .45 * k) + ")"); g.addColorStop(.22, O.col); g.addColorStop(1, "rgba(0,0,0,0)");
     c.globalAlpha = Math.min(1, O.t / 250); c.fillStyle = g; c.beginPath(); c.arc(0, 0, r * 2.6, 0, 7); c.fill();
     c.strokeStyle = O.col; c.lineWidth = 2; c.globalAlpha *= .5 * k;
-    for (let i = 0; i < 10; i++) { const a = i / 10 * 6.283 + O.t / 900, l = r * (1.6 + .9 * Math.sin(O.t / 70 + i * 2.1)); c.beginPath(); c.moveTo(Math.cos(a) * r * .9, Math.sin(a) * r * .9); c.lineTo(Math.cos(a) * l, Math.sin(a) * l); c.stroke(); }
+    for (let i = 0; i < 10; i++) { const a = i / 10 * 6.283 + O.t / 2200, l = r * (1.6 + .7 * Math.sin(O.t / 160 + i * 2.1)); c.beginPath(); c.moveTo(Math.cos(a) * r * .9, Math.sin(a) * r * .9); c.lineTo(Math.cos(a) * l, Math.sin(a) * l); c.stroke(); }
     c.restore();
   }
   SUM.P = SUM.P.filter(p => { p.age += dt; if (p.age >= p.life) return false; stepP(p, dt); drawP(c, p); return true; });
@@ -10115,11 +10116,11 @@ function warpRing(c, r, a, cs, q, t) {               // a gold rune ring, drawn 
 }
 function warpDraw(c, dt) {
   const W = SUM.warp; W.t += dt;
-  const k = Math.min(1, W.t / W.D), v = .00026 + .0015 * k * k, cx = SUM.w / 2, cy = SUM.h / 2, R = Math.hypot(cx, cy), col = warpCol(W, k), cs = `rgb(${col})`;
+  const k = Math.min(1, W.t / W.D), v = .00016 + .00068 * k * k, cx = SUM.w / 2, cy = SUM.h / 2, R = Math.hypot(cx, cy), col = warpCol(W, k), cs = `rgb(${col})`;
   c.save(); c.fillStyle = "#03040f"; c.fillRect(0, 0, SUM.w, SUM.h);
   const bg = warpImg("tunnel_bg");
   if (bg) {                                          // the painted tunnel walls turn slowly and come closer; the rarity colour tints them
-    c.save(); c.translate(cx, cy); c.rotate(W.t * .00012); const sc = Math.max(2 * R / bg.width, 2 * R / bg.height) * (1.05 + .3 * k);
+    c.save(); c.translate(cx, cy); c.rotate(W.t * .00005); const sc = Math.max(2 * R / bg.width, 2 * R / bg.height) * (1.05 + .3 * k);
     c.drawImage(bg, -bg.width * sc / 2, -bg.height * sc / 2, bg.width * sc, bg.height * sc);
     c.globalCompositeOperation = "color"; c.globalAlpha = .75; c.fillStyle = cs; c.fillRect(-R, -R, 2 * R, 2 * R);
     c.globalCompositeOperation = "soft-light"; c.globalAlpha = .55; c.fillRect(-R, -R, 2 * R, 2 * R); c.restore();   // the rarity colour, rich (gold stays gold, not grey)
@@ -10145,7 +10146,7 @@ function warpDraw(c, dt) {
   [...W.rings].sort((a, b) => b.z - a.z).forEach(q => {   // the rune rings, far ones first
     q.z -= v * dt * .7; if (q.z <= .05) q.z += 1;
     const r = R * .1 / q.z, a = Math.min(1, (1 - q.z) * 1.8) * Math.min(1, (q.z - .05) * 5), im = warpImg(q.i % 2 ? "tunnel_ring_2" : "tunnel_ring") || warpImg("tunnel_ring");
-    if (im) { c.save(); c.rotate(q.rot + W.t * .00045 * q.dir); c.globalAlpha = a; c.drawImage(im, -r * 1.1, -r * 1.1, r * 2.2, r * 2.2); c.restore(); }
+    if (im) { c.save(); c.rotate(q.rot + W.t * .00016 * q.dir); c.globalAlpha = a; c.drawImage(im, -r * 1.1, -r * 1.1, r * 2.2, r * 2.2); c.restore(); }
     else warpRing(c, r, a, cs, q, W.t);
   });
   c.globalCompositeOperation = "lighter";
@@ -10153,7 +10154,7 @@ function warpDraw(c, dt) {
     s.z -= v * dt * .9; if (s.z <= .05) { s.z = 1; s.a = rnd(0, 7); s.im = pk(SUM_PK); }
     const r = R * .13 / s.z, a = Math.min(1, (1 - s.z) * 2) * Math.min(1, (s.z - .05) * 6), sz = Math.min(90, 7 / s.z);
     if (!s.im || !s.im.naturalWidth) return;
-    c.save(); c.translate(Math.cos(s.a) * r, Math.sin(s.a) * r); c.rotate(s.a + W.t * .002); c.globalAlpha = a; c.drawImage(s.im, -sz, -sz, sz * 2, sz * 2); c.restore();
+    c.save(); c.translate(Math.cos(s.a) * r, Math.sin(s.a) * r); c.rotate(s.a + W.t * .0008); c.globalAlpha = a; c.drawImage(s.im, -sz, -sz, sz * 2, sz * 2); c.restore();
   });
   const gate = warpImg("tunnel_gate");
   if (gate && k > .7) {                              // the gate at the end of the tunnel: it opens up and we fly through it
@@ -10165,7 +10166,7 @@ function warpDraw(c, dt) {
 async function rvTunnel(got, me) {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const best = Math.max(...got.map(m => MON[m.id].st)), mys = got.some(m => MON[m.id].st >= 5 && rarKey(m.id) === "mystic");
-  const rv = $("reveal"), D = best >= 5 ? 2100 : 1800, live = () => RV === me && !RV.skip;
+  const rv = $("reveal"), D = best >= 5 ? 2400 : 2100, live = () => RV === me && !RV.skip;
   SUM.warp = {t:0, D, top:best >= 5 ? (mys ? WARP_C.m : WARP_C.g) : null,
     rings:Array.from({length:7}, (_, i) => ({i, z:.1 + i / 7, rot:rnd(0, 6), dir:i % 2 ? 1 : -1})),
     st:Array.from({length:110}, () => ({a:rnd(0, 7), z:rnd(.05, 1), o:rnd(.3, 1)})),
@@ -10208,7 +10209,7 @@ async function playReveal(got, kind) {
   const actMs = multi ? 1700 : best >= 5 ? 1500 : best >= 4 ? 1200 : 950;
   const mysT = got.some(m => MON[m.id].st >= 5 && rarKey(m.id) === "mystic");
   const lc = !multi ? ["#8fb4ff", "#ffffff", "#b9d6ff"] : best >= 5 ? (mysT ? ["#ff4d6d", "#ffffff", "#ffb0c0"] : ["#ffd75a", "#ffffff", "#fff2b0"]) : best >= 4 ? ["#b07cff", "#ffffff", "#e0c8ff"] : ["#8fb4ff", "#ffffff", "#b9d6ff"];
-  SUM.circle = {r:Math.min(SUM.w, SUM.h) * .3, rot:0, spin:multi ? .0026 : .0014, col:lc[0], a:0};
+  SUM.circle = {r:Math.min(SUM.w, SUM.h) * .3, rot:0, spin:multi ? .0009 : .0014, col:lc[0], a:0};
   SFX.charge(actMs); const g = gather(multi ? actMs * .78 : actMs, () => lc);
   if (multi && RV === me && !RV.skip) {               // ×10 landing: the energy gathers into an orb, it swells, then bursts and the cards fly out of it
     SUM.orb = {t:0, D:actMs * .74, col:lc[0]};
