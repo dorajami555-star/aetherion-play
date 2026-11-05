@@ -3521,12 +3521,13 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .fz-c,.fz-bot,.fz-state{position:relative;isolation:isolate}
 .fz-c::after,.fz-bot::after,.fz-state::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border:14px solid transparent;
   border-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a6'/%3E%3Cstop offset='.5' stop-color='%23c99a3a'/%3E%3Cstop offset='1' stop-color='%238a5a10'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='4' width='52' height='52' rx='9' fill='none' stroke='url(%23g)' stroke-width='1.6'/%3E%3Cg id='c' fill='none' stroke='%23e8b84a' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M1.5 13V8Q1.5 1.5 8 1.5H13'/%3E%3Ccircle cx='4.3' cy='4.3' r='1.4' fill='%23ffd75a' stroke='none'/%3E%3C/g%3E%3Cuse href='%23c' transform='matrix(-1 0 0 1 60 0)'/%3E%3Cuse href='%23c' transform='matrix(1 0 0 -1 0 60)'/%3E%3Cuse href='%23c' transform='matrix(-1 0 0 -1 60 60)'/%3E%3C/svg%3E") 20 / 14px stretch}
-.fz-c{container-type:size;display:grid;grid-template-rows:46% minmax(0,1fr);row-gap:3%;padding:2.6% 8% 4.4%;min-height:0;min-width:0;border:0;border-radius:12px;cursor:pointer;font:inherit;color:#fff;text-align:right;
-  background:radial-gradient(120% 90% at 50% 0%,#15204e,#0a1034 60%,#070b26);transition:box-shadow .2s,filter .2s}
+.fz-c{container-type:size;display:grid;grid-template-rows:minmax(30px,38%) minmax(0,1fr);row-gap:1px;padding:2.4% 8% 2.4%;min-height:0;min-width:0;border:0;border-radius:12px;cursor:pointer;font:inherit;color:#fff;text-align:right;
+  background:radial-gradient(60% 46% at 50% 74%,rgba(124,92,230,.24),rgba(60,90,200,.08) 60%,transparent 75%),linear-gradient(160deg,#18214c,#0e1434 45%,#0b0d26 75%,#120c2a);   /* deep blue-charcoal, a violet hint, soft light behind the monsters */
+  box-shadow:inset 0 0 18px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);transition:box-shadow .2s,filter .2s}
 .fz-c:not(.sel):hover{filter:brightness(1.08)}
-.fz-c.sel{outline:0!important;box-shadow:0 0 0 1.5px #ffd75a,0 0 12px rgba(255,180,60,.55),inset 0 0 16px rgba(255,190,70,.18)!important}   /* not the app-wide .sel outline: the concept's soft gold glow */
-.fz-c.sel::after{filter:brightness(1.25) saturate(1.2)}
-.fz-gem{position:absolute;z-index:3;left:50%;top:0;width:38%;height:26%;translate:-50% -46%;pointer-events:none;filter:drop-shadow(0 0 5px rgba(90,170,255,.8));
+.fz-c.sel{outline:0!important;box-shadow:0 0 0 1.5px #ffd75a,0 0 9px rgba(255,180,60,.41),inset 0 0 18px rgba(0,0,0,.55),inset 0 0 14px rgba(255,190,70,.12)!important}   /* not the app-wide .sel outline: the concept's soft gold glow */
+.fz-c.sel::after{filter:brightness(1.15) saturate(1.1)}
+.fz-gem{position:absolute;z-index:3;left:50%;top:0;width:28%;height:19%;translate:-50% -48%;pointer-events:none;opacity:.9;filter:drop-shadow(0 0 3px rgba(90,170,255,.55));
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 60'%3E%3Cdefs%3E%3ClinearGradient id='w' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%233a6aff' stop-opacity='0'/%3E%3Cstop offset='.65' stop-color='%236ab8ff'/%3E%3Cstop offset='1' stop-color='%23e8f4ff'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f2faff'/%3E%3Cstop offset='.45' stop-color='%234aa8ff'/%3E%3Cstop offset='1' stop-color='%231a3ab0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg id='a'%3E%3Cpath d='M104 30Q70 20 4 30Q70 40 104 34Z' fill='url(%23w)' stroke='%23ffd75a' stroke-width='.9'/%3E%3Cpath d='M100 26Q74 14 30 18Q76 22 100 30Z' fill='url(%23w)' opacity='.7'/%3E%3C/g%3E%3Cuse href='%23a' transform='matrix(-1 0 0 1 240 0)'/%3E%3Cpath d='M120 3L140 30L120 57L100 30Z' fill='url(%23d)' stroke='%23ffd75a' stroke-width='2.2'/%3E%3Cpath d='M120 3L129 30L120 57Z' fill='%23fff' opacity='.28'/%3E%3C/svg%3E") center/contain no-repeat}
 .fz-lau{position:absolute;z-index:1;left:2.6%;bottom:9%;height:36%;aspect-ratio:46/84;pointer-events:none;background:var(--lau) center/contain no-repeat}.fz-lau.r{left:auto;right:2.6%;scale:-1 1}
 .fz-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:4cqw;min-height:0;direction:ltr}
@@ -3537,21 +3538,22 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .fz-nm .az-pow{flex:none;font-size:12px}
 .fz-id>small{font-size:10.5px;color:#c8d2f0;white-space:nowrap;padding-inline:10px}
 .fz-rk{display:grid;place-items:center}.fz-rk .rankic{width:min(42px,36cqh);height:min(42px,36cqh)}
-.fz-c .fz-mons{--mt:min(calc(100cqh * .54),calc((92cqw - 6.4cqw) / 5),56px);gap:1.6cqw;justify-content:center;align-items:center;direction:ltr}
-.fz-bot{container-type:size;display:grid;grid-template-columns:minmax(0,17fr) minmax(0,17fr) auto minmax(0,60fr);gap:clamp(5px,1.2cqw,12px);align-items:stretch;padding:clamp(4px,1.4dvh,10px) clamp(8px,1.6cqw,14px);border-radius:14px;direction:ltr;
+.fz-c .fz-mons{--mt:min(calc(100cqh - max(30px, 38cqh) - 3px),calc((94cqw - 6.4cqw) / 5),84px);gap:1.6cqw;justify-content:center;align-items:center;direction:ltr}
+.fz-bot{container-type:size;display:grid;grid-template-columns:minmax(0,15fr) minmax(0,22fr) auto minmax(0,57fr);gap:clamp(5px,1.2cqw,12px);align-items:stretch;padding:clamp(4px,1.4dvh,10px) clamp(8px,1.6cqw,14px);border-radius:14px;direction:ltr;
   background:linear-gradient(#0d1540f0,#070b26f0)}
 .fz-go{direction:rtl;display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;padding:0 6px;border-radius:12px;cursor:pointer;font:inherit;color:#2a1800;background:linear-gradient(#ffe9a6,#f5c043 42%,#c98a14);border:1.5px solid #fff2c0;box-shadow:0 0 10px rgba(255,200,80,.45),inset 0 1px 0 rgba(255,255,255,.6)}
 .fz-go b{font-size:clamp(16px,30cqh,26px);white-space:nowrap}.fz-go .azi{flex:none;width:clamp(16px,24cqh,24px);height:clamp(16px,24cqh,24px)}
 .fz-go:disabled{cursor:default;filter:grayscale(.65) brightness(.8);box-shadow:none}
 .fz-foe{display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0;padding:3px 8px;border-radius:10px;direction:rtl;background:#070b22;border:1px solid rgba(201,154,58,.45)}
-.fz-foe>span:first-child{display:flex;flex-direction:column;min-width:0;line-height:1.15}.fz-foe small{font-size:10.5px;color:#c8d2f0}.fz-foe .fz-name{font-size:clamp(12px,19cqh,15px)}
-.fz-cost{display:flex;align-items:center;gap:5px;white-space:nowrap}.fz-cost>b{display:inline-flex;align-items:center;gap:2px;font-size:13px;color:#ffd75a}.fz-cost img{width:18px;height:18px}.fz-tk{white-space:nowrap}.fz-tk b{color:#fff}
+.fz-fr{display:flex;align-items:baseline;justify-content:space-between;gap:6px;min-width:0;line-height:1.2;white-space:nowrap}.fz-fr+.fz-fr{border-top:1px solid rgba(201,154,58,.18);padding-top:1px}
+.fz-foe small{font-size:10.5px;color:#c8d2f0}.fz-fr>b{font-size:12px;color:#fff;min-width:0}.fz-foe .fz-name{font-size:clamp(12px,19cqh,14.5px);color:#ffe9a6;overflow:hidden}
+.fz-cost>b{display:inline-flex;align-items:center;gap:3px;color:#ffd75a}.fz-cost img{width:16px;height:16px}
 .fz-why{color:#ff9aa6!important;font-weight:800;line-height:1.2}
 .fz-div{position:relative;width:2px;margin:6% 0;background:linear-gradient(transparent,#c99a3a 20%,#c99a3a 80%,transparent)}
 .fz-div::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;translate:-50% -50%;rotate:45deg;border:1.5px solid #ffd75a;background:#0b1236}
 .fz-team{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(6px,1.2cqw,12px);min-width:0;padding:3px 8px;border-radius:10px;background:linear-gradient(#0d1540,#070b26);border:1px solid rgba(201,154,58,.55)}
 .fz-tp{display:flex;align-items:center;gap:5px;direction:rtl}.fz-tp>.azi{flex:none;width:22px;height:22px;color:#ffd75a}.fz-tp>span{display:flex;flex-direction:column;line-height:1.15;white-space:nowrap}
-.fz-tp small{font-size:10.5px;color:#c8d2f0}.fz-tp b{font-size:clamp(13px,22cqh,16px);color:#ffd75a}
+.fz-tp small{font-size:10.5px;color:#c8d2f0}.fz-tp b{font-size:clamp(15px,28cqh,20px);color:#ffd75a;text-shadow:0 0 8px rgba(255,200,80,.35)}.fz-tp>.azi{width:26px!important;height:26px!important}
 .fz-team .fz-mons{--mt:min(calc(100cqh - 10px),6.6cqw,56px);gap:clamp(3px,.8cqw,8px);justify-content:center;direction:ltr}
 .fz-slot{width:var(--mt);aspect-ratio:1;border-radius:8px;background:#070b22;border:1.5px dashed rgba(201,154,58,.5)}
 .fz-edit{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;align-self:stretch;min-width:clamp(58px,10cqw,96px);padding:2px 8px;border-radius:12px;cursor:pointer;font:inherit;font-weight:900;font-size:12px;color:#fff;
@@ -3562,9 +3564,10 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .fz-state>.azi{width:40px;height:40px;color:#ffd75a}.fz-state>b{font-size:clamp(16px,5dvh,22px);color:#ffd75a}.fz-state>small{font-size:12.5px;color:#e8ecff}
 .fz>.fz-state:only-child{grid-row:1 / -1}
 .fz-bot>*,.fz-team>*{min-height:0!important}.fz-team,.fz-foe{overflow:hidden}.fz-go,.fz-edit{min-height:0!important;height:auto}   /* the panel's height is the grid's: its buttons shrink with it */
-@container (max-height:84px){.fz-id{gap:1px}.fz-nm{padding-block:0}.fz-name{font-size:12px;line-height:1.25}.fz-id>small{font-size:10px;line-height:1.05}.fz-c .fz-mons{--mt:min(calc(100cqh * .49),calc((92cqw - 6.4cqw) / 5),56px)}}   /* short cards (phones): the rank line stays, everything a little tighter */
+@container (max-height:84px){.fz-id{gap:1px}.fz-nm{padding-block:0}.fz-name{font-size:12px;line-height:1.25}.fz-id>small{font-size:10px;line-height:1.05}}   /* short cards (phones): the rank line stays, everything a little tighter */
 @container (max-width:300px){.fz-top{gap:2.5cqw}.fz-nm{padding:1px 7px;gap:4px}.fz-nm .az-pow .azi{display:none}}.fz-c{padding-inline:clamp(10px,8%,40px)}@media (max-width:720px){.fz-c{padding-inline:4.5%}}@media (max-width:900px){.fz-bot{grid-template-columns:minmax(0,14fr) minmax(0,23fr) auto minmax(0,57fr)}}   /* phones: the opponent's name gets the room, the fight button less */   /* narrow cards: room for long names before the font steps down */
-@container (max-height:70px){.fz-foe>span:first-child small{display:none}.fz-foe{gap:0;padding-block:2px}}   /* a short panel: the opponent box keeps name, cost and tickets left */
+@container (max-height:70px){.fz-foe{gap:0;padding-block:1px}.fz-fr{line-height:1.08}.fz-fr+.fz-fr{padding-top:0}.fz-foe .fz-name{font-size:12.5px}.fz-fr>b{font-size:11.5px}}   /* a short panel: still three lines, tighter */
+.fz-spin{flex:none;width:16px;height:16px;border-radius:50%;border:2.5px solid rgba(42,24,0,.35);border-top-color:#2a1800;animation:fzSpin .7s linear infinite}@keyframes fzSpin{to{rotate:360deg}}
 /* ---- the arena shop (the user's clean template + full concept, 2026-11-05): tabs, 6 cards on the template's own framed pedestals, the item panel ---- */
 .sp{display:grid;grid-template-columns:minmax(0,29.5fr) minmax(0,70fr);gap:1.1%;height:100%;min-height:0;direction:rtl}
 .sp-main,.sp-det{position:relative;min-height:0;min-width:0;border-radius:14px;border:1.5px solid #c99a3a;box-shadow:inset 0 0 0 1px rgba(255,215,90,.12),0 0 10px rgba(0,0,0,.35)}
@@ -5507,12 +5510,12 @@ function azFight(A, L) {
     ${opps.length ? `<div class="fz-cards">${opps.map(card).join("")}</div>`
       : `<div class="fz-state">${azi("users")}<b class="title-font">אין יריבים זמינים כרגע</b><small>אפשר לחפש יריבים אחרים.</small></div>`}
     <div class="fz-bot">
-      <button class="fz-go" id="arenaGo" ${why || azStarting ? "disabled" : ""}>${azi("sw")}<b class="title-font">${azStarting ? "פותח קרב…" : "לקרב!"}</b></button>
-      <div class="fz-foe"><span><small>היריב</small><b class="fz-name">${sb ? esc(sb.name) : "לא נבחר"}</b></span>
-        ${why ? `<small class="fz-why">${why}</small>`
-          : `<span class="fz-cost"><small>עלות</small><b dir="ltr"><img src="assets/cur_ticket.webp" alt="כרטיס זירה">1</b></span><small class="fz-tk">נותרו <b dir="ltr">${A.t}/${ticketMax()}</b> כרטיסים</small>`}</div>
+      <button class="fz-go" id="arenaGo" ${why || azStarting ? "disabled" : ""}>${azi("sw")}<b class="title-font">${azStarting ? "פותח קרב…" : "לקרב!"}</b>${azStarting ? '<i class="fz-spin"></i>' : ""}</button>
+      <div class="fz-foe"><span class="fz-fr"><small>יריב</small><b class="fz-name">${sb ? esc(sb.name) : "לא נבחר"}</b></span>
+        <span class="fz-fr fz-cost"><small>עלות קרב</small><b><span dir="ltr">1</span> כרטיס</b></span>
+        ${why ? `<small class="fz-why">${why}</small>` : `<span class="fz-fr fz-tk"><small>כרטיסים</small><b><span dir="ltr">${A.t}</span> מתוך <span dir="ltr">${ticketMax()}</span></b></span>`}</div>
       <i class="fz-div"></i>
-      <div class="fz-team" id="arenaTeam"><span class="fz-tp">${azi("shield")}<span><small>הצוות שלי</small><b dir="ltr">${fmt(mp)}</b></span></span>
+      <div class="fz-team" id="arenaTeam"><span class="fz-tp">${azi("shield")}<span><small>כוח הצוות</small><b dir="ltr">${fmt(mp)}</b></span></span>
         <span class="az-mons fz-mons">${team.map(m => azMon(m.id, m.lvl, mst(m))).join("")}${'<i class="fz-slot"></i>'.repeat(Math.max(0, TEAM_MAX - team.length))}</span>
         <button class="fz-edit" id="arEdit">${azi("users")}<span>עריכת צוות</span></button></div></div>
     <div class="fz-nav"><button class="fz-ref" id="arRefresh">${azi("refresh")}<span>יריבים אחרים</span></button></div></div>`;
