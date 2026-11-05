@@ -3514,6 +3514,73 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 @container dlrows (max-width:430px){.dl-who .pav{display:none}.dl-r{grid-template-columns:clamp(44px,10.5cqw,60px) minmax(0,clamp(96px,24cqw,150px)) minmax(0,1fr) auto clamp(20px,4.6cqw,26px)}}
 @container dldet (max-height:370px){.dl-meta{flex-wrap:nowrap;padding:2px 6px}.dl-meta .azi{display:none}.dl-meta .dl-dt,.dl-sc{font-size:11px}}
 .dl-when small:first-child{font-size:clamp(11px,3.2dvh,13px)}
+/* ---- arena history (2026-11-05, the user's two concepts): the defence log's frame, filters, pager and panel shell, with its own rows
+   (foe + date, result chip with laurels, my five, details) and its own panel (foe, my five vs his five, result, change, date | hour, replay off) ---- */
+.hs-r{position:relative;min-height:0;display:grid;grid-template-columns:minmax(0,max(24cqw,124px)) clamp(96px,18cqw,140px) minmax(0,1fr) clamp(60px,12cqw,96px);align-items:center;gap:clamp(4px,1cqw,10px);
+  padding:3px clamp(5px,1.1cqw,12px);border-radius:12px;cursor:pointer;color:#e8ecff;background:linear-gradient(90deg,#131c4a,#0b1238);border:1.5px solid rgba(201,154,58,.55);box-shadow:inset 0 0 0 1px rgba(255,215,90,.05)}
+.hs-r.on{border-color:#ffd75a;background:linear-gradient(90deg,#1c2760,#10184a);box-shadow:0 0 0 1px rgba(106,66,6,.8),0 0 10px rgba(255,200,80,.33)}
+.hs-r:focus-visible{outline:2px solid #9ab8ff;outline-offset:1px}
+.hs-r .dl-who{gap:6px}.hs-r .dl-who .pav{flex:none;--ps:clamp(28px,calc((100cqh - 15px) / 4 - 16px),44px)!important;width:var(--ps)!important;height:var(--ps)!important}
+.hs-when{font-size:clamp(10.5px,3dvh,12.5px);color:#c8d2f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hs-res{align-self:stretch;display:grid;place-items:center;border-inline:1px solid rgba(201,154,58,.35);padding-inline:2px}
+.hs-chip{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:4px;height:clamp(24px,7dvh,32px);padding:0 18%;min-width:86%;box-sizing:border-box;border-radius:999px;
+  font-weight:900;font-size:clamp(12px,3.5dvh,15px);white-space:nowrap;line-height:1}
+.hs-chip.w{color:#7dffb0;background:radial-gradient(ellipse at 50% 50%,#0f4a2a,#06200f 75%);border:1.5px solid #2cc46a;box-shadow:inset 0 0 8px rgba(80,255,150,.25),0 0 6px rgba(60,220,120,.25)}
+.hs-chip.l{color:#ff8a98;background:radial-gradient(ellipse at 50% 50%,#4a0f1c,#22060c 75%);border:1.5px solid #d23a4e;box-shadow:inset 0 0 8px rgba(255,80,100,.25),0 0 6px rgba(230,60,80,.25)}
+.hs-chip>b[dir]{color:#ffd75a}.hs-chip .azi{flex:none;width:15px;height:15px;color:#ffd75a}
+.hs-lau{position:absolute;top:50%;left:-5%;translate:0 -50%;height:128%;aspect-ratio:46/84;pointer-events:none;background:var(--lau) center/contain no-repeat;mix-blend-mode:screen}.hs-lau.r{left:auto;right:-5%;scale:-1 1}
+.hs-r .dl-mons{container-type:inline-size;min-width:0;gap:3px;justify-content:center;--mt:min(calc((100cqw - 14px) / 5),calc((100cqh - 15px) / 4 - 10px),52px)}
+.hs-r .dl-na{font-size:11px;color:#c8d2f0;text-align:center}
+.hs-db{display:inline-flex;align-items:center;justify-content:center;gap:5px;height:clamp(28px,8dvh,38px);min-height:0!important;width:100%;padding:0 8px;border-radius:999px;font:inherit;font-weight:800;
+  font-size:clamp(12px,3.4dvh,15px);white-space:nowrap;cursor:pointer;color:#fff;background:linear-gradient(#1c2a66,#0b1238);border:1.5px solid #c99a3a}
+.hs-db .azi{flex:none;width:12px;height:12px;color:#ffd75a}
+.hs-r.on .hs-db{border-color:#ffd75a;box-shadow:0 0 6px rgba(255,200,80,.3)}
+@container dlrows (max-width:470px){.hs-r .dl-who .pav{display:none}.hs-r{grid-template-columns:minmax(0,25cqw) clamp(82px,20cqw,130px) minmax(0,1fr) clamp(54px,13cqw,80px);gap:4px}.hs-r .dl-mons{gap:2px;--mt:min(calc((100cqw - 8px) / 5),calc((100cqh - 15px) / 4 - 10px),52px)}.hs-db .azi{display:none}.hs-chip{padding:0 16%;gap:3px}.hs-chip .azi{width:13px;height:13px}}
+@container dlrows (max-height:195px){.hs-chip{height:24px}}
+.dl.hs .dl-fs{grid-template-columns:1fr 1fr 1fr 1.5fr}.dl.hs .dl-f{padding:0 4px;gap:4px}.dl.hs .dl-f.t{justify-content:center}
+.dl.hs.open .hs-chip.big{justify-self:center;min-width:0;width:min(100%,260px)}
+.hs-nav{grid-template-columns:minmax(0,1fr)}
+.dl.hs .az-mt small{letter-spacing:-.5px}
+.hs-one{grid-template-rows:minmax(0,1fr)}
+/* states: one medallion icon with the laurels, title, line, action */
+.hs-st{grid-template-rows:minmax(0,1fr) auto auto auto;align-content:center}
+.hs-ic{position:relative;align-self:end;display:grid;place-items:center;width:clamp(58px,20dvh,96px);aspect-ratio:1;margin-bottom:4px;color:#ffd75a}
+.hs-ic>.azi{width:52%;height:52%;filter:drop-shadow(0 0 8px rgba(255,200,80,.45))}
+.hs-ic .hs-lau{height:96%;left:-14%}.hs-ic .hs-lau.r{left:auto;right:-14%}
+.hs-ic.err{color:#ff5a6a}.hs-ic.err>.azi{filter:drop-shadow(0 0 8px rgba(255,80,100,.55))}.hs-ic.err .hs-lau{display:none}
+.hs-ic.err::before{content:"";position:absolute;inset:14%;border-radius:50%;border:2px solid #ff5a6a;box-shadow:0 0 12px rgba(255,80,100,.45),inset 0 0 10px rgba(255,80,100,.3)}
+.hs-spin{width:56%;aspect-ratio:1;border-radius:50%;border:3px solid rgba(110,160,255,.25);border-top-color:#8fb8ff;box-shadow:0 0 12px rgba(110,160,255,.4);animation:fzSpin 1s linear infinite}
+.hs-st .hs-ic:has(.hs-spin) .hs-lau{display:none}
+@media (prefers-reduced-motion:reduce){.hs-spin{animation-duration:3s}}
+/* the panel */
+.hs-det{gap:clamp(3px,.9dvh,6px)}
+.hs-opp{flex:none;display:flex;align-items:center;gap:8px;padding-inline:2px}.hs-opp>span:not(.pav){display:flex;flex-direction:column;min-width:0;line-height:1.2}
+.hs-opp .pav{flex:none}.hs-opp .dl-name{font-size:clamp(13px,3.8dvh,16px)}
+.hs-opp small{font-size:11.5px;color:#c8d2f0;white-space:nowrap;display:flex;align-items:center;gap:4px}.hs-opp small i{font-style:normal;color:#ffd75a;font-weight:800}.hs-opp small s{text-decoration:none;color:#5a6aa8}
+.hs-tm{flex:none;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 5px 5px;border-radius:10px}
+.hs-tm>b{font-size:clamp(11.5px,3.3dvh,13.5px);color:#fff}
+.hs-tm.my{background:linear-gradient(#16296a,#0a1442);border:1.5px solid #4f7cf0;box-shadow:inset 0 0 10px rgba(80,130,255,.25)}
+.hs-tm.op{background:linear-gradient(#4a1226,#1e0812);border:1.5px solid #c23650;box-shadow:inset 0 0 10px rgba(255,70,100,.2)}
+.hs-det .hs-tm .dl-mons{--mt:min(calc((100cqw - 30px) / 5),11.5cqh,46px);gap:2px;justify-content:center}
+@container dldet (max-width:240px){.hs-tm{padding-inline:3px}.hs-opp small{flex-wrap:wrap;row-gap:0}.hs-opp small s{display:none}.hs-opp small .dl-pow{flex-basis:100%}}
+.hs-vs{margin-block:-2px}.hs-vs b{font-size:clamp(18px,6dvh,30px)}
+.hs-chip.big{flex:none;align-self:center;height:clamp(28px,8.5dvh,40px);min-width:62%;padding:0 22%;font-size:clamp(15px,4.6dvh,21px);gap:6px}.hs-chip.big .azi{width:19px;height:19px}
+.hs-chip.big .hs-cd{display:none}.hs-chip.big .hs-lau{height:132%;left:-6%}.hs-chip.big .hs-lau.r{left:auto;right:-6%}
+.hs-chg{flex:none;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:#e8ecff;white-space:nowrap}.hs-chg .azi{width:14px;height:14px;color:#ffd75a}
+.hs-chg .w{color:#7dffb0}.hs-chg .l{color:#ff7a8a}
+.hs-meta{justify-content:center;gap:10px}.hs-meta s{width:1px;align-self:stretch;background:rgba(201,154,58,.5)}.hs-meta b{font-size:12.5px}
+.hs-rp{flex:none;display:flex;align-items:center;gap:6px;margin-top:auto}
+.hs-inf{flex:none;width:30px;height:30px;min-height:0!important;display:grid;place-items:center;padding:0;border-radius:50%;cursor:pointer;color:#ffd75a;background:#0a1032;border:1.5px solid #c99a3a}.hs-inf .azi{width:15px;height:15px}
+.hs-rpb{flex:1;min-width:0;height:clamp(30px,8.5dvh,42px);min-height:0!important;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:10px;font:inherit;font-weight:800;font-size:clamp(12px,3.5dvh,15px);
+  white-space:nowrap;color:#c3c8d8;background:linear-gradient(#5a6070,#3a3f4c);border:1.5px solid #7a8090;cursor:default}.hs-rpb .azi{width:13px;height:13px}
+@container dldet (max-height:370px){.hs-det{gap:2px}.hs-opp .pav{--ps:30px!important;width:30px!important;height:30px!important}.hs-tm{padding:2px 4px 3px;gap:1px}.hs-tm>b{font-size:11px}
+  .hs-vs b{font-size:18px}.hs-chip.big{height:26px;font-size:14px}.hs-meta .azi{display:inline-block}.hs-rpb{height:30px;font-size:12px}}
+@container dldet (max-height:300px){.hs-chip.big .hs-cd{display:inline}.hs-chg{display:none}}
+@media (max-width:720px){.dl.hs.open>.dl-det{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-rows:auto auto auto auto minmax(0,1fr) auto;
+    grid-template-areas:"dh dh dh" "opp chip chip" "my vs op" "chg chg chg" ". . ." "meta rp rp";column-gap:10px;row-gap:5px;align-content:start}
+  .dl.hs.open .hs-opp{grid-area:opp}.dl.hs.open .hs-tm.my{grid-area:my}.dl.hs.open .hs-tm.op{grid-area:op}.dl.hs.open .hs-chip.big{grid-area:chip}.dl.hs.open .hs-chg{grid-area:chg;display:flex}
+  .dl.hs.open .hs-meta{grid-area:meta;align-self:end}.dl.hs.open .hs-rp{grid-area:rp;align-self:end}.dl.hs.open .hs-chip.big .hs-cd{display:none}
+  .dl.hs.open .hs-tm .dl-mons{--mt:clamp(26px,calc((100cqw - 110px) / 10),44px)}}
 @container dlrows (max-width:430px){.dl-r .dl-when{white-space:normal;width:44px;align-items:center}.dl-r .dl-when small:first-child{white-space:normal;text-align:center;line-height:1.1;font-size:11px}}
 /* ---- the fight tab (the user's clean concept, 2026-11-05): framed cards 2x2, the bottom panel (fight / opponent / my team), other opponents ---- */
 .fz{display:grid;grid-template-rows:minmax(0,1fr) clamp(62px,21.5%,112px) auto;gap:2.2%;height:100%;min-height:0;padding-top:clamp(6px,2.6%,16px);box-sizing:border-box;direction:rtl}
@@ -4281,7 +4348,7 @@ const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"au
 const ART = {battle:"assets/battle_meadow.webp", forest:"assets/battle_forest.webp", hub:"assets/sky_hub.webp", altar:"assets/summon_altar.webp"};
 // the published game page holds at most ~510 files, so newer art lives in its asset store; everywhere else (GitHub, local) it is read from assets/
 const ARTAR = {"aether_sprite":1.094,"aether_titan":1.037,"ash_golem":1.094,"aurora_spirit":0.503,"aurora_spirit_awakened":0.667,"banshee":0.658,"banshee_awakened":0.664,"celestial_lion":1.039,"celestial_lion_awakened":1.094,"cinder_hound":1.094,"cloud_slime":1.095,"crystal_beetle":1.493,"crystal_guardian":1.38,"desert_bandit":1.094,"djinn":0.613,"djinn_awakened":0.665,"dragon":1.228,"dragon_awakened":1.228,"dune_worm":1.094,"elf_archer":1.215,"elf_archer_awakened":1.228,"fairy":1.225,"fairy_awakened":1.231,"frost_serpent":1.088,"frost_serpent_awakened":1.092,"frost_witch":0.641,"frost_witch_awakened":0.667,"frost_wyrm":1.185,"gargoyle":1.093,"ghost_queen":0.669,"ghost_queen_awakened":0.667,"ghoul":1.099,"giant_spider":1.096,"golem":1.21,"golem_awakened":1.087,"griffin":1.228,"griffin_awakened":1.228,"harpy":1.206,"harpy_awakened":1.206,"ice_troll":1.092,"imp_fire":0.995,"imp_fire_awakened":1.094,"lava_titan":1.094,"legend_dawn_unicorn":1.382,"legend_dawn_unicorn_awakened":1.504,"legend_eclipse_dragon":1.508,"legend_eclipse_dragon_awakened":1.499,"legend_forest_dryad":0.668,"legend_forest_dryad_awakened":0.665,"legend_kraken_king":0.663,"legend_kraken_king_awakened":0.669,"legend_mountain_behemoth":1.499,"legend_mountain_behemoth_awakened":1.495,"legend_storm_roc":1.094,"legend_storm_roc_awakened":1.094,"legend_sun_empress":0.667,"legend_sun_empress_awakened":0.667,"legend_wind_centaur":0.667,"legend_wind_centaur_awakened":0.667,"magma_bat":1.508,"marble_guardian":1.086,"mermaid":0.842,"mermaid_awakened":0.843,"moon_priestess":0.642,"moon_priestess_awakened":0.67,"moss_wolf":1.405,"mummy":0.629,"mummy_awakened":0.667,"mushroom":1.202,"mushroom_awakened":1.228,"obsidian_knight":1.095,"obsidian_knight_awakened":1.093,"phoenix":1.098,"phoenix_awakened":1.094,"pixie_thief":1.1,"salamander":1.522,"salamander_awakened":1.495,"sand_colossus":1.094,"sand_scorpion":1.073,"scarab_knight":1.093,"scarab_knight_awakened":1.099,"seraph":0.66,"seraph_awakened":0.671,"shadow_lord":1.04,"shadow_ninja":1.057,"shadow_ninja_awakened":1.094,"shadow_wraith":1.1,"skeleton_knight":1.094,"skeleton_knight_awakened":1.093,"sky_boar":1.301,"sky_ray":1.504,"snow_owl":1.205,"snow_owl_awakened":1.208,"snow_sprite":1.094,"sphinx":1.094,"sphinx_awakened":1.094,"star_sage":0.667,"star_sage_awakened":0.666,"star_wisp":1.077,"storm_mage":0.665,"storm_mage_awakened":0.663,"treant_boss":1.094,"valkyrie":1.18,"valkyrie_awakened":1.18,"vampire":0.661,"vampire_awakened":0.668,"void_knight":0.661,"void_knight_awakened":0.668,"werewolf":1.103,"werewolf_awakened":1.094,"will_wisp":1.096,"wind_dancer":0.656,"wind_dancer_awakened":0.67,"wolf_spirit":1.247,"wolf_spirit_awakened":1.228,"yeti":1.082,"yeti_awakened":1.093};   // generated by sync_have.py: image width/height per monster art
-const BLOB = {ui_ssn_card_0:"/_blob/e1f70d304e7472d2b77be4a1863d2f2c", ui_ssn_card_1:"/_blob/40a4dc02e0542012b8f3e14239f37a36", ui_ssn_card_2:"/_blob/dd6174a1d7bc9ca2852095a6dfe08579", ui_ssn_card_3:"/_blob/0784f2c1e999c5768fe4e06a6e30e27d", ui_ssn_card_4:"/_blob/cec5c5405d1923479c6a1d01bca77246", ui_ssn_card_5:"/_blob/5a26d9ef75253329a4dd039e37e7cdde", ui_ssn_chest_0:"/_blob/6528a59cf405969df18b991cbcf21d4b", ui_ssn_chest_1:"/_blob/f618d3d2272894474c7ed995b5dd102e", ui_ssn_chest_2:"/_blob/26820338e8fc04e0c61b4a37aa310238", ui_ssn_chest_3:"/_blob/613e7ad50e2620766d730e1c9edb1b6d", ui_ssn_chest_4:"/_blob/671f05d96d39a1b34c4a494574c11d8c", ui_ssn_chest_5:"/_blob/6775a656f5f10d6e23529f47802ad6f9", ui_ssn_crest_0:"/_blob/d86b12979c9e6439ca3e61501508ed2e", ui_ssn_crest_1:"/_blob/2aee51939e3fdda7b7b960b5112e307c", ui_ssn_crest_2:"/_blob/efa296db1f5a0231794ea7d449b909aa", ui_ssn_crest_3:"/_blob/fc5216c7bb69eb6e7159daf433b3232d", ui_ssn_crest_4:"/_blob/f2f61d8a063d0c6004045f3129e37c97", ui_ssn_crest_5:"/_blob/0a5fa85bda7299554c6f57783c425029", ui_prg_banner:"/_blob/1e6600da085d591f96ac94f6c1fa256e", ui_prg_card_1:"/_blob/f0dcd73400a50d15cf3a0bd20f770296", ui_prg_card_2:"/_blob/1ed773f12c3dd1d04c8961fa0f67235a", ui_prg_card_3:"/_blob/3d0f4fa00a7b4d300d6a989fb853db2d", ui_prg_card_4:"/_blob/a30407abba87f1587bb8b5e713b3956e", ui_prg_card_5:"/_blob/36a759922d49faf8492b09898209359d", ui_prg_chest:"/_blob/ca68f2826b264366a518b4def4b79892", ui_prg_crest_1:"/_blob/8d351c779594dbdb6649ec7b82ea9724", ui_prg_crest_2:"/_blob/7b1b5e0590fed1d2628941fd32dea21d", ui_prg_crest_3:"/_blob/c0dc6ed4f33672f4784d6bc123cedb00", ui_prg_crest_4:"/_blob/d757c7f76ed5fd3dc1077052f150ab87", ui_prg_crest_5:"/_blob/6dfc6c508a4d12c393dd5ed32048a74d", ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_deflog_hall:"/_blob/9d0972827dcd9b6c220982321a26ed89", ui_fz_laurel:"/_blob/7423f5d21f417380db8adc58e53a5972", ui_sh_card:"/_blob/13794bb9a5e25b4690786a02ea055aa1", ui_sh_sel:"/_blob/b187727ce710e0e8f5e9f6f87669ddf2", ui_sh_ped:"/_blob/82226d5b0d2f6771bdd279ac5e4309a9", ui_deflog_scroll:"/_blob/8286ce95eae86d7a62b48e30dedcb8e4", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
+const BLOB = {ui_ssn_card_0:"/_blob/e1f70d304e7472d2b77be4a1863d2f2c", ui_ssn_card_1:"/_blob/40a4dc02e0542012b8f3e14239f37a36", ui_ssn_card_2:"/_blob/dd6174a1d7bc9ca2852095a6dfe08579", ui_ssn_card_3:"/_blob/0784f2c1e999c5768fe4e06a6e30e27d", ui_ssn_card_4:"/_blob/cec5c5405d1923479c6a1d01bca77246", ui_ssn_card_5:"/_blob/5a26d9ef75253329a4dd039e37e7cdde", ui_ssn_chest_0:"/_blob/6528a59cf405969df18b991cbcf21d4b", ui_ssn_chest_1:"/_blob/f618d3d2272894474c7ed995b5dd102e", ui_ssn_chest_2:"/_blob/26820338e8fc04e0c61b4a37aa310238", ui_ssn_chest_3:"/_blob/613e7ad50e2620766d730e1c9edb1b6d", ui_ssn_chest_4:"/_blob/671f05d96d39a1b34c4a494574c11d8c", ui_ssn_chest_5:"/_blob/6775a656f5f10d6e23529f47802ad6f9", ui_ssn_crest_0:"/_blob/d86b12979c9e6439ca3e61501508ed2e", ui_ssn_crest_1:"/_blob/2aee51939e3fdda7b7b960b5112e307c", ui_ssn_crest_2:"/_blob/efa296db1f5a0231794ea7d449b909aa", ui_ssn_crest_3:"/_blob/fc5216c7bb69eb6e7159daf433b3232d", ui_ssn_crest_4:"/_blob/f2f61d8a063d0c6004045f3129e37c97", ui_ssn_crest_5:"/_blob/0a5fa85bda7299554c6f57783c425029", ui_prg_banner:"/_blob/1e6600da085d591f96ac94f6c1fa256e", ui_prg_card_1:"/_blob/f0dcd73400a50d15cf3a0bd20f770296", ui_prg_card_2:"/_blob/1ed773f12c3dd1d04c8961fa0f67235a", ui_prg_card_3:"/_blob/3d0f4fa00a7b4d300d6a989fb853db2d", ui_prg_card_4:"/_blob/a30407abba87f1587bb8b5e713b3956e", ui_prg_card_5:"/_blob/36a759922d49faf8492b09898209359d", ui_prg_chest:"/_blob/ca68f2826b264366a518b4def4b79892", ui_prg_crest_1:"/_blob/8d351c779594dbdb6649ec7b82ea9724", ui_prg_crest_2:"/_blob/7b1b5e0590fed1d2628941fd32dea21d", ui_prg_crest_3:"/_blob/c0dc6ed4f33672f4784d6bc123cedb00", ui_prg_crest_4:"/_blob/d757c7f76ed5fd3dc1077052f150ab87", ui_prg_crest_5:"/_blob/6dfc6c508a4d12c393dd5ed32048a74d", ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_deflog_hall:"/_blob/9d0972827dcd9b6c220982321a26ed89", ui_fz_laurel:"/_blob/74a03cab5b4ec7f83a6af66adb401f76", ui_sh_card:"/_blob/13794bb9a5e25b4690786a02ea055aa1", ui_sh_sel:"/_blob/b187727ce710e0e8f5e9f6f87669ddf2", ui_sh_ped:"/_blob/82226d5b0d2f6771bdd279ac5e4309a9", ui_deflog_scroll:"/_blob/8286ce95eae86d7a62b48e30dedcb8e4", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
   legend_kraken_king:"/_blob/57d4de9adf5506c59e8ea01766077092", legend_kraken_king_awakened:"/_blob/a907bb70c41aed676b48211f21842e02",
   legend_storm_roc:"/_blob/5de16d93d25a10eae9d5ab74af515700", legend_storm_roc_awakened:"/_blob/49a68678138e764c50648c52583da5d3",
   legend_wind_centaur:"/_blob/7f98d07d3382ce05e3da69c5960d6b15", legend_wind_centaur_awakened:"/_blob/0c00c92a8a6668fd211c977f066c398b",
@@ -5400,7 +5467,7 @@ const AZI = {                                        // small gold line icons fo
   back:'<path d="M14 5l7 7-7 7M21 12H4"/>', next:'<path d="M15 5l-7 7 7 7"/>', prev:'<path d="M9 5l7 7-7 7"/>',
   list:'<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
   lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
-  refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>', clock:'<path d="M6 3h12M6 21h12M7 3c0 4 4 6 5 9-1 3-5 5-5 9M17 3c0 4-4 6-5 9 1 3 5 5 5 9"/>', check:'<path d="M4 12.5l5 5L20 6.5"/>', alert:'<path d="M12 4v10"/><circle cx="12" cy="18.6" r="1.3"/>', cal:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/>', doc:'<path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/>', dnext:'<path d="M12 5l-7 7 7 7M19 5l-7 7 7 7"/>', dprev:'<path d="M12 5l7 7-7 7M5 5l7 7-7 7"/>', x:'<path d="M6 6l12 12M18 6L6 18"/>', up:'<path d="M12 6l7 11H5z" fill="currentColor" stroke="none"/>', down:'<path d="M12 18L5 7h14z" fill="currentColor" stroke="none"/>', info:'<path d="M12 10v7M12 6.5v.5"/>'};
+  refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>', clock:'<path d="M6 3h12M6 21h12M7 3c0 4 4 6 5 9-1 3-5 5-5 9M17 3c0 4-4 6-5 9 1 3 5 5 5 9"/>', check:'<path d="M4 12.5l5 5L20 6.5"/>', alert:'<path d="M12 4v10"/><circle cx="12" cy="18.6" r="1.3"/>', cal:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/>', doc:'<path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/>', dnext:'<path d="M12 5l-7 7 7 7M19 5l-7 7 7 7"/>', dprev:'<path d="M12 5l7 7-7 7M5 5l7 7-7 7"/>', x:'<path d="M6 6l12 12M18 6L6 18"/>', up:'<path d="M12 6l7 11H5z" fill="currentColor" stroke="none"/>', down:'<path d="M12 18L5 7h14z" fill="currentColor" stroke="none"/>', info:'<path d="M12 10v7M12 6.5v.5"/>', play:'<path d="M8 5.5l11 6.5-11 6.5z" fill="currentColor" stroke="none"/>', search:'<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/>', tm:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'};
 const azi = (k, c) => `<svg class="azi ${c || ""}" viewBox="0 0 24 24" aria-hidden="true">${AZI[k]}</svg>`;
 const azMon = (id, lv, st) => { const d = MON[id];               // one monster tile: art, element, level, stars (real data)
   return `<span class="az-mt" style="--ec:${EL[d.el].c};--rc:${RAR[Math.max(0, Math.min(4, (st || d.st) - 1))].c}">${sprite(id)}${HAVE.has("el_" + d.el) ? `<img class="az-el" src="assets/el_${d.el}.webp" alt="">` : ""}<small dir="ltr">Lv.${lv}</small><em dir="ltr">${st || d.st}★</em></span>`; };
@@ -5451,14 +5518,14 @@ function renderArena() {
   } else ["arenaCrest", "arenaTabs", "arenaNext"].forEach(id => $(id).innerHTML = "");
   // the header row: a title banner for the views that have one; the right corner holds that view's own box (season clock, glory, last attack) instead of the resources
   const ban = {ranks:["gift", "פרסי דירוג", "קבל פרסים יקרי ערך על הדירוג שלך בזירת השמיים"], log:["shield", "יומן ההגנה", "רשימת ההתקפות על ההגנה שלך"],
-    shop:["sw", "חנות הזירה", "פריטים ייחודיים בתמורה לתהילה"], hist:["chart", "היסטוריה", "הקרבות שלך בזירה"]}[arenaTab];
-  const wing = arenaTab === "ranks" || arenaTab === "log" || arenaTab === "shop";   // the winged banner of the rank rewards; log and shop keep their subtitle
-  $("azBanner").classList.toggle("prg", wing); $("azBanner").classList.toggle("lg", arenaTab === "log" || arenaTab === "shop"); $("azBanner").style.backgroundImage = wing ? `url(${assetUrl("ui_prg_banner")})` : "";
+    shop:["sw", "חנות הזירה", "פריטים ייחודיים בתמורה לתהילה"], hist:["chart", "היסטוריה", "הקרבות שלי בזירה"]}[arenaTab];
+  const wing = arenaTab === "ranks" || arenaTab === "log" || arenaTab === "shop" || arenaTab === "hist";   // the winged banner of the rank rewards; log and shop keep their subtitle
+  $("azBanner").classList.toggle("prg", wing); $("azBanner").classList.toggle("lg", arenaTab === "log" || arenaTab === "shop" || arenaTab === "hist"); $("azBanner").style.backgroundImage = wing ? `url(${assetUrl("ui_prg_banner")})` : "";
   $("azBanner").hidden = !ban; $("azBanner").innerHTML = ban ? `<b class="title-font">${azi(ban[0])}<span>${ban[1]}</span></b><small>${ban[2]}</small>` : "";
   const sl = seasonLeft(), hbox = arenaTab === "ranks" ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>סיום העונה בעוד</small><b id="azClock" dir="ltr">${[sl.d, sl.h, sl.m, sl.s].map(v => String(v).padStart(2, "0")).join(":")}</b><small class="az-hb-u"><i>שנ׳</i><i>דק׳</i><i>שעה</i><i>יום</i></small></span>`
     : arenaTab === "shop" ? `<img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(A.glory || 0)}</b>`
     : arenaTab === "log" && azLogArr(A).length && azLogArr(A)[0].ts ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>התקפה אחרונה</small><b>${azAgo(A.log[0])}</b></span>`
-    : arenaTab === "hist" ? `<span><small>המאזן שלך</small><b><span class="w" dir="ltr">${fmt(A.w)}</span> ניצחונות · <span class="l" dir="ltr">${fmt(A.l)}</span> הפסדים</b></span>` : "";
+    : arenaTab === "hist" ? `<span><small>המאזן שלך</small><b><span class="w"><span dir="ltr">${fmt(A.w)}</span> ${A.w === 1 ? "ניצחון" : "ניצחונות"}</span> • <span class="l"><span dir="ltr">${fmt(A.l)}</span> ${A.l === 1 ? "הפסד" : "הפסדים"}</span></b></span>` : "";
   $("azHBox").hidden = !hbox; $("azHBox").innerHTML = hbox; $("azHBox").className = `az-hbox ${arenaTab}`;
   $("topbar").classList.toggle("az-nores", !!(ban || hbox) || arenaTab === "board"); $("topbar").classList.toggle("az-sh", shell);
   clearInterval(azTick); if (arenaTab === "log") azTick = setInterval(() => { const A2 = arenaState(), e = document.querySelector(".dl");   // the log follows a new attack, and its "x ago" times the clock
@@ -5863,7 +5930,7 @@ function ssPtsFit() {                                 // the points beside the t
   place("u");
 }
 function azFit(root) {                               // a long player name steps its font down (to 10px) instead of being cut
-  root.querySelectorAll(".fz-name,.az-c-name b,.az-pplate>b,.dl-name,.sp-n,.sp-tn").forEach(e => { let f = parseFloat(getComputedStyle(e).fontSize); while (e.scrollWidth > e.clientWidth + 1 && f > 10) { f -= .5; e.style.setProperty("font-size", f + "px", "important"); } });
+  root.querySelectorAll(".fz-name,.az-c-name b,.az-pplate>b,.dl-name,.sp-n,.sp-tn,.hs-when").forEach(e => { let f = parseFloat(getComputedStyle(e).fontSize); while (e.scrollWidth > e.clientWidth + 1 && f > 10) { f -= .5; e.style.setProperty("font-size", f + "px", "important"); } });
 }
 function azPager(id, page, pages) {
   return pages > 1 ? `<div class="az-nav slim"><span class="az-pager"><button data-pg="-1" aria-label="עמוד קודם" ${page <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${page}/${pages}</b><button data-pg="1" aria-label="עמוד הבא" ${page >= pages ? "disabled" : ""}>${azi("next")}</button></span></div>` : "";
@@ -5966,18 +6033,92 @@ function azLog(A, L) {
   L.querySelectorAll(".dl-prof").forEach(b => b.onclick = () => botProfile(getBot(A, +b.dataset.i)));
   L.querySelectorAll(".dl-rev").forEach(b => b.onclick = () => { const x = recs.find(e => e.id === b.dataset.k); if (!x || !azBotOk(x) || A.t < 1) return; fightBot(getBot(A, x.bi), x); });
 }
+/* ---- my arena history, built from the user's two concepts (2026-11-05): my own attacks only (A.hist, written by arenaResult; the attacks on me
+   are the defence log, A.log), 4 rows a page (foe, date and hour, my five, result and change, details), a VS panel with both fives as they were
+   in that fight, filters with real counts, a time filter, the empty / no-match / loading / broken-save states. What an older entry did not save
+   is shown as not saved, never rebuilt from today's data. There is no fight recording in the game, so replay stays off and says why. ---- */
+let azHistF = "all", azHistT = "all", azHistTOpen = false, azHistSel = null, azHistOpen = false, azHistLoad = false;
+const azHistArr = A => Array.isArray(A.hist) ? A.hist.filter(x => x && typeof x === "object") : [];
+const azHWhen = (x, row) => { const p = n => String(n).padStart(2, "0");   // concept format: "היום, 12:48" / "03-11-2026, 18:27"; an old entry kept only the day
+  let dt = "", hm = "";
+  if (x.ts) { const d = new Date(x.ts); dt = `${p(d.getDate())}-${p(d.getMonth() + 1)}-${d.getFullYear()}`; hm = `${p(d.getHours())}:${p(d.getMinutes())}`; }
+  else { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(x.day || ""); if (m) dt = `${m[3]}-${m[2]}-${m[1]}`; }
+  if (row) { const td = x.ts ? new Date(x.ts).toLocaleDateString("en-CA") === today() : x.day === today(); return dt ? `${td ? "היום" : dt}${hm ? `, ${hm}` : ""}` : ""; }
+  return [dt, hm]; };
 function azHist(A, L) {
-  const H = A.hist || [], pages = Math.max(1, Math.ceil(H.length / AZ_PER)); azHistPage = Math.max(1, Math.min(pages, azHistPage));
-  const s0 = (azHistPage - 1) * AZ_PER;
-  L.innerHTML = `<div class="az-panel"><div class="az-ph">${azi("chart")}<b class="title-font">היסטוריה</b><small>${fmt(A.w)} ניצחונות · ${fmt(A.l)} הפסדים</small></div>
-    <div class="az-list">${H.length ? H.slice(s0, s0 + AZ_PER).map(x => { const b = getBot(A, x.bi);
-      return `<div class="az-tr"><span class="az-c-name">${framedAvatar(30, {k:"", c1:rankOf(b.r)[2], c2:"#0b1338"}, ART[b.team[0][0]] || "")}<span><b>${esc(x.name || b.name)}</b><small>${x.day === today() ? "היום" : x.day}${x.rev ? " · נקמה" : ""}</small></span></span>
-        <b class="az-res ${x.win ? "w" : "l"}">${x.win ? "ניצחון" : "הפסד"}</b><b class="az-d ${x.win ? "w" : "l"}" dir="ltr">${x.d > 0 ? "+" : ""}${x.d}</b>
-        <span class="az-mons sm">${b.team.map(([id, lv]) => azMon(id, lv)).join("")}</span>
-        <span class="az-c-act"><button class="az-view" data-i="${b.i}">${azi("eye")}צפייה</button></span></div>`; }).join("")
-      : `<div class="az-state">עוד אין קרבות בהיסטוריה. מעכשיו כל קרב שלך בזירה נשמר כאן.</div>`}</div>${azPager("hist", azHistPage, pages)}</div>`;
-  L.querySelectorAll("[data-i]").forEach(b => b.onclick = () => botProfile(getBot(A, +b.dataset.i)));
-  L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { azHistPage += +b.dataset.pg; renderArena(); });
+  const lau = HAVE.has("ui_fz_laurel") ? ` style="--lau:url(${assetUrl("ui_fz_laurel")})"` : "";
+  const ic = (k, cls) => `<span class="hs-ic ${cls || ""}"${lau}>${lau ? '<i class="hs-lau"></i><i class="hs-lau r"></i>' : ""}${k ? azi(k) : '<i class="hs-spin"></i>'}</span>`;
+  const shell = (det, box) => `<div class="dl hs"${lau}><div class="dl-det empty"><b class="dl-dh title-font">פרטי הקרב</b>${det || ""}</div><div class="dl-main"><div class="dl-box hs-one">${box}</div></div></div>`;
+  if (azHistLoad) { L.innerHTML = shell("", `<div class="dl-empty hs-st">${ic("")}<b class="title-font">טוען היסטוריה...</b><small>&nbsp;</small></div>`); return; }
+  if (A.hist != null && !Array.isArray(A.hist)) {   // a broken save: say so; retry really reads the saved game again (nothing is reset or thrown away)
+    L.innerHTML = shell("", `<div class="dl-empty hs-st err">${ic("alert", "err")}<b class="title-font">לא ניתן לטעון את ההיסטוריה</b><small>נתוני ההיסטוריה בשמירה פגומים. בדוק את החיבור ונסה שוב.</small><button class="dl-all" id="hsRetry">${azi("refresh")}<span>נסה שוב</span></button></div>`);
+    $("hsRetry").onclick = () => { azHistLoad = true; renderArena();
+      setTimeout(() => { const s = loadLocal(), h = s && s.arena && s.arena.hist; if (Array.isArray(h)) A.hist = h; azHistLoad = false; if ($("arena").classList.contains("on")) renderArena(); }, 350); };
+    return;
+  }
+  const recs = azHistArr(A); let fix = false;
+  recs.forEach((x, k) => { if (!x.id) { x.id = `${x.ts || x.day || "x"}-${k}-${x.bi}`; fix = true; } }); if (fix) save();   // older entries get a fixed id once
+  const [, , span, tl] = AZ_LOG_T.find(t => t[0] === azHistT) || AZ_LOG_T[0];
+  const inTime = x => span === Infinity || (x.ts ? Date.now() - x.ts <= span : false);
+  const all = recs.filter(inTime), wins = all.filter(x => x.win === true), losses = all.filter(x => x.win === false);   // only true wins and losses; nothing else is guessed into a loss
+  const list = azHistF === "win" ? wins : azHistF === "loss" ? losses : all;
+  const pages = Math.max(1, Math.ceil(list.length / AZ_LOG_PER));
+  const at = list.findIndex(x => x.id === azHistSel);
+  if (at >= 0) azHistPage = Math.floor(at / AZ_LOG_PER) + 1;
+  azHistPage = Math.max(1, Math.min(pages, azHistPage));
+  const s0 = (azHistPage - 1) * AZ_LOG_PER, view = list.slice(s0, s0 + AZ_LOG_PER);
+  if (at < 0 || at < s0 || at >= s0 + AZ_LOG_PER) azHistSel = view.length ? view[0].id : null;
+  const filt = [["all", "הכל", all.length, "list"], ["win", "ניצחונות", wins.length, "shield"], ["loss", "הפסדים", losses.length, "sw"]]
+    .map(([f, n, c, i]) => `<button class="dl-f ${f} ${azHistF === f ? "on" : ""}" data-f="${f}" aria-pressed="${azHistF === f}">${azi(i)}<span>${n} (<b dir="ltr">${c}</b>)</span></button>`).join("")
+    + `<span class="dl-tw"><button class="dl-f t ${azHistTOpen ? "open" : ""}" id="hsT" aria-expanded="${azHistTOpen}">${azi("cal")}<span>טווח זמן: ${tl}</span>${azi("prev", "chev")}</button>
+      ${azHistTOpen ? `<span class="dl-tm">${AZ_LOG_T.map(([t, n]) => `<button class="${azHistT === t ? "on" : ""}" data-tf="${t}">${n}</button>`).join("")}</span>` : ""}</span>`;
+  const foeArt = x => x.ot && x.ot[0] && MON[x.ot[0][0]] ? ART[x.ot[0][0]] || "" : azBotOk(x) ? ART[getBot(A, x.bi).team[0][0]] || "" : "";
+  const av = (x, n) => framedAvatar(n, {k:"", c1:x.ar != null ? rankOf(x.ar)[2] : "#8a6a2a", c2:"#0b1338"}, foeArt(x));
+  const five = t => t && t.length ? `<span class="az-mons dl-mons">${t.filter(m => MON[m[0]]).map(([id, lv, st]) => azMon(id, lv, st)).join("")}</span>` : `<span class="dl-na">ההרכב לא נשמר בקרב זה</span>`;
+  const chip = (x, big) => `<span class="hs-chip ${x.win ? "w" : "l"} ${big ? "big" : ""}">${lau ? '<i class="hs-lau"></i><i class="hs-lau r"></i>' : ""}<b>${x.win ? "ניצחון" : "הפסד"}</b>${big ? `<b class="hs-cd" dir="ltr">${azSgn(x.d)}</b>` : `<b dir="ltr">${azSgn(x.d)}</b>`}${azi(x.win ? "trophy" : "sw")}</span>`;
+  const name = x => esc(x.name || (azBotOk(x) ? getBot(A, x.bi).name : "יריב לא ידוע"));
+  const row = x => `<div class="hs-r ${x.win ? "w" : "l"} ${x.id === azHistSel ? "on" : ""}" role="button" tabindex="0" aria-pressed="${x.id === azHistSel}" data-h="${esc(String(x.id))}">
+      <span class="dl-who">${av(x, 40)}<span><b class="dl-name">${name(x)}</b><small class="hs-when">${azHWhen(x, true)}${x.rev ? " · נקמה" : ""}</small></span></span>
+      <span class="hs-res">${chip(x)}</span>${five(x.my)}
+      <button class="hs-db" data-h="${esc(String(x.id))}">${azi("play")}<span>פרטים</span></button></div>`;
+  let body;
+  if (!recs.length) body = `<div class="dl-empty hs-st">${ic("sw")}<b class="title-font">אין עדיין היסטוריית קרבות</b>
+      <small>בצע קרב בזירת השמיים כדי לראות כאן את התוצאות שלך.</small><button class="dl-all" id="hsGo">${azi("sw")}<span>לקרב!</span></button></div>`;
+  else if (!list.length) body = `<div class="dl-empty hs-st">${ic("search")}<b class="title-font">לא נמצאו קרבות</b>
+      <small>אין קרבות התואמים למסנן שנבחר.</small><button class="dl-all" id="hsClr">${azi("refresh")}<span>נקה מסננים</span></button></div>`;
+  else body = `<div class="dl-rows">${view.map(row).join("")}</div>`;
+  const sel = list.find(x => x.id === azHistSel) || null;
+  let det;
+  if (!sel) det = `<div class="dl-det empty"><b class="dl-dh title-font">פרטי הקרב</b>
+      <span class="dl-scroll"${HAVE.has("ui_deflog_scroll") ? ` style="--sc:url(${assetUrl("ui_deflog_scroll")})"` : ""}></span><b class="title-font dl-pick">${recs.length && list.length ? "בחר קרב" : "אין קרבות"}</b><small>${!recs.length ? "הקרבות שלך יופיעו כאן" : list.length ? "כדי לצפות בפרטים" : "אין קרבות שתואמים למסנן"}</small><i class="dl-orn"></i></div>`;
+  else { const [dd, hh] = azHWhen(sel);
+    det = `<div class="dl-det hs-det" data-id="${esc(String(sel.id))}"><b class="dl-dh title-font">פרטי הקרב</b><button class="dl-x" id="hsX" aria-label="סגירה">${azi("x")}</button>
+      <div class="hs-opp">${av(sel, 44)}<span><b class="dl-name">${name(sel)}</b><small>${sel.ar != null ? `דירוג: <i>${rankOf(sel.ar)[1]}</i>` : "דירוג: לא נשמר"}${sel.op ? ` <s>|</s> כוח: <span class="dl-pow">${azi("sw")}<b dir="ltr">${fmt(sel.op)}</b></span>` : ""}</small></span></div>
+      <div class="hs-tm my"><b>הצוות שלי (בקרב)</b>${five(sel.my)}</div>
+      <div class="dl-vs hs-vs"><b class="title-font">VS</b></div>
+      <div class="hs-tm op"><b>צוות היריב (בקרב)</b>${five(sel.ot)}</div>
+      ${chip(sel, true)}
+      <span class="hs-chg">${sel.cut ? "הקרב נקטע באמצע ונספר כהפסד · " : ""}שינוי דירוג: <b class="${sel.win ? "w" : "l"}" dir="ltr">${azSgn(sel.d)}</b>${azi("trophy")}</span>
+      <div class="dl-meta hs-meta"><span>${azi("cal")}<b dir="ltr">${dd || "התאריך לא נשמר"}</b></span><s></s><span>${azi("tm")}<b dir="ltr">${hh || "השעה לא נשמרה"}</b></span></div>
+      <div class="hs-rp"><button class="hs-inf" id="hsInf" aria-label="מידע על צפייה חוזרת">${azi("info")}</button><button class="hs-rpb" disabled aria-disabled="true">${azi("play")}<span>אין צפייה חוזרת</span></button></div></div>`; }
+  const pb = (k, i, on, lbl) => `<button class="dl-pb" data-pg="${k}" aria-label="${lbl}" ${on ? "" : "disabled"}>${azi(i)}</button>`;
+  const has = list.length > 0;
+  const nav = `<div class="dl-nav hs-nav"><span class="dl-pgs">${pb("first", "dprev", has && azHistPage > 1, "עמוד ראשון")}${pb("-1", "prev", has && azHistPage > 1, "עמוד קודם")}
+      <b class="dl-pl title-font" dir="ltr"${HAVE.has("ui_prg_banner") ? ` style="--pl:url(${assetUrl("ui_prg_banner")})"` : ""}>${has ? azHistPage : 0} / ${has ? pages : 0}</b>
+      ${pb("1", "next", has && azHistPage < pages, "עמוד הבא")}${pb("last", "dnext", has && azHistPage < pages, "עמוד אחרון")}</span></div>`;
+  L.innerHTML = `<div class="dl hs ${azHistOpen && sel ? "open" : ""}"${lau}>${det}<div class="dl-main"><div class="dl-box"><div class="dl-fs">${filt}</div>${body}</div>${nav}</div></div>`;
+  azFit(L);
+  const go = f => { f(); azHistTOpen = false; renderArena(); };
+  L.querySelectorAll("[data-f]").forEach(b => b.onclick = () => go(() => { azHistF = b.dataset.f; azHistPage = 1; azHistSel = null; azHistOpen = false; }));
+  $("hsT").onclick = () => { azHistTOpen = !azHistTOpen; renderArena(); };
+  L.querySelectorAll("[data-tf]").forEach(b => b.onclick = () => go(() => { azHistT = b.dataset.tf; azHistPage = 1; azHistSel = null; azHistOpen = false; }));
+  if ($("hsClr")) $("hsClr").onclick = () => go(() => { azHistF = "all"; azHistT = "all"; azHistPage = 1; azHistSel = null; });
+  if ($("hsGo")) $("hsGo").onclick = () => { arenaTab = "fight"; renderArena(); };
+  L.querySelectorAll(".hs-r").forEach(r => { const pick = e => { if (e) e.stopPropagation(); go(() => { azHistSel = r.dataset.h; azHistOpen = true; }); };
+    r.onclick = () => pick(); r.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } }; r.querySelector(".hs-db").onclick = pick; });
+  L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { if (b.disabled) return; const g = b.dataset.pg; go(() => { azHistPage = g === "first" ? 1 : g === "last" ? pages : azHistPage + +g; azHistSel = null; azHistOpen = false; }); });
+  if ($("hsX")) $("hsX").onclick = () => { azHistOpen = false; renderArena(); };
+  if ($("hsInf")) $("hsInf").onclick = () => toast("צפייה חוזרת אינה זמינה: המשחק לא שומר הקלטה של מהלך הקרבות");
 }
 const AZ_CATS = [["all", "הכל", "cur_glory"], ["sc", "מגילות", "scroll_l"], ["ru", "רונים", "rune_blade"], ["rs", "משאבים", "cur_energy"]];
 const AZ_DESC = {                                   // facts already in the game (scroll odds, rune rule, awakening cost, energy cap)
@@ -6099,15 +6240,18 @@ function botProfile(b) {
 const arenaStage = (b, logEntry) => ({id:"זירה", n:b.name, arena:true, opp:{i:b.i, name:b.name, r:b.r}, rev:logEntry || null, bg:"arena", cost:0, waves:[b.team.map(([id, lv]) => [id, lv, null, botMult(b)])]});
 function fightBot(b, logEntry) { pickedStage = arenaStage(b, logEntry); show("team"); }
 function arenaResult(win, st) {                    // st: a fight that was cut off (page closed mid-fight), settled on the next load
-  st = st || B.stage;
-  const A = arenaState(), b = st.opp, diff = (b.r - A.r) / 25, rev = st.rev;
+  const cut = !!st; st = st || B.stage;
+  const A = arenaState(), b = st.opp, diff = (b.r - A.r) / 25, rev = st.rev, rb = A.r, sn = st.snap || null;
   delete A.pend;
   const delta = win ? Math.round(Math.max(10, Math.min(40, 22 + diff))) : -Math.round(Math.max(8, Math.min(25, 14 - diff)));
   A.r = Math.max(800, A.r + delta); if (win) A.w++; else A.l++;
   A.glory = (A.glory || 0) + (win ? 12 : 3);
   botTouch(A, b.i, win ? -Math.round(delta / 2) : Math.round(-delta / 2), !win);
   if (rev && win && Array.isArray(A.log)) { const e = A.log.find(x => x && !x.rev && (rev.id ? x.id === rev.id : x.bi === rev.bi && x.day === rev.day)); if (e) e.rev = 1; }
-  A.hist = [{bi:b.i, name:b.name, win, d:delta, day:today(), rev:!!rev}, ...(A.hist || [])].slice(0, 30);   // my own fights, for the arena history view
+  if (A.hist != null && !Array.isArray(A.hist) && A.histBad == null) A.histBad = A.hist;   // a broken history is kept aside, never thrown away
+  const ts = sn ? sn.ts : Date.now();               // my own attacks (revenge included), for the arena history view; d is the real change (the 800 floor can cut it)
+  A.hist = [{id:`${ts}-${b.i}`, bi:b.i, name:b.name, win, d:A.r - rb, rb, ra:A.r, day:new Date(ts).toLocaleDateString("en-CA"), ts, rev:!!rev, ...(cut ? {cut:1} : {}),
+    ...(sn ? {ar:sn.ar, op:sn.op, dp:sn.dp, my:sn.my, ot:sn.ot} : {})}, ...(Array.isArray(A.hist) ? A.hist : [])].slice(0, 30);
   const gem = win ? (rev ? 25 : 10) : 0, mana = win ? 800 + Math.round(A.r / 2) : 200;
   S.gem += gem; S.mana += mana; if (win) track("win");
   const tierUp = checkTier(A), tips = win || !B ? [] : defeatAdvice(st);
@@ -6554,7 +6698,9 @@ function launch(stage, repeat) {             // pays energy / ticket and starts;
   tickEnergy();
   if (stage.arena) {
     const A = arenaState(); if (A.t < 1) { toast("אין כרטיסי זירה. כרטיס חדש כל 30 דקות"); return false; }
-    A.t--; A.pend = {opp:stage.opp, rev:stage.rev}; save(true); startBattle(stage); return true;   // pend: a fight cut off by a refresh still counts
+    const ob = getBot(A, stage.opp.i);   // the history keeps the fight as it was: both fives, the foe's rating and power, my rating and the start time
+    stage.snap = {ts:Date.now(), rb:A.r, ar:stage.opp.r, op:botPow(ob), dp:myPow(), my:azMine().map(m => [m.id, m.lvl, mst(m)]), ot:ob.team.map(([id, lv]) => [id, lv, MON[id].st])};
+    A.t--; A.pend = {opp:stage.opp, rev:stage.rev, snap:stage.snap}; save(true); startBattle(stage); return true;   // pend: a fight cut off by a refresh still counts
   }
   const cost = stage.special === "tower" || stage.special === "gboss" ? 0 : (stage.dungeon || stage.special) ? dunCost(stage) : stage.cost || STAGE_COST;
   if (S.energy < cost) { toast(repeat ? "נגמרה האנרגיה: החזרה האוטומטית נעצרה" : `אין מספיק אנרגיה (צריך ${cost}). היא מתמלאת לבד: 1 כל 3 דקות`); return false; }
