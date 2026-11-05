@@ -10113,7 +10113,7 @@ async function rvRevealAll() {                       // the cards still closed o
 const WARP_C = {b:[95, 184, 255], p:[176, 124, 255], g:[255, 215, 90], m:[255, 77, 109]};
 function warpCol(W, k) {
   const mix = (a, b, f) => a.map((v, i) => Math.round(v + (b[i] - v) * Math.max(0, Math.min(1, f))));
-  let col = mix(WARP_C.b, WARP_C.p, (k - .4) / .15);
+  let col = W.mid ? mix(WARP_C.b, W.mid, (k - .4) / .15) : WARP_C.b;   // purple only when the pull really holds a 4★ (or better); otherwise the tunnel stays blue
   if (W.top) col = mix(col, W.top, (k - .7) / .12);
   return col.join(",");
 }
@@ -10156,7 +10156,7 @@ function warpRing(c, r, a, cs, q, t) {               // a gold rune ring, drawn 
 }
 function warpDraw(c, dt) {
   const W = SUM.warp; W.t += dt;
-  const k = Math.min(1, W.t / W.D), v = .00016 + .00068 * k * k, cx = SUM.w / 2, cy = SUM.h / 2, R = Math.hypot(cx, cy), col = warpCol(W, k), cs = `rgb(${col})`;
+  const k = Math.min(1, W.t / W.F), v = .00016 + .00068 * k * k, cx = SUM.w / 2, cy = SUM.h / 2, R = Math.hypot(cx, cy), col = warpCol(W, k), cs = `rgb(${col})`;
   c.save(); c.fillStyle = "#03040f"; c.fillRect(0, 0, SUM.w, SUM.h);
   const bg = warpImg("tunnel_bg");
   if (bg) {                                          // the painted tunnel walls turn slowly and come closer; the rarity colour tints them
@@ -10197,8 +10197,8 @@ function warpDraw(c, dt) {
     c.save(); c.translate(Math.cos(s.a) * r, Math.sin(s.a) * r); c.rotate(s.a + W.t * .0008); c.globalAlpha = a; c.drawImage(s.im, -sz, -sz, sz * 2, sz * 2); c.restore();
   });
   const gate = warpImg("tunnel_gate");
-  if (gate && k > .7) {                              // the gate at the end of the tunnel: it opens up and we fly through it
-    const e = (k - .7) / .3, s = R * (.35 + 3.4 * e * e * e), h = s * .68;
+  if (gate && W.t > W.G) {                           // the gate at the end of the tunnel: it opens up and we fly through it, slowly (the user, 2026-11-06)
+    const e = Math.min(1, (W.t - W.G) / (W.D - W.G)), s = R * (.35 + 3.4 * Math.pow(e, 2.2)), h = s * .68;   // a calm opening, gentler than the old e³ rush
     // one flight, no cut (the user, 2026-11-06): the temple is already there inside the gate; the tunnel is cleared through its hole
     // (the temple and its turning rune rings show from behind), and as the gate grows past the screen the tunnel is gone
     const hg = c.createRadialGradient(0, 0, h * .8, 0, 0, h); hg.addColorStop(0, "rgba(0,0,0,1)"); hg.addColorStop(1, "rgba(0,0,0,0)");
@@ -10207,21 +10207,22 @@ function warpDraw(c, dt) {
   }
   c.restore();
 }
+const GATE_MS = 1200;                                // ×10: how long the gate takes to open into the temple (was ~0.7 s)
 async function rvTunnel(got, me) {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const best = Math.max(...got.map(m => MON[m.id].st)), mys = got.some(m => MON[m.id].st >= 5 && rarKey(m.id) === "mystic");
-  const rv = $("reveal"), D = best >= 5 ? 2400 : 2100, live = () => RV === me && !RV.skip;
-  SUM.warp = {t:0, D, top:best >= 5 ? (mys ? WARP_C.m : WARP_C.g) : null,
+  const rv = $("reveal"), F = best >= 5 ? 2400 : 2100, D = F * .7 + GATE_MS, live = () => RV === me && !RV.skip;   // F: the flight (its speed unchanged); then the gate opens for GATE_MS
+  SUM.warp = {t:0, D:F * .7 + GATE_MS, F, G:F * .7, mid:best >= 4 ? WARP_C.p : null, top:best >= 5 ? (mys ? WARP_C.m : WARP_C.g) : null,
     rings:Array.from({length:7}, (_, i) => ({i, z:.1 + i / 7, rot:rnd(0, 6), dir:i % 2 ? 1 : -1})),
     st:Array.from({length:110}, () => ({a:rnd(0, 7), z:rnd(.05, 1), o:rnd(.3, 1)})),
     dust:Array.from({length:90}, () => ({a:rnd(0, 7), z:rnd(.05, 1), d:rnd(.04, .14), w:Math.random() < .3})),
     pk:Array.from({length:7}, () => ({a:rnd(0, 7), z:rnd(.15, 1), im:pk(SUM_PK)}))};
   ["tunnel_bg", "tunnel_ring", "tunnel_ring_2", "tunnel_gate", "card_ring", "card_spark"].forEach(warpImg);
   rv.classList.add("warp"); SFX.charge(D);
-  setTimeout(() => { if (live()) SFX.hint(4); }, D * .45);
-  if (best >= 5) setTimeout(() => { if (live()) { SFX.hint(5); thunder(mys ? "#ff4d6d" : "#ffd75a"); } }, D * .75);
+  if (best >= 4) setTimeout(() => { if (live()) SFX.hint(4); }, F * .45);   // the purple sound only with the purple light
+  if (best >= 5) setTimeout(() => { if (live()) { SFX.hint(5); thunder(mys ? "#ff4d6d" : "#ffd75a"); } }, F * .75);
   const ringCol = best >= 5 ? (mys ? "#ff4d6d" : "#ffd75a") : best >= 4 ? "#b07cff" : "#8fb4ff";   // the same colour playReveal gives the landing circle
-  setTimeout(() => { if (live() && !SUM.circle) SUM.circle = {r:Math.min(SUM.w, SUM.h) * .3, rot:0, spin:.0009, col:ringCol, a:0}; }, D * .7);   // the rune rings already turn inside the gate as it opens
+  setTimeout(() => { if (live() && !SUM.circle) SUM.circle = {r:Math.min(SUM.w, SUM.h) * .3, rot:0, spin:.0009, col:ringCol, a:0}; }, F * .7);   // the rune rings already turn inside the gate as it opens
   const t0 = performance.now(); while (performance.now() - t0 < D && live()) await sleep(40);
   SUM.warp = null; rv.classList.remove("warp");        // by now the gate has opened past the screen: the temple is all there, no flash needed
 }
