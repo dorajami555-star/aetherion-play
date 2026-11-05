@@ -10198,8 +10198,12 @@ function warpDraw(c, dt) {
   });
   const gate = warpImg("tunnel_gate");
   if (gate && k > .7) {                              // the gate at the end of the tunnel: it opens up and we fly through it
-    const e = (k - .7) / .3, s = R * (.35 + 3.4 * e * e * e);
-    c.globalCompositeOperation = "source-over"; c.globalAlpha = Math.min(1, e * 4); c.drawImage(gate, -s, -s, s * 2, s * 2);
+    const e = (k - .7) / .3, s = R * (.35 + 3.4 * e * e * e), h = s * .68;
+    // one flight, no cut (the user, 2026-11-06): the temple is already there inside the gate; the tunnel is cleared through its hole
+    // (the temple and its turning rune rings show from behind), and as the gate grows past the screen the tunnel is gone
+    const hg = c.createRadialGradient(0, 0, h * .8, 0, 0, h); hg.addColorStop(0, "rgba(0,0,0,1)"); hg.addColorStop(1, "rgba(0,0,0,0)");
+    c.globalCompositeOperation = "destination-out"; c.globalAlpha = Math.min(1, e * 3); c.fillStyle = hg; c.beginPath(); c.arc(0, 0, h, 0, 7); c.fill();
+    c.globalCompositeOperation = "source-over"; c.globalAlpha = Math.min(1, e * 4) * (1 - Math.max(0, (e - .85) / .15)); c.drawImage(gate, -s, -s, s * 2, s * 2);
   }
   c.restore();
 }
@@ -10216,9 +10220,10 @@ async function rvTunnel(got, me) {
   rv.classList.add("warp"); SFX.charge(D);
   setTimeout(() => { if (live()) SFX.hint(4); }, D * .45);
   if (best >= 5) setTimeout(() => { if (live()) { SFX.hint(5); thunder(mys ? "#ff4d6d" : "#ffd75a"); } }, D * .75);
+  const ringCol = best >= 5 ? (mys ? "#ff4d6d" : "#ffd75a") : best >= 4 ? "#b07cff" : "#8fb4ff";   // the same colour playReveal gives the landing circle
+  setTimeout(() => { if (live() && !SUM.circle) SUM.circle = {r:Math.min(SUM.w, SUM.h) * .3, rot:0, spin:.0009, col:ringCol, a:0}; }, D * .7);   // the rune rings already turn inside the gate as it opens
   const t0 = performance.now(); while (performance.now() - t0 < D && live()) await sleep(40);
-  SUM.warp = null; rv.classList.remove("warp");
-  if (live()) { const fl = $("sumFlash"); fl.classList.remove("go"); void fl.offsetWidth; fl.classList.add("go"); }
+  SUM.warp = null; rv.classList.remove("warp");        // by now the gate has opened past the screen: the temple is all there, no flash needed
 }
 async function playReveal(got, kind) {
   kind = kind || "m";
@@ -10250,7 +10255,7 @@ async function playReveal(got, kind) {
   const actMs = multi ? 1700 : best >= 5 ? 1500 : best >= 4 ? 1200 : 950;
   const mysT = got.some(m => MON[m.id].st >= 5 && rarKey(m.id) === "mystic");
   const lc = !multi ? ["#8fb4ff", "#ffffff", "#b9d6ff"] : best >= 5 ? (mysT ? ["#ff4d6d", "#ffffff", "#ffb0c0"] : ["#ffd75a", "#ffffff", "#fff2b0"]) : best >= 4 ? ["#b07cff", "#ffffff", "#e0c8ff"] : ["#8fb4ff", "#ffffff", "#b9d6ff"];
-  SUM.circle = {r:Math.min(SUM.w, SUM.h) * .3, rot:0, spin:multi ? .0009 : .0014, col:lc[0], a:0};
+  SUM.circle = Object.assign(SUM.circle || {rot:0, a:0}, {r:Math.min(SUM.w, SUM.h) * .3, spin:multi ? .0009 : .0014, col:lc[0]});   // ×10: the rings that came through the gate keep turning (no restart)
   SFX.charge(actMs); const g = gather(multi ? actMs * .78 : actMs, () => lc);
   if (multi && !RM && RV === me && !RV.skip) {        // ×10 landing: the energy gathers into an orb, it swells, then bursts and the cards fly out of it
     SUM.orb = {t:0, D:actMs * .74, col:lc[0]};
