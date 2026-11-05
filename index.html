@@ -9777,7 +9777,7 @@ function sumInit() {
   const cv = $("sumc"), dpr = Math.min(2, window.devicePixelRatio || 1);
   SUM.cv = cv; SUM.cx = cv.getContext("2d"); SUM.w = innerWidth; SUM.h = innerHeight;
   cv.width = Math.round(innerWidth * dpr); cv.height = Math.round(innerHeight * dpr); SUM.cx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  SUM.P = []; SUM.circle = null; SUM.skip = false; SUM.warp = null;
+  SUM.P = []; SUM.circle = null; SUM.skip = false; SUM.warp = null; SUM.orb = null;
   if (!SUM.raf) { SUM.last = performance.now(); SUM.raf = nextFrame(sumTick); }
 }
 function sp(o) { if (SUM.P.length < 1000) { o.age = 0; o.life = o.life || 800; SUM.P.push(o); } }
@@ -9790,6 +9790,17 @@ function sumTick(now) {
     C.rot += dt * C.spin; C.a = Math.min(.9, C.a + dt / 700);
     c.save(); c.translate(SUM.w / 2, SUM.h / 2);   // two gold rune rings turning against each other, like the tunnel
     warpRing(c, C.r, C.a, C.col, {rot:C.rot, dir:1}, 0); warpRing(c, C.r * .78, C.a * .85, C.col, {rot:-C.rot * 1.4, dir:1}, 0);
+    c.restore();
+  }
+  const O = SUM.orb;
+  if (O) {                                           // ×10 landing: the gathered energy becomes an orb that swells and trembles before it bursts
+    O.t += dt; const k = Math.min(1, O.t / O.D), R = Math.min(SUM.w, SUM.h), r = R * (.03 + .11 * k * k) * (1 + Math.sin(O.t / 45) * .06 * k);
+    c.save(); c.translate(SUM.w / 2, SUM.h / 2); c.globalCompositeOperation = "lighter";
+    const g = c.createRadialGradient(0, 0, 0, 0, 0, r * 2.6);
+    g.addColorStop(0, "rgba(255,255,255," + (.55 + .45 * k) + ")"); g.addColorStop(.22, O.col); g.addColorStop(1, "rgba(0,0,0,0)");
+    c.globalAlpha = Math.min(1, O.t / 250); c.fillStyle = g; c.beginPath(); c.arc(0, 0, r * 2.6, 0, 7); c.fill();
+    c.strokeStyle = O.col; c.lineWidth = 2; c.globalAlpha *= .5 * k;
+    for (let i = 0; i < 10; i++) { const a = i / 10 * 6.283 + O.t / 900, l = r * (1.6 + .9 * Math.sin(O.t / 70 + i * 2.1)); c.beginPath(); c.moveTo(Math.cos(a) * r * .9, Math.sin(a) * r * .9); c.lineTo(Math.cos(a) * l, Math.sin(a) * l); c.stroke(); }
     c.restore();
   }
   SUM.P = SUM.P.filter(p => { p.age += dt; if (p.age >= p.life) return false; stepP(p, dt); drawP(c, p); return true; });
@@ -9990,7 +10001,7 @@ function hhAlign(h) {                                 // puts the circle under t
 function rvClearHero() { const h = $("rvHero"); $("sumc").classList.remove("over"); if (h) { h.remove(); if (h._close) h._close(); } }
 function rvSkip() {                                  // skip: every card open at once, no more waiting; nothing is pulled again
   if (!RV || !$("rvCards")) return; RV.skip = true; SUM.skip = true;
-  SUM.warp = null; $("reveal").classList.remove("warp");
+  SUM.warp = null; SUM.orb = null; $("reveal").classList.remove("warp");
   rvClearHero();
   $("revealBody").querySelectorAll(".scd").forEach(c => { c.classList.add("open", "instant", "landed"); c.classList.remove("focus", "leap", "shake", "ready"); });
   $("revealBody").classList.remove("dim", "quake"); if ($("rvLegend")) $("rvLegend").classList.remove("on", "hit"); rvBeam(0, "off"); $("reveal").classList.remove("gold", "lgfocus");
@@ -10136,10 +10147,18 @@ async function playReveal(got, kind) {
   // 1. the altar comes into focus, the circle turns, energy is drawn to the centre (shorter for common pulls)
   if (multi && !RV.skip) await rvTunnel(got, me);
   void rv.offsetWidth; rv.classList.add("act"); rv.dataset.tier = multi ? "" : best;
-  const actMs = multi ? 1000 : best >= 5 ? 1500 : best >= 4 ? 1200 : 950;
-  SUM.circle = {r:Math.min(SUM.w, SUM.h) * .3, rot:0, spin:.0014, col:"#8fb4ff", a:0};
-  SFX.charge(actMs); const g = gather(actMs, () => ["#8fb4ff", "#ffffff", "#b9d6ff"]);
-  await rvWait(actMs * .55);
+  const actMs = multi ? 1700 : best >= 5 ? 1500 : best >= 4 ? 1200 : 950;
+  const mysT = got.some(m => MON[m.id].st >= 5 && rarKey(m.id) === "mystic");
+  const lc = !multi ? ["#8fb4ff", "#ffffff", "#b9d6ff"] : best >= 5 ? (mysT ? ["#ff4d6d", "#ffffff", "#ffb0c0"] : ["#ffd75a", "#ffffff", "#fff2b0"]) : best >= 4 ? ["#b07cff", "#ffffff", "#e0c8ff"] : ["#8fb4ff", "#ffffff", "#b9d6ff"];
+  SUM.circle = {r:Math.min(SUM.w, SUM.h) * .3, rot:0, spin:multi ? .0026 : .0014, col:lc[0], a:0};
+  SFX.charge(actMs); const g = gather(multi ? actMs * .78 : actMs, () => lc);
+  if (multi && RV === me && !RV.skip) {               // ×10 landing: the energy gathers into an orb, it swells, then bursts and the cards fly out of it
+    SUM.orb = {t:0, D:actMs * .74, col:lc[0]};
+    await rvWait(actMs * .74);
+    SUM.orb = null;
+    if (RV === me && !RV.skip) { centerBurst(lc[0], 70, best >= 5); centerBurst("#ffffff", 20, false); SFX.crit(); rvVibe(Math.max(3, best));
+      const fl = $("sumFlash"); fl.classList.remove("go"); void fl.offsetWidth; fl.classList.add("go"); if (best >= 5) pkBurst(SUM.w / 2, SUM.h / 2, true); }
+  } else await rvWait(actMs * .55);
   // 2. the card(s) rise out of the circle
   if ((RV === me && !RV.skip)) SFX.rise();
   if (multi) {                                        // each card flies from the circle to its place in the two rows
@@ -10147,7 +10166,7 @@ async function playReveal(got, kind) {
     cards.forEach((c, i) => { const [x, y] = cardMid(c); c.style.setProperty("--fx", (cx - x).toFixed(0) + "px"); c.style.setProperty("--fy", (cy - y).toFixed(0) + "px"); c.style.animationDelay = (i * 70) + "ms"; c.classList.add("rise");
       setTimeout(() => { if (RV === me && !RV.skip) SFX.deal(); }, 470 + i * 70); });
   } else cards[0].classList.add("rise");
-  await g; SUM.circle && (SUM.circle.spin = .0008);
+  await g; SUM.orb = null; SUM.circle && (SUM.circle.spin = .0008);
   await rvWait(multi ? 700 + got.length * 70 : 650);
   cards.forEach((c, i) => { c.classList.add("landed"); c.classList.remove("rise"); c.style.animationDelay = ""; c.style.setProperty("--d", (i * .37 % 1.8).toFixed(2)); });
   // 3. the moment before: the back glows in the rarity colour (never the monster)
