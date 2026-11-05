@@ -2780,20 +2780,6 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-bal{justify-self:start;display:inline-flex;align-items:center;gap:5px;padding:2px 12px 2px 4px;border-radius:99px;background:#0a1030;border:1px solid rgba(226,184,87,.6);font-size:15px;color:#fff}.az-bal img{width:24px;height:24px}
 .az-snote{justify-self:end;font-size:11.5px;color:#c8d2f0;text-align:left}
 .az-sbody{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) clamp(104px,18%,150px);gap:8px}
-.az-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:6px;min-height:0}
-.az-it{container-type:size;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto auto auto;justify-items:center;align-items:center;gap:1px;padding:4px 6px 5px;border-radius:12px;text-align:center;
-  background:linear-gradient(#152256,#0a1236);border:1.5px solid rgba(226,184,87,.55);box-shadow:inset 0 0 14px rgba(120,140,255,.08)}
-.az-it-ic{position:relative;height:100%;aspect-ratio:1;display:grid;place-items:center}.az-it-ic img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
-.az-it-ic .qty{position:absolute;bottom:0;left:0;padding:0 5px;border-radius:6px;background:#c8283c;color:#fff;font-size:11px;font-weight:800}
-.az-it>b{font-size:clamp(12px,3.6dvh,15px);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.az-it>small{font-size:11px;color:#9fe0ff;line-height:1.2}
-.az-price{display:inline-flex;align-items:center;justify-content:center;gap:5px;width:100%;height:clamp(30px,8.4dvh,42px);border-radius:10px;font:inherit;font-weight:900;font-size:clamp(13px,4dvh,17px);color:#3a2200;cursor:pointer;
-  background:linear-gradient(#ffe9a6,#f0c048 50%,#c98a1c);border:1.5px solid #fff2c0;box-shadow:0 0 0 1.5px #6a4206}
-.az-price img{width:20px;height:20px}.az-price.arm{background:linear-gradient(#7dffb0,#1fae5a);color:#03290f}
-.az-price.poor{filter:grayscale(.5) brightness(.85)}.az-it.sold{opacity:.55}.az-price:disabled{cursor:default}
-.az-cats{display:flex;flex-direction:column;gap:5px}
-.az-cats button{display:flex;align-items:center;gap:6px;height:clamp(34px,9dvh,44px);padding:0 8px;border-radius:10px;font:inherit;font-size:13px;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(#162460,#0b1338);border:1px solid rgba(110,130,210,.45)}
-.az-cats button img{width:24px;height:24px;object-fit:contain}.az-cats button.on{background:linear-gradient(#ffe9a6,#c98a1c);color:#3a2200;border-color:#fff2c0}
 .az-c-name b.lg{font-size:11.5px!important}.az-c-name b.xl{font-size:10.5px!important;letter-spacing:-.2px}.az-pplate b.lg{font-size:12px!important;white-space:normal!important;line-height:1.05;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .az-next{display:none}@media (min-height:520px){.az-next{display:block}}
 .az-menu button{flex:1 1 0;max-height:46px;min-height:36px;height:auto}
@@ -2897,53 +2883,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 @media (max-height:470px){.az-pcrk{display:none}.az-pact small{font-size:11px}.az-pact>b{display:none}.az-pdet .az-dt-txt small{display:none}.az-pdet .az-dt-txt b{font-size:15px}.az-rw.big{width:clamp(32px,8.6dvh,42px)}.az-pbtn{height:clamp(34px,9dvh,42px)}}
 /* ---- defence log: filters, 4 fights a page, the chosen fight's details on the side; a designed empty state ---- */
 /* ---- arena shop: item grid (3x2, 2x2 on small phones) with pages, the chosen item's panel (quantity, totals, buy), compact purchase windows ---- */
-.az-shop2{display:grid;grid-template-columns:clamp(176px,30%,250px) minmax(0,1fr);gap:8px;height:100%;direction:rtl}
-.az-spanel{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:5px;min-height:0;padding:6px;border-radius:14px;background:linear-gradient(#0e1846e6,#070c28e6);border:1.5px solid var(--line)}
-.az-spanel .az-shead{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.az-spanel .az-stitle{padding:2px 14px;font-size:clamp(16px,5dvh,22px)}
-.az-spanel .az-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;flex-direction:row}
-.az-spanel .az-cats button{justify-content:center;height:clamp(32px,8.6dvh,42px)}
-.az-spanel .az-items{grid-template-columns:repeat(var(--cols),minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}
-.az-it{font:inherit;color:#fff;cursor:pointer;grid-template-rows:auto auto minmax(0,1fr) auto auto;padding:3px 6px 5px}
-.az-it{overflow:hidden;min-height:0;container-type:size}.az-it .az-it-ic{height:auto;min-height:0;aspect-ratio:auto;display:grid;place-items:center}
-.az-it .az-it-ic img{height:clamp(26px,calc(100cqh - 62px),104px);width:auto;max-width:100%}
-.az-it .az-it-ic .qty{bottom:0;left:-4px}
-.az-it.on{border:2px solid #ffd75a;box-shadow:0 0 0 1px #6a4206,0 0 8px rgba(255,200,80,.35)}
-.az-itd{display:none;font-size:10.5px;color:#c8d2f0;line-height:1.2;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.az-itlim{font-size:10.5px!important;color:#9fe0ff!important}.az-itlim.red{color:#ff8a8a!important;font-weight:800}
-.az-it .az-price{height:clamp(26px,7dvh,36px);cursor:pointer}
-.az-it.poor .az-price{background:linear-gradient(#5a4a2a,#3a2e18);color:#ff9a8a;border-color:#a8805a;box-shadow:0 0 0 1.5px #3a2506;filter:none}   /* not enough glory: dark price, red number */
-.az-it.sold{opacity:.6;filter:grayscale(.55)}.az-it.sold .az-price{background:linear-gradient(#3a3f55,#23263a);color:#c8d2f0;border-color:#5a6080;box-shadow:none}
-.az-sempty{display:grid;place-items:center;align-content:center;gap:6px;text-align:center;border-radius:12px;background:radial-gradient(circle at 50% 40%,#1a2a6a,#0a1236)}
-.az-sempty img{width:clamp(48px,16dvh,90px);opacity:.85;filter:drop-shadow(0 0 12px rgba(120,160,255,.5))}.az-sempty b{font-size:clamp(16px,5dvh,22px);color:#ffd75a}.az-sempty small{font-size:12.5px;color:#e8ecff}
-.az-sdet{container-type:inline-size;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto auto auto auto;gap:4px;min-height:0;padding:6px 8px;border-radius:14px;background:linear-gradient(#0e1846e6,#070c28e6);border:1.5px solid var(--line);text-align:center}
-.az-sdet.empty{place-items:center;color:#c8d2f0;font-size:13px}
-.az-sdn{font-size:clamp(15px,4.6dvh,20px);color:#fff2c8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.az-sdi{display:grid;place-items:center;min-height:0;border-radius:10px;background:radial-gradient(circle at 50% 45%,#3a2a7a,#0a1030 70%);border:1px solid rgba(226,184,87,.45);overflow:hidden}.az-sdi img{max-height:100%;max-width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box}
-.az-sdd{font-size:11px;color:#e8ecff;line-height:1.3}
-.az-slim{display:flex;flex-direction:column;align-items:center;padding:2px 6px;border-radius:8px;background:#0a1030;border:1px solid rgba(226,184,87,.45);line-height:1.2}.az-slim b{font-size:11.5px;color:#ffd75a}.az-slim small{font-size:11px;color:#e8ecff}
-.az-slim.red{border-color:#e8404f}.az-slim.red small{color:#ff8a8a;font-weight:800}
-.az-qty{display:grid;grid-template-columns:36px 1fr 36px auto;gap:4px;align-items:center;direction:rtl}
-.az-qty button{height:34px;border-radius:8px;font:inherit;font-size:18px;font-weight:900;color:#fff;cursor:pointer;background:linear-gradient(#2c5ad8,#1a3a9a);border:1px solid #8fb0ff;padding:0}
-.az-qty .az-max{padding:0 8px;font-size:13px;background:linear-gradient(#2c5ad8,#1a3a9a)}.az-qty button:disabled{opacity:.4;cursor:default}
-.az-qty>b{display:grid;place-items:center;height:34px;border-radius:8px;background:#0a1030;border:1px solid rgba(110,130,210,.5);font-size:16px}
-.az-sums{display:flex;flex-direction:column;gap:2px}
-.az-sums span,.az-brow{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:1px 6px;border-radius:6px;background:rgba(10,16,48,.7);font-size:11.5px;color:#c8d2f0}
-.az-sums b,.az-brow b{display:inline-flex;align-items:center;gap:3px;font-size:13px;color:#fff}.az-sums b img,.az-brow b img{width:16px;height:16px}.az-sums i,.az-brow i{font-style:normal}
-.az-sums b.pos,.az-brow b.pos{color:#6dff9c}.az-sums b.neg,.az-brow b.neg{color:#ff8a8a}
-.az-buy{height:clamp(36px,10dvh,46px);border-radius:12px;font:inherit;font-size:clamp(15px,4.6dvh,19px);font-weight:900;cursor:pointer;color:#3a2200;background:linear-gradient(#ffe9a6,#f0c048 50%,#c98a1c);border:2px solid #fff2c0;box-shadow:0 0 0 1.5px #6a4206}
-.az-buy{white-space:nowrap}.az-buy.poor,.az-buy.sold{font-size:clamp(13px,3.8dvh,16px)}.az-buy.poor{background:linear-gradient(#5a2a2a,#3a1418);color:#ffb0a0;border-color:#a8505a}.az-buy.sold{background:linear-gradient(#3a3f55,#23263a);color:#c8d2f0;border-color:#5a6080}
 .modal .card.azbuy{background:linear-gradient(#121d52,#080d2c)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;width:min(420px,calc(100vw - 24px));max-height:calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));padding:10px 12px;overflow:hidden}
-.az-bt{margin:0 0 6px!important;text-align:center;font-size:20px!important}.az-bt.red{color:#ff6a6a!important}.az-bt.green{color:#6dff9c!important}
-.az-bh{display:flex;align-items:center;gap:10px;margin-bottom:6px}.az-bi{flex:none;width:clamp(48px,16dvh,72px);aspect-ratio:1;display:grid;place-items:center;border-radius:10px;background:radial-gradient(circle,#3a2a7a,#0a1030);border:1px solid rgba(226,184,87,.5)}.az-bi img{width:90%;height:90%;object-fit:contain}
-.az-bh>span:last-child{display:flex;flex-direction:column;line-height:1.25;min-width:0}.az-bh b{font-size:16px;color:#ffd75a}.az-bh small{font-size:11.5px;color:#e8ecff}
-.az-brow{margin-bottom:3px;font-size:12.5px;padding:3px 8px}
-.az-bmsg{margin:4px 0;text-align:center;font-size:13px;color:#e8ecff}
-.az-bwarn{margin:4px 0;padding:4px 8px;border-radius:8px;text-align:center;font-size:12.5px;font-weight:700;color:#ff9a8a;border:1px solid #e8404f;background:rgba(80,10,20,.5)}
-.az-bbtns{display:flex;gap:8px;justify-content:center;margin-top:8px}.az-bbtns .btn{flex:1;min-height:42px}
-@media (min-height:520px){.az-itd{display:block}}
-@media (max-height:400px){.az-sdd{display:none}.az-spanel .az-stitle{font-size:16px}}
-@media (max-width:720px){.az-shop2{grid-template-columns:168px minmax(0,1fr)}.az-spanel .az-cats button span{font-size:12px}.az-spanel .az-cats button img{width:20px;height:20px}}
 /* short screens (iPhone SE, Safari with bars): tighter, same layout */
 @media (max-height:400px){.az-page{--hh:40px;gap:4px 8px}.az-head{height:40px}.az-back{width:40px;height:40px}.az-menu{gap:3px}.az-menu button{min-height:34px}.az-crest .rankic.big{width:38px}.az-head .title-font{font-size:19px}.az-next{display:none}
   .az-board{gap:3px}.az-th{height:14px;font-size:10.5px}.az-merow{gap:6px}.az-shead .az-snote{display:none}.az-shead{grid-template-columns:auto 1fr}.az-stitle{justify-self:end}}
@@ -3002,16 +2942,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-rwv.season .az-dt{height:auto}.az-rwv.season .az-dt-ic{height:clamp(64px,19dvh,110px)}
 @media (max-height:470px){.az-rwv.season .az-rw.big{width:clamp(30px,8dvh,40px)}.az-sinfo .az-info2 li:nth-child(n+2){display:none}.az-dt-txt small{font-size:11px}}
 /* arena shop as drawn: title and glory in the header row, categories across the top of the grid, cards with a short description and a dark price pill */
-.az-spanel{grid-template-rows:auto minmax(0,1fr) auto}
-@container (min-height:118px){.az-itd{display:block!important}}
-.az-it{grid-template-rows:auto auto minmax(0,1fr) auto auto}.az-it .az-it-ic img{height:clamp(26px,calc(100cqh - 76px),104px)}
-.az-it .az-price{background:linear-gradient(#1a2a6a,#0b1338);color:#fff;border:1.5px solid rgba(226,184,87,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
-.az-it.on .az-price{border-color:#ffd75a;box-shadow:0 0 8px rgba(255,200,80,.45)}
-.az-it.poor .az-price{background:linear-gradient(#1a2a6a,#0b1338);color:#ff8a8a;border-color:#a8505a}
-.az-it.on{border:2px solid #ffb347;box-shadow:0 0 0 1px #6a4206,0 0 10px rgba(255,170,60,.45)}
-.az-slim b{display:inline-flex;align-items:center;gap:4px}.az-slim .az-pi{width:15px;height:15px}
-.az-bx{position:absolute;top:8px;left:8px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;color:#fff;background:#0b1338;border:1.5px solid var(--gold,#e2b857)}.az-bx .azi{width:16px;height:16px}
-.modal .card.azbuy{position:relative}.az-bq{margin:4px 0 6px}
+.modal .card.azbuy{position:relative}
 .az-rwhead{justify-content:center}.az-tabs2{gap:6px}.az-tabs2 button{min-width:clamp(150px,32%,280px)}
 .az-tcs,.az-tcrow,.az-trb,.az-msrow,.az-pmid,.az-pcards,.az-pline,.az-dt,.az-dt-main,.az-pdet{direction:ltr}
 .az-tc,.az-pc,.az-ms,.az-pnode,.az-dt-txt,.az-pact,.az-sinfo,.az-mail{direction:rtl}
@@ -3023,7 +2954,6 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-sinfo,.az-mail{display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0;padding:4px 8px;border-radius:10px;background:rgba(6,10,34,.75);border:1px solid rgba(226,184,87,.45)}
 .az-sinfo>b{display:flex;align-items:center;gap:5px;font-size:13px;color:#ffd75a}.az-sinfo .az-info2{display:block;padding-right:14px;font-size:11px;line-height:1.3}
 .az-snum{font-size:10.5px;color:#9fb0e0}
-.az-pi{width:18px;height:18px;padding:2px;border-radius:50%;border:1.5px solid #ffd75a;color:#ffd75a;box-sizing:border-box;stroke-width:2.6}
 .az-mail{align-items:center;text-align:center;border-color:#ffd75a;box-shadow:0 0 12px rgba(255,200,80,.35)}
 .az-mail>b{display:flex;align-items:center;gap:5px;font-size:15px;color:#ffd75a}.az-mail small{font-size:11.5px;color:#e8ecff}.az-mail .az-rw{width:clamp(30px,8dvh,40px)}.az-mail .az-pbtn{height:34px;flex:1;min-width:64px;padding:0 8px;font-size:14px}.az-mrow{display:flex;align-items:center;gap:6px;width:100%}.az-mail{gap:1px;padding:3px 8px}
 .az-pnext{display:flex;flex-direction:row;align-items:center;gap:8px}.az-pnext>span{display:flex;flex-direction:column;line-height:1.15}
@@ -3606,6 +3536,91 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 @container (max-height:84px){.fz-id{gap:1px}.fz-nm{padding-block:0}.fz-name{font-size:12px;line-height:1.25}.fz-id>small{font-size:10px;line-height:1.05}.fz-c .fz-mons{--mt:min(calc(100cqh * .49),calc((92cqw - 6.4cqw) / 5),56px)}}   /* short cards (phones): the rank line stays, everything a little tighter */
 @container (max-width:300px){.fz-top{gap:2.5cqw}.fz-nm{padding:1px 7px;gap:4px}.fz-nm .az-pow .azi{display:none}}.fz-c{padding-inline:clamp(10px,8%,40px)}@media (max-width:720px){.fz-c{padding-inline:4.5%}}@media (max-width:900px){.fz-bot{grid-template-columns:minmax(0,14fr) minmax(0,23fr) auto minmax(0,57fr)}}   /* phones: the opponent's name gets the room, the fight button less */   /* narrow cards: room for long names before the font steps down */
 @container (max-height:70px){.fz-foe>span:first-child small{display:none}.fz-foe{gap:0;padding-block:2px}}   /* a short panel: the opponent box keeps name, cost and tickets left */
+/* ---- the arena shop (the user's clean template + full concept, 2026-11-05): tabs, 6 cards on the template's own framed pedestals, the item panel ---- */
+.sp{display:grid;grid-template-columns:minmax(0,29.5fr) minmax(0,70fr);gap:1.1%;height:100%;min-height:0;direction:rtl}
+.sp-main,.sp-det{position:relative;min-height:0;min-width:0;border-radius:14px;border:1.5px solid #c99a3a;box-shadow:inset 0 0 0 1px rgba(255,215,90,.12),0 0 10px rgba(0,0,0,.35)}
+.sp-main{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:clamp(4px,1.6%,10px);padding:clamp(5px,1.2%,10px);background:linear-gradient(#0c1442f2,#070b26f2)}
+.sp-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(4px,1%,10px)}
+.sp-cats button{display:flex;align-items:center;justify-content:center;gap:5px;height:clamp(28px,8dvh,40px);min-width:0;padding:0 6px;border-radius:10px;font:inherit;font-weight:800;font-size:clamp(11.5px,3.2dvh,15px);color:#e8ecff;cursor:pointer;white-space:nowrap;
+  background:linear-gradient(#18235a,#0b1238);border:1.5px solid #3a4a8a}
+.sp-cats button img{flex:none;width:clamp(16px,5dvh,24px);height:clamp(16px,5dvh,24px);object-fit:contain}
+.sp-cats button.on{color:#2a1800;background:linear-gradient(#ffe9a6,#f5c043 45%,#c98a14);border-color:#fff2c0;box-shadow:0 0 10px rgba(255,200,80,.45)}
+.sp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:clamp(4px,1.6%,12px);min-height:0}
+.sp-c{position:relative;container-type:size;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto auto;justify-items:center;gap:1px;min-height:0;min-width:0;padding:3% 5% 2%;font:inherit;color:#fff;text-align:center;cursor:pointer;
+  border:solid transparent;border-width:clamp(9px,3dvh,20px);border-image:var(--fr) 46 fill / clamp(9px,3dvh,20px) stretch;background:none;transition:filter .2s}
+.sp-c:not(.on):hover{filter:brightness(1.08)}
+.sp-c.on{outline:0!important;filter:drop-shadow(0 0 6px rgba(255,190,70,.45))}
+.sp-n{font-size:clamp(11px,9cqw,15px);line-height:1.15;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:clip}
+.sp-d{font-size:10.5px;line-height:1.15;color:#c8d2f0;max-width:100%;text-wrap:balance}   /* a narrow card wraps the short line instead of cutting it */
+.sp-img{position:relative;display:grid;place-items:center;width:100%;height:100%;min-height:0}
+.sp-img img{position:absolute;inset:0;margin:auto;max-width:78%;max-height:100%;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,.55))}
+.sp-x{position:absolute;left:4%;bottom:6%;padding:0 6px;border-radius:8px;font-style:normal;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(#e0484a,#8a1420);border:1px solid #ffb0b0}
+.sp-lim{font-size:10.5px;line-height:1.3;color:#e8ecff;padding:0 7px;border-radius:7px;background:rgba(7,11,34,.85);border:1px solid rgba(201,154,58,.5);white-space:nowrap}
+.sp-lim.red{color:#ff9aa6;border-color:#c0404c}
+.sp-p{display:grid;place-items:center;width:86%;margin-top:2px;padding:1px 0;border-radius:9px;background:linear-gradient(#141c48,#0a1032);border:1.5px solid #c99a3a}
+.sp-g{display:inline-flex;align-items:center;gap:3px;font-weight:900;color:#ffd75a}.sp-g img{width:1.25em;height:1.25em;object-fit:contain}
+.sp-p .sp-g{font-size:clamp(12px,11cqw,17px)}
+.sp-c.poor .sp-p .sp-g{color:#ff8a96}.sp-c.poor .sp-img img{filter:brightness(.75) saturate(.8)}
+.sp-c.sold .sp-img img{filter:grayscale(.85) brightness(.6)}.sp-c.sold .sp-p{opacity:.55}
+.sp-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:0;border-radius:12px;text-align:center;background:radial-gradient(60% 70% at 50% 40%,rgba(120,60,220,.22),transparent),#070b26;border:1px solid rgba(201,154,58,.35)}
+.sp-emi{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;color:#ffd75a;background:radial-gradient(#2a1f6a,#0b1236);border:2px solid #c99a3a}.sp-emi .azi{width:28px;height:28px}
+.sp-empty>b{font-size:clamp(16px,5dvh,22px);color:#ffd75a}.sp-empty>small{font-size:12.5px;color:#e8ecff}
+.sp-det{margin-top:clamp(12px,3.6dvh,18px);container:spdet / size;display:flex;flex-direction:column;gap:clamp(3px,1.2dvh,7px);padding:clamp(18px,5dvh,26px) clamp(6px,4%,12px) clamp(6px,2dvh,10px);background:linear-gradient(#141040,#0a0c2c 45%,#0b0a2a)}
+.sp-ttl{position:absolute;left:8%;right:8%;top:0;translate:0 -42%;display:grid;place-items:center;height:clamp(26px,7.6dvh,36px);padding:0 10px;border-radius:10px;z-index:2;
+  background:linear-gradient(#1a1450,#0b0a2c);border:1.5px solid #ffd75a;box-shadow:0 0 10px rgba(255,190,70,.35)}
+.sp-tn,.sp-ttl{font-size:clamp(14px,4.6dvh,20px);color:#ffe9a6;white-space:nowrap;overflow:hidden}
+.sp-gem{position:absolute;left:50%;top:0;width:22px;height:22px;translate:-50% -60%;rotate:45deg;border-radius:3px;background:linear-gradient(135deg,#fff2c0,#ffd75a 45%,#b87812);border:1.5px solid #6a4206;box-shadow:0 0 8px rgba(255,200,80,.8)}
+.sp-det.empty{align-items:center;justify-content:center;text-align:center}.sp-det.empty small{font-size:12.5px;color:#e8ecff}
+.sp-hero{flex:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:center;gap:6px;direction:ltr}
+.sp-big{position:relative;display:grid;place-items:center;aspect-ratio:350/262;width:100%;background:var(--ped) center bottom/100% 100% no-repeat;border-radius:10px}
+.sp-big img{max-width:72%;max-height:82%;object-fit:contain;translate:0 -10%;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+.sp-info{display:flex;flex-direction:column;gap:4px;min-width:0;direction:rtl}
+.sp-desc{font-size:11.5px;line-height:1.35;color:#e8ecff}
+.sp-odds,.sp-limb{display:flex;flex-direction:column;gap:1px;padding:3px 7px;border-radius:8px;background:#070b22;border:1px solid rgba(201,154,58,.55)}
+.sp-odds small,.sp-limb small{font-size:10.5px;color:#ffd75a;font-weight:800}.sp-odds b{display:flex;flex-wrap:wrap;gap:2px 8px;font-size:11.5px;color:#fff;line-height:1.25}.sp-odds i{font-style:normal;white-space:nowrap}.sp-limb small+small{color:#c8d2f0;font-weight:600}
+.sp-limb.red{border-color:#c0404c}.sp-limb.red small:first-child{color:#ff9aa6}
+.sp-orn{flex:none;position:relative;height:10px;background:linear-gradient(90deg,transparent,#c99a3a 25%,#c99a3a 75%,transparent) center/100% 1.5px no-repeat}
+.sp-orn::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;translate:-50% -50%;rotate:45deg;border:1.5px solid #ffd75a;background:#0b1236}
+.sp-qty{flex:none;display:flex;flex-direction:column;align-items:center;gap:3px}.sp-qty>small{font-size:12px;font-weight:800;color:#ffd75a}
+.sp-qr{display:grid;grid-template-columns:1.25fr 1fr 1.4fr 1fr;gap:5px;width:100%;padding:4px;border-radius:10px;direction:ltr;background:#070b22;border:1px solid rgba(90,120,200,.4)}
+.sp-qr button{height:clamp(28px,8dvh,36px);border-radius:9px;font:inherit;font-weight:900;font-size:16px;color:#fff;cursor:pointer;background:linear-gradient(#3a7aff,#1440c0);border:1.5px solid #9ab8ff}
+.sp-qr .sp-max{font-size:12.5px}
+.sp-qr button:disabled{opacity:.4;cursor:default}
+.sp-qr>b{display:grid;place-items:center;border-radius:9px;font-size:16px;background:#0b1238;border:1px solid #34407a}
+.sp-sum{flex:none;display:flex;flex-direction:column;padding:3px 9px;border-radius:10px;background:#070b22;border:1px solid rgba(201,154,58,.55)}
+.sp-sum>span{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:clamp(20px,6dvh,26px);font-size:12px;color:#e8ecff}.sp-sum>span+span{border-top:1px solid rgba(201,154,58,.2)}
+.sp-sum .sp-g{font-size:14px}.sp-sum .neg,.sp-sum .neg .sp-g{color:#ff7a86}
+.sp-buy{flex:none;margin-top:auto;display:flex;align-items:center;justify-content:center;gap:7px;height:clamp(32px,10dvh,48px);border-radius:12px;font:inherit;font-weight:900;font-size:clamp(14px,4.4dvh,19px);cursor:pointer;
+  color:#2a1800;background:linear-gradient(#ffe9a6,#f5c043 45%,#c98a14);border:1.5px solid #fff2c0;box-shadow:0 0 10px rgba(255,200,80,.45)}
+.sp-buy .azi{width:20px;height:20px}
+.sp-buy.poor{color:#fff;background:linear-gradient(#e0484a,#8a1420);border-color:#ffb0b0;box-shadow:0 0 8px rgba(255,80,90,.35)}
+.sp-buy.sold{color:#c8d2f0;background:linear-gradient(#2a3150,#161b34);border-color:#5d6890;box-shadow:none}
+@container spdet (max-height:330px){.sp-desc{font-size:10.5px;line-height:1.25}.sp-hero{gap:4px}.sp-odds,.sp-limb{padding:1px 6px}.sp-qty>small{display:none}.sp-sum>span{min-height:19px}.sp-det{gap:3px}}
+@container spdet (max-height:290px){.sp-limb small+small{display:none}.sp-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}}
+/* the purchase windows: a winged medallion over the frame, one clear title, the item, only the buttons that apply */
+.modal .card.azbuy{overflow:visible!important;padding:0!important;width:min(340px,calc(100vw - 24px))!important;background:none!important;border:0!important;box-shadow:none!important}
+.sb{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:7px;padding:34px 16px 14px;border-radius:16px;text-align:center;direction:rtl;
+  background:linear-gradient(#141c52,#080d2c);border:2px solid #c99a3a;box-shadow:inset 0 0 0 1px rgba(255,215,90,.2),0 12px 30px rgba(0,0,0,.6)}
+.sb-med{position:absolute;left:50%;top:0;translate:-50% -50%;display:grid;place-items:center;width:58px;height:58px}
+.sb-wings{position:absolute;left:50%;top:50%;width:150px;height:46px;translate:-50% -46%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 46'%3E%3Cg id='w' fill='%23e8b84a' stroke='%236a4206' stroke-width='.8'%3E%3Cpath d='M52 22Q30 6 4 10Q24 16 30 22Q16 22 10 30Q30 30 52 30Z'/%3E%3Cpath d='M50 34Q34 38 22 44Q40 44 54 38Z' opacity='.85'/%3E%3C/g%3E%3Cuse href='%23w' transform='matrix(-1 0 0 1 150 0)'/%3E%3C/svg%3E") center/contain no-repeat}
+.sb-ic{position:relative;display:grid;place-items:center;width:50px;height:50px;border-radius:50%;border:2.5px solid #ffd75a;box-shadow:0 0 10px rgba(255,200,80,.5)}
+.sb-ic .azi{width:26px;height:26px;color:#fff}
+.sb-med.gold .sb-ic{background:radial-gradient(#5a3a0a,#2a1800)}.sb-med.gold .sb-ic .azi{color:#ffd75a}
+.sb-med.green .sb-ic{background:radial-gradient(#2fd06a,#0f6a2c)}.sb-med.red .sb-ic{background:radial-gradient(#ff5a64,#8a1420)}
+.sb-t{margin:0!important;font-size:20px!important;color:#ffe9a6!important}.sb-t.green{color:#7dffb0!important}.sb-t.red{color:#ff8a96!important}
+.sb-item{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:12px;background:#070b22;border:1px solid rgba(201,154,58,.55);text-align:right}
+.sb-ii{flex:none;display:grid;place-items:center;width:56px;height:56px;border-radius:10px;background:radial-gradient(rgba(140,80,255,.45),#0b0a2c 70%);border:1.5px solid #c99a3a}.sb-ii img{max-width:86%;max-height:86%;object-fit:contain}
+.sb-item>span:last-child{display:flex;flex-direction:column;gap:2px;min-width:0}.sb-item b{font-size:15px}.sb-item b i{font-style:normal;color:#ffd75a}.sb-item small{font-size:12px;color:#c8d2f0}.sb-item small b{font-size:12px;color:#ffd75a}
+.sb-row{display:flex;align-items:center;justify-content:space-between;padding:2px 4px;font-size:13px;color:#e8ecff}.sb-row .sp-g{font-size:15px}
+.sb-q{margin:0;font-size:13px;line-height:1.45;color:#e8ecff}.sb-q .neg{color:#ff7a86;font-size:15px}
+.sb-btns{display:flex;gap:8px;justify-content:center;margin-top:2px}
+.sb-b{flex:1;max-width:170px;height:42px;border-radius:12px;font:inherit;font-weight:900;font-size:16px;cursor:pointer}
+.sb-b.gold{color:#2a1800;background:linear-gradient(#ffe9a6,#f5c043 45%,#c98a14);border:1.5px solid #fff2c0}
+.sb-b.red{color:#fff;background:linear-gradient(#e0484a,#8a1420);border:1.5px solid #ffb0b0}
+.sb-b.green{color:#fff;background:linear-gradient(#4ad46a,#178a33);border:1.5px solid #b8ffc8}
+.sb-b:disabled{opacity:.6;cursor:default}
+.modal .card.azbuy::before,.modal .card.azbuy::after{display:none!important}   /* the shared card gem: the window has its own medallion */
+@media (max-height:420px){.sb{gap:5px;padding:30px 14px 10px}.sb-ii{width:46px;height:46px}.sb-b{height:36px;font-size:15px}.sb-t{font-size:18px!important}}
 </style>
 
 <div class="app" dir="rtl">
@@ -4222,7 +4237,7 @@ const HAVE = new Set([   // generated by sync_have.py from assets/ — do not ed
   "stage_4_4","stage_4_5","stage_4_6","stage_4_7","stage_5_2","stage_5_3","stage_5_4","stage_5_5","stage_5_6","stage_5_7","stage_6_2","stage_6_3",
   "stage_6_4","stage_6_5","stage_6_6","stage_6_7","stage_7_2","stage_7_3","stage_7_4","stage_7_5","stage_7_6","stage_7_7","star_sage","star_sage_awakened",
   "star_wisp","storm_mage","storm_mage_awakened","summon_altar","summon_burst","summon_card_back","summon_circle","summon_open","summon_temple","summon_wings","summoner_3","summoner_4",
-  "summoner_f","summoner_m","tavern","treant_boss","ui_cardframe","ui_daily_banner","ui_deflog_empty","ui_deflog_hall","ui_fz_laurel","ui_deflog_scroll","ui_detbtn_1","ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs",
+  "summoner_f","summoner_m","tavern","treant_boss","ui_cardframe","ui_daily_banner","ui_deflog_empty","ui_deflog_hall","ui_fz_laurel","ui_sh_card","ui_sh_sel","ui_sh_ped","ui_deflog_scroll","ui_detbtn_1","ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs",
   "ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon","ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon",
   "ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon","ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon",
   "ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon","ui_plaque","ui_runering","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4",
@@ -4234,7 +4249,7 @@ const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"au
 const ART = {battle:"assets/battle_meadow.webp", forest:"assets/battle_forest.webp", hub:"assets/sky_hub.webp", altar:"assets/summon_altar.webp"};
 // the published game page holds at most ~510 files, so newer art lives in its asset store; everywhere else (GitHub, local) it is read from assets/
 const ARTAR = {"aether_sprite":1.094,"aether_titan":1.037,"ash_golem":1.094,"aurora_spirit":0.503,"aurora_spirit_awakened":0.667,"banshee":0.658,"banshee_awakened":0.664,"celestial_lion":1.039,"celestial_lion_awakened":1.094,"cinder_hound":1.094,"cloud_slime":1.095,"crystal_beetle":1.493,"crystal_guardian":1.38,"desert_bandit":1.094,"djinn":0.613,"djinn_awakened":0.665,"dragon":1.228,"dragon_awakened":1.228,"dune_worm":1.094,"elf_archer":1.215,"elf_archer_awakened":1.228,"fairy":1.225,"fairy_awakened":1.231,"frost_serpent":1.088,"frost_serpent_awakened":1.092,"frost_witch":0.641,"frost_witch_awakened":0.667,"frost_wyrm":1.185,"gargoyle":1.093,"ghost_queen":0.669,"ghost_queen_awakened":0.667,"ghoul":1.099,"giant_spider":1.096,"golem":1.21,"golem_awakened":1.087,"griffin":1.228,"griffin_awakened":1.228,"harpy":1.206,"harpy_awakened":1.206,"ice_troll":1.092,"imp_fire":0.995,"imp_fire_awakened":1.094,"lava_titan":1.094,"legend_dawn_unicorn":1.382,"legend_dawn_unicorn_awakened":1.504,"legend_eclipse_dragon":1.508,"legend_eclipse_dragon_awakened":1.499,"legend_forest_dryad":0.668,"legend_forest_dryad_awakened":0.665,"legend_kraken_king":0.663,"legend_kraken_king_awakened":0.669,"legend_mountain_behemoth":1.499,"legend_mountain_behemoth_awakened":1.495,"legend_storm_roc":1.094,"legend_storm_roc_awakened":1.094,"legend_sun_empress":0.667,"legend_sun_empress_awakened":0.667,"legend_wind_centaur":0.667,"legend_wind_centaur_awakened":0.667,"magma_bat":1.508,"marble_guardian":1.086,"mermaid":0.842,"mermaid_awakened":0.843,"moon_priestess":0.642,"moon_priestess_awakened":0.67,"moss_wolf":1.405,"mummy":0.629,"mummy_awakened":0.667,"mushroom":1.202,"mushroom_awakened":1.228,"obsidian_knight":1.095,"obsidian_knight_awakened":1.093,"phoenix":1.098,"phoenix_awakened":1.094,"pixie_thief":1.1,"salamander":1.522,"salamander_awakened":1.495,"sand_colossus":1.094,"sand_scorpion":1.073,"scarab_knight":1.093,"scarab_knight_awakened":1.099,"seraph":0.66,"seraph_awakened":0.671,"shadow_lord":1.04,"shadow_ninja":1.057,"shadow_ninja_awakened":1.094,"shadow_wraith":1.1,"skeleton_knight":1.094,"skeleton_knight_awakened":1.093,"sky_boar":1.301,"sky_ray":1.504,"snow_owl":1.205,"snow_owl_awakened":1.208,"snow_sprite":1.094,"sphinx":1.094,"sphinx_awakened":1.094,"star_sage":0.667,"star_sage_awakened":0.666,"star_wisp":1.077,"storm_mage":0.665,"storm_mage_awakened":0.663,"treant_boss":1.094,"valkyrie":1.18,"valkyrie_awakened":1.18,"vampire":0.661,"vampire_awakened":0.668,"void_knight":0.661,"void_knight_awakened":0.668,"werewolf":1.103,"werewolf_awakened":1.094,"will_wisp":1.096,"wind_dancer":0.656,"wind_dancer_awakened":0.67,"wolf_spirit":1.247,"wolf_spirit_awakened":1.228,"yeti":1.082,"yeti_awakened":1.093};   // generated by sync_have.py: image width/height per monster art
-const BLOB = {ui_ssn_card_0:"/_blob/e1f70d304e7472d2b77be4a1863d2f2c", ui_ssn_card_1:"/_blob/40a4dc02e0542012b8f3e14239f37a36", ui_ssn_card_2:"/_blob/dd6174a1d7bc9ca2852095a6dfe08579", ui_ssn_card_3:"/_blob/0784f2c1e999c5768fe4e06a6e30e27d", ui_ssn_card_4:"/_blob/cec5c5405d1923479c6a1d01bca77246", ui_ssn_card_5:"/_blob/5a26d9ef75253329a4dd039e37e7cdde", ui_ssn_chest_0:"/_blob/6528a59cf405969df18b991cbcf21d4b", ui_ssn_chest_1:"/_blob/f618d3d2272894474c7ed995b5dd102e", ui_ssn_chest_2:"/_blob/26820338e8fc04e0c61b4a37aa310238", ui_ssn_chest_3:"/_blob/613e7ad50e2620766d730e1c9edb1b6d", ui_ssn_chest_4:"/_blob/671f05d96d39a1b34c4a494574c11d8c", ui_ssn_chest_5:"/_blob/6775a656f5f10d6e23529f47802ad6f9", ui_ssn_crest_0:"/_blob/d86b12979c9e6439ca3e61501508ed2e", ui_ssn_crest_1:"/_blob/2aee51939e3fdda7b7b960b5112e307c", ui_ssn_crest_2:"/_blob/efa296db1f5a0231794ea7d449b909aa", ui_ssn_crest_3:"/_blob/fc5216c7bb69eb6e7159daf433b3232d", ui_ssn_crest_4:"/_blob/f2f61d8a063d0c6004045f3129e37c97", ui_ssn_crest_5:"/_blob/0a5fa85bda7299554c6f57783c425029", ui_prg_banner:"/_blob/1e6600da085d591f96ac94f6c1fa256e", ui_prg_card_1:"/_blob/f0dcd73400a50d15cf3a0bd20f770296", ui_prg_card_2:"/_blob/1ed773f12c3dd1d04c8961fa0f67235a", ui_prg_card_3:"/_blob/3d0f4fa00a7b4d300d6a989fb853db2d", ui_prg_card_4:"/_blob/a30407abba87f1587bb8b5e713b3956e", ui_prg_card_5:"/_blob/36a759922d49faf8492b09898209359d", ui_prg_chest:"/_blob/ca68f2826b264366a518b4def4b79892", ui_prg_crest_1:"/_blob/8d351c779594dbdb6649ec7b82ea9724", ui_prg_crest_2:"/_blob/7b1b5e0590fed1d2628941fd32dea21d", ui_prg_crest_3:"/_blob/c0dc6ed4f33672f4784d6bc123cedb00", ui_prg_crest_4:"/_blob/d757c7f76ed5fd3dc1077052f150ab87", ui_prg_crest_5:"/_blob/6dfc6c508a4d12c393dd5ed32048a74d", ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_deflog_hall:"/_blob/9d0972827dcd9b6c220982321a26ed89", ui_fz_laurel:"/_blob/7423f5d21f417380db8adc58e53a5972", ui_deflog_scroll:"/_blob/8286ce95eae86d7a62b48e30dedcb8e4", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
+const BLOB = {ui_ssn_card_0:"/_blob/e1f70d304e7472d2b77be4a1863d2f2c", ui_ssn_card_1:"/_blob/40a4dc02e0542012b8f3e14239f37a36", ui_ssn_card_2:"/_blob/dd6174a1d7bc9ca2852095a6dfe08579", ui_ssn_card_3:"/_blob/0784f2c1e999c5768fe4e06a6e30e27d", ui_ssn_card_4:"/_blob/cec5c5405d1923479c6a1d01bca77246", ui_ssn_card_5:"/_blob/5a26d9ef75253329a4dd039e37e7cdde", ui_ssn_chest_0:"/_blob/6528a59cf405969df18b991cbcf21d4b", ui_ssn_chest_1:"/_blob/f618d3d2272894474c7ed995b5dd102e", ui_ssn_chest_2:"/_blob/26820338e8fc04e0c61b4a37aa310238", ui_ssn_chest_3:"/_blob/613e7ad50e2620766d730e1c9edb1b6d", ui_ssn_chest_4:"/_blob/671f05d96d39a1b34c4a494574c11d8c", ui_ssn_chest_5:"/_blob/6775a656f5f10d6e23529f47802ad6f9", ui_ssn_crest_0:"/_blob/d86b12979c9e6439ca3e61501508ed2e", ui_ssn_crest_1:"/_blob/2aee51939e3fdda7b7b960b5112e307c", ui_ssn_crest_2:"/_blob/efa296db1f5a0231794ea7d449b909aa", ui_ssn_crest_3:"/_blob/fc5216c7bb69eb6e7159daf433b3232d", ui_ssn_crest_4:"/_blob/f2f61d8a063d0c6004045f3129e37c97", ui_ssn_crest_5:"/_blob/0a5fa85bda7299554c6f57783c425029", ui_prg_banner:"/_blob/1e6600da085d591f96ac94f6c1fa256e", ui_prg_card_1:"/_blob/f0dcd73400a50d15cf3a0bd20f770296", ui_prg_card_2:"/_blob/1ed773f12c3dd1d04c8961fa0f67235a", ui_prg_card_3:"/_blob/3d0f4fa00a7b4d300d6a989fb853db2d", ui_prg_card_4:"/_blob/a30407abba87f1587bb8b5e713b3956e", ui_prg_card_5:"/_blob/36a759922d49faf8492b09898209359d", ui_prg_chest:"/_blob/ca68f2826b264366a518b4def4b79892", ui_prg_crest_1:"/_blob/8d351c779594dbdb6649ec7b82ea9724", ui_prg_crest_2:"/_blob/7b1b5e0590fed1d2628941fd32dea21d", ui_prg_crest_3:"/_blob/c0dc6ed4f33672f4784d6bc123cedb00", ui_prg_crest_4:"/_blob/d757c7f76ed5fd3dc1077052f150ab87", ui_prg_crest_5:"/_blob/6dfc6c508a4d12c393dd5ed32048a74d", ui_rank_template:"/_blob/1a1097cfb918b4d1ebae842976304efe", ui_deflog_empty:"/_blob/2b4506824f530e81c9f10d4d479988e9", ui_deflog_hall:"/_blob/9d0972827dcd9b6c220982321a26ed89", ui_fz_laurel:"/_blob/7423f5d21f417380db8adc58e53a5972", ui_sh_card:"/_blob/13794bb9a5e25b4690786a02ea055aa1", ui_sh_sel:"/_blob/b187727ce710e0e8f5e9f6f87669ddf2", ui_sh_ped:"/_blob/82226d5b0d2f6771bdd279ac5e4309a9", ui_deflog_scroll:"/_blob/8286ce95eae86d7a62b48e30dedcb8e4", ui_daily_banner:"/_blob/17857cd77512a45732dcbddabb6092e4", card_frame_2:"/_blob/8f6e064ac703340560ef09491ebad55f", card_frame_3:"/_blob/27cfc1363751ff36d6497b7d55fd5ab2", card_frame_4:"/_blob/687569b591ae9f35b7273166ab62c174", card_frame_5:"/_blob/71b4a43fca0300db595ea9bde2156c4b", summon_burst:"/_blob/9c2f3244a09b8382a93aeee276c6cd34", summon_card_back:"/_blob/96d1af930990c67fac7932e283abefc5", summon_circle:"/_blob/a67f1598e12353adabc674d5bf74770a", summon_open:"/_blob/e39b4521a5de4443c1bf94349eecf501", summon_temple:"/_blob/457e71bb2e82e948ededd8c80e5f2ea9", summon_wings:"/_blob/9bc3d559111a63605550a061bc2f5f3b", sk_dawn_unicorn_1:"/_blob/cec4e7e9433de8446cdd74fd1394a4e2", sk_dawn_unicorn_2:"/_blob/1170eecf8ae7cf9a00927ac3ee28be63", sk_dawn_unicorn_3:"/_blob/f634c7db663c62dfda4af9a3a076179c", sk_dawn_unicorn_u:"/_blob/11022eec77821d8ebdce766cd3b95651", sk_eclipse_dragon_1:"/_blob/ad7a9d260e597547e4510855c1e06c7c", sk_eclipse_dragon_2:"/_blob/5f8c1ea767089e54cdf4859347afdde3", sk_eclipse_dragon_3:"/_blob/12a446241cbf31b88755d2a83a862ad4", sk_eclipse_dragon_u:"/_blob/58ffc8e9c5a13510bc2bcb4a38512d8c", sk_forest_dryad_1:"/_blob/145c702e6de2823a88e9b85ca785ec56", sk_forest_dryad_2:"/_blob/44e29115ec8faa2113f8519491086afd", sk_forest_dryad_3:"/_blob/30b063855f3247cef5913bee9175f70e", sk_forest_dryad_u:"/_blob/b28112136443234ab375be0881312537", sk_kraken_king_1:"/_blob/e2580317840d32f2d84e3598124e6be0", sk_kraken_king_2:"/_blob/162b02db850271750941839329379080", sk_kraken_king_3:"/_blob/1aa22a27f7e65589bcfd6caf3e6e72ad", sk_kraken_king_u:"/_blob/a19ed5b95ebf704c1b240a2757acd030", sk_mountain_behemoth_1:"/_blob/6a13ae26132c2ccb7a11bfb7712dddcc", sk_mountain_behemoth_2:"/_blob/cd59bd0fabe274cfc6cdde9e6426b869", sk_mountain_behemoth_3:"/_blob/4180db5a26a15368270deac624736417", sk_mountain_behemoth_u:"/_blob/50c4ba9c125a750df6dfb10534cfa039", sk_storm_roc_1:"/_blob/7335c7d540685e5ae28d933ecd0c22a5", sk_storm_roc_2:"/_blob/df97b6a23cf8df4b61c3ac17b9f0721b", sk_storm_roc_3:"/_blob/617188404aa6bc0934ba048e78fdaa66", sk_storm_roc_u:"/_blob/c5b6a215ce96eb6a205479e6d550c420", sk_sun_empress_1:"/_blob/b4bd572ac19cbad7695b147ff462f1c9", sk_sun_empress_2:"/_blob/d849d4a542af9c5263b6d7d0534ca273", sk_sun_empress_3:"/_blob/9a8a1c80de83544b3128fc81d7738fb5", sk_sun_empress_u:"/_blob/c8babd975161c654c61d9a0a2774408f", sk_wind_centaur_1:"/_blob/5f45c27e86b97846181faf0769bf2b2b", sk_wind_centaur_2:"/_blob/b88b9c5dcc6cd17f63b887bed512491b", sk_wind_centaur_3:"/_blob/40ae9a4596aed64dfbbeb77bba0a0d6a", sk_wind_centaur_u:"/_blob/ae16ddbeb058980f19300d1b24cc317a", legend_sun_empress:"/_blob/a601085a382d00e0b3e98a5c6a14605c", legend_sun_empress_awakened:"/_blob/c513f7d20ee6099e79b8efa7d016fd3d",
   legend_kraken_king:"/_blob/57d4de9adf5506c59e8ea01766077092", legend_kraken_king_awakened:"/_blob/a907bb70c41aed676b48211f21842e02",
   legend_storm_roc:"/_blob/5de16d93d25a10eae9d5ab74af515700", legend_storm_roc_awakened:"/_blob/49a68678138e764c50648c52583da5d3",
   legend_wind_centaur:"/_blob/7f98d07d3382ce05e3da69c5960d6b15", legend_wind_centaur_awakened:"/_blob/0c00c92a8a6668fd211c977f066c398b",
@@ -5352,7 +5367,7 @@ const AZI = {                                        // small gold line icons fo
   back:'<path d="M14 5l7 7-7 7M21 12H4"/>', next:'<path d="M15 5l-7 7 7 7"/>', prev:'<path d="M9 5l7 7-7 7"/>',
   list:'<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
   lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
-  refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>', clock:'<path d="M6 3h12M6 21h12M7 3c0 4 4 6 5 9-1 3-5 5-5 9M17 3c0 4-4 6-5 9 1 3 5 5 5 9"/>', check:'<path d="M4 12.5l5 5L20 6.5"/>', cal:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/>', doc:'<path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/>', dnext:'<path d="M12 5l-7 7 7 7M19 5l-7 7 7 7"/>', dprev:'<path d="M12 5l7 7-7 7M5 5l7 7-7 7"/>', x:'<path d="M6 6l12 12M18 6L6 18"/>', up:'<path d="M12 6l7 11H5z" fill="currentColor" stroke="none"/>', down:'<path d="M12 18L5 7h14z" fill="currentColor" stroke="none"/>', info:'<path d="M12 10v7M12 6.5v.5"/>'};
+  refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>', clock:'<path d="M6 3h12M6 21h12M7 3c0 4 4 6 5 9-1 3-5 5-5 9M17 3c0 4-4 6-5 9 1 3 5 5 5 9"/>', check:'<path d="M4 12.5l5 5L20 6.5"/>', alert:'<path d="M12 4v10"/><circle cx="12" cy="18.6" r="1.3"/>', cal:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/>', doc:'<path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/>', dnext:'<path d="M12 5l-7 7 7 7M19 5l-7 7 7 7"/>', dprev:'<path d="M12 5l7 7-7 7M5 5l7 7-7 7"/>', x:'<path d="M6 6l12 12M18 6L6 18"/>', up:'<path d="M12 6l7 11H5z" fill="currentColor" stroke="none"/>', down:'<path d="M12 18L5 7h14z" fill="currentColor" stroke="none"/>', info:'<path d="M12 10v7M12 6.5v.5"/>'};
 const azi = (k, c) => `<svg class="azi ${c || ""}" viewBox="0 0 24 24" aria-hidden="true">${AZI[k]}</svg>`;
 const azMon = (id, lv, st) => { const d = MON[id];               // one monster tile: art, element, level, stars (real data)
   return `<span class="az-mt" style="--ec:${EL[d.el].c};--rc:${RAR[Math.max(0, Math.min(4, (st || d.st) - 1))].c}">${sprite(id)}${HAVE.has("el_" + d.el) ? `<img class="az-el" src="assets/el_${d.el}.webp" alt="">` : ""}<small dir="ltr">Lv.${lv}</small><em dir="ltr">${st || d.st}★</em></span>`; };
@@ -5404,7 +5419,8 @@ function renderArena() {
   // the header row: a title banner for the views that have one; the right corner holds that view's own box (season clock, glory, last attack) instead of the resources
   const ban = {ranks:["gift", "פרסי דירוג", "קבל פרסים יקרי ערך על הדירוג שלך בזירת השמיים"], log:["shield", "יומן ההגנה", "רשימת ההתקפות על ההגנה שלך"],
     shop:["sw", "חנות הזירה", "פריטים ייחודיים בתמורה לתהילה"], hist:["chart", "היסטוריה", "הקרבות שלך בזירה"]}[arenaTab];
-  $("azBanner").classList.toggle("prg", arenaTab === "ranks" || arenaTab === "log"); $("azBanner").classList.toggle("lg", arenaTab === "log"); $("azBanner").style.backgroundImage = arenaTab === "ranks" || arenaTab === "log" ? `url(${assetUrl("ui_prg_banner")})` : "";
+  const wing = arenaTab === "ranks" || arenaTab === "log" || arenaTab === "shop";   // the winged banner of the rank rewards; log and shop keep their subtitle
+  $("azBanner").classList.toggle("prg", wing); $("azBanner").classList.toggle("lg", arenaTab === "log" || arenaTab === "shop"); $("azBanner").style.backgroundImage = wing ? `url(${assetUrl("ui_prg_banner")})` : "";
   $("azBanner").hidden = !ban; $("azBanner").innerHTML = ban ? `<b class="title-font">${azi(ban[0])}<span>${ban[1]}</span></b><small>${ban[2]}</small>` : "";
   const sl = seasonLeft(), hbox = arenaTab === "ranks" ? `<span class="az-hb-ic">${azi("clock")}</span><span><small>סיום העונה בעוד</small><b id="azClock" dir="ltr">${[sl.d, sl.h, sl.m, sl.s].map(v => String(v).padStart(2, "0")).join(":")}</b><small class="az-hb-u"><i>שנ׳</i><i>דק׳</i><i>שעה</i><i>יום</i></small></span>`
     : arenaTab === "shop" ? `<img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(A.glory || 0)}</b>`
@@ -5814,7 +5830,7 @@ function ssPtsFit() {                                 // the points beside the t
   place("u");
 }
 function azFit(root) {                               // a long player name steps its font down (to 10px) instead of being cut
-  root.querySelectorAll(".fz-name,.az-c-name b,.az-pplate>b,.dl-name,.az-sdn,.az-it>b").forEach(e => { let f = parseFloat(getComputedStyle(e).fontSize); while (e.scrollWidth > e.clientWidth + 1 && f > 10) { f -= .5; e.style.setProperty("font-size", f + "px", "important"); } });
+  root.querySelectorAll(".fz-name,.az-c-name b,.az-pplate>b,.dl-name,.sp-n,.sp-tn").forEach(e => { let f = parseFloat(getComputedStyle(e).fontSize); while (e.scrollWidth > e.clientWidth + 1 && f > 10) { f -= .5; e.style.setProperty("font-size", f + "px", "important"); } });
 }
 function azPager(id, page, pages) {
   return pages > 1 ? `<div class="az-nav slim"><span class="az-pager"><button data-pg="-1" aria-label="עמוד קודם" ${page <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${page}/${pages}</b><button data-pg="1" aria-label="עמוד הבא" ${page >= pages ? "disabled" : ""}>${azi("next")}</button></span></div>` : "";
@@ -5911,6 +5927,8 @@ const AZ_DESC = {                                   // facts already in the game
   al:() => `זימון: ${SCR.l.rates}. ${SCR.l.note}.`, ald:() => `זימון: ${SCR.ld.rates}. ${SCR.ld.note}.`, am:() => `5 מגילות. זימון: ${SCR.m.rates}.`,
   ar6:() => "רון אקראי של 6 כוכבים, עם 3 תכונות משנה.", amg:() => "חומר להתעוררות מפלצות (8 בכל התעוררות).", aen:() => "אנרגיה לקרבות (עד 99)."};
 const AZ_SHORT = {al:"תמיד 4 כוכבים ומעלה", ald:"רק מפלצות אור וחושך", am:"חבילה של 5 מגילות", ar6:"רון אקראי, 6 כוכבים", amg:"חומר להתעוררות", aen:"אנרגיה לקרבות"};   // one line for the cards, from the same facts
+const AZ_ODDS = {al:() => SCR.l.rates, ald:() => SCR.ld.rates, am:() => SCR.m.rates};   // summon odds: only the scrolls have them (SCR)
+const AZ_LONG = {al:() => `מגילת זימון. ${SCR.l.note}.`, ald:() => `מגילת זימון. ${SCR.ld.note}.`, am:() => `חבילה של 5 מגילות זימון. ${SCR.m.note}.`};
 let azShopPage = 1, azShopSel = null, azQty = 1, azBuying = false;
 const azGlory = () => arenaState().glory || 0;
 function azItemState(x) {                           // one place for an item's state: limit, bought today, how many can still be bought now
@@ -5918,67 +5936,90 @@ function azItemState(x) {                           // one place for an item's s
   return {used, left, afford, max:Math.max(0, Math.min(left, afford, 99)), sold:left === 0, poor:afford < 1};
 }
 const azLimTxt = (x, st) => x.lim ? `נרכשו ${st.used} מתוך ${x.lim} היום` : "";
+const azReset = () => { const n = new Date(), m = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1) - n, h = Math.floor(m / 36e5), mi = Math.floor(m / 6e4) % 60;   // the daily limit resets at midnight (shopDay)
+  return h ? `${h} שע׳ ו-${mi} דק׳` : `${mi} דק׳`; };
+const azGl = v => `<b class="sp-g" dir="ltr">${v}<img src="assets/cur_glory.webp" alt="תהילה"></b>`;
+/* ---- the arena shop, built from the user's clean template + full concept (2026-11-05): category tabs, 6 framed cards 3x2 on the template's own
+   pedestals, the item panel (picture, description, real summon odds, limit and its reset, quantity / MAX, unit / total / balance after or what is
+   missing, buy). Items, prices, limits and the purchase are the game's own (ASHOP, shopDay, storeBuy); nothing here changes the economy. ---- */
 function azShop(A, L) {
   const all = ASHOP.filter(x => azShopCat === "all" || x.cat === azShopCat);
-  const W = L.clientWidth || 600, per = W < 470 ? 4 : 6, pages = Math.max(1, Math.ceil(all.length / per));
+  const per = 6, pages = Math.max(1, Math.ceil(all.length / per));
   azShopPage = Math.max(1, Math.min(pages, azShopPage));
   const list = all.slice((azShopPage - 1) * per, azShopPage * per);
   if (!all.some(x => x.k === azShopSel)) { azShopSel = all[0] ? all[0].k : null; azQty = 1; }
   const have = azGlory(), x = ASHOP.find(i => i.k === azShopSel), st = x ? azItemState(x) : null;
   if (st) azQty = Math.max(1, Math.min(azQty, Math.max(1, Math.min(st.left, 99))));
-  const card = i => { const s2 = azItemState(i);
-    return `<button class="az-it ${s2.sold ? "sold" : s2.poor ? "poor" : ""} ${i.k === azShopSel ? "on" : ""}" data-s="${i.k}"><b>${i.n}</b><small class="az-itd">${AZ_SHORT[i.k] || ""}</small>
-      <span class="az-it-ic">${shopImg(i)}${i.x ? `<span class="qty" dir="ltr">×${i.x}</span>` : ""}</span>
-      ${s2.sold ? '<small class="az-itlim red">הגעת למגבלת הרכישה</small>' : `<small class="az-itlim">${azLimTxt(i, s2) || "&nbsp;"}</small>`}
-      <span class="az-price ${s2.poor && !s2.sold ? "poor" : ""} ${s2.sold ? "off" : ""}"><img src="assets/cur_glory.webp" alt=""><b dir="ltr">${fmt(i.p)}</b></span></button>`; };
+  const fr = n => HAVE.has(n) ? `--fr:url(${assetUrl(n)})` : "";
+  const card = i => { const s2 = azItemState(i), on = i.k === azShopSel;
+    return `<button class="sp-c ${s2.sold ? "sold" : s2.poor ? "poor" : ""} ${on ? "on" : ""}" data-s="${i.k}" style="${fr(on ? "ui_sh_sel" : "ui_sh_card")}">
+      <b class="sp-n">${i.n}</b><small class="sp-d">${AZ_SHORT[i.k] || ""}</small>
+      <span class="sp-img">${shopImg(i)}${i.x ? `<em class="sp-x" dir="ltr">×${i.x}</em>` : ""}</span>
+      ${i.lim ? `<small class="sp-lim ${s2.sold ? "red" : ""}">${s2.sold ? "הגעת למגבלה היומית" : azLimTxt(i, s2)}</small>` : ""}
+      <span class="sp-p ${s2.poor && !s2.sold ? "poor" : ""}">${azGl(fmt(i.p))}</span></button>`; };
   const total = x ? x.p * azQty : 0, after = have - total;
-  const det = !x ? `<div class="az-sdet empty"><small>בחר פריט כדי לראות את פרטיו</small></div>` : `<div class="az-sdet">
-      <b class="title-font az-sdn">${x.n}</b><span class="az-sdi">${shopImg(x)}</span><small class="az-sdd">${AZ_DESC[x.k] ? AZ_DESC[x.k]() : ""}</small>
-      <div class="az-slim ${st.sold ? "red" : ""}">${x.lim ? `<b>${azi("info", "az-pi")}מגבלת רכישה יומית</b><small>${st.sold ? "הגעת למגבלת הרכישה · מתאפס בחצות" : azLimTxt(x, st)}</small>` : "<small>ללא מגבלת רכישה</small>"}</div>
-      <div class="az-qty"><button data-q="-1" aria-label="פחות" ${azQty <= 1 || st.sold ? "disabled" : ""}>−</button><b dir="ltr">${azQty}</b><button data-q="1" aria-label="יותר" ${azQty >= Math.min(st.left, 99) || st.sold ? "disabled" : ""}>+</button><button class="az-max" data-q="max" ${st.sold ? "disabled" : ""}>MAX</button></div>
-      <div class="az-sums"><span>מחיר ליחידה<b><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${fmt(x.p)}</i></b></span><span>מחיר כולל<b><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${fmt(total)}</i></b></span>
-        <span>יתרה לאחר רכישה<b class="${after < 0 ? "neg" : "pos"}"><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${fmt(after)}</i></b></span></div>
-      <button class="az-buy ${st.sold ? "sold" : after < 0 ? "poor" : ""}" id="azBuy">${st.sold ? "הגעת למגבלה" : after < 0 ? "אין מספיק מטבעות" : "רכישה"}</button></div>`;
-  L.innerHTML = `<div class="az-shop2">${det}<div class="az-spanel">
-      <div class="az-cats">${AZ_CATS.map(([c, n, im]) => `<button class="${azShopCat === c ? "on" : ""}" data-c="${c}"><img src="assets/${im}.webp" alt=""><span>${n}</span></button>`).join("")}</div>
-      ${list.length ? `<div class="az-items" style="--cols:${per === 4 ? 2 : 3}">${list.map(card).join("")}</div>`
-        : `<div class="az-sempty"><img src="assets/cur_glory.webp" alt=""><b class="title-font">אין פריטים בקטגוריה זו</b><small>כרגע אין פריטים זמינים בקטגוריה הזאת. חזור מאוחר יותר.</small></div>`}
+  const det = !x ? `<div class="sp-det empty"><b class="sp-ttl title-font"><i class="sp-gem"></i>פרטי הפריט</b><small>בחר פריט כדי לראות את פרטיו</small></div>` : `<div class="sp-det">
+      <b class="sp-ttl title-font"><i class="sp-gem"></i><span class="sp-tn">${x.n}</span></b>
+      <div class="sp-hero"><span class="sp-big" style="${fr("ui_sh_ped").replace("--fr", "--ped")}">${shopImg(x)}${x.x ? `<em class="sp-x" dir="ltr">×${x.x}</em>` : ""}</span>
+        <span class="sp-info"><small class="sp-desc">${AZ_LONG[x.k] ? AZ_LONG[x.k]() : AZ_DESC[x.k] ? AZ_DESC[x.k]() : ""}</small>
+          ${AZ_ODDS[x.k] ? `<span class="sp-odds"><small>סיכויי זימון</small><b>${AZ_ODDS[x.k]().split(" · ").map(t => `<i dir="ltr">${t}</i>`).join("")}</b></span>` : ""}
+          ${x.lim ? `<span class="sp-limb ${st.sold ? "red" : ""}"><small>מגבלה יומית · ${azLimTxt(x, st)}</small><small>מתאפס בעוד ${azReset()}</small></span>` : ""}</span></div>
+      <i class="sp-orn"></i>
+      <div class="sp-qty"><small>כמות רכישה</small><span class="sp-qr"><button class="sp-max" data-q="max" ${st.max < 1 ? "disabled" : ""}>MAX</button><button data-q="-1" aria-label="פחות" ${azQty <= 1 || st.sold ? "disabled" : ""}>−</button>
+        <b dir="ltr">${azQty}</b><button data-q="1" aria-label="יותר" ${azQty >= Math.min(st.left, 99) || st.sold ? "disabled" : ""}>+</button></span></div>
+      <div class="sp-sum"><span>מחיר ליחידה${azGl(fmt(x.p))}</span><span>מחיר כולל${azGl(fmt(total))}</span>
+        ${st.sold ? `<span class="neg">הגעת למגבלה היומית<b dir="ltr">${st.used}/${x.lim}</b></span>` : after < 0 ? `<span class="neg">חסרות לך${azGl(fmt(-after))}</span>` : `<span>יתרה לאחר רכישה${azGl(fmt(after))}</span>`}</div>
+      <button class="sp-buy ${st.sold ? "sold" : after < 0 ? "poor" : ""}" id="azBuy">${azi(st.sold ? "clock" : "shop")}<span>${st.sold ? "הגעת למגבלה" : after < 0 ? "אין מספיק תהילה" : "רכישה"}</span></button></div>`;
+  L.innerHTML = `<div class="sp">${det}<div class="sp-main">
+      <div class="sp-cats">${AZ_CATS.map(([c, n, im]) => `<button class="${azShopCat === c ? "on" : ""}" data-c="${c}"><img src="assets/${im}.webp" alt=""><span>${n}</span></button>`).join("")}</div>
+      ${list.length ? `<div class="sp-grid">${list.map(card).join("")}</div>`
+        : `<div class="sp-empty"><span class="sp-emi">${azi("shop")}</span><b class="title-font">אין פריטים בקטגוריה זו</b><small>כרגע אין פריטים זמינים בקטגוריה הזאת.</small></div>`}
       ${pages > 1 ? `<div class="az-nav slim"><span class="az-pager"><button data-pg="-1" aria-label="עמוד קודם" ${azShopPage <= 1 ? "disabled" : ""}>${azi("prev")}</button><b dir="ltr">${azShopPage} / ${pages}</b><button data-pg="1" aria-label="עמוד הבא" ${azShopPage >= pages ? "disabled" : ""}>${azi("next")}</button></span></div>` : ""}</div></div>`;
-  L.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { azShopCat = b.dataset.c; azShopPage = 1; azShopSel = null; azQty = 1; renderArena(); });
-  L.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { if (azShopSel !== b.dataset.s) azQty = 1; azShopSel = b.dataset.s; renderArena(); });
+  L.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { if (azShopCat === b.dataset.c) return; azShopCat = b.dataset.c; azShopPage = 1; azShopSel = null; azQty = 1; SFX.tap && SFX.tap(); renderArena(); });
+  L.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { if (azShopSel === b.dataset.s) return; azQty = 1; azShopSel = b.dataset.s; SFX.tap && SFX.tap(); renderArena(); });
   L.querySelectorAll("[data-pg]").forEach(b => b.onclick = () => { azShopPage += +b.dataset.pg; renderArena(); });
-  L.querySelectorAll("[data-q]").forEach(b => b.onclick = () => { const s2 = azItemState(x), q = b.dataset.q;
+  L.querySelectorAll("[data-q]").forEach(b => b.onclick = () => { const s2 = azItemState(x), q = b.dataset.q;   // MAX: what the balance, the daily limit and the 99 cap allow together
     azQty = q === "max" ? Math.max(1, s2.max) : Math.max(1, Math.min(azQty + +q, Math.min(s2.left, 99))); renderArena(); });
   if ($("azBuy")) $("azBuy").onclick = () => azBuyDialog(x);
 }
-function azBuyDialog(x, mode) {                      // confirm / not enough / limit reached / done / failed: compact windows with only the actions that apply
-  const st = azItemState(x), have = azGlory(), total = x.p * azQty, head = `<div class="az-bh"><span class="az-bi">${shopImg(x)}</span><span><b>${x.n}</b><small>${AZ_DESC[x.k] ? AZ_DESC[x.k]() : ""}</small></span></div>`;
-  const row = (t, v, c) => `<div class="az-brow"><span>${t}</span><b class="${c || ""}"><img src="assets/cur_glory.webp" alt=""><i dir="ltr">${v}</i></b></div>`;
+/* ---- the purchase windows (the concept's six states): confirm / done / not enough / limit / failed; an empty category is shown in the grid itself.
+   The purchase is storeBuy (re-checks glory and the limit at the press, pays, gives, saves); if anything throws, the whole save is put back as it was
+   before the press, so a failure never takes glory or gives half a reward. One purchase at a time (azBuying). ---- */
+const AZ_BMED = {confirm:["shop", "gold"], done:["check", "green"], poor:["alert", "red"], limit:["clock", "gold"], fail:["x", "red"]};
+function azBuyDialog(x, mode, got) {
+  const st = azItemState(x), have = azGlory(), q = got || azQty, total = x.p * q;
   mode = mode || (st.sold ? "limit" : have < total ? "poor" : "confirm");
+  const [ic, tone] = AZ_BMED[mode], med = `<span class="sb-med ${tone}"><i class="sb-wings"></i><span class="sb-ic">${azi(ic)}</span></span>`;
+  const item = (sub) => `<div class="sb-item"><span class="sb-ii">${shopImg(x)}</span><span><b>${x.n}${q > 1 ? ` <i dir="ltr">×${q}</i>` : ""}</b>${sub || ""}</span></div>`;
+  const row = (t, v, c) => `<div class="sb-row ${c || ""}"><span>${t}</span>${azGl(v)}</div>`;
+  const btns = (...b) => `<div class="sb-btns">${b.join("")}</div>`;
+  let html;
+  if (mode === "confirm") html = `<h3 class="sb-t title-font">אישור רכישה</h3>${item(`<small>כמות: <b dir="ltr">${q}</b></small>`)}
+      ${row("מחיר כולל", fmt(total))}${row("יתרה לאחר רכישה", fmt(have - total))}<p class="sb-q">האם לבצע את הרכישה?</p>
+      ${btns(`<button class="sb-b gold" id="azConfirm">אישור</button>`, `<button class="sb-b red" id="azNo">ביטול</button>`)}`;
+  else if (mode === "done") html = `<h3 class="sb-t title-font green">הרכישה הושלמה!</h3>${item(`<small>התקבל בהצלחה</small>`)}
+      ${row("יתרת תהילה", fmt(have))}${x.lim ? `<p class="sb-q">${azLimTxt(x, st)}</p>` : ""}${btns(`<button class="sb-b green" id="azNo">המשך</button>`)}`;
+  else if (mode === "poor") html = `<h3 class="sb-t title-font red">אין מספיק תהילה</h3>${item()}
+      <p class="sb-q">חסרות לך <b class="neg" dir="ltr">${fmt(total - have)}</b> תהילה לביצוע הרכישה.</p>${btns(`<button class="sb-b gold" id="azNo">הבנתי</button>`)}`;
+  else if (mode === "limit") html = `<h3 class="sb-t title-font">מגבלת רכישה הושגה</h3>${item()}
+      <p class="sb-q">אפשר לרכוש פריט זה ${x.lim} פעמים ביום (נרכשו ${st.used}/${x.lim}).<br>מתאפס בעוד ${azReset()}.</p>${btns(`<button class="sb-b gold" id="azNo">הבנתי</button>`)}`;
+  else html = `<h3 class="sb-t title-font red">תקלה ברכישה</h3>${item()}<p class="sb-q">אירעה שגיאה. לא חויבת ולא נוסף פריט.</p>
+      ${btns(`<button class="sb-b gold" id="azRetry">נסה שוב</button>`, `<button class="sb-b red" id="azNo">סגור</button>`)}`;
   $("modalCard").classList.add("azbuy");
-  if (mode === "limit") openModal(`<h3 class="az-bt red">מגבלת רכישה הושגה</h3>${head}<p class="az-bmsg">נרכשו ${st.used} מתוך ${x.lim} היום</p><p class="az-bwarn">הגעת למגבלת הרכישה היומית · מתאפס בחצות</p>
-    <div class="az-bbtns"><button class="btn blue" onclick="closeModal()">הבנתי</button></div>`);
-  else if (mode === "poor") openModal(`<h3 class="az-bt red">אין מספיק מטבעות</h3>${head}${row(`מחיר כולל (${azQty})`, fmt(total), "neg")}${row("יתרה נוכחית", fmt(have))}
-    <p class="az-bwarn">חסרות ${fmt(total - have)} תהילה. תהילה מרוויחים בקרבות זירה: 12 על ניצחון, 3 על הפסד.</p>
-    <div class="az-bbtns"><button class="btn ghost" onclick="closeModal()">סגור</button><button class="btn blue" id="azToFight">לקרבות הזירה</button></div>`);
-  else if (mode === "done") openModal(`<h3 class="az-bt green">הרכישה הושלמה</h3>${head}<p class="az-bmsg">קיבלת: ${x.n}${azQty > 1 ? ` ×${azQty}` : ""}</p>${row("יתרה חדשה", fmt(have))}
-    <div class="az-bbtns"><button class="btn" onclick="closeModal()">מעולה</button></div>`);
-  else if (mode === "fail") openModal(`<h3 class="az-bt red">הרכישה נכשלה</h3>${head}<p class="az-bwarn">הרכישה לא בוצעה: היתרה או המגבלה השתנו. לא חויבת ולא נוסף פריט.</p>
-    <div class="az-bbtns"><button class="btn ghost" onclick="closeModal()">סגור</button><button class="btn blue" id="azRetry">לנסות שוב</button></div>`);
-  else openModal(`<button class="az-bx" onclick="closeModal()" aria-label="סגירה">${azi("x")}</button><h3 class="az-bt">אישור רכישה</h3>${head}
-    <div class="az-qty az-bq"><button data-bq="-1" aria-label="פחות" ${azQty <= 1 ? "disabled" : ""}>−</button><b dir="ltr">${azQty}</b><button data-bq="1" aria-label="יותר" ${azQty >= st.max ? "disabled" : ""}>+</button><button class="az-max" data-bq="max">MAX</button></div>
-    ${row("מחיר כולל", fmt(total))}${row("יתרה לאחר רכישה", fmt(have - total), "pos")}
-    <div class="az-bbtns"><button class="btn ghost" onclick="closeModal()">ביטול</button><button class="btn" id="azConfirm">אשר רכישה</button></div>`);
-  document.querySelectorAll("#modalCard [data-bq]").forEach(b => b.onclick = () => {   // the quantity can still change here, within what the balance and the limit allow
-    const q = b.dataset.bq; azQty = q === "max" ? Math.max(1, st.max) : Math.max(1, Math.min(azQty + +q, Math.max(1, st.max)));
-    if ($("arena").classList.contains("on")) renderArena(); azBuyDialog(x, "confirm"); });
-  if ($("azToFight")) $("azToFight").onclick = () => { closeModal(); arenaTab = "fight"; renderArena(); };
+  openModal(`<div class="sb ${mode}">${med}${html}</div>`);
+  $("azNo").onclick = () => closeModal();
   if ($("azRetry")) $("azRetry").onclick = () => { closeModal(); renderArena(); azBuyDialog(x); };
   if ($("azConfirm")) $("azConfirm").onclick = e => {
-    if (azBuying) return; azBuying = true; e.currentTarget.disabled = true; e.currentTarget.textContent = "מבצע רכישה…";   // one purchase at a time
-    const ok = storeBuy("arena", x, azQty);                                              // the game's purchase: re-checks glory and the daily limit now, then pays and gives
-    azBuying = false; if ($("arena").classList.contains("on")) renderArena();
-    azBuyDialog(x, ok ? "done" : "fail");
+    if (azBuying) return; const s2 = azItemState(x);
+    if (s2.sold || s2.left < q) return azBuyDialog(x, "limit"); if (azGlory() < x.p * q) return azBuyDialog(x, "poor");   // checked again at the press
+    azBuying = true; e.currentTarget.disabled = true; e.currentTarget.textContent = "מבצע רכישה…";
+    const snap = JSON.stringify(S); let ok = false;
+    try { ok = storeBuy("arena", x, q); }
+    catch (err) { const back = JSON.parse(snap); Object.keys(S).forEach(k => delete S[k]); Object.assign(S, back); ok = false; renderTop(); }   // nothing taken, nothing given
+    finally { azBuying = false; }
+    if (ok) { azQty = 1; $("toast").classList.remove("on"); }   // the done window says it; storeBuy's toast would cover its medallion
+    if ($("arena").classList.contains("on")) renderArena();
+    azBuyDialog(x, ok ? "done" : "fail", q);
   };
 }
 function arenaHelp() {
