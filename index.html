@@ -26,6 +26,7 @@
   --hp:#44d17a; --hpE:#ff5a5a; --atb:#5fc8ff; --bad:#ff6b6b;
   color-scheme:dark;
 }
+[hidden]{display:none!important}   /* hidden always wins over a display rule (the claude page adds this itself; the iPhone app showed an empty #goNext pill) */
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;width:100%;height:100%;height:100dvh;overscroll-behavior:none;background:var(--bg);color:var(--ink);font-family:Rubik,system-ui,sans-serif;overflow:hidden}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
@@ -5162,7 +5163,7 @@ $("profBtn").onclick = () => profileModal();
 let vipView = null;
 function vipModal(show) {
   const V = vipState(), v = vipLv(), next = VIP_PTS[v + 1], can = V.gift !== today(), T = VIP_TIER(v);
-  const sel = show == null ? (vipView == null ? v : vipView) : show; vipView = sel;
+  const sel = typeof show === "number" ? show : (vipView == null ? v : vipView); vipView = sel;   // only a level number picks a tab
   const ST = VIP_TIER(sel), pct = next ? Math.min(100, (V.pts - VIP_PTS[v]) / (next - VIP_PTS[v]) * 100) : 100;
   openModal(`<div class="viphero" style="--vc1:${T.c1};--vc2:${T.c2};--vg:${T.g}">
       ${vipCrest(v, 104)}
@@ -5190,7 +5191,7 @@ function vipModal(show) {
     V.gift = today(); SFX.win(); save(true); renderTop(); closeModal(); rewardPop("👑", `המתנה היומית של VIP ${v}`, giftTxt(g));
   };
 }
-$("vipBtn").onclick = vipModal;
+$("vipBtn").onclick = () => vipModal();   // (a click handler would pass the event as the level to show)
 $("fsBtn").onclick = async () => {               // fill the whole screen exactly (hides the browser bars)
   const d = document, el = d.documentElement;
   try {
