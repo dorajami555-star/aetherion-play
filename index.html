@@ -10335,7 +10335,7 @@ const WARP_C = {b:[95, 184, 255], p:[176, 124, 255], g:[255, 215, 90], m:[255, 7
 function warpCol(W, k) {
   const mix = (a, b, f) => a.map((v, i) => Math.round(v + (b[i] - v) * Math.max(0, Math.min(1, f))));
   let col = W.mid ? mix(WARP_C.b, W.mid, (k - .4) / .15) : WARP_C.b;   // purple only when the pull really holds a 4★ (or better); otherwise the tunnel stays blue
-  if (W.top) col = mix(col, W.top, (k - .7) / .12);
+  if (W.top) col = mix(col, W.top, (k - .5) / .12);   // a 5★: the gold comes at half the flight and stays to the gate (the user: let the gold be seen longer)
   return col.join(",");
 }
 const WARP_IMG = {};                                 // the painted tunnel art (when it exists): background, two ring designs, the gate at the end
@@ -10432,7 +10432,7 @@ const GATE_MS = 1200;                                // ×10: how long the gate 
 async function rvTunnel(got, me) {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const best = Math.max(...got.map(m => MON[m.id].st)), mys = got.some(m => MON[m.id].st >= 5 && rarKey(m.id) === "mystic");
-  const rv = $("reveal"), F = best >= 5 ? 2400 : 2100, D = F * .7 + GATE_MS, live = () => RV === me && !RV.skip;   // F: the flight (its speed unchanged); then the gate opens for GATE_MS
+  const rv = $("reveal"), F = best >= 5 ? 3200 : 2100, D = F * .7 + GATE_MS, live = () => RV === me && !RV.skip;   // F: the flight (its speed unchanged); then the gate opens for GATE_MS
   SUM.warp = {t:0, D:F * .7 + GATE_MS, F, G:F * .7, mid:best >= 4 ? WARP_C.p : null, top:best >= 5 ? (mys ? WARP_C.m : WARP_C.g) : null,
     rings:Array.from({length:7}, (_, i) => ({i, z:.1 + i / 7, rot:rnd(0, 6), dir:i % 2 ? 1 : -1})),
     st:Array.from({length:110}, () => ({a:rnd(0, 7), z:rnd(.05, 1), o:rnd(.3, 1)})),
@@ -10441,7 +10441,7 @@ async function rvTunnel(got, me) {
   ["tunnel_bg", "tunnel_ring", "tunnel_ring_2", "tunnel_gate", "card_ring", "card_spark"].forEach(warpImg);
   rv.classList.add("warp"); SFX.charge(D);
   if (best >= 4) setTimeout(() => { if (live()) SFX.hint(4); }, F * .45);   // the purple sound only with the purple light
-  if (best >= 5) setTimeout(() => { if (live()) { SFX.hint(5); thunder(mys ? "#ff4d6d" : "#ffd75a"); } }, F * .75);
+  if (best >= 5) setTimeout(() => { if (live()) { SFX.hint(5); thunder(mys ? "#ff4d6d" : "#ffd75a"); } }, F * .52);   // the thunder with the gold's arrival
   const ringCol = best >= 5 ? (mys ? "#ff4d6d" : "#ffd75a") : best >= 4 ? "#b07cff" : "#8fb4ff";   // the same colour playReveal gives the landing circle
   setTimeout(() => { if (live() && !SUM.circle) SUM.circle = {r:Math.min(SUM.w, SUM.h) * .3, rot:0, spin:.0009, col:ringCol, a:0}; }, F * .7);   // the rune rings already turn inside the gate as it opens
   const t0 = performance.now(); while (performance.now() - t0 < D && live()) await sleep(40);
