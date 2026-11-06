@@ -3813,6 +3813,86 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .defcard.dart .dbtn span{display:none}
 .defcard.dart #dAgain{left:320px;width:282px}.defcard.dart #dTeam{left:634px;width:272px}.defcard.dart #dHome{left:940px;width:278px}
 .defcard.dart .def-link{left:1232px;top:846px;width:156px;height:58px;padding:0!important;font-size:22px!important;min-height:0!important;text-decoration:none;color:#fff;text-shadow:0 1px 2px #000;background:var(--dtb) center/100% 100% no-repeat}
+
+/* ---- the shared painted window (W01 kit, 2026-11-06): 4 corners + 4 edges + the gem + the inside, so any window size keeps its corners;
+   painted buttons keep their pointed ends (border-image). Victory, defeat, daily missions and the arena buy window keep their own art ---- */
+.modal.wart .card:not(.viccard):not(.defcard):not(.dlycard):not(.azbuy){--C:44px;border:0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:30px 26px 22px;filter:drop-shadow(0 14px 30px rgba(0,0,0,.6));
+  background:var(--wfgem) 50% 0/calc(var(--C) * 1.733) var(--C) no-repeat,
+    var(--wftl) 0 0/var(--C) var(--C) no-repeat,var(--wftr) 100% 0/var(--C) var(--C) no-repeat,var(--wfbl) 0 100%/var(--C) var(--C) no-repeat,var(--wfbr) 100% 100%/var(--C) var(--C) no-repeat,
+    var(--wft) var(--C) 0/calc(100% - 2 * var(--C)) var(--C) no-repeat,var(--wfb) var(--C) 100%/calc(100% - 2 * var(--C)) var(--C) no-repeat,
+    var(--wfl) 0 var(--C)/var(--C) calc(100% - 2 * var(--C)) no-repeat,var(--wfr) 100% var(--C)/var(--C) calc(100% - 2 * var(--C)) no-repeat,
+    var(--wffill) 8px 15px/calc(100% - 16px) calc(100% - 24px) no-repeat}
+.modal.wart .card:not(.viccard):not(.defcard):not(.dlycard):not(.azbuy)::before{display:none}
+.modal.wart .card:not(.viccard):not(.defcard):not(.dlycard):not(.azbuy) .btn:not(.red):not(.danger){border:solid transparent;border-width:0 16px;border-image:var(--wkg) 0 50 fill/0 16px stretch;background:none;border-radius:0;box-shadow:none;padding:9px 6px;color:#2a1a00;text-shadow:0 1px 0 rgba(255,240,190,.55)}
+.modal.wart .card:not(.viccard):not(.defcard):not(.dlycard):not(.azbuy) .btn.ghost:not(.red):not(.danger){border-image-source:var(--wkb);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.7)}
+.modal.wart .card:not(.viccard):not(.defcard):not(.dlycard):not(.azbuy) .btn[disabled]:not(.red):not(.danger){border-image-source:var(--wkgr);color:#e6e8ee;filter:none;opacity:.85}
+@media (max-height:500px){.modal.wart .card:not(.viccard):not(.defcard):not(.dlycard):not(.azbuy){--C:34px;padding:22px 18px 16px}.modal.wart .card:not(.viccard):not(.defcard):not(.dlycard):not(.azbuy) .btn:not(.red):not(.danger){padding:7px 4px;border-width:0 12px;border-image-width:0 12px}}
+
+/* ---- Sky Tower on the user's clean template (P03b, 2026-11-06): a 1671x941 painted stage, scaled to the safe area; the edges show the same sky, blurred ---- */
+#tower.twart .sky,#tower.twart .shade{display:none}
+#tower .tw-stage{position:absolute;inset:0;overflow:hidden;padding:max(4px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left));background:#070b24}
+#tower .tw-stage::before{content:"";position:absolute;inset:-30px;background:var(--twbg) center/cover;filter:blur(18px) brightness(.55)}
+#tower .tw-sg{position:absolute;left:0;top:0;width:1671px;height:941px;transform-origin:0 0;background:var(--twbg) 0 0/100% 100% no-repeat;direction:rtl;color:#fff}
+#tower .tw-sg>*{position:absolute;margin:0;display:flex;align-items:center;justify-content:center;text-align:center}
+#tower .tw-title{font-size:40px;color:#ffe9a6;text-shadow:0 2px 0 #3a2a08,0 0 12px rgba(255,210,120,.4)}
+#tower .tw-back{border:0;border-radius:0;background:var(--wtab) center/100% 100% no-repeat;font:inherit;font-size:22px;font-weight:800;color:#ffe9a6;cursor:pointer;text-shadow:0 1px 2px #000}
+#tower .tw-info{font-size:22px;font-weight:700;color:#dfe6ff;text-shadow:0 2px 3px #000,0 0 8px #000}
+#tower .tw-plate{font-size:22px;font-weight:800;color:#d6ddff;text-shadow:0 1px 2px #000;white-space:nowrap}
+#tower .tw-plate.now{font-size:31px;color:#ffe9a6;text-shadow:0 0 10px rgba(255,200,90,.8),0 2px 2px #000}
+#tower .tw-plate.boss{color:#ffd36a}
+#tower .tw-next{flex-direction:column;line-height:1}
+#tower .tw-next small{font-size:22px;color:#c8d2f0}#tower .tw-next b{font-size:92px;color:#ffd75a;text-shadow:0 3px 0 #5a3a08,0 0 18px rgba(255,215,90,.45)}
+#tower .tw-ninfo{flex-direction:column;align-items:flex-start;gap:8px;text-align:start;font-size:26px}
+#tower .tw-ninfo b{color:#ffe9a6}#tower .tw-ninfo small{font-size:21px;color:#b9c4e8}#tower .tw-bossn{color:#ff9a7a!important}
+#tower .tw-go{border:0;border-radius:0;background:none;font:inherit;font-size:34px;font-weight:900;color:#3a2405;cursor:pointer;text-shadow:0 1px 0 rgba(255,240,190,.6)}
+#tower .tw-go:active{transform:scale(.97)}
+#tower .tw-all{font-size:34px;color:#ffd75a}
+#tower .tw-row{justify-content:flex-start;gap:24px;padding:0 34px;font-size:24px}
+#tower .tw-rn{min-width:150px;text-align:start;font-size:26px;color:#fff}
+#tower .tw-rr{flex:1;text-align:start;color:#e4e9ff}
+#tower .tw-rs{width:40px;font-size:28px;font-weight:900}
+#tower .tw-row.done{opacity:.72}#tower .tw-row.done .tw-rs{color:#6dff9c}
+#tower .tw-row.next .tw-rn,#tower .tw-row.next .tw-rs{color:#ffd75a}#tower .tw-row.next{filter:drop-shadow(0 0 10px rgba(255,215,90,.45))}
+#tower .tw-row.lock{opacity:.55}
+#tower .tw-boss{font-style:normal;font-size:19px;font-weight:900;color:#2a1600;background:linear-gradient(#ffe08a,#e2b857);border-radius:999px;padding:2px 12px}
+
+/* ---- the dungeons on the user's clean template (P04b, 2026-11-06): the page is a 1671x851 painted stage, scaled to fit by dunFit() ---- */
+#dungeon.dnart .sky,#dungeon.dnart .shade{display:none}
+#dungeon.dnart{background:#060a22;padding:max(4px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left))}
+#dungeon.dnart .page{position:absolute;left:0;top:0;right:auto;bottom:auto;width:1671px;height:851px;max-width:none;margin:0;padding:0;transform-origin:0 0;overflow:visible;background:var(--dnbg) 0 0/100% 100% no-repeat;direction:ltr;color:#fff}
+#dungeon.dnart .page>*{position:absolute;margin:0;right:auto;direction:rtl}
+#dungeon.dnart .page h2>*,#dungeon.dnart #dunTabs .chip,#dungeon.dnart #dunList .stage{inset-inline-start:auto;inset-inline-end:auto}
+#dungeon.dnart .page h2{inset:0;display:block;pointer-events:none}
+#dungeon.dnart .page h2>*{position:absolute;pointer-events:auto;right:auto}
+#dungeon.dnart .page h2 .back{left:1400px;top:2px;width:240px;height:72px;padding:0;border:0;border-radius:0;background:none;font-size:24px;font-weight:800;color:#ffe9a6;text-shadow:0 1px 2px #000}
+#dungeon.dnart #dunTitle{left:895px;top:2px;width:485px;height:72px;display:grid;place-items:center;font-size:36px;color:#ffe9a6;text-shadow:0 2px 0 #3a2a08}
+#dungeon.dnart .page h2 .dun-en{left:20px;top:6px;width:240px;height:64px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:24px;font-weight:900;background:var(--wrow) center/100% 100% no-repeat}
+#dungeon.dnart .page h2 .dun-en img{width:32px;height:32px;object-fit:contain}
+#dungeon.dnart #dunTabs{inset:0;display:block;pointer-events:none}
+#dungeon.dnart #dunTabs .chip{position:absolute;right:auto;pointer-events:auto;margin:0;padding:0;border:0!important;border-radius:0;background:none!important;box-shadow:none!important;font-size:24px;font-weight:800;color:#fff;text-shadow:0 1px 2px #000;display:grid;place-items:center}
+#dungeon.dnart #dunTabs .chip[data-t="crystal"]{left:1000px;top:103px;width:324px;height:70px}
+#dungeon.dnart #dunTabs .chip[data-t="ess"]{left:678px;top:103px;width:297px;height:67px}
+#dungeon.dnart #dunTabs .chip[data-t="spr"]{left:352px;top:103px;width:298px;height:67px}
+#dungeon.dnart #dunTabs .chip[data-t].on{background:var(--wton) center/100% 100% no-repeat!important;color:#ffe9a6}
+#dungeon.dnart #dunTabs .chip[data-e]:nth-of-type(4){left:322px;top:0;width:84px;height:78px}#dungeon.dnart #dunTabs .chip[data-e]:nth-of-type(5){left:414px;top:0;width:84px;height:78px}#dungeon.dnart #dunTabs .chip[data-e]:nth-of-type(6){left:506px;top:0;width:84px;height:78px}#dungeon.dnart #dunTabs .chip[data-e]:nth-of-type(7){left:598px;top:0;width:84px;height:78px}#dungeon.dnart #dunTabs .chip[data-e]:nth-of-type(8){left:690px;top:0;width:84px;height:78px}#dungeon.dnart #dunTabs .chip[data-e]:nth-of-type(9){left:782px;top:0;width:84px;height:78px}
+#dungeon.dnart #dunTabs .chip[data-e]{background:var(--wrow) center/100% 100% no-repeat!important;font-size:20px}
+#dungeon.dnart #dunTabs .chip[data-e].on{background-image:var(--wton)!important;color:#ffe9a6}
+#dungeon.dnart #dunNote{left:290px;top:178px;width:1040px;height:40px;display:grid;place-items:center;font-size:22px!important;text-shadow:0 2px 3px #000}
+#dungeon.dnart #dunList{inset:0;display:block}
+#dungeon.dnart #dunList .stage:nth-child(1){left:1302px;width:273px}#dungeon.dnart #dunList .stage:nth-child(2){left:1005px;width:277px}#dungeon.dnart #dunList .stage:nth-child(3){left:705px;width:275px}#dungeon.dnart #dunList .stage:nth-child(4){left:405px;width:275px}#dungeon.dnart #dunList .stage:nth-child(5){left:105px;width:275px}
+#dungeon.dnart #dunList .stage{position:absolute;right:auto;top:255px;height:400px;margin:0;padding:158px 18px 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;border:0!important;border-radius:22px;background:none!important;box-shadow:none!important;color:#fff;font-size:21px;text-align:center}
+#dungeon.dnart.dnpic #dunList .stage::before{content:"";position:absolute;left:12px;right:12px;top:10px;height:142px;border-radius:16px 16px 4px 4px;background:var(--dnpic) center/cover;opacity:.95}
+#dungeon.dnart #dunList .stage b{font-size:24px;color:#ffe9a6;line-height:1.15}
+#dungeon.dnart #dunList .stage .meta{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:19px;color:#dfe6ff}
+#dungeon.dnart #dunList .stage .meta .ess,#dungeon.dnart #dunList .stage .meta [class*=chip]{font-size:17px}
+#dungeon.dnart #dunList .stage .done{position:absolute;top:120px;left:50%;translate:-50% 0;font-size:19px;font-weight:900;color:#6dff9c;text-shadow:0 1px 2px #000;background:none;border:0}
+#dungeon.dnart #dunList .stage.locked{filter:brightness(.72) saturate(.7)}
+#dungeon.dnart #dunList .stage.locked .meta:last-child{position:absolute;left:22px;right:22px;bottom:14px;height:56px;justify-content:center;font-size:19px;color:#c8d2f0}
+#dungeon.dnart #dunList .stage:not(.locked):active{transform:scale(.98)}
+#dungeon.dnart #dunList .stage:not(.locked)::after{content:"לקרב ⚔";position:absolute;left:24px;right:24px;bottom:14px;height:56px;display:grid;place-items:center;font-size:23px;font-weight:900;color:#ffe9a6;text-shadow:0 1px 2px #000}
+
+/* ---- the painted icons that replace the emoji (G03b, 2026-11-06): the size of the text around them ---- */
+img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margin:0 .04em;object-fit:contain;pointer-events:none;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
 /* ---- the fight tab (the user's clean concept, 2026-11-05): framed cards 2x2, the bottom panel (fight / opponent / my team), other opponents ---- */
 .fz{display:grid;grid-template-rows:minmax(0,1fr) clamp(62px,21.5%,112px) auto;gap:2.2%;height:100%;min-height:0;padding-top:clamp(6px,2.6%,16px);box-sizing:border-box;direction:rtl}
 .fz-cards{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3% 1.6%;min-height:0}
@@ -3988,6 +4068,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
       <div class="card" id="towerTop" style="margin-bottom:10px"></div>
       <div class="floors" id="towerList"></div>
     </div>
+    <div class="tw-stage" id="twStage" hidden><div class="tw-sg" id="twSg"></div></div>
   </section>
 
   <section class="screen" id="guild">
@@ -4540,47 +4621,51 @@ const HAVE = new Set([   // generated by sync_have.py from assets/ — do not ed
   "golem","golem_awakened","griffin","griffin_awakened","guide_alara","guild_hall","harpy","harpy_awakened","ic_b_break","ic_b_buff","ic_b_burn","ic_b_heal",
   "ic_b_hit","ic_b_multi","ic_b_shield","ic_b_slow","ic_b_stun","ic_backup","ic_full","ic_help","ic_music","ic_q_chest","ic_q_dungeon","ic_q_login",
   "ic_q_rune","ic_q_summon","ic_q_tower","ic_q_trophy","ic_q_vip","ic_q_win","ic_quality","ic_reset","ic_s_acc","ic_s_atk","ic_s_cd","ic_s_cr",
-  "ic_s_def","ic_s_hp","ic_s_res","ic_s_spd","ic_settings","ic_sound","ic_unlock","ice_troll","imp_fire","imp_fire_awakened","lava_titan","legend_dawn_unicorn",
-  "legend_dawn_unicorn_awakened","legend_eclipse_dragon","legend_eclipse_dragon_awakened","legend_forest_dryad","legend_forest_dryad_awakened","legend_kraken_king","legend_kraken_king_awakened","legend_mountain_behemoth","legend_mountain_behemoth_awakened","legend_storm_roc","legend_storm_roc_awakened","legend_sun_empress",
-  "legend_sun_empress_awakened","legend_wind_centaur","legend_wind_centaur_awakened","magma_bat","map_isle1","map_isle2","map_isle3","map_isle4","map_isle5","map_isle6","map_isle7","marble_guardian",
-  "market","mermaid","mermaid_awakened","moon_priestess","moon_priestess_awakened","moss_wolf","mummy","mummy_awakened","mushroom","mushroom_awakened","nav_shop","navs_arena",
-  "navs_bag","navs_guild","navs_home","navs_monsters","navs_quests","navs_summon","obsidian_knight","obsidian_knight_awakened","phoenix","phoenix_awakened","pixie_thief","rank_1",
-  "rank_2","rank_3","rank_4","rank_5","rank_6","rank_7","rank_8","rune_blade","rune_energy","rune_focus","rune_forge","rune_guard",
-  "rune_rage","rune_swift","salamander","salamander_awakened","sanctuary_hall","sand_colossus","sand_scorpion","scarab_knight","scarab_knight_awakened","scroll_l","scroll_ld","scroll_m",
-  "scroll_u","seraph","seraph_awakened","shadow_lord","shadow_ninja","shadow_ninja_awakened","shadow_wraith","shop_energy","shop_magic","shop_mana","shop_rune6","shop_runes",
-  "shop_scrolls","shop_sprites","shop_tickets","shoptab_arena","shoptab_gems","shoptab_guild","shoptab_shop","sk_aurora_1","sk_aurora_2","sk_aurora_3","sk_aurora_u","sk_banshee_1",
-  "sk_banshee_2","sk_banshee_u","sk_celestlion_1","sk_celestlion_2","sk_celestlion_u","sk_dawn_unicorn_1","sk_dawn_unicorn_2","sk_dawn_unicorn_3","sk_dawn_unicorn_u","sk_djinn_1","sk_djinn_2","sk_djinn_3",
-  "sk_djinn_u","sk_dragon_1","sk_dragon_2","sk_dragon_3","sk_dragon_u","sk_eclipse_dragon_1","sk_eclipse_dragon_2","sk_eclipse_dragon_3","sk_eclipse_dragon_u","sk_elf_1","sk_elf_2","sk_elf_u",
-  "sk_fairy_1","sk_fairy_2","sk_fairy_u","sk_forest_dryad_1","sk_forest_dryad_2","sk_forest_dryad_3","sk_forest_dryad_u","sk_frostserpent_1","sk_frostserpent_2","sk_frostserpent_u","sk_frostwitch_1","sk_frostwitch_2",
-  "sk_frostwitch_u","sk_ghostqueen_1","sk_ghostqueen_2","sk_ghostqueen_3","sk_ghostqueen_u","sk_golem_1","sk_golem_2","sk_golem_u","sk_griffin_1","sk_griffin_2","sk_griffin_u","sk_harpy_1",
-  "sk_harpy_2","sk_harpy_u","sk_imp_1","sk_imp_2","sk_imp_u","sk_kraken_king_1","sk_kraken_king_2","sk_kraken_king_3","sk_kraken_king_u","sk_mermaid_1","sk_mermaid_2","sk_mermaid_u",
-  "sk_mountain_behemoth_1","sk_mountain_behemoth_2","sk_mountain_behemoth_3","sk_mountain_behemoth_u","sk_mummy_1","sk_mummy_2","sk_mummy_u","sk_mushroom_1","sk_mushroom_2","sk_mushroom_u","sk_ninja_1","sk_ninja_2",
-  "sk_ninja_u","sk_obsidian_1","sk_obsidian_2","sk_obsidian_u","sk_phoenix_1","sk_phoenix_2","sk_phoenix_3","sk_phoenix_u","sk_priestess_1","sk_priestess_2","sk_priestess_3","sk_priestess_u",
-  "sk_salamander_1","sk_salamander_2","sk_salamander_u","sk_scarab_1","sk_scarab_2","sk_scarab_u","sk_seraph_1","sk_seraph_2","sk_seraph_3","sk_seraph_u","sk_skeleton_1","sk_skeleton_2",
-  "sk_skeleton_u","sk_snowowl_1","sk_snowowl_2","sk_snowowl_u","sk_sphinx_1","sk_sphinx_2","sk_sphinx_3","sk_sphinx_u","sk_starsage_1","sk_starsage_2","sk_starsage_3","sk_starsage_u",
-  "sk_storm_roc_1","sk_storm_roc_2","sk_storm_roc_3","sk_storm_roc_u","sk_stormmage_1","sk_stormmage_2","sk_stormmage_3","sk_stormmage_u","sk_sun_empress_1","sk_sun_empress_2","sk_sun_empress_3","sk_sun_empress_u",
-  "sk_valkyrie_1","sk_valkyrie_2","sk_valkyrie_3","sk_valkyrie_u","sk_vampire_1","sk_vampire_2","sk_vampire_u","sk_voidknight_1","sk_voidknight_2","sk_voidknight_u","sk_werewolf_1","sk_werewolf_2",
-  "sk_werewolf_u","sk_wind_centaur_1","sk_wind_centaur_2","sk_wind_centaur_3","sk_wind_centaur_u","sk_winddancer_1","sk_winddancer_2","sk_winddancer_u","sk_wolf_1","sk_wolf_2","sk_wolf_u","sk_yeti_1",
-  "sk_yeti_2","sk_yeti_u","skeleton_knight","skeleton_knight_awakened","sky_boar","sky_city","sky_hub","sky_ray","snow_owl","snow_owl_awakened","snow_sprite","spell_blessing",
-  "spell_elemstorm","spell_meteor","spell_timestop","sphinx","sphinx_awakened","splash","stage_1_2","stage_1_3","stage_1_4","stage_1_5","stage_1_6","stage_1_7",
-  "stage_2_2","stage_2_3","stage_2_4","stage_2_5","stage_2_6","stage_2_7","stage_3_2","stage_3_3","stage_3_4","stage_3_5","stage_3_6","stage_3_7",
-  "stage_4_2","stage_4_3","stage_4_4","stage_4_5","stage_4_6","stage_4_7","stage_5_2","stage_5_3","stage_5_4","stage_5_5","stage_5_6","stage_5_7",
-  "stage_6_2","stage_6_3","stage_6_4","stage_6_5","stage_6_6","stage_6_7","stage_7_2","stage_7_3","stage_7_4","stage_7_5","stage_7_6","stage_7_7",
-  "star_sage","star_sage_awakened","star_wisp","storm_mage","storm_mage_awakened","sum_pk_1","sum_pk_2","sum_pk_3","sum_pk_4","sum_pk_5","sum_pk_6","summon_altar",
-  "summon_burst","summon_card_back","summon_circle","summon_open","summon_temple","summon_wings","summoner_3","summoner_4","summoner_f","summoner_m","tavern","treant_boss",
-  "tunnel_bg","tunnel_gate","tunnel_ring","tunnel_ring_2","ui_alt_bg","ui_alt_btn_blue","ui_alt_btn_gold","ui_alt_odds","ui_alt_ped_gold","ui_alt_ped_purple","ui_alt_ped_red","ui_alt_ped_silver",
-  "ui_alt_plate","ui_alt_title","ui_bt_bar","ui_bt_btn","ui_bt_hp_a","ui_bt_hp_e","ui_bt_orb","ui_bt_orb_full","ui_bt_port","ui_bt_port_on","ui_bt_sk","ui_bt_sk_cd",
-  "ui_bt_sk_on","ui_bt_tip","ui_bt_wave","ui_cardframe","ui_daily_banner","ui_def_bg","ui_def_row","ui_def_tipbtn","ui_deflog_empty","ui_deflog_hall","ui_deflog_scroll","ui_detbtn_1",
-  "ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs","ui_fz_laurel","ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon","ui_gearframe_1_amulet",
-  "ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon","ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon","ui_gearframe_3_amulet",
-  "ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon","ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon","ui_plaque",
-  "ui_prep_bg","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4",
-  "ui_prg_crest_5","ui_rank_template","ui_runering","ui_sh_card","ui_sh_ped","ui_sh_sel","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1",
-  "ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6","ui_ssn_card_7","ui_ssn_chest_0","ui_ssn_chest_1","ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5",
-  "ui_ssn_chest_6","ui_ssn_chest_7","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2","ui_ssn_crest_3","ui_ssn_crest_4","ui_ssn_crest_5","ui_ssn_crest_6","ui_ssn_crest_7","ui_vic_banner","ui_vic_bar",
-  "ui_vic_tile","ui_win_btn_blue","ui_win_btn_gold","ui_win_btn_grey","ui_win_chk","ui_win_chk_on","ui_win_close","ui_win_frame","ui_win_ribbon","ui_win_row","ui_win_tab","ui_win_tab_on",
-  "ui_win_tog_off","ui_win_tog_on","valkyrie","valkyrie_awakened","vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver",
-  "void_knight","void_knight_awakened","werewolf","werewolf_awakened","will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
+  "ic_s_def","ic_s_hp","ic_s_res","ic_s_spd","ic_settings","ic_sound","ic_unlock","ice_troll","ico_bolt","ico_book","ico_calendar","ico_cart",
+  "ico_castle","ico_chart","ico_chest","ico_crown","ico_dragon","ico_fire","ico_fireworks","ico_gift","ico_hammer","ico_heart","ico_hourglass","ico_lock",
+  "ico_map","ico_orb","ico_pencil","ico_people","ico_person","ico_scroll","ico_search","ico_shield","ico_sparkle","ico_swords","ico_tower","ico_trophy",
+  "ico_unlock","ico_warn","imp_fire","imp_fire_awakened","lava_titan","legend_dawn_unicorn","legend_dawn_unicorn_awakened","legend_eclipse_dragon","legend_eclipse_dragon_awakened","legend_forest_dryad","legend_forest_dryad_awakened","legend_kraken_king",
+  "legend_kraken_king_awakened","legend_mountain_behemoth","legend_mountain_behemoth_awakened","legend_storm_roc","legend_storm_roc_awakened","legend_sun_empress","legend_sun_empress_awakened","legend_wind_centaur","legend_wind_centaur_awakened","magma_bat","map_isle1","map_isle2",
+  "map_isle3","map_isle4","map_isle5","map_isle6","map_isle7","marble_guardian","market","mermaid","mermaid_awakened","moon_priestess","moon_priestess_awakened","moss_wolf",
+  "mummy","mummy_awakened","mushroom","mushroom_awakened","nav_shop","navs_arena","navs_bag","navs_guild","navs_home","navs_monsters","navs_quests","navs_summon",
+  "obsidian_knight","obsidian_knight_awakened","phoenix","phoenix_awakened","pixie_thief","rank_1","rank_2","rank_3","rank_4","rank_5","rank_6","rank_7",
+  "rank_8","rune_blade","rune_energy","rune_focus","rune_forge","rune_guard","rune_rage","rune_swift","salamander","salamander_awakened","sanctuary_hall","sand_colossus",
+  "sand_scorpion","scarab_knight","scarab_knight_awakened","scroll_l","scroll_ld","scroll_m","scroll_u","seraph","seraph_awakened","shadow_lord","shadow_ninja","shadow_ninja_awakened",
+  "shadow_wraith","shop_energy","shop_magic","shop_mana","shop_rune6","shop_runes","shop_scrolls","shop_sprites","shop_tickets","shoptab_arena","shoptab_gems","shoptab_guild",
+  "shoptab_shop","sk_aurora_1","sk_aurora_2","sk_aurora_3","sk_aurora_u","sk_banshee_1","sk_banshee_2","sk_banshee_u","sk_celestlion_1","sk_celestlion_2","sk_celestlion_u","sk_dawn_unicorn_1",
+  "sk_dawn_unicorn_2","sk_dawn_unicorn_3","sk_dawn_unicorn_u","sk_djinn_1","sk_djinn_2","sk_djinn_3","sk_djinn_u","sk_dragon_1","sk_dragon_2","sk_dragon_3","sk_dragon_u","sk_eclipse_dragon_1",
+  "sk_eclipse_dragon_2","sk_eclipse_dragon_3","sk_eclipse_dragon_u","sk_elf_1","sk_elf_2","sk_elf_u","sk_fairy_1","sk_fairy_2","sk_fairy_u","sk_forest_dryad_1","sk_forest_dryad_2","sk_forest_dryad_3",
+  "sk_forest_dryad_u","sk_frostserpent_1","sk_frostserpent_2","sk_frostserpent_u","sk_frostwitch_1","sk_frostwitch_2","sk_frostwitch_u","sk_ghostqueen_1","sk_ghostqueen_2","sk_ghostqueen_3","sk_ghostqueen_u","sk_golem_1",
+  "sk_golem_2","sk_golem_u","sk_griffin_1","sk_griffin_2","sk_griffin_u","sk_harpy_1","sk_harpy_2","sk_harpy_u","sk_imp_1","sk_imp_2","sk_imp_u","sk_kraken_king_1",
+  "sk_kraken_king_2","sk_kraken_king_3","sk_kraken_king_u","sk_mermaid_1","sk_mermaid_2","sk_mermaid_u","sk_mountain_behemoth_1","sk_mountain_behemoth_2","sk_mountain_behemoth_3","sk_mountain_behemoth_u","sk_mummy_1","sk_mummy_2",
+  "sk_mummy_u","sk_mushroom_1","sk_mushroom_2","sk_mushroom_u","sk_ninja_1","sk_ninja_2","sk_ninja_u","sk_obsidian_1","sk_obsidian_2","sk_obsidian_u","sk_phoenix_1","sk_phoenix_2",
+  "sk_phoenix_3","sk_phoenix_u","sk_priestess_1","sk_priestess_2","sk_priestess_3","sk_priestess_u","sk_salamander_1","sk_salamander_2","sk_salamander_u","sk_scarab_1","sk_scarab_2","sk_scarab_u",
+  "sk_seraph_1","sk_seraph_2","sk_seraph_3","sk_seraph_u","sk_skeleton_1","sk_skeleton_2","sk_skeleton_u","sk_snowowl_1","sk_snowowl_2","sk_snowowl_u","sk_sphinx_1","sk_sphinx_2",
+  "sk_sphinx_3","sk_sphinx_u","sk_starsage_1","sk_starsage_2","sk_starsage_3","sk_starsage_u","sk_storm_roc_1","sk_storm_roc_2","sk_storm_roc_3","sk_storm_roc_u","sk_stormmage_1","sk_stormmage_2",
+  "sk_stormmage_3","sk_stormmage_u","sk_sun_empress_1","sk_sun_empress_2","sk_sun_empress_3","sk_sun_empress_u","sk_valkyrie_1","sk_valkyrie_2","sk_valkyrie_3","sk_valkyrie_u","sk_vampire_1","sk_vampire_2",
+  "sk_vampire_u","sk_voidknight_1","sk_voidknight_2","sk_voidknight_u","sk_werewolf_1","sk_werewolf_2","sk_werewolf_u","sk_wind_centaur_1","sk_wind_centaur_2","sk_wind_centaur_3","sk_wind_centaur_u","sk_winddancer_1",
+  "sk_winddancer_2","sk_winddancer_u","sk_wolf_1","sk_wolf_2","sk_wolf_u","sk_yeti_1","sk_yeti_2","sk_yeti_u","skeleton_knight","skeleton_knight_awakened","sky_boar","sky_city",
+  "sky_hub","sky_ray","snow_owl","snow_owl_awakened","snow_sprite","spell_blessing","spell_elemstorm","spell_meteor","spell_timestop","sphinx","sphinx_awakened","splash",
+  "stage_1_2","stage_1_3","stage_1_4","stage_1_5","stage_1_6","stage_1_7","stage_2_2","stage_2_3","stage_2_4","stage_2_5","stage_2_6","stage_2_7",
+  "stage_3_2","stage_3_3","stage_3_4","stage_3_5","stage_3_6","stage_3_7","stage_4_2","stage_4_3","stage_4_4","stage_4_5","stage_4_6","stage_4_7",
+  "stage_5_2","stage_5_3","stage_5_4","stage_5_5","stage_5_6","stage_5_7","stage_6_2","stage_6_3","stage_6_4","stage_6_5","stage_6_6","stage_6_7",
+  "stage_7_2","stage_7_3","stage_7_4","stage_7_5","stage_7_6","stage_7_7","star_sage","star_sage_awakened","star_wisp","storm_mage","storm_mage_awakened","sum_pk_1",
+  "sum_pk_2","sum_pk_3","sum_pk_4","sum_pk_5","sum_pk_6","summon_altar","summon_burst","summon_card_back","summon_circle","summon_open","summon_temple","summon_wings",
+  "summoner_3","summoner_4","summoner_f","summoner_m","tavern","treant_boss","tunnel_bg","tunnel_gate","tunnel_ring","tunnel_ring_2","ui_alt_bg","ui_alt_btn_blue",
+  "ui_alt_btn_gold","ui_alt_odds","ui_alt_ped_gold","ui_alt_ped_purple","ui_alt_ped_red","ui_alt_ped_silver","ui_alt_plate","ui_alt_title","ui_bt_bar","ui_bt_btn","ui_bt_hp_a","ui_bt_hp_e",
+  "ui_bt_orb","ui_bt_orb_full","ui_bt_port","ui_bt_port_on","ui_bt_sk","ui_bt_sk_cd","ui_bt_sk_on","ui_bt_tip","ui_bt_wave","ui_cardframe","ui_daily_banner","ui_def_bg",
+  "ui_def_row","ui_def_tipbtn","ui_deflog_empty","ui_deflog_hall","ui_deflog_scroll","ui_detbtn_1","ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs","ui_dun_bg","ui_fz_laurel",
+  "ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon","ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon",
+  "ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon","ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon",
+  "ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon","ui_plaque","ui_prep_bg","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3",
+  "ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","ui_rank_template","ui_runering","ui_sh_card","ui_sh_ped",
+  "ui_sh_sel","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1","ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6",
+  "ui_ssn_card_7","ui_ssn_chest_0","ui_ssn_chest_1","ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5","ui_ssn_chest_6","ui_ssn_chest_7","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2",
+  "ui_ssn_crest_3","ui_ssn_crest_4","ui_ssn_crest_5","ui_ssn_crest_6","ui_ssn_crest_7","ui_tower_bg","ui_vic_banner","ui_vic_bar","ui_vic_tile","ui_wf_b","ui_wf_bl","ui_wf_br",
+  "ui_wf_fill","ui_wf_gem","ui_wf_l","ui_wf_r","ui_wf_t","ui_wf_tl","ui_wf_tr","ui_win_btn_blue","ui_win_btn_gold","ui_win_btn_grey","ui_win_chk","ui_win_chk_on",
+  "ui_win_close","ui_win_frame","ui_win_frame_ng","ui_win_ribbon","ui_win_row","ui_win_tab","ui_win_tab_on","ui_win_tog_off","ui_win_tog_on","valkyrie","valkyrie_awakened","vampire",
+  "vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened","werewolf","werewolf_awakened","will_wisp",
+  "wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
 const POOL = {2:["imp","mushroom"],3:["wolf","fairy","golem","elf","harpy","mermaid","skeleton","salamander","yeti","snowowl","scarab","mummy","werewolf","banshee"],4:["ninja","priestess","griffin","frostwitch","stormmage","obsidian","winddancer","frostserpent","aurora","sphinx","vampire","celestlion","starsage","voidknight"],5:["dragon","valkyrie","phoenix","djinn","ghostqueen","seraph","sun_empress","kraken_king","storm_roc","wind_centaur","mountain_behemoth","forest_dryad","dawn_unicorn","eclipse_dragon"]};
 POOL[5] = POOL[5].filter(id => !MON[id].mystic);         // the mystic monsters can't be summoned for now (owner's call): every summon and reward pool skips them
 const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"aurora_aw":[1,0.83],"bandit":[1,0.83],"banshee":[1,0.83],"banshee_aw":[1,0.83],"celestlion":[1,0.83],"celestlion_aw":[1,0.83],"cinderhound":[1,0.83],"cloudslime":[1,0.83],"crystalg":[1,0.93],"dawn_unicorn":[1,0.93],"djinn":[1,0.83],"djinn_aw":[1,0.83],"dragon":[1,0.84],"dragon_aw":[1,0.84],"duneworm":[1,0.83],"elf":[1,0.84],"elf_aw":[1,0.84],"fairy":[1,0.84],"fairy_aw":[1,0.85],"forest_dryad":[1,0.83],"forest_dryad_aw":[1,0.83],"frostserpent":[1,0.83],"frostserpent_aw":[1,0.83],"frostwitch":[1,0.83],"frostwitch_aw":[1,0.83],"frostwyrm":[1,0.83],"gargoyle":[1,0.83],"ghostqueen":[1,0.83],"ghostqueen_aw":[1,0.83],"ghoul":[1,0.83],"golem":[1,0.83],"golem_aw":[1,0.83],"griffin":[1,0.84],"griffin_aw":[1,0.84],"harpy":[1,0.83],"harpy_aw":[1,0.83],"icetroll":[1,0.83],"imp":[1,0.83],"imp_aw":[1,0.83],"kraken_king":[1,0.83],"kraken_king_aw":[1,0.83],"lavatitan":[1,0.83],"marble":[1,0.83],"mermaid":[1,0.83],"mermaid_aw":[1,0.83],"mosswolf":[1,0.95],"mummy":[1,0.83],"mummy_aw":[1,0.83],"mushroom":[1,0.83],"mushroom_aw":[1,0.84],"ninja":[1,0.83],"ninja_aw":[1,0.83],"obsidian":[1,0.83],"obsidian_aw":[1,0.83],"phoenix":[1,0.83],"phoenix_aw":[1,0.83],"pixie":[1,0.83],"priestess":[1,0.83],"priestess_aw":[1,0.83],"sandcolossus":[1,0.83],"scarab":[1,0.83],"scarab_aw":[1,0.83],"scorpion":[1,0.83],"seraph":[1,0.83],"seraph_aw":[1,0.83],"shadowlord":[1,0.83],"skeleton":[1,0.83],"skeleton_aw":[1,0.83],"skyboar":[1,0.89],"snowowl":[1,0.83],"snowowl_aw":[1,0.83],"snowsprite":[1,0.83],"sphinx":[1,0.83],"sphinx_aw":[1,0.83],"spider":[1,0.83],"sprite":[1,0.83],"starsage":[1,0.83],"starsage_aw":[1,0.83],"starwisp":[1,0.83],"storm_roc":[1,0.83],"storm_roc_aw":[1,0.83],"stormmage":[1,0.83],"stormmage_aw":[1,0.83],"sun_empress":[1,0.83],"sun_empress_aw":[1,0.83],"treant":[1,0.83],"valkyrie":[1,0.83],"valkyrie_aw":[1,0.83],"vampire":[1,0.83],"vampire_aw":[1,0.83],"voidknight":[1,0.83],"voidknight_aw":[1,0.83],"werewolf":[1,0.83],"werewolf_aw":[1,0.83],"wind_centaur":[1,0.83],"wind_centaur_aw":[1,0.83],"winddancer":[1,0.83],"winddancer_aw":[1,0.83],"wisp":[1,0.83],"wolf":[1,0.85],"wolf_aw":[1,0.84],"wraith":[1,0.83],"yeti":[1,0.83],"yeti_aw":[1,0.83]};   // generated by art_audit.py: [brightness, size] per monster (+"_aw")
@@ -4594,7 +4679,7 @@ const BLOB = {ui_alt_bg:"/_blob/73e408fe4030c2751dc6895d3c8d974d", ui_alt_ped_si
   legend_mountain_behemoth:"/_blob/22c82c9c622ff7b8be73f09f905587ad", legend_mountain_behemoth_awakened:"/_blob/6d3f874e7b3738c2399c57cb6b286357",
   legend_forest_dryad:"/_blob/b4ccfe2b8db4bc720ee4f97f3668e85b", legend_forest_dryad_awakened:"/_blob/1af13f1cde01bea260fbc93e915cf3ab",
   legend_dawn_unicorn:"/_blob/617656b76bf0f0cbbadd207eb171416c", legend_dawn_unicorn_awakened:"/_blob/1658280c114175082ad74ba4aa5de8e7",
-  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723", ui_bt_bar:"/_blob/020944b966c4c9ae72b39ed6ea305925", ui_bt_port:"/_blob/2c8116eda94304b769b2dd244602e638", ui_bt_port_on:"/_blob/faf97980484f223974568d3a94fe8cc5", ui_bt_orb:"/_blob/493972682ae8c47393beab5d2e86dbbf", ui_bt_orb_full:"/_blob/3dc97ad847642aba010112fa2ec62be6", ui_bt_hp_a:"/_blob/6a0c08ff1248e4d3c118722fcd7e6c5d", ui_bt_hp_e:"/_blob/776e1f08bd239eebcb334a7953f6e085", ui_bt_sk:"/_blob/87a8f6be98ae06156a1fca686aae4331", ui_bt_sk_on:"/_blob/216fc7a49c2d093717ccc1a3f1def529", ui_bt_sk_cd:"/_blob/1f795db0f5c160aacb7394a47e9f2ca4", ui_bt_btn:"/_blob/1c9e2ed20d5d69a75e45a6d5fb5f49d3", ui_bt_tip:"/_blob/fd1c4bead5e37e54c9191abd0fa6d09f", ui_bt_wave:"/_blob/4a6274c32883b81f4281a045116dd76d", ui_def_bg:"/_blob/a43694d9306f00867c89cdd13a3f0289", ui_def_row:"/_blob/5928f3ab2ad0e788146ffceba292100c", ui_def_tipbtn:"/_blob/83239c284a7166aa0404db638154715f", ui_prep_bg:"/_blob/63c236256a98fb5a6436e8535fe52683", ui_vic_banner:"/_blob/3a9a059641181796417aed5e86e485f3", ui_vic_tile:"/_blob/ed95d2aba59ebaa2866fd8b6e37deb2a", ui_vic_bar:"/_blob/95e5d5a3ed41f351e77c84e7353be013", ui_win_frame:"/_blob/f574592c2923afd7321af22769ce0913", ui_win_ribbon:"/_blob/016672401428e2a155738a9a28d8551d", ui_win_close:"/_blob/993a519952a41a6041bc9fdb42b3f4c1", ui_win_btn_gold:"/_blob/0e13e153044812c9e85e23f2ec26babd", ui_win_btn_blue:"/_blob/64b5257cbbcbcb6111e756b8de8dd7b3", ui_win_btn_grey:"/_blob/ab8f92d66e4d4817a6c7f168d7883426", ui_win_row:"/_blob/146536adb9bace620991d11de7b00006", ui_win_tab:"/_blob/2805190c5c9314daafac25eac2ad4bdc", ui_win_tab_on:"/_blob/6f8984a06b04dd95abf13912087e10ff", ui_win_tog_on:"/_blob/fbeb8020630d894a88cbce60fd6c1387", ui_win_tog_off:"/_blob/0475d81d5ce3f6aabda634d92888435b", ui_win_chk:"/_blob/ed9c571c16b0be6918f289c10d3b4546", ui_win_chk_on:"/_blob/4edc8d218f3a6ce45345766e0f94c107"};
+  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723", ui_bt_bar:"/_blob/020944b966c4c9ae72b39ed6ea305925", ui_bt_port:"/_blob/2c8116eda94304b769b2dd244602e638", ui_bt_port_on:"/_blob/faf97980484f223974568d3a94fe8cc5", ui_bt_orb:"/_blob/493972682ae8c47393beab5d2e86dbbf", ui_bt_orb_full:"/_blob/3dc97ad847642aba010112fa2ec62be6", ui_bt_hp_a:"/_blob/6a0c08ff1248e4d3c118722fcd7e6c5d", ui_bt_hp_e:"/_blob/776e1f08bd239eebcb334a7953f6e085", ui_bt_sk:"/_blob/87a8f6be98ae06156a1fca686aae4331", ui_bt_sk_on:"/_blob/216fc7a49c2d093717ccc1a3f1def529", ui_bt_sk_cd:"/_blob/1f795db0f5c160aacb7394a47e9f2ca4", ui_bt_btn:"/_blob/1c9e2ed20d5d69a75e45a6d5fb5f49d3", ui_bt_tip:"/_blob/fd1c4bead5e37e54c9191abd0fa6d09f", ui_bt_wave:"/_blob/4a6274c32883b81f4281a045116dd76d", ui_def_bg:"/_blob/a43694d9306f00867c89cdd13a3f0289", ui_def_row:"/_blob/5928f3ab2ad0e788146ffceba292100c", ui_def_tipbtn:"/_blob/83239c284a7166aa0404db638154715f", ui_wf_tl:"/_blob/47da4a37fe4ae7a581e622e7b715b231", ui_wf_tr:"/_blob/28c7d992a4ab5c77002ff43a2a826e78", ui_wf_bl:"/_blob/8ed23a9e182584cc88fc3fe653e75eaa", ui_wf_br:"/_blob/fd183734fa135bdb0086d4ce4201db89", ui_wf_t:"/_blob/a70dd4d771d1f53ab2b70f072fdb36ad", ui_wf_b:"/_blob/d7c140405fa15b0dcf246d2220a69cab", ui_wf_l:"/_blob/7318ce8753ec9a23477573f0f75e30a1", ui_wf_r:"/_blob/5101bbc9136ccfb861cefaa9a095c55a", ui_wf_fill:"/_blob/bda0df6c434fb949841b944ff1c730f1", ui_wf_gem:"/_blob/785f6cfcafd901ecb3b2d2978128fede", ui_tower_bg:"/_blob/3389fe49d07f258b319786fc2335cec0", ui_dun_bg:"/_blob/9cfc9fe839028922a27bfdb0605c70ee", ico_bolt:"/_blob/05fe4252b7485e368366e4dffe394a66", ico_book:"/_blob/2e657c97652b0f1548959b3ba73097d0", ico_calendar:"/_blob/28b08da830550a27e60cfabe48e2f40f", ico_cart:"/_blob/66ac0f2178a4f61c23e99b390c2830cc", ico_castle:"/_blob/3aaf3ce99e391ebf89ae1a59d0b87070", ico_chart:"/_blob/5ff8241d1e564f92209e60036e1acfbe", ico_chest:"/_blob/b4498c3be2a3ddb9c2a8c168f3cd3793", ico_crown:"/_blob/726b40ca89fec26582517ee7632ce034", ico_dragon:"/_blob/5624e3cf33670e21a270c85b69c3f4e3", ico_fire:"/_blob/1396dcf9c6ecce4ff257bfc4a83d8f9a", ico_fireworks:"/_blob/c9eca74b30b3c2ddbfdf8e9497046a51", ico_gift:"/_blob/5bf7b03df16fb82130eea9a9ee3a069b", ico_hammer:"/_blob/f9d775f950d83eb5cc845d943c56eb92", ico_heart:"/_blob/3f2f57c08a2433bd7cb2fd524893b50d", ico_hourglass:"/_blob/3ecd48cf1ef6d17ea0200b28f79349b3", ico_lock:"/_blob/4af82623fe3a16e7d86223485e47cff3", ico_map:"/_blob/3346be2b79c3900323d2ff1105220f84", ico_orb:"/_blob/cb16bbb522c4ed860d6a9a4ed6e9808f", ico_pencil:"/_blob/7765a3092de7dd599c00fd9466e61599", ico_people:"/_blob/9eb61e623c0bfc66e90cf5bc7b873982", ico_person:"/_blob/fedb84d748067dd61b131cd9b02b6b6d", ico_scroll:"/_blob/dbda2ce7427ad121025e70e4f84de16e", ico_search:"/_blob/2f48c9f84e268e27d468bab6bbd75674", ico_shield:"/_blob/c7a60ce2e25894ce4d77d912f851d665", ico_sparkle:"/_blob/ff4877571b2aeb0b13ea81b174bda695", ico_swords:"/_blob/5aa9686cc17b7a51c6f23f79e58bcdbf", ico_tower:"/_blob/96fcf9276d9177e3e0f25c055db44202", ico_trophy:"/_blob/10c6516f86fb7e7f6581bf8035886769", ico_unlock:"/_blob/bde942c19eaeab8489b3e36673ec1998", ico_warn:"/_blob/4851f88c1915b91d01f5e8bb1e9ab1aa", ui_prep_bg:"/_blob/63c236256a98fb5a6436e8535fe52683", ui_vic_banner:"/_blob/3a9a059641181796417aed5e86e485f3", ui_vic_tile:"/_blob/ed95d2aba59ebaa2866fd8b6e37deb2a", ui_vic_bar:"/_blob/95e5d5a3ed41f351e77c84e7353be013", ui_win_frame:"/_blob/f574592c2923afd7321af22769ce0913", ui_win_ribbon:"/_blob/016672401428e2a155738a9a28d8551d", ui_win_close:"/_blob/993a519952a41a6041bc9fdb42b3f4c1", ui_win_btn_gold:"/_blob/0e13e153044812c9e85e23f2ec26babd", ui_win_btn_blue:"/_blob/64b5257cbbcbcb6111e756b8de8dd7b3", ui_win_btn_grey:"/_blob/ab8f92d66e4d4817a6c7f168d7883426", ui_win_row:"/_blob/146536adb9bace620991d11de7b00006", ui_win_tab:"/_blob/2805190c5c9314daafac25eac2ad4bdc", ui_win_tab_on:"/_blob/6f8984a06b04dd95abf13912087e10ff", ui_win_tog_on:"/_blob/fbeb8020630d894a88cbce60fd6c1387", ui_win_tog_off:"/_blob/0475d81d5ce3f6aabda634d92888435b", ui_win_chk:"/_blob/ed9c571c16b0be6918f289c10d3b4546", ui_win_chk_on:"/_blob/4edc8d218f3a6ce45345766e0f94c107"};
 const onClaude = location.protocol === "https:" && !/github\.io$/.test(location.hostname);
 const assetUrl = n => (onClaude && BLOB[n]) || "assets/" + n + ".webp";
 Object.keys(MON).forEach(id => { const a = MON[id].art; if (a && HAVE.has(a)) ART[id] = assetUrl(a); if (a && HAVE.has(a + "_awakened")) ART[id + "_aw"] = assetUrl(a + "_awakened"); });
@@ -5561,7 +5646,28 @@ function renderDungeon() {
   }
   $("dunList").innerHTML = list.map(({s, open, html}, i) => `<button class="stage ${s.boss ? "boss" : ""} ${open ? "" : "locked"}" data-i="${i}" ${open ? "" : "disabled"}>${S.cleared[s.id] ? '<span class="done">✓ נוצח</span>' : ""}${html}${open ? "" : '<span class="meta">נפתח אחרי הקומה הקודמת</span>'}</button>`).join("");
   $("dunList").querySelectorAll(".stage").forEach(b => b.onclick = () => { pickedStage = list[+b.dataset.i].s; show("team"); });
+  dunArt();
 }
+function dunArt() {                                   // the painted stage: on when the template and the window kit are there
+  const d = $("dungeon"), on = HAVE.has("ui_dun_bg") && HAVE.has("ui_win_row") && HAVE.has("ui_win_tab_on");
+  d.classList.toggle("dnart", on); if (!on) return;
+  d.style.setProperty("--dnbg", `url(${assetUrl("ui_dun_bg")})`); d.style.setProperty("--wrow", `url(${assetUrl("ui_win_row")})`); d.style.setProperty("--wton", `url(${assetUrl("ui_win_tab_on")})`);
+  const pic = dunTab === "ess" ? ART.essence_cave : dunTab === "spr" ? ART.sprite_garden : "";
+  d.style.setProperty("--dnpic", pic ? `url('${pic}')` : "none"); d.classList.toggle("dnpic", !!pic);
+  $("topbar").style.display = "none";
+  const h = d.querySelector(".page h2"); let en = $("dunEn"); if (!en) { en = document.createElement("span"); en.id = "dunEn"; en.className = "dun-en"; h.appendChild(en); }
+  tickEnergy(); en.innerHTML = `${pic_("cur_energy", "⚡")}<b dir="ltr">${S.energy}/${energyMax()}</b>`;
+  dunFit();
+}
+const pic_ = (n, f) => pic(n, f);
+function dunFit() {
+  const d = $("dungeon"); if (!d.classList.contains("dnart")) return;
+  const pg = d.querySelector(".page"), cs = getComputedStyle(d), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
+  const W = d.clientWidth - pl - parseFloat(cs.paddingRight), H = d.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
+  const k = Math.min(W / 1671, H / 851);
+  pg.style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 851 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+}
+addEventListener("resize", () => { if ($("dungeon").classList.contains("on")) dunFit(); });
 $("goDungeon").onclick = () => { if (!dunOpen(1)) { toast("המבוך נפתח אחרי שמנצחים את הבוס של אי 1 (1-7)"); return; } show("dungeon"); };
 
 /* ----- arena (computer opponents; real players later) ----- */
@@ -7623,6 +7729,7 @@ const towerRew = f => f === 100 ? {mon5:1, gem:500, t:"מפלצת 5 כוכבים
   f % 5 === 0 ? {rune:5, m:1, t:"רון 5 כוכבים + מגילת אתר"} : {gem:10, mana:3000 + f * 200, t:`10 💎 + ${fmt(3000 + f * 200)} זהב`};
 function renderTower() {
   const T = towerState(), next = T.floor + 1, end = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1), days = Math.ceil((end - new Date()) / 864e5);
+  if (towerArt(T, next, days)) return;
   setBg($("towerSky"), ART.altar, () => {});
   $("towerInfo").textContent = `שיא: קומה ${T.best} · מתאפס בעוד ${days} ימים`;
   $("towerTop").innerHTML = next > 100 ? `<b style="color:var(--gold2)">כבשת את כל 100 הקומות החודש! 🏆</b>` :
@@ -7636,6 +7743,43 @@ function renderTower() {
     <b>קומה ${f}${f % 10 === 0 ? " 👑" : ""}</b><span>${towerRew(f).t}</span><span>${f <= T.floor ? "✓" : f === next ? "▶" : FREE() ? "⚔" : "🔒"}</span></div>`).join("");
   if (FREE()) $("towerList").querySelectorAll("[data-f]").forEach(d => d.onclick = () => { pickedStage = towerFloor(+d.dataset.f); show("team"); });
 }
+// the painted tower (P03b): plates from the glowing one up = the next floor and the six above it; rows = the floor before it and the next five
+const TW_PLATES = [[225, 625, 215, 65], [260, 540, 185, 50], [265, 430, 183, 55], [270, 340, 180, 52], [295, 250, 165, 52], [288, 185, 157, 47], [410, 143, 120, 34]];
+const TW_ROWS = [382, 452, 522, 592, 662, 732];
+function towerArt(T, next, days) {
+  const on = HAVE.has("ui_tower_bg") && HAVE.has("ui_win_tab"), t = $("tower"), stg = $("twStage");
+  t.classList.toggle("twart", on); stg.hidden = !on; t.querySelector(".page").hidden = on;
+  if (!on) return false;
+  $("topbar").style.display = "none"; $("quick").classList.add("full");
+  const bg = `url(${assetUrl("ui_tower_bg")})`; t.style.setProperty("--twbg", bg); t.style.setProperty("--wtab", `url(${assetUrl("ui_win_tab")})`);
+  const P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+  const plates = TW_PLATES.map(([x, y, w, h], i) => { const f = next + i; if (f > 100) return "";
+    return `<b class="tw-plate ${i ? "" : "now"} ${f % 10 === 0 ? "boss" : ""}" style="${P(x, y, w, h)}">קומה ${f}</b>`; }).join("");
+  const from = Math.max(1, Math.min(next - 1, 95));
+  const rows = TW_ROWS.map((y, i) => { const f = from + i; if (f > 100) return "";
+    const st = f <= T.floor ? "done" : f === next ? "next" : "lock";
+    return `<div class="tw-row ${st} ${f % 10 === 0 ? "boss" : ""}" data-f="${f}" style="${P(592, y, 1042, 65)}"><b class="tw-rn">קומה ${f}</b>${f % 10 === 0 ? '<i class="tw-boss">בוס</i>' : ""}<span class="tw-rr">${towerRew(f).t}</span><span class="tw-rs">${st === "done" ? "✓" : st === "next" ? "▶" : ""}</span></div>`; }).join("");
+  const panel = next > 100 ? `<b class="tw-all" style="${P(600, 200, 1020, 160)}">כבשת את כל 100 הקומות החודש!</b>` :
+    `<div class="tw-next" style="${P(1400, 206, 220, 150)}"><small>הקומה הבאה</small><b>${next}</b></div>
+     <div class="tw-ninfo" style="${P(905, 206, 490, 150)}"><span>פרס: <b>${towerRew(next).t}</b>${next % 10 === 0 ? ' · <b class="tw-bossn">קומת בוס!</b>' : ""}</span><small>בלי אנרגיה · אויבים ברמה ${Math.round(8 + next * .42)}</small></div>
+     <button class="tw-go" id="twGo" style="${P(622, 242, 260, 82)}">לטפס ⚔</button>`;
+  $("twSg").innerHTML = `<b class="tw-title title-font" style="${P(22, 8, 406, 67)}">מגדל השמיים</b>
+    <button class="tw-back" id="twBack" style="${P(1436, 28, 204, 76)}">→ למפת העולם</button>
+    <span class="tw-info" style="${P(860, 44, 560, 50)}">שיא: קומה ${T.best} · מתאפס בעוד ${days} ימים</span>
+    ${plates}${panel}${rows}`;
+  $("twBack").onclick = () => show("world");
+  if ($("twGo")) $("twGo").onclick = () => { pickedStage = towerFloor(next); show("team"); };
+  if (FREE()) $("twSg").querySelectorAll(".tw-row[data-f]").forEach(d => d.onclick = () => { pickedStage = towerFloor(+d.dataset.f); show("team"); });
+  twFit(); return true;
+}
+function twFit() {
+  const t = $("tower"); if (!t.classList.contains("twart")) return;
+  const st = $("twStage"), cs = getComputedStyle(st), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
+  const W = st.clientWidth - pl - parseFloat(cs.paddingRight), H = st.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
+  const k = Math.min(W / 1671, H / 941);
+  $("twSg").style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+}
+addEventListener("resize", () => { if ($("tower").classList.contains("on")) twFit(); });
 /* ----- extra dungeons ----- */
 const ESS_DUN = EV_EL.flatMap(el => [1, 2, 3, 4, 5].map(f => {
   const lv = 6 + f * 7, cap = f <= 2 ? 3 : f <= 4 ? 4 : 5, all = SUMMONABLE().filter(id => MON[id].el === el), low = all.filter(id => MON[id].st <= cap), mons = low.length ? low : all, m = i => mons[(f + i) % mons.length];
@@ -9490,6 +9634,42 @@ const bindTips = tips => $("modalCard").querySelectorAll("[data-ti]").forEach(b 
 /* ============================== MODAL / BOX ============================== */
 function openModal(html) { $("modalCard").innerHTML = html; $("modal").classList.add("on"); }
 function closeModal() { clearTimeout(repTimer); vipView = null; $("modal").classList.remove("on", "vic", "def"); $("modalCard").classList.remove("vipcard", "profcard", "viccard", "defcard", "pickcard", "skwcard", "cfcard", "dlycard", "azbuy", "vart", "dart"); $("modalCard").style.zoom = ""; }
+// the shared painted window (W01): on for every window once all its pieces are there; the urls go in as vars (the claude page serves them from the asset store)
+const WIN_ART = {"--wftl":"ui_wf_tl", "--wftr":"ui_wf_tr", "--wfbl":"ui_wf_bl", "--wfbr":"ui_wf_br", "--wft":"ui_wf_t", "--wfb":"ui_wf_b", "--wfl":"ui_wf_l", "--wfr":"ui_wf_r",
+  "--wffill":"ui_wf_fill", "--wfgem":"ui_wf_gem", "--wkg":"ui_win_btn_gold", "--wkb":"ui_win_btn_blue", "--wkgr":"ui_win_btn_grey"};
+(function winArt() {
+  if (!Object.values(WIN_ART).every(n => HAVE.has(n))) return;
+  const m = $("modal"); Object.entries(WIN_ART).forEach(([v, n]) => m.style.setProperty(v, `url(${assetUrl(n)})`)); m.classList.add("wart");
+})();
+// the painted icons instead of the emoji (G03b): a watcher on the page swaps each emoji text for its picture, sized like the text around it
+const EMO = {"🔒":"lock", "🔓":"unlock", "👑":"crown", "⚔":"swords", "🏆":"trophy", "🎁":"gift", "📜":"scroll", "📖":"book", "🛡":"shield", "⚡":"bolt", "🗼":"tower", "🏰":"castle",
+  "🔨":"hammer", "🔮":"orb", "⚠":"warn", "🔥":"fire", "🎉":"fireworks", "👥":"people", "♥":"heart", "❤":"heart", "✨":"sparkle", "⏳":"hourglass", "🗺":"map", "📅":"calendar",
+  "📦":"chest", "🔍":"search", "✏":"pencil", "📊":"chart", "👤":"person", "🛒":"cart", "🐉":"dragon"};
+(function emoIcons() {
+  const keys = Object.keys(EMO).filter(k => HAVE.has("ico_" + EMO[k])); if (!keys.length) return;
+  const RE = new RegExp("(" + keys.join("|") + ")\uFE0F?", "g"), SKIP = /^(SCRIPT|STYLE|TEXTAREA|INPUT|OPTION|SELECT|TITLE|CANVAS)$/;
+  const swap = root => {
+    if (!root) return;
+    if (root.nodeType === 3) { if (RE.test(root.data)) { RE.lastIndex = 0; one(root); } RE.lastIndex = 0; return; }
+    if (root.nodeType !== 1 || SKIP.test(root.nodeName) || root.namespaceURI === "http://www.w3.org/2000/svg") return;
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode:n => { const p = n.parentNode; return p && !SKIP.test(p.nodeName) && !(p.closest && p.closest("svg,select,textarea")) && (RE.lastIndex = 0, RE.test(n.data)) ? 1 : 2; }});
+    const hits = []; let n; while ((n = w.nextNode())) hits.push(n); RE.lastIndex = 0;
+    hits.forEach(one);
+  };
+  const one = t => {
+    const f = document.createDocumentFragment(); let last = 0; RE.lastIndex = 0; let m;
+    while ((m = RE.exec(t.data))) {
+      if (m.index > last) f.appendChild(document.createTextNode(t.data.slice(last, m.index)));
+      const i = document.createElement("img"); i.className = "emi"; i.alt = m[1]; i.draggable = false; i.src = assetUrl("ico_" + EMO[m[1]]); f.appendChild(i);
+      last = m.index + m[0].length;
+    }
+    if (last < t.data.length) f.appendChild(document.createTextNode(t.data.slice(last)));
+    if (t.parentNode) t.parentNode.replaceChild(f, t);
+  };
+  swap(document.body);
+  new MutationObserver(ms => ms.forEach(m => { if (m.type === "characterData") swap(m.target); else m.addedNodes.forEach(swap); }))
+    .observe(document.body, {childList:true, subtree:true, characterData:true});
+})();
 // element emblems (also used by the box tabs); simple bold glyphs that read at 18px
 const EL_ICON = {
   fire:'<path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-3 2-4 2-7 2 1 3 3 3 5 1-1 1-3 0-9z"/>',
