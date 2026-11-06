@@ -532,6 +532,23 @@ img.awglow,.unit .spr img.awglow,.mdet .big img.awglow,.mcard .pic img.awglow,.r
 .modal .card.viccard{width:min(900px,100%);max-height:96dvh;overflow:auto;padding:26px 22px 12px;text-align:center;border:2px solid #c99a3f;border-radius:20px;
   background:linear-gradient(rgba(14,22,58,.94),rgba(6,10,30,.96));box-shadow:0 0 0 1px #3a2a08,inset 0 0 0 1px rgba(255,236,170,.15),0 20px 60px rgba(0,0,0,.7);animation:vicin .45s cubic-bezier(.2,1.3,.4,1)}
 .modal .card.viccard::before{display:none}
+/* ---- the user's painted victory kit (2026-11-06): painted window frame, winged banner, reward tiles, EXP bar, buttons and toggle ---- */
+.modal .card.viccard.vart{border:0;border-radius:0;background:var(--wframe) center/100% 100% no-repeat;box-shadow:none;padding:clamp(16px,3.6dvh,30px) clamp(24px,4.5%,46px) clamp(14px,3.4dvh,28px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.65))}
+.viccard.vart .vic-crown{display:none}
+.viccard.vart .vic-plaque{width:min(560px,62vw);aspect-ratio:900/214;background-image:var(--vban);padding-top:min(10%,40px);box-sizing:border-box;filter:drop-shadow(0 6px 12px rgba(0,0,0,.5))}
+.viccard.vart .vic-plaque b{font-size:clamp(20px,3.3vw,36px)}
+.viccard.vart .vic-sub{background:var(--wrow) center/100% 100% no-repeat;border:0;border-radius:0;padding:4px 34px}
+.viccard.vart .vrew{background:var(--vtile) center/100% 100% no-repeat;border:0;border-radius:0;padding:10px 6px 9px;box-shadow:none}
+.viccard.vart .vrew.rare{box-shadow:none;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--rc) 70%,transparent))}
+.viccard.vart .vbar{height:auto;aspect-ratio:301/39;background:var(--vbar) center/100% 100% no-repeat;border:0;border-radius:0;overflow:hidden}
+.viccard.vart .vbar i{top:24%;bottom:26%;left:3.5%;max-width:93%;border-radius:999px}
+.viccard.vart .vbtn{border:0;border-radius:0;box-shadow:none;background:var(--wbb) center/100% 100% no-repeat;padding:0 24px;min-width:118px;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.viccard.vart .vbtn.gold{background-image:var(--wbg);min-width:240px;color:#3a2405;text-shadow:0 1px 0 rgba(255,240,190,.6)}
+.viccard.vart .vbtn:active{transform:scale(.96)}
+.viccard.vart .vic-auto{background:var(--wrow) center/100% 100% no-repeat;border:0;border-radius:0;padding:6px 30px}
+.viccard.vart .vic-auto .sw{width:46px;height:24px;border-radius:0;background:var(--wtoff) center/100% 100% no-repeat}
+.viccard.vart .vic-auto .sw::after{display:none}
+.viccard.vart .vic-auto input:checked+.sw{background-image:var(--wton)}
 @keyframes vicin{from{transform:scale(.85);opacity:0}}
 .vic-crown{position:absolute;top:-6px;left:50%;transform:translateX(-50%);font-size:34px;filter:drop-shadow(0 0 10px rgba(255,215,90,.9));animation:crownin .6s .15s both cubic-bezier(.2,1.6,.4,1)}
 @keyframes crownin{from{transform:translate(-50%,-30px) scale(.4);opacity:0}}
@@ -2590,6 +2607,18 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
   .modal .card.viccard{padding-top:6px}.viccard .vic-crown{display:none}.viccard .vic-plaque{width:min(230px,40vw)}.viccard .vic-sub{margin:2px auto 0}.viccard .vic-sec{margin:3px 0 2px}
   .viccard .vic-btns{padding-top:3px;margin-top:4px}.viccard .vic-auto{margin-top:3px}
 }
+@media (max-height:500px){   /* phones: the banner sits on the frame's top edge and the monster cards never shrink (they are what the player looks at) */
+  .modal .card.viccard.vart{padding:6px clamp(22px,4%,40px) 10px}
+  .viccard.vart .vic-head{margin-top:-2px}.viccard.vart .vic-head::before{width:min(380px,60vw)}
+  .viccard.vart .vic-plaque{width:min(240px,32vw)}.viccard.vart .vic-plaque b{font-size:clamp(14px,3.6vh,19px)}
+  .viccard.vart .vic-sub{margin:0 auto;padding:1px 26px;font-size:11.5px}.viccard.vart .vic-sec{margin:2px 0 1px;font-size:11.5px}
+  .viccard.vart .vrew{width:64px;padding:6px 2px 5px}.viccard.vart .vrew .ic{width:24px;height:24px}.viccard.vart .vrew b{font-size:9px}.viccard.vart .vrew i{font-size:11px}
+  .modal .card.viccard.vart .vic-mons{flex:none;overflow:visible;padding-top:4px}.viccard.vart .vmon{width:58px}
+  .viccard.vart .vbtn{height:34px;padding:0 14px;min-width:84px}.viccard.vart .vbtn.gold{min-width:150px}
+  .viccard.vart .vic-btns{margin-top:4px;padding-top:0}
+  .viccard.vart .vic-auto{margin-top:3px;padding:2px 22px}.viccard.vart .vic-auto .sw{width:36px;height:19px}
+}
+@media (max-height:390px){.viccard.vart .vmon{width:52px}.viccard.vart .vrew{width:58px}.viccard.vart .vic-plaque{width:min(210px,30vw)}}
 /* ---- summon, final polish: a centred symmetric 2×5 grid, no pop-out, readable cards, gold frames for 5★, a gentle hero entrance ---- */
 /* the grid sits in the exact middle of the safe area: the same band above and below (the label and the buttons live in those bands, never in the grid's space) */
 .reveal.cards #revealBody:has(.rvc.multi){padding-top:calc(env(safe-area-inset-top) + 60px);padding-bottom:calc(env(safe-area-inset-bottom) + 60px);padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
@@ -3645,6 +3674,145 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
   .dl.hs.open .hs-meta{grid-area:meta;align-self:end}.dl.hs.open .hs-rp{grid-area:rp;align-self:end}.dl.hs.open .hs-chip.big .hs-cd{display:none}
   .dl.hs.open .hs-tm .dl-mons{--mt:clamp(26px,calc((100cqw - 110px) / 10),44px)}}
 @container dlrows (max-width:430px){.dl-r .dl-when{white-space:normal;width:44px;align-items:center}.dl-r .dl-when small:first-child{white-space:normal;text-align:center;line-height:1.1;font-size:11px}}
+
+/* ---- battle prep on the user's clean template (K03, 2026-11-06): one painted stage of 1792x878, scaled to the safe area by prepFit() ---- */
+#team.ptart .sky,#team.ptart .shade{display:none}
+#team.ptart .page.pr-page{position:absolute;inset:0;padding:max(4px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left));overflow:hidden;background:#05081a}
+#team.ptart .prep{position:absolute;left:0;top:0;width:1792px;height:878px;display:block;transform-origin:0 0;background:var(--pbg) 0 0/100% 100% no-repeat;direction:rtl;gap:0;font-size:24px}
+#team.ptart .prep>*{position:absolute}
+#team.ptart .pr-title{left:0px;top:0px;width:700px;height:100px;display:block;grid-area:auto}
+#team.ptart .pr-back{position:absolute;left:14px;top:4px;width:98px;height:90px;border-radius:0!important;background:none!important;border:0!important;box-shadow:none!important}
+#team.ptart .pr-back span{font-size:64px;color:#f0c766;text-shadow:0 2px 4px #000}
+#team.ptart .pr-plate{position:absolute;left:120px;top:18px;width:238px;height:54px;margin:0;padding:0;justify-content:center;background:none!important;border:0!important;box-shadow:none!important}
+#team.ptart .pr-plate .title-font{font-size:32px}
+#team.ptart #prEn{position:absolute;left:0;top:0;width:auto;height:auto;padding:0;background:none;border:0;box-shadow:none}
+#team.ptart #prEn .pe{position:absolute;top:12px;height:38px;display:flex;align-items:center;gap:4px;font-size:20px;font-weight:900;color:#fff;text-shadow:0 2px 2px #000}
+#team.ptart #prEn .pe img{width:28px;height:28px;object-fit:contain}
+#team.ptart #prEn .pe.gm{left:1362px}#team.ptart #prEn .pe.mn{left:1520px}#team.ptart #prEn .pe.en{left:1672px}
+#team.ptart #prEn .pe-plus{position:absolute;top:0;width:72px;height:72px;margin-left:-18px;padding:0;border:0;border-radius:50%;background:none;cursor:pointer}
+#team.ptart .pr-side{left:0px;top:100px;width:200px;height:460px;display:block;grid-area:auto}
+#team.ptart .pr-presets{position:absolute;left:12px;top:13px;width:122px;height:254px;display:block;padding:0;background:none;border:0}
+#team.ptart .pr-preset{position:absolute;left:8px;width:110px;height:80px;padding:4px 2px;justify-content:center;gap:2px;background:none!important;border:0!important;box-shadow:none!important;border-radius:14px}
+#team.ptart .pr-preset:nth-child(1){top:0}#team.ptart .pr-preset:nth-child(2){top:87px}#team.ptart .pr-preset:nth-child(3){top:174px}
+#team.ptart .pr-preset .ic{font-size:24px!important}#team.ptart .pr-preset small{font-size:16px!important}
+#team.ptart .pr-preset .ic{font-size:30px}#team.ptart .pr-preset b{font-size:21px}#team.ptart .pr-preset small{font-size:18px}
+#team.ptart .pr-preset.on{box-shadow:0 0 0 3px #f0c766,0 0 22px rgba(240,199,102,.6)!important}
+#team.ptart #autoTeam{position:absolute;left:20px;top:274px;width:110px;height:80px;padding:0;flex-direction:column;gap:2px;font-size:19px;background:none!important;border:0!important;box-shadow:none!important}
+#team.ptart #prSpell{position:absolute;left:20px;top:361px;width:110px;height:80px;padding:0 4px;flex-direction:column;gap:2px;font-size:15px;background:none!important;border:0!important;box-shadow:none!important}
+#team.ptart #prSpell span:first-child{width:30px!important;height:30px!important}
+#team.ptart .pr-stage{left:140px;top:80px;width:1210px;height:475px;display:block;grid-area:auto}
+#team.ptart .pr-pods{position:absolute;inset:0;display:block}
+#team.ptart .pr-pod{position:absolute;top:30px;width:220px;height:360px;max-height:none;flex:none;margin:0}
+#team.ptart .pr-pod:nth-child(1){left:45px}#team.ptart .pr-pod:nth-child(2){left:280px}#team.ptart .pr-pod:nth-child(3){left:515px}#team.ptart .pr-pod:nth-child(4){left:750px}#team.ptart .pr-pod:nth-child(5){left:982px}
+#team.ptart .pr-pod .art{margin-bottom:-58px}
+#team.ptart .pr-pod .art img,#team.ptart .pr-pod .art svg{max-width:100%;max-height:300px}
+#team.ptart .pr-pod .disc{visibility:hidden;width:200px;aspect-ratio:auto;height:52px}
+#team.ptart .pr-pod .tag{margin-top:-28px;padding:3px 16px 3px 6px;font-size:22px}#team.ptart .pr-pod .tag b{font-size:22px}#team.ptart .pr-pod .tag img{width:30px;height:30px}
+#team.ptart .pr-pod>.stars{font-size:22px}
+#team.ptart .pr-pod .crown{top:auto;bottom:50px;left:4px;font-size:30px}
+#team.ptart .pr-pod.empty .plus{bottom:22px;font-size:52px;color:rgba(255,220,140,.7)}
+#team.ptart .pr-power{position:absolute;left:425px;top:412px;width:375px;height:54px;justify-content:center;padding:0;font-size:22px;background:none;border:0;box-shadow:none;border-radius:0}
+#team.ptart .pr-power b{font-size:30px}#team.ptart .pr-power .sw{font-size:28px}
+#team.ptart .pr-lead{position:absolute;left:236px;top:-62px;width:350px;height:50px;display:flex;align-items:center;justify-content:center;padding:0 18px;font-size:19px;line-height:1.1;color:#ffe9a6;text-align:center;background:var(--wrow) center/100% 100% no-repeat;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#team.ptart .pr-info{left:1355px;top:60px;width:425px;height:490px;display:block;padding:0;overflow:hidden;background:none;border:0;box-shadow:none;border-radius:0;grid-area:auto}
+#team.ptart .pr-info>*{position:absolute;margin:0}
+#team.ptart .pr-ih{left:20px;top:14px;width:385px;height:60px;display:flex;flex-direction:column;justify-content:center;line-height:1.1}
+#team.ptart .pr-ih b{font-size:28px}#team.ptart .pr-ih span{font-size:20px}
+#team.ptart .pr-thumb{left:27px;top:77px;width:375px;height:125px;aspect-ratio:auto;border:0;border-radius:6px}
+#team.ptart .pr-sec{left:0;width:425px;border:0;padding:0;font-size:22px;text-align:center}
+#team.ptart .pr-sec{top:212px}#team.ptart .pr-foes+.pr-sec{top:344px}
+#team.ptart .pr-foes{left:12px;top:244px;width:401px;height:92px;gap:8px}
+#team.ptart .pr-foe{max-width:74px;border-width:2px;border-radius:10px}#team.ptart .pr-foe i{font-size:15px}#team.ptart .pr-foe i img{width:18px;height:18px}#team.ptart .pr-foe em{font-size:18px}
+#team.ptart .pr-rews{left:12px;top:376px;width:401px;height:66px;gap:8px;flex-wrap:nowrap}
+#team.ptart .pr-rew{width:62px;height:62px;border-radius:12px}#team.ptart .pr-rew img{width:46px;height:46px}#team.ptart .pr-rewt{font-size:20px}
+#team.ptart .pr-diff{left:212px;top:446px;width:196px;height:34px;gap:8px;padding:0;font-size:20px;background:none;border:0;justify-content:center}
+#team.ptart .pr-diff .bars{height:22px}#team.ptart .pr-diff u{width:7px}
+#team.ptart .pr-col{left:18px;top:560px;width:1762px;height:312px;display:block;padding:0;background:none;border:0;box-shadow:none;border-radius:0;grid-area:auto}
+#team.ptart .pr-bar{position:absolute;inset:0 0 auto 0;height:80px;display:block}
+#team.ptart .pr-els{position:absolute;inset:0;display:block;overflow:visible}
+#team.ptart .pr-els .bx-el:nth-child(1){position:absolute;left:24px;top:5px;width:118px;height:72px}#team.ptart .pr-els .bx-el:nth-child(2){position:absolute;left:156px;top:5px;width:84px;height:72px}#team.ptart .pr-els .bx-el:nth-child(3){position:absolute;left:250px;top:5px;width:84px;height:72px}#team.ptart .pr-els .bx-el:nth-child(4){position:absolute;left:345px;top:5px;width:84px;height:72px}#team.ptart .pr-els .bx-el:nth-child(5){position:absolute;left:438px;top:5px;width:84px;height:72px}#team.ptart .pr-els .bx-el:nth-child(6){position:absolute;left:532px;top:5px;width:84px;height:72px}#team.ptart .pr-els .bx-el:nth-child(7){position:absolute;left:625px;top:5px;width:84px;height:72px}
+#team.ptart .pr-els .bx-el{border:0!important;background:none!important;box-shadow:none!important;border-radius:12px;flex-direction:column;gap:0;padding:2px}
+#team.ptart .pr-els .bx-el img{width:30px;height:30px}#team.ptart .pr-els .bx-el span{font-size:18px}
+#team.ptart .pr-els .bx-el.on{box-shadow:0 0 0 3px #f0c766,0 0 18px rgba(240,199,102,.55)!important}
+#team.ptart .pr-els .bx-el i.all{transform:scale(1.3)}
+#team.ptart .pr-search{position:absolute;left:734px;top:18px;width:266px;height:46px;min-width:0;background:none!important;border:0!important;box-shadow:none!important;font-size:20px}
+#team.ptart .pr-search input{font-size:20px}
+#team.ptart .bx-pick{position:absolute;left:1066px;top:18px;width:150px;height:46px;background:none!important;border:0!important;box-shadow:none!important}
+#team.ptart .bx-pick .ic{display:none}#team.ptart .bx-pick select{font-size:20px;width:100%;background:transparent;color:#fff}
+#team.ptart #prFav{position:absolute;left:1314px;top:4px;width:72px;height:72px!important;min-height:72px!important;background:none!important;border:0!important;box-shadow:none!important;color:transparent}
+#team.ptart #prFav.on{box-shadow:0 0 0 3px #f0c766,0 0 14px rgba(240,199,102,.6)!important;border-radius:12px}
+#team.ptart .pr-count{position:absolute;left:1398px;top:18px;width:228px;height:46px;display:grid!important;place-items:center;padding:0;font-size:21px;background:none;border:0}
+#team.ptart .pr-grid{position:absolute;left:24px;top:80px;width:1712px;height:222px;padding:4px 6px 10px;gap:12px;grid-template-columns:repeat(auto-fill,minmax(122px,1fr))}
+#team.ptart .pr-none{font-size:22px}
+#team.ptart .pr-go{position:absolute;inset:0;display:block;pointer-events:none;grid-area:auto}
+#team.ptart .pr-go>*{pointer-events:auto;position:absolute}
+#team.ptart .pr-start{left:968px;top:483px;width:372px;height:74px;max-height:none;flex-direction:row;gap:10px;font-size:30px;border:0;border-radius:0;box-shadow:none;background:var(--wbg) center/100% 100% no-repeat;color:#3a2405;text-shadow:0 1px 0 rgba(255,240,190,.6)}
+#team.ptart .pr-start .sw{font-size:34px}
+#team.ptart .pr-rep{left:1376px;top:505px;width:196px;height:36px;padding:0;gap:6px;font-size:18px;background:none;border:0}
+#team.ptart .pr-rep input{width:20px;height:20px}
+
+/* ---- the battle HUD from the user's painted parts (K01b, 2026-11-06) ---- */
+#battle.btart #quit{width:46px;height:46px;padding:0;border:0;border-radius:50%;background:var(--btclose) center/100% 100% no-repeat;box-shadow:none}
+#battle.btart #quit svg{opacity:0}
+#battle.btart .wave{height:34px;display:flex;align-items:center;padding:0 22px;border:0;border-radius:0;background:var(--btwave) center/100% 100% no-repeat;font-size:13.5px;text-shadow:0 1px 2px #000}
+#battle.btart .order{position:relative;width:clamp(210px,25vw,300px);aspect-ratio:975/242;height:auto;padding:0;border:0;border-radius:0;background:var(--btbar) center/100% 100% no-repeat;display:block}
+#battle.btart .order .o{position:absolute;z-index:1;top:52%;width:11%;height:auto;aspect-ratio:1;translate:-50% -50%;border:0;border-radius:50%;background:#0c1434}
+#battle.btart .order .o:nth-child(1){left:17.3%}#battle.btart .order .o:nth-child(2){left:30.9%}#battle.btart .order .o:nth-child(3){left:44.2%}#battle.btart .order .o:nth-child(4){left:57.5%}#battle.btart .order .o:nth-child(5){left:70.9%}#battle.btart .order .o:nth-child(6){left:84.2%}
+#battle.btart .order .o:nth-child(n+7){display:none!important}
+#battle.btart .order .o:first-child{width:11%;height:auto}
+#battle.btart .order .o.a{box-shadow:inset 0 0 0 2px rgba(80,220,120,.85)}#battle.btart .order .o.e{box-shadow:inset 0 0 0 2px rgba(255,90,80,.85)}
+#battle.btart .order::before{content:"";z-index:0;position:absolute;left:17.3%;top:52%;width:17%;aspect-ratio:170/162;translate:-50% -50%;background:var(--btpon) center/100% 100% no-repeat;pointer-events:none}
+#battle.btart #spd,#battle.btart #auto{height:38px;min-height:38px;border:0;border-radius:0;color:#fff;text-shadow:0 1px 2px #000;box-shadow:none}
+#battle.btart #spd{width:42px!important;min-width:42px!important;height:42px!important;min-height:42px!important;padding:0;background:var(--btbtn) center/100% 100% no-repeat}
+#battle.btart #auto{padding:0 16px;background:var(--bttab) center/100% 100% no-repeat}
+#battle.btart #auto.on{background-image:var(--bttabon);color:#ffe9a6}
+#battle.btart .unit .bars .hpw{position:relative;width:100%;aspect-ratio:300/49;background:var(--bthpa) center/100% 100% no-repeat}
+#battle.btart .unit.e .bars .hpw{background-image:var(--bthpe)}
+#battle.btart .unit .hpw .bar{position:absolute;margin:0;border:0;border-radius:999px;background:transparent;height:auto}
+#battle.btart .unit .hpw .bar.hp{left:8.6%;right:8.2%;top:10%;height:39%}
+#battle.btart .unit .hpw .bar.atb{left:12.2%;right:9%;top:69%;height:24%}
+#battle.btart .unit .hpw .bar i{border-radius:999px}
+#battle.btart .unit .hpw .bar.hp i{background:linear-gradient(#7dff8a,#22b04a)}#battle.btart .unit.e .hpw .bar.hp i{background:linear-gradient(#ff8a7a,#d0342a)}
+#battle.btart .unit .hpw .bar.atb i{background:linear-gradient(#8fd6ff,#2e7cff)}
+#battle.btart .skill{width:68px;height:auto;aspect-ratio:150/157;border:0;border-radius:0;background:var(--btsk) center/100% 100% no-repeat;box-shadow:none}
+#battle.btart .skill.sel{background-image:var(--btskon);box-shadow:none!important;outline:none!important;border:0!important;transform:scale(1.08)}
+#battle.btart .skill:focus,#battle.btart .skill:focus-visible{outline:0}
+#battle.btart .skill[disabled]{background-image:var(--btskcd)}
+#battle.btart .skill.ult{background-image:var(--btskon);filter:drop-shadow(0 0 8px rgba(180,120,255,.9))}
+#battle.btart .skill>img,#battle.btart .skill>svg{width:64%;height:64%;object-fit:contain;border-radius:10px}
+#battle.btart .spellbtn{width:84px;height:84px;border-radius:50%;background:var(--btorb) center/100% 100% no-repeat;box-shadow:none}
+#battle.btart .spellbtn::before{inset:23%;border-radius:50%;background:linear-gradient(to top,color-mix(in srgb,var(--sc) 80%,#fff 10%) calc(var(--g) * 1%),transparent calc(var(--g) * 1%));opacity:.8}
+#battle.btart .spellbtn.full{background-image:var(--btorbf);box-shadow:none;filter:drop-shadow(0 0 12px var(--sc))}
+#battle.btart .spellbtn.full::before{display:none}
+#battle.btart .spellbtn>img,#battle.btart .spellbtn>svg{position:relative;width:46%!important;height:46%!important}
+#battle.btart .sinfo{border:0;border-radius:0;background:var(--bttip) center/100% 100% no-repeat;box-shadow:none;padding:16px 28px 14px;min-width:min(300px,44vw);max-width:min(380px,46vw)!important;line-height:1.35}
+@media (max-height:500px){
+  #battle.btart #quit{width:38px;height:38px}#battle.btart .wave{height:28px;padding:0 16px;font-size:12px}
+  #battle.btart .order{width:clamp(180px,24vw,240px)}
+  #battle.btart #spd,#battle.btart #auto{height:32px;min-height:32px}#battle.btart #spd{width:36px!important;min-width:36px!important;height:36px!important;min-height:36px!important}#battle.btart #auto{padding:0 12px;font-size:11.5px}
+  #battle.btart .skill{width:56px}#battle.btart .spellbtn{width:70px;height:70px}
+}
+
+/* ---- the defeat window on the user's clean template (K02b, 2026-11-06): a 1536x1024 painted stage, zoomed to fit ---- */
+.modal .card.defcard.dart{position:relative;width:1536px;height:1024px;max-height:none;padding:0;border:0;border-radius:0;overflow:visible;background:var(--dbg) 0 0/100% 100% no-repeat;box-shadow:none;animation:none;display:block}
+.defcard.dart>*{position:absolute;margin:0}
+.defcard.dart .def-crest{left:540px;top:96px;width:456px;height:108px;justify-content:center}
+.defcard.dart .def-crest .spk{display:none}
+.defcard.dart .def-crest b{font-size:72px;letter-spacing:3px}
+.defcard.dart .def-msg{left:452px;top:220px;width:632px;height:64px;max-width:none;display:grid;place-items:center;padding:0 20px;font-size:27px;background:none;border:0;border-radius:0}
+.defcard.dart .def-why{left:612px;top:294px;width:312px;height:34px;font-size:23px;line-height:34px;text-align:center}
+.defcard.dart .dtips{left:200px;top:340px;width:1136px;height:236px;max-width:none;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.defcard.dart .dtip{flex:0 1 72px;min-height:0;padding:0 30px 0 22px;gap:18px;border:0;border-radius:0;background:var(--drow) center/100% 100% no-repeat;font-size:23px;line-height:1.25;color:#f6e9e9}
+.defcard.dart .dtip span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.defcard.dart .dtip .btn{width:214px;height:58px;padding:0 8px;border:0;border-radius:0;background:var(--dtb) center/100% 100% no-repeat;box-shadow:none;font-size:21px;color:#fff;text-shadow:0 1px 2px #000}
+.defcard.dart .def-mons{left:300px;top:582px;width:940px;height:230px;display:flex;justify-content:center;align-items:flex-start;gap:20px}
+.defcard.dart .dmon{width:158px;gap:6px}.defcard.dart .dmon .vexp{display:none}
+.defcard.dart .dmon .vbar{height:16px}
+.defcard.dart .def-btns{position:absolute;inset:0;display:block;pointer-events:none}
+.defcard.dart .dbtn{position:absolute;top:834px;height:80px!important;min-width:0;padding:0 10px;pointer-events:auto;border:0!important;border-radius:0;background:none!important;box-shadow:none;font-size:30px;text-shadow:0 2px 3px #000}
+.defcard.dart .dbtn span{display:none}
+.defcard.dart #dAgain{left:320px;width:282px}.defcard.dart #dTeam{left:634px;width:272px}.defcard.dart #dHome{left:940px;width:278px}
+.defcard.dart .def-link{left:1232px;top:846px;width:156px;height:58px;padding:0!important;font-size:22px!important;min-height:0!important;text-decoration:none;color:#fff;text-shadow:0 1px 2px #000;background:var(--dtb) center/100% 100% no-repeat}
 /* ---- the fight tab (the user's clean concept, 2026-11-05): framed cards 2x2, the bottom panel (fight / opponent / my team), other opponents ---- */
 .fz{display:grid;grid-template-rows:minmax(0,1fr) clamp(62px,21.5%,112px) auto;gap:2.2%;height:100%;min-height:0;padding-top:clamp(6px,2.6%,16px);box-sizing:border-box;direction:rtl}
 .fz-cards{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3% 1.6%;min-height:0}
@@ -4401,16 +4569,18 @@ const HAVE = new Set([   // generated by sync_have.py from assets/ — do not ed
   "star_sage","star_sage_awakened","star_wisp","storm_mage","storm_mage_awakened","sum_pk_1","sum_pk_2","sum_pk_3","sum_pk_4","sum_pk_5","sum_pk_6","summon_altar",
   "summon_burst","summon_card_back","summon_circle","summon_open","summon_temple","summon_wings","summoner_3","summoner_4","summoner_f","summoner_m","tavern","treant_boss",
   "tunnel_bg","tunnel_gate","tunnel_ring","tunnel_ring_2","ui_alt_bg","ui_alt_btn_blue","ui_alt_btn_gold","ui_alt_odds","ui_alt_ped_gold","ui_alt_ped_purple","ui_alt_ped_red","ui_alt_ped_silver",
-  "ui_alt_plate","ui_alt_title","ui_cardframe","ui_daily_banner","ui_deflog_empty","ui_deflog_hall","ui_deflog_scroll","ui_detbtn_1","ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs",
-  "ui_fz_laurel","ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon","ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring",
-  "ui_gearframe_1_weapon","ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon","ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring",
-  "ui_gearframe_3_weapon","ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon","ui_plaque","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3",
-  "ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","ui_rank_template","ui_runering","ui_sh_card","ui_sh_ped",
-  "ui_sh_sel","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1","ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6",
-  "ui_ssn_card_7","ui_ssn_chest_0","ui_ssn_chest_1","ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5","ui_ssn_chest_6","ui_ssn_chest_7","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2",
-  "ui_ssn_crest_3","ui_ssn_crest_4","ui_ssn_crest_5","ui_ssn_crest_6","ui_ssn_crest_7","valkyrie","valkyrie_awakened","vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold",
-  "vip_crest_legend","vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened","werewolf","werewolf_awakened","will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened",
-  "world_map","yeti","yeti_awakened"]);
+  "ui_alt_plate","ui_alt_title","ui_bt_bar","ui_bt_btn","ui_bt_hp_a","ui_bt_hp_e","ui_bt_orb","ui_bt_orb_full","ui_bt_port","ui_bt_port_on","ui_bt_sk","ui_bt_sk_cd",
+  "ui_bt_sk_on","ui_bt_tip","ui_bt_wave","ui_cardframe","ui_daily_banner","ui_def_bg","ui_def_row","ui_def_tipbtn","ui_deflog_empty","ui_deflog_hall","ui_deflog_scroll","ui_detbtn_1",
+  "ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs","ui_fz_laurel","ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon","ui_gearframe_1_amulet",
+  "ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon","ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon","ui_gearframe_3_amulet",
+  "ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon","ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon","ui_plaque",
+  "ui_prep_bg","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4",
+  "ui_prg_crest_5","ui_rank_template","ui_runering","ui_sh_card","ui_sh_ped","ui_sh_sel","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1",
+  "ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6","ui_ssn_card_7","ui_ssn_chest_0","ui_ssn_chest_1","ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5",
+  "ui_ssn_chest_6","ui_ssn_chest_7","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2","ui_ssn_crest_3","ui_ssn_crest_4","ui_ssn_crest_5","ui_ssn_crest_6","ui_ssn_crest_7","ui_vic_banner","ui_vic_bar",
+  "ui_vic_tile","ui_win_btn_blue","ui_win_btn_gold","ui_win_btn_grey","ui_win_chk","ui_win_chk_on","ui_win_close","ui_win_frame","ui_win_ribbon","ui_win_row","ui_win_tab","ui_win_tab_on",
+  "ui_win_tog_off","ui_win_tog_on","valkyrie","valkyrie_awakened","vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver",
+  "void_knight","void_knight_awakened","werewolf","werewolf_awakened","will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
 const POOL = {2:["imp","mushroom"],3:["wolf","fairy","golem","elf","harpy","mermaid","skeleton","salamander","yeti","snowowl","scarab","mummy","werewolf","banshee"],4:["ninja","priestess","griffin","frostwitch","stormmage","obsidian","winddancer","frostserpent","aurora","sphinx","vampire","celestlion","starsage","voidknight"],5:["dragon","valkyrie","phoenix","djinn","ghostqueen","seraph","sun_empress","kraken_king","storm_roc","wind_centaur","mountain_behemoth","forest_dryad","dawn_unicorn","eclipse_dragon"]};
 POOL[5] = POOL[5].filter(id => !MON[id].mystic);         // the mystic monsters can't be summoned for now (owner's call): every summon and reward pool skips them
 const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"aurora_aw":[1,0.83],"bandit":[1,0.83],"banshee":[1,0.83],"banshee_aw":[1,0.83],"celestlion":[1,0.83],"celestlion_aw":[1,0.83],"cinderhound":[1,0.83],"cloudslime":[1,0.83],"crystalg":[1,0.93],"dawn_unicorn":[1,0.93],"djinn":[1,0.83],"djinn_aw":[1,0.83],"dragon":[1,0.84],"dragon_aw":[1,0.84],"duneworm":[1,0.83],"elf":[1,0.84],"elf_aw":[1,0.84],"fairy":[1,0.84],"fairy_aw":[1,0.85],"forest_dryad":[1,0.83],"forest_dryad_aw":[1,0.83],"frostserpent":[1,0.83],"frostserpent_aw":[1,0.83],"frostwitch":[1,0.83],"frostwitch_aw":[1,0.83],"frostwyrm":[1,0.83],"gargoyle":[1,0.83],"ghostqueen":[1,0.83],"ghostqueen_aw":[1,0.83],"ghoul":[1,0.83],"golem":[1,0.83],"golem_aw":[1,0.83],"griffin":[1,0.84],"griffin_aw":[1,0.84],"harpy":[1,0.83],"harpy_aw":[1,0.83],"icetroll":[1,0.83],"imp":[1,0.83],"imp_aw":[1,0.83],"kraken_king":[1,0.83],"kraken_king_aw":[1,0.83],"lavatitan":[1,0.83],"marble":[1,0.83],"mermaid":[1,0.83],"mermaid_aw":[1,0.83],"mosswolf":[1,0.95],"mummy":[1,0.83],"mummy_aw":[1,0.83],"mushroom":[1,0.83],"mushroom_aw":[1,0.84],"ninja":[1,0.83],"ninja_aw":[1,0.83],"obsidian":[1,0.83],"obsidian_aw":[1,0.83],"phoenix":[1,0.83],"phoenix_aw":[1,0.83],"pixie":[1,0.83],"priestess":[1,0.83],"priestess_aw":[1,0.83],"sandcolossus":[1,0.83],"scarab":[1,0.83],"scarab_aw":[1,0.83],"scorpion":[1,0.83],"seraph":[1,0.83],"seraph_aw":[1,0.83],"shadowlord":[1,0.83],"skeleton":[1,0.83],"skeleton_aw":[1,0.83],"skyboar":[1,0.89],"snowowl":[1,0.83],"snowowl_aw":[1,0.83],"snowsprite":[1,0.83],"sphinx":[1,0.83],"sphinx_aw":[1,0.83],"spider":[1,0.83],"sprite":[1,0.83],"starsage":[1,0.83],"starsage_aw":[1,0.83],"starwisp":[1,0.83],"storm_roc":[1,0.83],"storm_roc_aw":[1,0.83],"stormmage":[1,0.83],"stormmage_aw":[1,0.83],"sun_empress":[1,0.83],"sun_empress_aw":[1,0.83],"treant":[1,0.83],"valkyrie":[1,0.83],"valkyrie_aw":[1,0.83],"vampire":[1,0.83],"vampire_aw":[1,0.83],"voidknight":[1,0.83],"voidknight_aw":[1,0.83],"werewolf":[1,0.83],"werewolf_aw":[1,0.83],"wind_centaur":[1,0.83],"wind_centaur_aw":[1,0.83],"winddancer":[1,0.83],"winddancer_aw":[1,0.83],"wisp":[1,0.83],"wolf":[1,0.85],"wolf_aw":[1,0.84],"wraith":[1,0.83],"yeti":[1,0.83],"yeti_aw":[1,0.83]};   // generated by art_audit.py: [brightness, size] per monster (+"_aw")
@@ -4424,7 +4594,7 @@ const BLOB = {ui_alt_bg:"/_blob/73e408fe4030c2751dc6895d3c8d974d", ui_alt_ped_si
   legend_mountain_behemoth:"/_blob/22c82c9c622ff7b8be73f09f905587ad", legend_mountain_behemoth_awakened:"/_blob/6d3f874e7b3738c2399c57cb6b286357",
   legend_forest_dryad:"/_blob/b4ccfe2b8db4bc720ee4f97f3668e85b", legend_forest_dryad_awakened:"/_blob/1af13f1cde01bea260fbc93e915cf3ab",
   legend_dawn_unicorn:"/_blob/617656b76bf0f0cbbadd207eb171416c", legend_dawn_unicorn_awakened:"/_blob/1658280c114175082ad74ba4aa5de8e7",
-  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723"};
+  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723", ui_bt_bar:"/_blob/020944b966c4c9ae72b39ed6ea305925", ui_bt_port:"/_blob/2c8116eda94304b769b2dd244602e638", ui_bt_port_on:"/_blob/faf97980484f223974568d3a94fe8cc5", ui_bt_orb:"/_blob/493972682ae8c47393beab5d2e86dbbf", ui_bt_orb_full:"/_blob/3dc97ad847642aba010112fa2ec62be6", ui_bt_hp_a:"/_blob/6a0c08ff1248e4d3c118722fcd7e6c5d", ui_bt_hp_e:"/_blob/776e1f08bd239eebcb334a7953f6e085", ui_bt_sk:"/_blob/87a8f6be98ae06156a1fca686aae4331", ui_bt_sk_on:"/_blob/216fc7a49c2d093717ccc1a3f1def529", ui_bt_sk_cd:"/_blob/1f795db0f5c160aacb7394a47e9f2ca4", ui_bt_btn:"/_blob/1c9e2ed20d5d69a75e45a6d5fb5f49d3", ui_bt_tip:"/_blob/fd1c4bead5e37e54c9191abd0fa6d09f", ui_bt_wave:"/_blob/4a6274c32883b81f4281a045116dd76d", ui_def_bg:"/_blob/a43694d9306f00867c89cdd13a3f0289", ui_def_row:"/_blob/5928f3ab2ad0e788146ffceba292100c", ui_def_tipbtn:"/_blob/83239c284a7166aa0404db638154715f", ui_prep_bg:"/_blob/63c236256a98fb5a6436e8535fe52683", ui_vic_banner:"/_blob/3a9a059641181796417aed5e86e485f3", ui_vic_tile:"/_blob/ed95d2aba59ebaa2866fd8b6e37deb2a", ui_vic_bar:"/_blob/95e5d5a3ed41f351e77c84e7353be013", ui_win_frame:"/_blob/f574592c2923afd7321af22769ce0913", ui_win_ribbon:"/_blob/016672401428e2a155738a9a28d8551d", ui_win_close:"/_blob/993a519952a41a6041bc9fdb42b3f4c1", ui_win_btn_gold:"/_blob/0e13e153044812c9e85e23f2ec26babd", ui_win_btn_blue:"/_blob/64b5257cbbcbcb6111e756b8de8dd7b3", ui_win_btn_grey:"/_blob/ab8f92d66e4d4817a6c7f168d7883426", ui_win_row:"/_blob/146536adb9bace620991d11de7b00006", ui_win_tab:"/_blob/2805190c5c9314daafac25eac2ad4bdc", ui_win_tab_on:"/_blob/6f8984a06b04dd95abf13912087e10ff", ui_win_tog_on:"/_blob/fbeb8020630d894a88cbce60fd6c1387", ui_win_tog_off:"/_blob/0475d81d5ce3f6aabda634d92888435b", ui_win_chk:"/_blob/ed9c571c16b0be6918f289c10d3b4546", ui_win_chk_on:"/_blob/4edc8d218f3a6ce45345766e0f94c107"};
 const onClaude = location.protocol === "https:" && !/github\.io$/.test(location.hostname);
 const assetUrl = n => (onClaude && BLOB[n]) || "assets/" + n + ".webp";
 Object.keys(MON).forEach(id => { const a = MON[id].art; if (a && HAVE.has(a)) ART[id] = assetUrl(a); if (a && HAVE.has(a + "_awakened")) ART[id + "_aw"] = assetUrl(a + "_awakened"); });
@@ -6655,7 +6825,30 @@ function renderTeam() {
   $("startBattle").disabled = !S.team.length;
   $("autoRep").checked = !!S.autoRep;
   tickEnergy(); $("prEn").innerHTML = `${pic("cur_energy", "⚡")}<b>${S.energy}/${energyMax()}</b>`;   // energy stays in sight when the top bar is hidden
+  prepArt();
 }
+// the painted stage (K03): on when the template and the gold button are there; the plate at the top right shows energy, gold and gems with their + (to the shop)
+const PREP_W = 1792, PREP_H = 878;
+function prepArt() {
+  const t = $("team"), on = HAVE.has("ui_prep_bg") && HAVE.has("ui_win_btn_gold") && HAVE.has("ui_win_row");
+  t.classList.toggle("ptart", on); if (!on) return;
+  const bg = `url(${assetUrl("ui_prep_bg")})`;
+  if (t.style.getPropertyValue("--pbg") !== bg) { t.style.setProperty("--pbg", bg); t.style.setProperty("--wbg", `url(${assetUrl("ui_win_btn_gold")})`); t.style.setProperty("--wrow", `url(${assetUrl("ui_win_row")})`); }
+  $("prEn").innerHTML = `<span class="pe en">${pic("cur_energy", "⚡")}<b dir="ltr">${S.energy}/${energyMax()}</b></span><span class="pe mn">${pic("cur_mana", "🪙")}<b dir="ltr">${fmt(S.mana)}</b></span><span class="pe gm">${pic("cur_gem", "💎")}<b dir="ltr">${fmt(S.gem)}</b></span>
+    <button class="pe-plus" data-shop="1" style="left:1332px" aria-label="לחנות"></button><button class="pe-plus" data-shop="1" style="left:1490px" aria-label="לחנות"></button><button class="pe-plus" data-shop="1" style="left:1642px" aria-label="לחנות"></button>`;
+  $("prEn").querySelectorAll(".pe-plus").forEach(b => b.onclick = () => openStore("shop"));
+  const L = S.team[0] && S.mons.find(m => m.uid === S.team[0]); const lp = $("slots").querySelector(".pr-pod.lead");
+  if (lp && L) lp.title = "מנהיג: " + mname(L) + " · " + leadTxt(L);
+  prepFit();
+}
+function prepFit() {
+  const t = $("team"); if (!t.classList.contains("ptart")) return;
+  const pg = t.querySelector(".pr-page"), cs = getComputedStyle(pg), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
+  const W = pg.clientWidth - pl - parseFloat(cs.paddingRight), H = pg.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
+  const k = Math.min(W / PREP_W, H / PREP_H);
+  t.querySelector(".prep").style.transform = `translate(${(pl + (W - PREP_W * k) / 2).toFixed(1)}px,${(pt + (H - PREP_H * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+}
+addEventListener("resize", () => { if ($("team").classList.contains("on")) prepFit(); });
 function renderPool() {
   const q = PR.q.trim().toLowerCase();
   const list = S.mons.filter(m => !MON[m.id].food && (PR.el === "all" || MON[m.id].el === PR.el) && (!PR.fav || isFav(m)) && (!q || mname(m).toLowerCase().includes(q) || MON[m.id].n.toLowerCase().includes(q)));
@@ -7618,7 +7811,16 @@ function mkUnit(side, id, lvl, i, extra, st0) {
   const d = MON[id], boss = extra === "boss", st = st0 || monStats(id, lvl, boss);
   return {key:side + i, side, id, d, lvl, boss, max:st, hp:st.hp, atb:R() * 12, cds:d.sk.map(() => 0), lk:d.sk.map((_, k) => lvl < (SK_OPEN[k] || 1)), fx:[], alive:true, slot:i};
 }
+const BT_ART = {"--btbar":"ui_bt_bar", "--btpon":"ui_bt_port_on", "--btorb":"ui_bt_orb", "--btorbf":"ui_bt_orb_full", "--bthpa":"ui_bt_hp_a", "--bthpe":"ui_bt_hp_e",
+  "--btsk":"ui_bt_sk", "--btskon":"ui_bt_sk_on", "--btskcd":"ui_bt_sk_cd", "--btbtn":"ui_bt_btn", "--bttip":"ui_bt_tip", "--btwave":"ui_bt_wave", "--btclose":"ui_win_close", "--bttab":"ui_win_tab", "--bttabon":"ui_win_tab_on"};
+function btArt() {                                   // the user's painted battle HUD (K01b), on only when every piece is there
+  const b = $("battle"); if (b.classList.contains("btart")) return;
+  if (!Object.values(BT_ART).every(n => HAVE.has(n))) return;
+  Object.entries(BT_ART).forEach(([v, n]) => b.style.setProperty(v, `url(${assetUrl(n)})`));
+  b.classList.add("btart");
+}
 function startBattle(stage) {
+  btArt();
   const team = S.team.map(u => S.mons.find(m => m.uid === u)).filter(Boolean);
   B = {stage, waves:wildWaves(stage), ag:0, spell:sumState().eq, wave:0, allies:team.map((m, i) => Object.assign(mkUnit("a", m.id, m.lvl, i, null, withLeader(monTotal(m), team[0])), {uid:m.uid, aw:!!m.aw, skl:m.skl, st:mst(m), lk:MON[m.id].sk.map((_, k) => !skOpen(m, k))})), enemies:[], auto:S.autoRep && !stage.arena ? true : B ? B.auto : false, speed:B ? B.speed : 1, over:false, turn:0};
   B.allies.forEach(giveUlt);
@@ -7784,7 +7986,7 @@ function drawField() {
     const ust = Math.max(1, Math.min(6, u.st || MON[u.id].st));
     n.innerHTML = `<div class="spr"><span class="shadow" style="background:radial-gradient(${EL[u.d.el].c}55,rgba(0,0,0,.45) 45%,transparent 70%)"></span>${sprite(u.id, "", true, u.aw)}${liveLayer(u)}</div>
       <div class="bars"><div class="ustars ${ust >= 6 ? "s6" : ""}" aria-label="${ust} כוכבים">${"★".repeat(ust)}</div><div class="tag"><span class="dot" style="background:${EL[u.d.el].c}"></span>${rarGem(u.id)}${u.boss ? '<span class="boss-tag">בוס</span>' : ""}<span>רמה ${u.lvl}</span></div>
-      <div class="bar hp"><i></i></div><div class="bar atb"><i></i></div><div class="fx"></div></div>`;
+      <div class="hpw"><div class="bar hp"><i></i></div><div class="bar atb"><i></i></div></div><div class="fx"></div></div>`;
     n.onclick = () => onUnitClick(u);
     f.appendChild(n);
     paintUnit(u);
@@ -9177,6 +9379,14 @@ function xpGain(m, xp) {
   if (!wasMax) { m.xp += xp; while (m.lvl < cap && m.xp >= xpNeed(m.lvl)) { m.xp -= xpNeed(m.lvl); m.lvl++; up++; } if (m.lvl >= cap) m.xp = 0; }
   return {m, up, lv0, wasMax, from, to:m.lvl >= cap ? 1 : m.xp / xpNeed(m.lvl), max:m.lvl >= cap, got:wasMax ? 0 : xp};
 }
+// the user's painted victory kit (K06) and window kit (W01): banner, reward tile, EXP bar, window frame, buttons, toggle. Missing art = the old look.
+const VIC_ART = {"--vban":"ui_vic_banner", "--vtile":"ui_vic_tile", "--vbar":"ui_vic_bar", "--wframe":"ui_win_frame", "--wbg":"ui_win_btn_gold", "--wbb":"ui_win_btn_blue",
+  "--wrow":"ui_win_row", "--wton":"ui_win_tog_on", "--wtoff":"ui_win_tog_off"};
+function vicArt(card) {
+  if (!Object.values(VIC_ART).every(n => HAVE.has(n))) return;
+  Object.entries(VIC_ART).forEach(([v, n]) => card.style.setProperty(v, `url(${assetUrl(n)})`));
+  card.classList.add("vart");
+}
 // the victory screen (design: the owner's "ניצחון!" mock-up). Every button is guarded so a fight can never start twice.
 function victoryScreen(o) {
   let done = false;
@@ -9196,7 +9406,7 @@ function victoryScreen(o) {
       <button class="vbtn" id="vAgain"><span>⟳</span>שוב</button><button class="vbtn" id="vTeam"><span>👥</span>להחליף צוות</button>
       <button class="vbtn" id="vMap"><span>🗺</span>${o.backN}</button><button class="vbtn" id="vHome"><span>🏰</span>לעיר</button></div>
     <label class="vic-auto"><input type="checkbox" id="vAuto" ${S.autoRep ? "checked" : ""}><i class="sw"></i><span id="vAutoT">חזרה אוטומטית</span><b id="repCount"></b>${repStreak ? `<em>· ניצחון ${repStreak + 1} ברצף</em>` : ""}</label>`);
-  $("modal").classList.add("vic"); $("modalCard").classList.add("viccard");
+  $("modal").classList.add("vic"); $("modalCard").classList.add("viccard"); vicArt($("modalCard"));
   setTimeout(() => $("modalCard").querySelectorAll(".vbar i").forEach(b => {          // fill the bars; a level up fills to the end, flashes, then shows the new level's progress
     if (+b.dataset.up) { b.style.width = "100%"; setTimeout(() => { b.style.transition = "none"; b.style.width = "0%"; void b.offsetWidth; b.style.transition = ""; b.style.width = b.dataset.to + "%"; }, 650); }
     else b.style.width = b.dataset.to + "%";
@@ -9237,7 +9447,7 @@ function defeatScreen(o) {
     <div class="def-mons">${team.map((m, i) => `<div class="dmon" style="animation-delay:${.2 + i * .07}s">${monCard(m, "std", {tag:"div"})}<span class="vexp">EXP +0</span><div class="vbar def"><i style="width:${m.lvl >= maxLvl(mst(m)) ? 100 : m.xp / xpNeed(m.lvl) * 100}%"></i></div></div>`).join("")}</div>
     <div class="def-btns"><button class="dbtn red" id="dAgain"><span>⟳</span>נסה שוב</button><button class="dbtn blue" id="dTeam"><span>👥</span>לשנות צוות</button><button class="dbtn blue" id="dHome"><span>🏰</span>חזרה לבסיס</button></div>
     <button class="def-link" id="dMap">${o.backN}</button>`);
-  $("modal").classList.add("def"); $("modalCard").classList.add("defcard");
+  $("modal").classList.add("def"); $("modalCard").classList.add("defcard"); defArt($("modalCard"));
   bindTips(o.tips);
   $("dAgain").onclick = once(() => { closeModal(); pickedStage = o.st; show("team"); });
   $("dHome").onclick = once(() => { closeModal(); show("home"); });
@@ -9245,6 +9455,17 @@ function defeatScreen(o) {
   $("dMap").onclick = once(() => { closeModal(); show(o.back); });
 }
 
+// the user's painted defeat window (K02b): on only when the frame, the row and the small button are there
+function defArt(card) {
+  if (!["ui_def_bg", "ui_def_row", "ui_def_tipbtn"].every(n => HAVE.has(n))) return;
+  card.style.setProperty("--dbg", `url(${assetUrl("ui_def_bg")})`); card.style.setProperty("--drow", `url(${assetUrl("ui_def_row")})`); card.style.setProperty("--dtb", `url(${assetUrl("ui_def_tipbtn")})`);
+  card.classList.add("dart"); defFit();
+}
+function defFit() {
+  const c = $("modalCard"); if (!c.classList.contains("dart") || !c.classList.contains("defcard")) return;
+  const k = Math.min((innerWidth - 16) / 1536, (innerHeight - 12) / 1024); c.style.zoom = k.toFixed(4);
+}
+addEventListener("resize", defFit);
 // after a loss: the 1-3 real reasons from this team against this stage, each with the button that fixes it
 function defeatAdvice(st) {
   const team = B.allies.map(u => S.mons.find(m => m.uid === u.uid)).filter(Boolean), foes = (B.waves || st.waves || []).flat(), tips = [];
@@ -9268,7 +9489,7 @@ const bindTips = tips => $("modalCard").querySelectorAll("[data-ti]").forEach(b 
 
 /* ============================== MODAL / BOX ============================== */
 function openModal(html) { $("modalCard").innerHTML = html; $("modal").classList.add("on"); }
-function closeModal() { clearTimeout(repTimer); vipView = null; $("modal").classList.remove("on", "vic", "def"); $("modalCard").classList.remove("vipcard", "profcard", "viccard", "defcard", "pickcard", "skwcard", "cfcard", "dlycard", "azbuy"); }
+function closeModal() { clearTimeout(repTimer); vipView = null; $("modal").classList.remove("on", "vic", "def"); $("modalCard").classList.remove("vipcard", "profcard", "viccard", "defcard", "pickcard", "skwcard", "cfcard", "dlycard", "azbuy", "vart", "dart"); $("modalCard").style.zoom = ""; }
 // element emblems (also used by the box tabs); simple bold glyphs that read at 18px
 const EL_ICON = {
   fire:'<path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-3 2-4 2-7 2 1 3 3 3 5 1-1 1-3 0-9z"/>',
