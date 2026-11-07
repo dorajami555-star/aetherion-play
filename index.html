@@ -4109,6 +4109,80 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #gd2 .pk{flex-direction:column;gap:2px}#gd2 .pk b{font-size:32px;font-weight:900;color:#5dff7a}#gd2 .pk span{font-size:20px;color:#e9eeff}
 #gd2 .nav{font-size:27px;font-weight:900;color:#ffe9a6;justify-content:center;display:flex;align-items:center;border-radius:36px}
 #gd2 .nav small{font-size:18px;color:#9dffb0;margin-inline-start:6px}
+/* ---- guild members screen on the user's template (1536x1024, 2026-11-07): menu by role, filters, member list, the chosen member's panel ---- */
+#guild.gdart.gmv .page{width:1536px;height:1024px}
+#guild.gdart.gmv #gd2,#guild.gdart:not(.gmv) #gm2,#guild.gdart.gmv .page h2 .back{display:none!important}
+#gm2{position:absolute;left:0;top:0;width:1536px;height:1024px;direction:rtl;pointer-events:none}
+#gm2>*,#gmMain>*,#gmSide>*{position:absolute;margin:0;pointer-events:auto;box-sizing:border-box}
+#gm2 .t,#gm2 .t *{pointer-events:none}
+#gm2 .t{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;white-space:nowrap;color:#fff;text-shadow:0 2px 3px #000;line-height:1.1}
+#gm2 .gold{color:#ffe9a6}#gm2 .tf{font-family:"Suez One",serif}
+#gm2 button{padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;min-height:0;box-shadow:none}
+#gm2 button:not([disabled]):active{transform:scale(.97)}
+#gm2 .res{font-size:24px;font-weight:900;direction:ltr}
+#gm2 .rnd{border-radius:50%}
+#gm2 .bd{position:absolute;top:-4px;left:-4px;min-width:28px;height:28px;padding:0 6px;border-radius:14px;background:#e0263a;color:#fff;font-size:18px;font-weight:900;display:grid;place-items:center;box-shadow:0 0 0 2px #2a0b10}
+#gm2 .rnd .bd{left:auto;right:-2px;top:-2px}
+#gm2 .cloth{background:var(--gmcloth) 0 0/100% 100% no-repeat;pointer-events:none}
+#gm2 .emb{object-fit:contain;pointer-events:none;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6))}
+#gm2 .gmm{background:var(--gmbtn) 0 4px/100% 66px no-repeat;font-size:22px;font-weight:900;color:#ffe9a6;text-shadow:0 2px 3px #000;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+#gm2 .gmm.on{background-image:var(--gmbtnon);color:#3a2405;text-shadow:0 1px 0 rgba(255,240,190,.6)}
+#gm2 .gmm-off{background:rgba(6,8,24,.55);border-radius:22px;pointer-events:none}
+#gmMain,#gmSide{pointer-events:none}
+#gm2 .gm-q{border:0;background:transparent;color:#fff;font:inherit;font-size:22px;outline:none;direction:rtl;padding:0 6px}
+#gm2 .gm-q::placeholder{color:#a9b4d8}
+#gm2 .gm-dd{font-size:21px;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:flex-start;padding:0 16px 0 46px!important;white-space:nowrap;text-shadow:0 2px 2px #000}
+#gm2 .gm-h{font-size:28px;font-weight:900}
+#gm2 .gm-strip{display:flex;align-items:center;justify-content:space-around;gap:14px;font-size:22px;color:#dfe6ff;background:rgba(10,12,40,.6);border:1px solid rgba(255,214,120,.3);border-radius:14px;text-shadow:0 1px 2px #000;pointer-events:none}
+#gm2 .gm-strip b{color:#ffe9a6;font-weight:900}
+#gm2 .gm-xp{position:relative;width:230px;height:24px;border-radius:12px;background:#0a0f2a;border:1px solid rgba(255,214,120,.45);overflow:hidden}
+#gm2 .gm-xp i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#2f7bff,#7cc4ff)}#gm2 .gm-xp b{position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:#fff}
+#gmList,#gm2 .gm-list{display:flex;flex-direction:column;gap:4px;overflow:hidden}
+#gm2 .gm-row{position:relative;flex:none;height:76px;width:100%;display:block;border-radius:14px;background:rgba(18,22,58,.72);border:1px solid rgba(255,214,120,.22);color:#fff;font-size:22px;text-align:right}
+#gm2 .gm-row>*{position:absolute;top:0;bottom:0;display:flex;align-items:center;white-space:nowrap;overflow:hidden}
+#gm2 .gm-row.sel{background:linear-gradient(180deg,rgba(90,62,10,.75),rgba(40,26,6,.85));border:2px solid #ffcf5a;box-shadow:0 0 12px rgba(255,200,80,.55),inset 0 0 10px rgba(255,210,110,.25)}
+#gm2 .gm-row.me .gm-nm{color:#ffe9a6}
+#gm2 .gm-hd{height:40px;background:rgba(40,20,70,.7);font-size:19px;color:#ffe9a6;font-weight:900;pointer-events:none}
+#gm2 .gm-n{right:6px;width:40px;justify-content:center;font-weight:900;color:#ffe9a6}
+#gm2 .gm-av{right:52px;top:10px!important;bottom:auto!important;width:56px;height:56px;border-radius:50%;border:2px solid #ffcf5a;background:#1a1438;justify-content:center;overflow:hidden}
+#gm2 .gm-av img,#gm2 .gm-av svg,#gm2 .gm-pic img,#gm2 .gm-pic svg{width:100%;height:100%;object-fit:cover}
+#gm2 .gm-nm{right:114px;width:200px;gap:8px;font-weight:800}
+#gm2 .gm-hd .gm-nm{right:60px;width:250px;justify-content:center}
+#gm2 .gm-dot{flex:none;width:14px;height:14px;border-radius:50%;background:#8a90a6;box-shadow:0 0 0 2px rgba(0,0,0,.4)}#gm2 .gm-dot.on{background:#3ee06a;box-shadow:0 0 6px #3ee06a}
+#gm2 .gm-ro{right:320px;width:110px;justify-content:center}
+#gm2 .gm-row:not(.gm-hd) .gm-ro{top:18px;bottom:18px;border-radius:20px;font-size:19px;font-weight:800;background:#16234f;border:1px solid #4a6bd0}
+#gm2 .gm-ro.r-leader{background:#5a1020!important;border-color:#ff8a4a!important;color:#ffe9a6}#gm2 .gm-ro.r-deputy{background:#14306e!important;border-color:#6aa8ff!important}
+#gm2 .gm-lv{right:440px;width:56px;justify-content:center;font-weight:900}
+#gm2 .gm-row:not(.gm-hd) .gm-lv{top:16px;bottom:16px;border-radius:12px;background:#3a1d6e;border:2px solid #d6a640;color:#fff}
+#gm2 .gm-pow{right:502px;width:132px;justify-content:center;font-weight:800}
+#gm2 .gm-don{right:636px;width:122px;justify-content:center;font-weight:800;color:#ffe9a6;font-size:20px}
+#gm2 .gm-ago{right:760px;width:62px;justify-content:center;font-size:17px;color:#c8d2f0;white-space:normal;text-align:center;line-height:1.05}
+#gm2 .gm-ago.on{color:#5dff7a;font-weight:900}
+#gm2 .gm-hd .gm-ago{font-size:19px;color:#ffe9a6}
+#gm2 .gm-act-row .gm-nm{width:230px}#gm2 .gm-act-row .gm-lv{right:350px}#gm2 .gm-act-row .gm-pow{right:415px}
+#gm2 .gm-rk{right:562px;width:80px;justify-content:center;font-weight:800;font-size:20px}
+#gm2 .gm-b{position:absolute;top:4px!important;bottom:4px!important;left:10px;width:86px;font-size:20px;font-weight:900;padding:0!important;display:grid!important;place-items:center;min-height:0;border-radius:14px!important;background:linear-gradient(180deg,#ffd768,#d79a1e)!important;color:#3a2405!important;border:2px solid #fff0b8!important;text-shadow:none}
+#gm2 .gm-b.ghost{background:linear-gradient(180deg,#2b4fa8,#16285e)!important;color:#fff!important;border-color:#7fa6ff!important}
+#gm2 .gm-b[disabled]{filter:grayscale(.8) brightness(.75)}
+#gm2 .gm-cover{background:linear-gradient(180deg,#161c4c,#0d1134);border:1px solid rgba(255,214,120,.4);border-radius:18px;font-size:28px;font-weight:900}
+#gm2 .gm-act-row .gm-b{left:102px}#gm2 .gm-act-row .gm-b.ghost{left:10px}#gm2 .gm-act-row .gm-b2{left:10px!important;width:150px}
+#gm2 .gm-empty{padding:40px 30px;font-size:24px;color:#c8d2f0;text-align:center;line-height:1.5}
+#gm2 .gm-empty .btn{margin-top:14px;font-size:20px}
+#gm2 .gm-sub{padding:14px 18px 6px;font-size:22px;color:#c8d2f0;line-height:1.4}
+#gm2 .gm-perm{height:76px!important;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font-size:24px;font-weight:800}
+#gm2 .gm-perm>*{position:static}
+#gm2 .gm-tg{position:relative!important;width:110px;height:64px;border-radius:32px!important;background:#2a2f4a!important;border:2px solid #6b7290!important}
+#gm2 .gm-tg i{position:absolute;top:6px;right:6px;width:48px;height:48px;border-radius:50%;background:#c8cde0;transition:right .15s}
+#gm2 .gm-tg.on{background:#1f7a3a!important;border-color:#5dff7a!important}#gm2 .gm-tg.on i{right:52px;background:#fff}
+#gm2 .gm-pg[disabled]{filter:grayscale(1) brightness(.6);cursor:default}
+#gm2 .gm-pgn{font-size:24px;font-weight:900;background:#0c1030;border-radius:18px}
+#gm2 .gm-cnt{font-size:20px;color:#c8d2f0;justify-content:flex-start}
+#gm2 .gm-pic{border-radius:50%;overflow:hidden;pointer-events:none;background:#1a1438}
+#gm2 .gm-info{justify-content:space-between;padding:0 12px;font-size:22px}
+#gm2 .gm-info b{color:#ffe9a6;font-weight:900}
+#gm2 .gm-sq{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:14px}
+#gm2 .gm-sq span{font-size:34px;line-height:1}#gm2 .gm-sq small{font-size:15px;font-weight:800;color:#ffe9a6;line-height:1.05;white-space:normal;text-align:center}
+#gm2 .gm-sq-off{background:rgba(6,8,24,.5);border-radius:12px;pointer-events:none}
 .modal .card.gdmenu .gdm{display:flex;flex-direction:column;gap:10px;margin:12px 0}
 .modal .card.ghpop #gLeave{display:none}
 .modal .card.ghpop .gh-panel{display:block!important;background:none;border:0;box-shadow:none}
@@ -4963,15 +5037,16 @@ const HAVE = new Set([   // generated by sync_have.py from assets/ — do not ed
   "ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs","ui_dun_bg","ui_fz_laurel","ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon",
   "ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon","ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon",
   "ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon","ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon",
-  "ui_guild2_bg","ui_guild2_cloth","ui_guild_bg","ui_plaque","ui_prep_bg","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest",
-  "ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","ui_rank_template","ui_rew_card","ui_rune_bg","ui_runering","ui_sh_card","ui_sh_ped","ui_sh_sel",
-  "ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1","ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6","ui_ssn_card_7",
-  "ui_ssn_chest_0","ui_ssn_chest_1","ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5","ui_ssn_chest_6","ui_ssn_chest_7","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2","ui_ssn_crest_3",
-  "ui_ssn_crest_4","ui_ssn_crest_5","ui_ssn_crest_6","ui_ssn_crest_7","ui_store_bg","ui_store_cat_on","ui_store_slot_on","ui_store_tab_on","ui_tower_bg","ui_vic_banner","ui_vic_bar","ui_vic_tile",
-  "ui_wf_b","ui_wf_bl","ui_wf_br","ui_wf_fill","ui_wf_gem","ui_wf_l","ui_wf_r","ui_wf_t","ui_wf_tl","ui_wf_tr","ui_win_btn_blue","ui_win_btn_gold",
-  "ui_win_btn_grey","ui_win_chk","ui_win_chk_on","ui_win_close","ui_win_frame","ui_win_frame_ng","ui_win_ribbon","ui_win_row","ui_win_tab","ui_win_tab_on","ui_win_tog_off","ui_win_tog_on",
-  "valkyrie","valkyrie_awakened","vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened",
-  "werewolf","werewolf_awakened","will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
+  "ui_gmem_bg","ui_gmem_btn","ui_gmem_btn_on","ui_gmem_cloth","ui_guild2_bg","ui_guild2_cloth","ui_guild_bg","ui_plaque","ui_prep_bg","ui_prg_banner","ui_prg_card_1","ui_prg_card_2",
+  "ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","ui_rank_template","ui_rew_card","ui_rune_bg",
+  "ui_runering","ui_sh_card","ui_sh_ped","ui_sh_sel","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1","ui_ssn_card_2","ui_ssn_card_3",
+  "ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6","ui_ssn_card_7","ui_ssn_chest_0","ui_ssn_chest_1","ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5","ui_ssn_chest_6","ui_ssn_chest_7",
+  "ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2","ui_ssn_crest_3","ui_ssn_crest_4","ui_ssn_crest_5","ui_ssn_crest_6","ui_ssn_crest_7","ui_store_bg","ui_store_cat_on","ui_store_slot_on","ui_store_tab_on",
+  "ui_tower_bg","ui_vic_banner","ui_vic_bar","ui_vic_tile","ui_wf_b","ui_wf_bl","ui_wf_br","ui_wf_fill","ui_wf_gem","ui_wf_l","ui_wf_r","ui_wf_t",
+  "ui_wf_tl","ui_wf_tr","ui_win_btn_blue","ui_win_btn_gold","ui_win_btn_grey","ui_win_chk","ui_win_chk_on","ui_win_close","ui_win_frame","ui_win_frame_ng","ui_win_ribbon","ui_win_row",
+  "ui_win_tab","ui_win_tab_on","ui_win_tog_off","ui_win_tog_on","valkyrie","valkyrie_awakened","vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend",
+  "vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened","werewolf","werewolf_awakened","will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map",
+  "yeti","yeti_awakened"]);
 const POOL = {2:["imp","mushroom"],3:["wolf","fairy","golem","elf","harpy","mermaid","skeleton","salamander","yeti","snowowl","scarab","mummy","werewolf","banshee"],4:["ninja","priestess","griffin","frostwitch","stormmage","obsidian","winddancer","frostserpent","aurora","sphinx","vampire","celestlion","starsage","voidknight"],5:["dragon","valkyrie","phoenix","djinn","ghostqueen","seraph","sun_empress","kraken_king","storm_roc","wind_centaur","mountain_behemoth","forest_dryad","dawn_unicorn","eclipse_dragon"]};
 POOL[5] = POOL[5].filter(id => !MON[id].mystic);         // the mystic monsters can't be summoned for now (owner's call): every summon and reward pool skips them
 const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"aurora_aw":[1,0.83],"bandit":[1,0.83],"banshee":[1,0.83],"banshee_aw":[1,0.83],"celestlion":[1,0.83],"celestlion_aw":[1,0.83],"cinderhound":[1,0.83],"cloudslime":[1,0.83],"crystalg":[1,0.93],"dawn_unicorn":[1,0.93],"djinn":[1,0.83],"djinn_aw":[1,0.83],"dragon":[1,0.84],"dragon_aw":[1,0.84],"duneworm":[1,0.83],"elf":[1,0.84],"elf_aw":[1,0.84],"fairy":[1,0.84],"fairy_aw":[1,0.85],"forest_dryad":[1,0.83],"forest_dryad_aw":[1,0.83],"frostserpent":[1,0.83],"frostserpent_aw":[1,0.83],"frostwitch":[1,0.83],"frostwitch_aw":[1,0.83],"frostwyrm":[1,0.83],"gargoyle":[1,0.83],"ghostqueen":[1,0.83],"ghostqueen_aw":[1,0.83],"ghoul":[1,0.83],"golem":[1,0.83],"golem_aw":[1,0.83],"griffin":[1,0.84],"griffin_aw":[1,0.84],"harpy":[1,0.83],"harpy_aw":[1,0.83],"icetroll":[1,0.83],"imp":[1,0.83],"imp_aw":[1,0.83],"kraken_king":[1,0.83],"kraken_king_aw":[1,0.83],"lavatitan":[1,0.83],"marble":[1,0.83],"mermaid":[1,0.83],"mermaid_aw":[1,0.83],"mosswolf":[1,0.95],"mummy":[1,0.83],"mummy_aw":[1,0.83],"mushroom":[1,0.83],"mushroom_aw":[1,0.84],"ninja":[1,0.83],"ninja_aw":[1,0.83],"obsidian":[1,0.83],"obsidian_aw":[1,0.83],"phoenix":[1,0.83],"phoenix_aw":[1,0.83],"pixie":[1,0.83],"priestess":[1,0.83],"priestess_aw":[1,0.83],"sandcolossus":[1,0.83],"scarab":[1,0.83],"scarab_aw":[1,0.83],"scorpion":[1,0.83],"seraph":[1,0.83],"seraph_aw":[1,0.83],"shadowlord":[1,0.83],"skeleton":[1,0.83],"skeleton_aw":[1,0.83],"skyboar":[1,0.89],"snowowl":[1,0.83],"snowowl_aw":[1,0.83],"snowsprite":[1,0.83],"sphinx":[1,0.83],"sphinx_aw":[1,0.83],"spider":[1,0.83],"sprite":[1,0.83],"starsage":[1,0.83],"starsage_aw":[1,0.83],"starwisp":[1,0.83],"storm_roc":[1,0.83],"storm_roc_aw":[1,0.83],"stormmage":[1,0.83],"stormmage_aw":[1,0.83],"sun_empress":[1,0.83],"sun_empress_aw":[1,0.83],"treant":[1,0.83],"valkyrie":[1,0.83],"valkyrie_aw":[1,0.83],"vampire":[1,0.83],"vampire_aw":[1,0.83],"voidknight":[1,0.83],"voidknight_aw":[1,0.83],"werewolf":[1,0.83],"werewolf_aw":[1,0.83],"wind_centaur":[1,0.83],"wind_centaur_aw":[1,0.83],"winddancer":[1,0.83],"winddancer_aw":[1,0.83],"wisp":[1,0.83],"wolf":[1,0.85],"wolf_aw":[1,0.84],"wraith":[1,0.83],"yeti":[1,0.83],"yeti_aw":[1,0.83]};   // generated by art_audit.py: [brightness, size] per monster (+"_aw")
@@ -4985,7 +5060,7 @@ const BLOB = {ui_alt_bg:"/_blob/73e408fe4030c2751dc6895d3c8d974d", ui_alt_ped_si
   legend_mountain_behemoth:"/_blob/22c82c9c622ff7b8be73f09f905587ad", legend_mountain_behemoth_awakened:"/_blob/6d3f874e7b3738c2399c57cb6b286357",
   legend_forest_dryad:"/_blob/b4ccfe2b8db4bc720ee4f97f3668e85b", legend_forest_dryad_awakened:"/_blob/1af13f1cde01bea260fbc93e915cf3ab",
   legend_dawn_unicorn:"/_blob/617656b76bf0f0cbbadd207eb171416c", legend_dawn_unicorn_awakened:"/_blob/1658280c114175082ad74ba4aa5de8e7",
-  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723", ui_bt_bar:"/_blob/020944b966c4c9ae72b39ed6ea305925", ui_bt_port:"/_blob/2c8116eda94304b769b2dd244602e638", ui_bt_port_on:"/_blob/faf97980484f223974568d3a94fe8cc5", ui_bt_orb:"/_blob/493972682ae8c47393beab5d2e86dbbf", ui_bt_orb_full:"/_blob/3dc97ad847642aba010112fa2ec62be6", ui_bt_hp_a:"/_blob/6a0c08ff1248e4d3c118722fcd7e6c5d", ui_bt_hp_e:"/_blob/776e1f08bd239eebcb334a7953f6e085", ui_bt_sk:"/_blob/87a8f6be98ae06156a1fca686aae4331", ui_bt_sk_on:"/_blob/216fc7a49c2d093717ccc1a3f1def529", ui_bt_sk_cd:"/_blob/1f795db0f5c160aacb7394a47e9f2ca4", ui_bt_btn:"/_blob/1c9e2ed20d5d69a75e45a6d5fb5f49d3", ui_bt_tip:"/_blob/fd1c4bead5e37e54c9191abd0fa6d09f", ui_bt_wave:"/_blob/4a6274c32883b81f4281a045116dd76d", ui_def_bg:"/_blob/a43694d9306f00867c89cdd13a3f0289", ui_def_row:"/_blob/5928f3ab2ad0e788146ffceba292100c", ui_def_tipbtn:"/_blob/83239c284a7166aa0404db638154715f", ui_wf_tl:"/_blob/47da4a37fe4ae7a581e622e7b715b231", ui_wf_tr:"/_blob/28c7d992a4ab5c77002ff43a2a826e78", ui_wf_bl:"/_blob/8ed23a9e182584cc88fc3fe653e75eaa", ui_wf_br:"/_blob/fd183734fa135bdb0086d4ce4201db89", ui_wf_t:"/_blob/a70dd4d771d1f53ab2b70f072fdb36ad", ui_wf_b:"/_blob/d7c140405fa15b0dcf246d2220a69cab", ui_wf_l:"/_blob/7318ce8753ec9a23477573f0f75e30a1", ui_wf_r:"/_blob/5101bbc9136ccfb861cefaa9a095c55a", ui_wf_fill:"/_blob/bda0df6c434fb949841b944ff1c730f1", ui_wf_gem:"/_blob/785f6cfcafd901ecb3b2d2978128fede", ui_tower_bg:"/_blob/3389fe49d07f258b319786fc2335cec0", ui_dun_bg:"/_blob/9cfc9fe839028922a27bfdb0605c70ee", ico_bolt:"/_blob/05fe4252b7485e368366e4dffe394a66", ico_book:"/_blob/2e657c97652b0f1548959b3ba73097d0", ico_calendar:"/_blob/28b08da830550a27e60cfabe48e2f40f", ico_cart:"/_blob/66ac0f2178a4f61c23e99b390c2830cc", ico_castle:"/_blob/3aaf3ce99e391ebf89ae1a59d0b87070", ico_chart:"/_blob/5ff8241d1e564f92209e60036e1acfbe", ico_chest:"/_blob/b4498c3be2a3ddb9c2a8c168f3cd3793", ico_crown:"/_blob/726b40ca89fec26582517ee7632ce034", ico_dragon:"/_blob/5624e3cf33670e21a270c85b69c3f4e3", ico_fire:"/_blob/1396dcf9c6ecce4ff257bfc4a83d8f9a", ico_fireworks:"/_blob/c9eca74b30b3c2ddbfdf8e9497046a51", ico_gift:"/_blob/5bf7b03df16fb82130eea9a9ee3a069b", ico_hammer:"/_blob/f9d775f950d83eb5cc845d943c56eb92", ico_heart:"/_blob/3f2f57c08a2433bd7cb2fd524893b50d", ico_hourglass:"/_blob/3ecd48cf1ef6d17ea0200b28f79349b3", ico_lock:"/_blob/4af82623fe3a16e7d86223485e47cff3", ico_map:"/_blob/3346be2b79c3900323d2ff1105220f84", ico_orb:"/_blob/cb16bbb522c4ed860d6a9a4ed6e9808f", ico_pencil:"/_blob/7765a3092de7dd599c00fd9466e61599", ico_people:"/_blob/9eb61e623c0bfc66e90cf5bc7b873982", ico_person:"/_blob/fedb84d748067dd61b131cd9b02b6b6d", ico_scroll:"/_blob/dbda2ce7427ad121025e70e4f84de16e", ico_search:"/_blob/2f48c9f84e268e27d468bab6bbd75674", ico_shield:"/_blob/c7a60ce2e25894ce4d77d912f851d665", ico_sparkle:"/_blob/ff4877571b2aeb0b13ea81b174bda695", ico_swords:"/_blob/5aa9686cc17b7a51c6f23f79e58bcdbf", ico_tower:"/_blob/96fcf9276d9177e3e0f25c055db44202", ico_trophy:"/_blob/10c6516f86fb7e7f6581bf8035886769", ico_unlock:"/_blob/bde942c19eaeab8489b3e36673ec1998", ico_warn:"/_blob/4851f88c1915b91d01f5e8bb1e9ab1aa", ui_box_bg:"/_blob/b499fec3cbd16609e2c92f67731e8700", ui_bag_bg:"/_blob/c405e5e203453d772573d075cf1ab359", ui_rune_bg:"/_blob/f58fda38ab0d69a991216efa5e2dd77c", ui_codex_bg:"/_blob/7bdf9e0cc16ddcbf6105e720f9124725", ui_guild_bg:"/_blob/356a78968f2b8e6bfd317bf0229f5f4d", ui_store_bg:"/_blob/83d632458ccc4d89a8aedd9ed4bd4fad", ui_store_tab_on:"/_blob/e3816d0c9e3d014f9d648d599fefb38c", ui_store_slot_on:"/_blob/d2a5416b0a550f714cbdfc7517eb79db", ui_store_cat_on:"/_blob/ebb03be9020dd4b9e8dbebd8b9233874", ui_cal_day:"/_blob/1c65990ea6021f8e6f2c2b7fa59e4838", ui_cal_got:"/_blob/67ea413f15d039d7651569a8fc3ce522", ui_cal_today:"/_blob/13e53fff8beebc4f52192cc5355e27f0", ui_cal_big:"/_blob/66b5434dab0b302333c3cdc7060870a8", ui_cal_myst:"/_blob/6f5d9b6b2232ef058fd8d835aff332dd", ui_cal_check:"/_blob/031479c3b04c7678ec436426c0a6d841", pf_wins:"/_blob/187e162f96adf2fb0121597f280c2777", pf_mons:"/_blob/852ae3fa731c42c56678856f52116d2c", pf_codex:"/_blob/c076bca70299eb24360928efb3a6abe7", pf_stages:"/_blob/954928e41c4480c9d9e57c789529a104", pf_tower:"/_blob/52930704b4da59bf1dd061e415b95dc3", pf_arena:"/_blob/aa13e978ee84356c531f1e806a94623a", pf_ach:"/_blob/acc6d30ab6a2b9e3441a5cde48e19ba1", pf_runes:"/_blob/58a86abdf2ab356c8c151075190c588a", pf_summ:"/_blob/f1a92e0a0783afe1ba46df6a25ebbb90", ui_rew_card:"/_blob/bc3da15766da96076638364d4e647f54", ui_guild2_bg:"/_blob/b10fe140c3f4a44cd753fe4997cd8d96", ui_guild2_cloth:"/_blob/e7886a1ffc23678dd1562c286c912bd2", ui_prep_bg:"/_blob/63c236256a98fb5a6436e8535fe52683", ui_vic_banner:"/_blob/3a9a059641181796417aed5e86e485f3", ui_vic_tile:"/_blob/ed95d2aba59ebaa2866fd8b6e37deb2a", ui_vic_bar:"/_blob/95e5d5a3ed41f351e77c84e7353be013", ui_win_frame:"/_blob/f574592c2923afd7321af22769ce0913", ui_win_ribbon:"/_blob/016672401428e2a155738a9a28d8551d", ui_win_close:"/_blob/993a519952a41a6041bc9fdb42b3f4c1", ui_win_btn_gold:"/_blob/0e13e153044812c9e85e23f2ec26babd", ui_win_btn_blue:"/_blob/64b5257cbbcbcb6111e756b8de8dd7b3", ui_win_btn_grey:"/_blob/ab8f92d66e4d4817a6c7f168d7883426", ui_win_row:"/_blob/146536adb9bace620991d11de7b00006", ui_win_tab:"/_blob/2805190c5c9314daafac25eac2ad4bdc", ui_win_tab_on:"/_blob/6f8984a06b04dd95abf13912087e10ff", ui_win_tog_on:"/_blob/fbeb8020630d894a88cbce60fd6c1387", ui_win_tog_off:"/_blob/0475d81d5ce3f6aabda634d92888435b", ui_win_chk:"/_blob/ed9c571c16b0be6918f289c10d3b4546", ui_win_chk_on:"/_blob/4edc8d218f3a6ce45345766e0f94c107"};
+  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723", ui_bt_bar:"/_blob/020944b966c4c9ae72b39ed6ea305925", ui_bt_port:"/_blob/2c8116eda94304b769b2dd244602e638", ui_bt_port_on:"/_blob/faf97980484f223974568d3a94fe8cc5", ui_bt_orb:"/_blob/493972682ae8c47393beab5d2e86dbbf", ui_bt_orb_full:"/_blob/3dc97ad847642aba010112fa2ec62be6", ui_bt_hp_a:"/_blob/6a0c08ff1248e4d3c118722fcd7e6c5d", ui_bt_hp_e:"/_blob/776e1f08bd239eebcb334a7953f6e085", ui_bt_sk:"/_blob/87a8f6be98ae06156a1fca686aae4331", ui_bt_sk_on:"/_blob/216fc7a49c2d093717ccc1a3f1def529", ui_bt_sk_cd:"/_blob/1f795db0f5c160aacb7394a47e9f2ca4", ui_bt_btn:"/_blob/1c9e2ed20d5d69a75e45a6d5fb5f49d3", ui_bt_tip:"/_blob/fd1c4bead5e37e54c9191abd0fa6d09f", ui_bt_wave:"/_blob/4a6274c32883b81f4281a045116dd76d", ui_def_bg:"/_blob/a43694d9306f00867c89cdd13a3f0289", ui_def_row:"/_blob/5928f3ab2ad0e788146ffceba292100c", ui_def_tipbtn:"/_blob/83239c284a7166aa0404db638154715f", ui_wf_tl:"/_blob/47da4a37fe4ae7a581e622e7b715b231", ui_wf_tr:"/_blob/28c7d992a4ab5c77002ff43a2a826e78", ui_wf_bl:"/_blob/8ed23a9e182584cc88fc3fe653e75eaa", ui_wf_br:"/_blob/fd183734fa135bdb0086d4ce4201db89", ui_wf_t:"/_blob/a70dd4d771d1f53ab2b70f072fdb36ad", ui_wf_b:"/_blob/d7c140405fa15b0dcf246d2220a69cab", ui_wf_l:"/_blob/7318ce8753ec9a23477573f0f75e30a1", ui_wf_r:"/_blob/5101bbc9136ccfb861cefaa9a095c55a", ui_wf_fill:"/_blob/bda0df6c434fb949841b944ff1c730f1", ui_wf_gem:"/_blob/785f6cfcafd901ecb3b2d2978128fede", ui_tower_bg:"/_blob/3389fe49d07f258b319786fc2335cec0", ui_dun_bg:"/_blob/9cfc9fe839028922a27bfdb0605c70ee", ico_bolt:"/_blob/05fe4252b7485e368366e4dffe394a66", ico_book:"/_blob/2e657c97652b0f1548959b3ba73097d0", ico_calendar:"/_blob/28b08da830550a27e60cfabe48e2f40f", ico_cart:"/_blob/66ac0f2178a4f61c23e99b390c2830cc", ico_castle:"/_blob/3aaf3ce99e391ebf89ae1a59d0b87070", ico_chart:"/_blob/5ff8241d1e564f92209e60036e1acfbe", ico_chest:"/_blob/b4498c3be2a3ddb9c2a8c168f3cd3793", ico_crown:"/_blob/726b40ca89fec26582517ee7632ce034", ico_dragon:"/_blob/5624e3cf33670e21a270c85b69c3f4e3", ico_fire:"/_blob/1396dcf9c6ecce4ff257bfc4a83d8f9a", ico_fireworks:"/_blob/c9eca74b30b3c2ddbfdf8e9497046a51", ico_gift:"/_blob/5bf7b03df16fb82130eea9a9ee3a069b", ico_hammer:"/_blob/f9d775f950d83eb5cc845d943c56eb92", ico_heart:"/_blob/3f2f57c08a2433bd7cb2fd524893b50d", ico_hourglass:"/_blob/3ecd48cf1ef6d17ea0200b28f79349b3", ico_lock:"/_blob/4af82623fe3a16e7d86223485e47cff3", ico_map:"/_blob/3346be2b79c3900323d2ff1105220f84", ico_orb:"/_blob/cb16bbb522c4ed860d6a9a4ed6e9808f", ico_pencil:"/_blob/7765a3092de7dd599c00fd9466e61599", ico_people:"/_blob/9eb61e623c0bfc66e90cf5bc7b873982", ico_person:"/_blob/fedb84d748067dd61b131cd9b02b6b6d", ico_scroll:"/_blob/dbda2ce7427ad121025e70e4f84de16e", ico_search:"/_blob/2f48c9f84e268e27d468bab6bbd75674", ico_shield:"/_blob/c7a60ce2e25894ce4d77d912f851d665", ico_sparkle:"/_blob/ff4877571b2aeb0b13ea81b174bda695", ico_swords:"/_blob/5aa9686cc17b7a51c6f23f79e58bcdbf", ico_tower:"/_blob/96fcf9276d9177e3e0f25c055db44202", ico_trophy:"/_blob/10c6516f86fb7e7f6581bf8035886769", ico_unlock:"/_blob/bde942c19eaeab8489b3e36673ec1998", ico_warn:"/_blob/4851f88c1915b91d01f5e8bb1e9ab1aa", ui_box_bg:"/_blob/b499fec3cbd16609e2c92f67731e8700", ui_bag_bg:"/_blob/c405e5e203453d772573d075cf1ab359", ui_rune_bg:"/_blob/f58fda38ab0d69a991216efa5e2dd77c", ui_codex_bg:"/_blob/7bdf9e0cc16ddcbf6105e720f9124725", ui_guild_bg:"/_blob/356a78968f2b8e6bfd317bf0229f5f4d", ui_store_bg:"/_blob/83d632458ccc4d89a8aedd9ed4bd4fad", ui_store_tab_on:"/_blob/e3816d0c9e3d014f9d648d599fefb38c", ui_store_slot_on:"/_blob/d2a5416b0a550f714cbdfc7517eb79db", ui_store_cat_on:"/_blob/ebb03be9020dd4b9e8dbebd8b9233874", ui_cal_day:"/_blob/1c65990ea6021f8e6f2c2b7fa59e4838", ui_cal_got:"/_blob/67ea413f15d039d7651569a8fc3ce522", ui_cal_today:"/_blob/13e53fff8beebc4f52192cc5355e27f0", ui_cal_big:"/_blob/66b5434dab0b302333c3cdc7060870a8", ui_cal_myst:"/_blob/6f5d9b6b2232ef058fd8d835aff332dd", ui_cal_check:"/_blob/031479c3b04c7678ec436426c0a6d841", pf_wins:"/_blob/187e162f96adf2fb0121597f280c2777", pf_mons:"/_blob/852ae3fa731c42c56678856f52116d2c", pf_codex:"/_blob/c076bca70299eb24360928efb3a6abe7", pf_stages:"/_blob/954928e41c4480c9d9e57c789529a104", pf_tower:"/_blob/52930704b4da59bf1dd061e415b95dc3", pf_arena:"/_blob/aa13e978ee84356c531f1e806a94623a", pf_ach:"/_blob/acc6d30ab6a2b9e3441a5cde48e19ba1", pf_runes:"/_blob/58a86abdf2ab356c8c151075190c588a", pf_summ:"/_blob/f1a92e0a0783afe1ba46df6a25ebbb90", ui_rew_card:"/_blob/bc3da15766da96076638364d4e647f54", ui_guild2_bg:"/_blob/b10fe140c3f4a44cd753fe4997cd8d96", ui_guild2_cloth:"/_blob/e7886a1ffc23678dd1562c286c912bd2", ui_gmem_bg:"/_blob/61f9d9d2ed9082093d91ffe3224a71b8", ui_gmem_cloth:"/_blob/f5f6875c79687388f16c48cea514851f", ui_gmem_btn_on:"/_blob/125a7346d15bf84c51532b46968ac8bd", ui_gmem_btn:"/_blob/88cf786e84fc701377cf05a78e510b83", ui_prep_bg:"/_blob/63c236256a98fb5a6436e8535fe52683", ui_vic_banner:"/_blob/3a9a059641181796417aed5e86e485f3", ui_vic_tile:"/_blob/ed95d2aba59ebaa2866fd8b6e37deb2a", ui_vic_bar:"/_blob/95e5d5a3ed41f351e77c84e7353be013", ui_win_frame:"/_blob/f574592c2923afd7321af22769ce0913", ui_win_ribbon:"/_blob/016672401428e2a155738a9a28d8551d", ui_win_close:"/_blob/993a519952a41a6041bc9fdb42b3f4c1", ui_win_btn_gold:"/_blob/0e13e153044812c9e85e23f2ec26babd", ui_win_btn_blue:"/_blob/64b5257cbbcbcb6111e756b8de8dd7b3", ui_win_btn_grey:"/_blob/ab8f92d66e4d4817a6c7f168d7883426", ui_win_row:"/_blob/146536adb9bace620991d11de7b00006", ui_win_tab:"/_blob/2805190c5c9314daafac25eac2ad4bdc", ui_win_tab_on:"/_blob/6f8984a06b04dd95abf13912087e10ff", ui_win_tog_on:"/_blob/fbeb8020630d894a88cbce60fd6c1387", ui_win_tog_off:"/_blob/0475d81d5ce3f6aabda634d92888435b", ui_win_chk:"/_blob/ed9c571c16b0be6918f289c10d3b4546", ui_win_chk_on:"/_blob/4edc8d218f3a6ce45345766e0f94c107"};
 const onClaude = location.protocol === "https:" && !/github\.io$/.test(location.hostname);
 const assetUrl = n => (onClaude && BLOB[n]) || "assets/" + n + ".webp";
 Object.keys(MON).forEach(id => { const a = MON[id].art; if (a && HAVE.has(a)) ART[id] = assetUrl(a); if (a && HAVE.has(a + "_awakened")) ART[id + "_aw"] = assetUrl(a + "_awakened"); });
@@ -5480,7 +5555,7 @@ function show(id) {
   if (id === "world") renderWorld();
   if (id === "place") renderPlace();
   if (id === "tower") renderTower();
-  if (id === "guild") renderGuild();
+  if (id === "guild") { gmView = false; renderGuild(); }
   if (id === "home") { paintEvent(); paintNext(); }
   $("quick").classList.toggle("hide", id === "battle");
   $("eventChip").style.display = id === "home" ? "" : "none";
@@ -7008,15 +7083,15 @@ function arenaHelp() {
     <p style="margin:0 0 6px">בכל דרגה חדשה מקבלים פרס חד־פעמי. כל יום חלק מהשחקנים תוקפים את ההגנה שלך, ואפשר לנקום ביומן ההגנה.</p>
     <button class="btn" onclick="closeModal()" style="width:100%">הבנתי</button>`);
 }
-function botProfile(b) {
+function botProfile(b, guild) {
   const A = arenaState(), R0 = ratingsSorted(A); let pos = 1; for (let k = 0; k < NBOTS; k++) if (R0.idx[k] === b.i) { pos = k + 1; break; }
   openModal(`<div style="display:flex;gap:12px;align-items:center">${botAv(b).replace('class="av"', 'class="av" style="width:64px;height:64px;border-color:' + rankOf(b.r)[2] + '"')}
       <div><h3 style="margin:0">${esc(b.name)} <span style="color:var(--muted);font-size:13px">${esc(b.g)}</span></h3>
       <div style="color:${rankOf(b.r)[2]};font-weight:700">${rankOf(b.r)[1]} · <span dir="ltr">${b.r}</span> · מקום ${fmt(pos)}</div>
       <div style="font-size:12px;color:var(--muted)">${fmt(b.w)} ניצחונות · ${fmt(b.l)} הפסדים · "${esc(b.motto)}"</div></div></div>
     <div class="xp-list" style="margin-top:10px">${b.team.map(([id, lv], k) => `<div class="mcard ${rarCls(id)}">${k === 0 ? `<span class="leadtag">${azi("crown")}</span>` : ""}<div class="pic">${sprite(id)}</div>${starRow(id, MON[id].st)}<span class="nm">${esc(MON[id].n)}</span><span class="lv">רמה ${lv}</span></div>`).join("")}</div>
-    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn" id="bpFight">${azi("sw")}להילחם (כרטיס 1)</button><button class="btn ghost" onclick="closeModal()">סגירה</button></div>`);
-  $("bpFight").onclick = () => { closeModal(); fightBot(b); };
+    <div style="display:flex;gap:8px;margin-top:10px">${guild ? "" : `<button class="btn" id="bpFight">${azi("sw")}להילחם (כרטיס 1)</button>`}<button class="btn ghost" onclick="closeModal()">סגירה</button></div>`);
+  if ($("bpFight")) $("bpFight").onclick = () => { closeModal(); fightBot(b); };
 }
 const arenaStage = (b, logEntry) => ({id:"זירה", n:b.name, arena:true, opp:{i:b.i, name:b.name, r:b.r}, rev:logEntry || null, bg:"arena", cost:0, waves:[b.team.map(([id, lv]) => [id, lv, null, botMult(b)])]});
 function fightBot(b, logEntry) { pickedStage = arenaStage(b, logEntry); show("team"); }
@@ -8228,15 +8303,16 @@ const skMul = (u, si) => 1 + .1 * (((u.skl && u.skl[si]) || 1) - 1);
 const GNAMES = ["אבירי הענן", "שומרי האתר", "להבי הסערה", "כתר הדרקון", "צללי הירח", "NOVA Legion", "המזמנים הנצחיים", "Phoenix Order"];
 function guildState() {
   const G = S.guild; if (!G) return null;
+  gInit(G); if (!G.wd || G.wd.w !== weekNo()) G.wd = {w:weekNo(), me:0};
   if (G.week !== weekNo()) { G.week = weekNo(); G.boss = {max:Math.round(4e5 + G.lvl * 8e4), hp:0, my:0, done:false, att:{}}; G.boss.hp = G.boss.max; }
-  if (G.day !== today()) { const days = Math.max(1, Math.min(7, dayNum() - (G.dn || dayNum() - 1))); G.dn = dayNum(); G.day = today();
+  if (G.day !== today()) { const days = Math.max(1, Math.min(7, dayNum() - (G.dn || dayNum() - 1))); G.dn = dayNum(); G.day = today(); gDaily(G, days);
     if (!G.boss.done) G.boss.hp = Math.max(0, G.boss.hp - Math.round(G.boss.max * .11 * days * (.8 + R() * .4))); G.xp += 150 * days; }
   while (G.xp >= 1000 * G.lvl) { G.xp -= 1000 * G.lvl; G.lvl++; }
   return G;
 }
-function joinGuild(name) {
+function joinGuild(name, founder) {
   const A = arenaState(), base = Math.floor(R() * 9000);
-  S.guild = {name, lvl:1 + Math.floor(R() * 4), xp:0, coins:0, week:-1, day:"", dn:dayNum(), donated:"", members:Array.from({length:19}, (_, i) => base + i * 47 % 9000)};
+  S.guild = {name, role:founder ? "leader" : "member", since:dayNum(), lvl:1 + Math.floor(R() * 4), xp:0, coins:0, week:-1, day:"", dn:dayNum(), donated:"", members:Array.from({length:19}, (_, i) => base + i * 47 % 9000)};
   guildState(); save(true); renderGuild();
 }
 const GSHOP = [{k:"gl", img:["scroll_l"], n:"מגילה אגדית", p:200, r:{l:1}}, {k:"gld", img:["scroll_ld"], n:"מגילת אור וחושך", p:300, r:{ld:1}}, {k:"gr", img:["shop_rune6", "rune_blade"], n:"רון של 6 כוכבים", p:180, r:{rune:6}},
@@ -8287,7 +8363,7 @@ function renderGuild() {
       <div class="stages">${GNAMES.map((n, i) => `<button class="stage" data-n="${esc(n)}" data-e="${i % 6 + 1}"><b><img class="rankic" src="assets/emblem_${i % 6 + 1}.webp" alt=""> ${esc(n)}</b><span class="meta"><span>רמה ${2 + (i * 3) % 7}</span><span>${14 + (i * 5) % 6}/20 חברים</span></span><span class="meta"><span>להצטרף ▶</span></span></button>`).join("")}</div>
       <div class="card" style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>או להקים גילדה משלך:</b><input id="gName" maxlength="20" placeholder="שם הגילדה" style="padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#0b1330;color:var(--ink);font:inherit"><button class="btn" id="gNew">להקים (500 💎)</button></div>`;
     body.querySelectorAll("[data-n]").forEach(b => b.onclick = () => { joinGuild(b.dataset.n); S.guild.em = +b.dataset.e; save(); renderGuild(); toast(`הצטרפת ל${b.dataset.n}!`); });
-    $("gNew").onclick = () => { const n = $("gName").value.trim(); if (!n) return toast("כתוב שם לגילדה"); if (S.gem < 500) return toast("צריך 500 גבישים"); S.gem -= 500; joinGuild(n); S.guild.lvl = 1; S.guild.members = S.guild.members.slice(0, 4); save(true); renderTop(); renderGuild(); };
+    $("gNew").onclick = () => { const n = $("gName").value.trim(); if (!n) return toast("כתוב שם לגילדה"); if (S.gem < 500) return toast("צריך 500 גבישים"); S.gem -= 500; joinGuild(n, true); S.guild.lvl = 1; S.guild.members = S.guild.members.slice(0, 4); save(true); renderTop(); renderGuild(); };
     return;
   }
   const A = arenaState(), Bs = G.boss, pct = Math.round(Bs.hp / Bs.max * 100), att = Bs.att[today()] || 0, bossId = TOWER_BOSS[weekNo() % TOWER_BOSS.length];
@@ -8318,14 +8394,239 @@ function renderGuild() {
   </div>`;
   $("gFlag2").onclick = flagModal;
   setTimeout(guildArt, 0);
-  $("gDon").onclick = () => { if (G.donated === today()) return; if (S.mana < 20000) return toast("צריך 20,000 זהב"); S.mana -= 20000; G.coins += 30; G.xp += 200; G.donated = today(); SFX.up(); guildState(); save(true); renderTop(); renderGuild(); };
+  $("gDon").onclick = () => { if (G.donated === today()) return; if (S.mana < 20000) return toast("צריך 20,000 זהב"); S.mana -= 20000; G.coins += 30; G.xp += 200; G.donated = today(); G.dons = (G.dons || 0) + 1; G.wd.me += 20000; SFX.up(); guildState(); save(true); renderTop(); renderGuild(); };
   $("gBoss").onclick = () => { pickedStage = {id:"בוס גילדה", n:MON[bossId].n, special:"gboss", cost:0, bg:"guild_boss", boss:true, waves:[[[bossId, 40, "boss"]]]}; show("team"); };
   body.querySelectorAll("[data-g]").forEach(b => b.onclick = () => storeBuy("guild", GSHOP.find(i => i.k === b.dataset.g)));
-  $("gLeave").onclick = () => { openModal(`<h3 style="margin:0 0 8px">לעזוב את ${esc(G.name)}?</h3><p style="font-size:12.5px;color:var(--muted)">מטבעות הגילדה יימחקו.</p><div style="display:flex;gap:8px"><button class="btn" id="glY">לעזוב</button><button class="btn ghost" onclick="closeModal()">ביטול</button></div>`); $("glY").onclick = () => { S.guild = null; save(true); closeModal(); renderGuild(); }; };
+  $("gLeave").onclick = gLeaveAsk;
 }
 // the painted hall (G02, the user's second template): the four sections (members, donation, shop, log) open in a window from the bottom buttons
 let ghPop = null;
 function ghClose() { const b = document.createElement("button"); b.className = "btn ghost ghx"; b.textContent = "סגירה"; b.onclick = closeModal; $("modalCard").appendChild(b); }
+/* ============================== GUILD ROLES (2026-11-07) ==============================
+   The player holds one role in the guild: leader (founded it, or was handed it) / deputy / member. The guild's other members are bots; one of them
+   leads when the player doesn't. Every guild action goes through gAct(), which checks gCan() again at the moment it runs (hidden buttons are not
+   the protection). The save is the authority: there is no game server, so gCan() guards the only place the guild state is changed. */
+const GROLE = {leader:"מנהיג", deputy:"סגן", member:"חבר"};
+const G_MAX = 20, G_DEP_MAX = 3;
+function gInit(G) {                   // fills what older saves lack (once); a joined guild gets a bot leader
+  if (G.rv !== 1) {
+    G.role = G.role || "member"; G.roles = G.roles || {}; G.dperm = G.dperm || {inv:true, req:true, kick:false};
+    G.req = G.req || []; G.inv = G.inv || []; G.kicked = G.kicked || []; G.bs = G.bs || {}; G.dons = G.dons || 0; G.since = G.since || G.dn || dayNum(); G.rv = 1;
+  }
+  if (G.role !== "leader" && G.members.length && !G.members.some(i => G.roles[i] === "leader")) {   // always someone leads: the strongest member takes over
+    Object.keys(G.roles).forEach(k => { if (G.roles[k] === "leader") delete G.roles[k]; });
+    const A = arenaState(); let best = G.members[0]; G.members.forEach(i => { if (getBot(A, i).r > getBot(A, best).r) best = i; }); G.roles[best] = "leader";
+  }
+}
+function gDaily(G, days) {            // a new day: invited players join if there is room, new join requests arrive, a faithful member becomes deputy
+  G.inv = G.inv.filter(i => { if (G.members.length + 1 < G_MAX && !G.members.includes(i)) { G.members.push(i); G.bs[i] = dayNum(); return false; } return !G.members.includes(i); });
+  if (G.members.length + 1 < G_MAX && G.req.length < 5) {
+    const rg = srng(dayNum() * 97 + G.members.length * 13), n = Math.min(5 - G.req.length, 1 + Math.floor(rg() * 2));
+    for (let k = 0; k < n * 4 && G.req.length < 5; k++) { const i = Math.floor(rg() * NBOTS); if (!G.members.includes(i) && !G.req.includes(i) && !G.kicked.includes(i) && !G.inv.includes(i)) G.req.push(i); }
+  }
+  if (G.role === "member" && G.dons >= 5) { G.role = "deputy"; G.promo = 1; }
+}
+const gRoleOf = (G, t) => t === "me" ? G.role : G.members.includes(t) ? (G.roles[t] || "member") : null;
+const gDeputies = G => (G.role === "deputy" ? 1 : 0) + G.members.filter(i => G.roles[i] === "deputy").length;
+function gCan(act, t) {               // the one rule book: what the player may do, to whom
+  const G = S.guild; if (!G) return false; gInit(G);
+  const me = G.role, lead = me === "leader", dep = me === "deputy", tr = t === undefined ? null : gRoleOf(G, t), mem = t !== "me" && G.members.includes(t);
+  switch (act) {
+    case "view": return true;
+    case "invite": return (lead || dep && G.dperm.inv) && (t === undefined || t !== "me" && !G.members.includes(t) && !G.kicked.includes(t));
+    case "requests": return lead || dep && G.dperm.req;
+    case "accept": case "reject": return (lead || dep && G.dperm.req) && G.req.includes(t);
+    case "promote": return lead && mem && tr === "member";
+    case "demote": return lead && mem && tr === "deputy";
+    case "transfer": return lead && mem;
+    case "kick": return mem && tr !== "leader" && (lead || dep && G.dperm.kick && tr === "member");
+    case "roles": return lead;
+    case "perm": return lead && t in G.dperm;
+    case "leave": return !lead || !G.members.length;     // a leader hands over the guild first (or is alone in it)
+  }
+  return false;
+}
+function gAct(act, t) {               // performs an action only if gCan allows it right now; returns whether it happened
+  const G = guildState();
+  if (!G || !gCan(act, t)) { toast("אין לך הרשאה לפעולה הזו"); return false; }
+  switch (act) {
+    case "promote": if (gDeputies(G) >= G_DEP_MAX) { toast(`אפשר עד ${G_DEP_MAX} סגנים`); return false; } G.roles[t] = "deputy"; break;
+    case "demote": delete G.roles[t]; break;
+    case "kick": G.members = G.members.filter(i => i !== t); delete G.roles[t]; G.kicked.push(t); if (GM.sel === t) GM.sel = "me"; break;
+    case "transfer": G.roles[t] = "leader"; G.role = "deputy"; break;          // the old leader stays on as a deputy
+    case "accept": if (G.members.length + 1 >= G_MAX) { toast("הגילדה מלאה"); return false; } G.req = G.req.filter(i => i !== t); G.members.push(t); G.bs[t] = dayNum(); break;
+    case "reject": G.req = G.req.filter(i => i !== t); break;
+    case "invite": if (!G.inv.includes(t)) G.inv.push(t); break;
+    case "perm": G.dperm[t] = !G.dperm[t]; break;
+    case "leave": S.guild = null; gmView = false; break;
+    default: return false;
+  }
+  save(true); renderGuild(); return true;
+}
+function gConfirm(title, text, ok, label) {   // every serious action asks first, naming the player and the exact action
+  openModal(`<h3 style="margin:0 0 8px">${title}</h3><p style="font-size:13px;color:#dfe6ff;margin:0 0 12px">${text}</p>
+    <div style="display:flex;gap:8px;justify-content:center"><button class="btn" id="gcY">${label || "אישור"}</button><button class="btn ghost" onclick="closeModal()">ביטול</button></div>`);
+  $("gcY").onclick = () => { closeModal(); ok(); };
+}
+const gLeaderName = G => G.role === "leader" ? prof().name : (() => { const i = G.members.find(x => G.roles[x] === "leader"); return i === undefined ? "" : getBot(arenaState(), i).name; })();
+const botLvl = b => Math.max(5, Math.min(80, Math.round(b.team.reduce((s, [, lv]) => s + lv, 0) / b.team.length * 1.4)));
+const gAgo = m => m < 60 ? `לפני ${m} דק'` : m < 1440 ? `לפני ${Math.floor(m / 60)} שע'` : `לפני ${Math.floor(m / 1440)} ימים`;
+function gmRows() {                   // every member with what the list shows; the bots' numbers come from their arena profile and a steady daily seed
+  const G = guildState(), A = arenaState(), wk = weekNo(), d = dayNum(), hr = Math.floor(Date.now() / 36e5);
+  const team = S.team.map(u => S.mons.find(m => m.uid === u)).filter(Boolean).map(m => [m.id, m.lvl]);
+  const rows = [{k:"me", me:true, name:prof().name, role:G.role, lvl:summLv(), pow:teamPow(team), don:G.wd.me, on:true, ago:0, days:d - G.since, r:A.r, av:`<img src="${avatarSrc()}" alt="">`}];
+  G.members.forEach(i => { const b = getBot(A, i), on = srng(i * 523 + hr)() < .28;
+    rows.push({k:i, b, name:b.name, role:G.roles[i] || "member", lvl:botLvl(b), pow:teamPow(b.team), don:Math.floor(srng(i * 7907 + wk * 131)() * 7) * 20000,
+      on, ago:on ? 0 : 5 + Math.floor(srng(i * 911 + d)() * 2160), days:Math.max(0, d - (G.bs[i] !== undefined ? G.bs[i] : G.since - (i * 37) % 200)), r:b.r, av:sprite(b.team[0][0])}); });
+  return rows;
+}
+let gmView = false;
+const GM = {view:"members", sel:"me", q:"", st:0, role:0, sort:0, page:0, ipage:0};
+const GM_ST = [["all", "הכל"], ["on", "מחוברים"], ["off", "לא מחוברים"]], GM_RO = [["all", "הכל"], ["leader", "מנהיג"], ["deputy", "סגנים"], ["member", "חברים"]];
+const GM_SO = [["pow", "עוצמה"], ["don", "תרומה"], ["lvl", "רמה"], ["act", "פעילות"]], GM_PG = 6;
+function gmFiltered() {
+  const q = GM.q.trim().toLowerCase(), st = GM_ST[GM.st][0], ro = GM_RO[GM.role][0], so = GM_SO[GM.sort][0];
+  return gmRows().filter(r => (!q || r.name.toLowerCase().includes(q)) && (st === "all" || (st === "on") === r.on) && (ro === "all" || r.role === ro))
+    .sort((a, b) => (so === "act" ? a.ago - b.ago : b[so] - a[so]) || (b.pow - a.pow) || a.name.localeCompare(b.name));
+}
+function gmCandidates() {             // players to invite: a steady list for today, never members, kicked players or open requests
+  const G = guildState(), A = arenaState(), rg = srng(dayNum() * 17 + 5), out = [];
+  for (let k = 0; out.length < 14 && k < 200; k++) { const i = Math.floor(rg() * NBOTS); if (!G.members.includes(i) && !G.kicked.includes(i) && !G.req.includes(i) && !out.includes(i)) out.push(i); }
+  return out.map(i => getBot(A, i));
+}
+function gmOpen() { gmView = true; GM.view = "members"; GM.sel = "me"; GM.page = 0; renderGuild(); }
+function gmArt() {                    // the members screen on the user's template (1536x1024)
+  const g = $("guild"), G = guildState(), P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`, mail = seasonMail(arenaState()).length;
+  if (GM.view === "requests" && !gCan("requests") || GM.view === "invite" && !gCan("invite") || GM.view === "roles" && !gCan("roles")) GM.view = "members";
+  let o = $("gm2"); if (!o) { o = document.createElement("div"); o.id = "gm2"; g.querySelector(".page").appendChild(o); }
+  const menu = [["members", "👥", "חברי הגילדה"]];
+  if (gCan("requests")) menu.push(["requests", "🤝", "בקשות הצטרפות", G.req.length]);
+  if (gCan("invite")) menu.push(["invite", "➕", "הזמנת שחקנים"]);
+  if (gCan("roles")) menu.push(["roles", "👑", "ניהול תפקידים"]);
+  if (G.role !== "leader") menu.push(["leave", "🚪", "עזיבת הגילדה"]);
+  const MY = [438, 520, 600, 680];
+  o.innerHTML = `
+    <span class="t res" style="${P(60, 15, 90, 53)}">${fmt(G.coins)}</span><span class="t res" style="${P(150, 15, 90, 53)}">💎 ${fmt(S.gem)}</span><span class="t res" style="${P(240, 15, 120, 53)}">💰 ${fmt(S.mana)}</span>
+    <span class="t" style="${P(26, 15, 34, 53)};font-size:24px">🪙</span>
+    <span class="t gold tf" style="${P(600, 85, 340, 78)};font-size:46px">חברי הגילדה</span>
+    <button class="rnd" id="gmGift" style="${P(1258, 4, 78, 76)}" aria-label="פרס כניסה יומי"></button>
+    <button class="rnd" id="gmMail" style="${P(1351, 4, 78, 76)}" aria-label="תיבת הדואר">${mail ? `<b class="bd">${mail}</b>` : ""}</button>
+    <button class="rnd" id="gmSet" style="${P(1444, 4, 78, 76)}" aria-label="הגדרות"></button>
+    <i class="cloth" style="${P(30, 150, 255, 780)};filter:${clothFilter(GCOL[G.col || 0], 274)}"></i>
+    <img class="emb" src="assets/emblem_${G.em || 1}.webp" alt="" style="${P(104, 222, 112, 112)}">
+    <span class="t gold" style="${P(60, 352, 200, 40)};font-size:24px;font-weight:900">${esc(G.name)}</span>
+    ${menu.map(([k, ic, n, c], j) => `<button class="gmm${GM.view === k ? " on" : ""}" data-v="${k}" style="${P(48, MY[j] - 4, 218, 74)}">${ic} ${n}${c ? `<b class="bd">${c}</b>` : ""}</button>`).join("")}
+    ${MY.slice(menu.length).map(y => `<i class="gmm-off" style="${P(58, y + 8, 198, 50)}"></i>`).join("")}
+    <button class="gmm" id="gmBack" style="${P(48, 756, 218, 74)}">→ לאולם הגילדה</button>
+    <div id="gmMain" style="${P(292, 205, 834, 692)}"></div>
+    <div id="gmSide" style="${P(1150, 180, 352, 720)}"></div>`;
+  o.querySelectorAll(".gmm[data-v]").forEach(b => b.onclick = () => {
+    if (b.dataset.v === "leave") return gLeaveAsk();
+    GM.view = b.dataset.v; GM.page = 0; GM.ipage = 0; gmArt(); });
+  $("gmBack").onclick = () => { gmView = false; renderGuild(); };
+  $("gmGift").onclick = loginModal;
+  $("gmMail").onclick = () => { arenaTab = "ranks"; azRw.tab = "season"; show("arena"); };
+  $("gmSet").onclick = () => gdMenu("הגדרות", [["🔊 צלילים: הפעלה / כיבוי", () => $("muteBtn").click()], ["⛶ מסך מלא", () => $("fsBtn").click()], ["❓ איך משחקים", helpModal]]);
+  gmMainPaint(); gmSidePaint();
+  if (G.promo) { delete G.promo; save(); toast("המנהיג קידם אותך לסגן!"); }
+}
+function gmMainPaint() {              // the centre: filters + list (members), requests, invites or the deputies' permissions
+  const m = $("gmMain"); if (!m) return; const G = guildState(), A = arenaState(), P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+  const need = 1000 * G.lvl;
+  const strip = `<div class="gm-strip" style="${P(10, 72, 814, 40)}"><span>👥 <b>${G.members.length + 1}/${G_MAX}</b></span><span>⚔ דירוג גילדה <b>#${guildRank(G)}</b></span><span>🛡 רמה <b>${G.lvl}</b></span>
+    <span class="gm-xp"><i style="width:${Math.min(100, G.xp / need * 100)}%"></i><b dir="ltr">${fmt(G.xp)} / ${fmt(need)}</b></span></div>`;
+  const pager = (pg, n) => `<button class="gm-pg" id="gmNext" style="${P(262, 628, 78, 74)}" ${pg >= n - 1 ? "disabled" : ""} aria-label="העמוד הבא"></button>
+    <span class="t gm-pgn" style="${P(350, 645, 110, 38)}" dir="ltr">${Math.min(pg + 1, Math.max(1, n))} / ${Math.max(1, n)}</span>
+    <button class="gm-pg" id="gmPrev" style="${P(476, 628, 78, 74)}" ${pg <= 0 ? "disabled" : ""} aria-label="העמוד הקודם"></button>`;
+  const pgWire = (key, n, paint) => { const nx = $("gmNext"), pv = $("gmPrev"); if (nx) nx.onclick = () => { if (GM[key] < n - 1) { GM[key]++; paint(); } }; if (pv) pv.onclick = () => { if (GM[key] > 0) { GM[key]--; paint(); } }; };
+  if (GM.view === "members") {
+    const L = gmFiltered(), n = Math.ceil(L.length / GM_PG); GM.page = Math.max(0, Math.min(GM.page, n - 1));
+    m.innerHTML = `<input id="gmQ" class="gm-q" style="${P(60, -6, 200, 74)}" placeholder="חיפוש שחקן..." value="${esc(GM.q)}" autocomplete="off" aria-label="חיפוש שחקן">
+      <button class="gm-dd" id="gmSo" style="${P(278, -6, 152, 74)}">מיון: ${GM_SO[GM.sort][1]}</button>
+      <button class="gm-dd" id="gmRo" style="${P(443, -6, 195, 74)}">תפקיד: ${GM_RO[GM.role][1]}</button>
+      <button class="gm-dd" id="gmSt" style="${P(650, -6, 176, 74)}">סטטוס: ${GM_ST[GM.st][1]}</button>
+      ${strip}<div id="gmList" style="${P(4, 114, 826, 520)}"></div>${pager(GM.page, n)}
+      <span class="t gm-cnt" style="${P(560, 645, 260, 38)}">מוצגים ${L.length ? GM.page * GM_PG + 1 : 0}-${Math.min(L.length, (GM.page + 1) * GM_PG)} מתוך ${L.length}</span>`;
+    const q = $("gmQ"); q.oninput = () => { GM.q = q.value; GM.page = 0; gmListPaint(); };
+    $("gmSo").onclick = () => { GM.sort = (GM.sort + 1) % GM_SO.length; gmMainPaint(); };
+    $("gmRo").onclick = () => { GM.role = (GM.role + 1) % GM_RO.length; GM.page = 0; gmMainPaint(); };
+    $("gmSt").onclick = () => { GM.st = (GM.st + 1) % GM_ST.length; GM.page = 0; gmMainPaint(); };
+    gmListPaint();
+  } else if (GM.view === "requests") {
+    const L = G.req.map(i => getBot(A, i)), n = Math.ceil(L.length / GM_PG); GM.page = Math.max(0, Math.min(GM.page, n - 1)); const full = G.members.length + 1 >= G_MAX;
+    m.innerHTML = `<span class="t gold gm-cover" style="${P(4, -4, 826, 66)}">בקשות הצטרפות (${L.length})${full ? " · הגילדה מלאה" : ""}</span>${strip}
+      <div class="gm-list" style="${P(4, 114, 826, 520)}">${L.length ? L.slice(GM.page * GM_PG, (GM.page + 1) * GM_PG).map(b => `<div class="gm-row gm-act-row">
+        <span class="av gm-av">${sprite(b.team[0][0])}</span><span class="gm-nm">${esc(b.name)}</span><span class="gm-lv">${botLvl(b)}</span><span class="gm-pow">⚔ ${fmt(teamPow(b.team))}</span>
+        <span class="gm-rk" style="color:${rankOf(b.r)[2]}">${rankOf(b.r)[1]}</span>
+        <button class="btn gm-b" data-acc="${b.i}" ${full ? "disabled" : ""}>אישור</button><button class="btn ghost gm-b" data-rej="${b.i}">דחייה</button></div>`).join("")
+        : `<div class="gm-empty">אין בקשות הצטרפות כרגע. בקשות חדשות מגיעות כל יום כשיש מקום בגילדה.</div>`}</div>${pager(GM.page, n)}`;
+    m.querySelectorAll("[data-acc]").forEach(b => b.onclick = () => { const i = +b.dataset.acc, nm = getBot(A, i).name; gConfirm("אישור בקשה", `לצרף את <b>${esc(nm)}</b> לגילדה?`, () => { if (gAct("accept", i)) toast(`${nm} הצטרף לגילדה`); }, "לצרף"); });
+    m.querySelectorAll("[data-rej]").forEach(b => b.onclick = () => { const i = +b.dataset.rej, nm = getBot(A, i).name; gConfirm("דחיית בקשה", `לדחות את הבקשה של <b>${esc(nm)}</b>?`, () => gAct("reject", i), "לדחות"); });
+    pgWire("page", n, gmMainPaint);
+  } else if (GM.view === "invite") {
+    const L = gmCandidates(), n = Math.ceil(L.length / GM_PG); GM.ipage = Math.max(0, Math.min(GM.ipage, n - 1)); const full = G.members.length + 1 + G.inv.length >= G_MAX;
+    m.innerHTML = `<span class="t gold gm-cover" style="${P(4, -4, 826, 66)}">הזמנת שחקנים · הוזמנו ${G.inv.length}${full ? " · אין מקום פנוי" : ""}</span>${strip}
+      <div class="gm-list" style="${P(4, 114, 826, 520)}">${L.slice(GM.ipage * GM_PG, (GM.ipage + 1) * GM_PG).map(b => { const sent = G.inv.includes(b.i); return `<div class="gm-row gm-act-row">
+        <span class="av gm-av">${sprite(b.team[0][0])}</span><span class="gm-nm">${esc(b.name)}</span><span class="gm-lv">${botLvl(b)}</span><span class="gm-pow">⚔ ${fmt(teamPow(b.team))}</span>
+        <span class="gm-rk" style="color:${rankOf(b.r)[2]}">${rankOf(b.r)[1]}</span>
+        <button class="btn gm-b gm-b2" data-inv="${b.i}" ${sent || full ? "disabled" : ""}>${sent ? "הוזמן ✓" : "הזמנה"}</button></div>`; }).join("")}</div>
+      <span class="t gm-cnt" style="${P(560, 645, 260, 38)}">שחקן שהוזמן מצטרף מחר אם יש מקום</span>${pager(GM.ipage, n)}`;
+    m.querySelectorAll("[data-inv]").forEach(b => b.onclick = () => { const i = +b.dataset.inv; if (gAct("invite", i)) toast(`נשלחה הזמנה ל${getBot(A, i).name}`); });
+    pgWire("ipage", n, gmMainPaint);
+  } else {
+    const PERM = [["inv", "הזמנת שחקנים"], ["req", "אישור ודחיית בקשות הצטרפות"], ["kick", "הוצאת חברים רגילים"]];
+    m.innerHTML = `<span class="t gold gm-cover" style="${P(4, -4, 826, 66)}">ניהול תפקידים · סגנים ${gDeputies(G)}/${G_DEP_MAX}</span>${strip}
+      <div class="gm-list" style="${P(4, 114, 826, 520)}"><div class="gm-sub">מה סגנים רשאים לעשות:</div>${PERM.map(([k, n]) => `<div class="gm-row gm-perm"><span>${n}</span>
+        <button class="gm-tg${G.dperm[k] ? " on" : ""}" data-pm="${k}" aria-label="${n}"><i></i></button></div>`).join("")}
+        <div class="gm-sub">רק המנהיג מקדם סגנים, מוריד אותם לחבר, מוציא סגנים ומעביר את המנהיגות. לוחצים על חבר ברשימה כדי לנהל אותו.</div></div>`;
+    m.querySelectorAll("[data-pm]").forEach(b => b.onclick = () => gAct("perm", b.dataset.pm));
+  }
+}
+function gmListPaint() {              // the member rows of the current page (separate, so typing in the search keeps the keyboard)
+  const box = $("gmList"); if (!box) return; const L = gmFiltered(), n = Math.ceil(L.length / GM_PG); GM.page = Math.max(0, Math.min(GM.page, n - 1));
+  const RIC = {leader:"👑", deputy:"🛡", member:"👥"};
+  box.innerHTML = `<div class="gm-row gm-hd"><span class="gm-n">#</span><span class="gm-nm">שחקן</span><span class="gm-ro">תפקיד</span><span class="gm-lv">רמה</span><span class="gm-pow">עוצמה</span><span class="gm-don">תרומה</span><span class="gm-ago">פעילות</span></div>
+    ${L.length ? L.slice(GM.page * GM_PG, (GM.page + 1) * GM_PG).map((r, j) => `<button class="gm-row${String(r.k) === String(GM.sel) ? " sel" : ""}${r.me ? " me" : ""}" data-k="${r.k}">
+      <span class="gm-n">${GM.page * GM_PG + j + 1}</span><span class="av gm-av">${r.av}</span><span class="gm-nm"><i class="gm-dot${r.on ? " on" : ""}"></i>${esc(r.name)}${r.me ? " (אתה)" : ""}</span>
+      <span class="gm-ro r-${r.role}">${RIC[r.role]} ${GROLE[r.role]}</span><span class="gm-lv">${r.lvl}</span><span class="gm-pow">⚔ ${fmt(r.pow)}</span><span class="gm-don">💰 ${fmt(r.don)}</span>
+      <span class="gm-ago${r.on ? " on" : ""}">${r.on ? "מחובר" : gAgo(r.ago)}</span></button>`).join("")
+      : `<div class="gm-empty">אין חברים שמתאימים לחיפוש. <button class="btn ghost" id="gmReset">איפוס החיפוש</button></div>`}`;
+  box.querySelectorAll(".gm-row[data-k]").forEach(b => b.onclick = () => { GM.sel = b.dataset.k === "me" ? "me" : +b.dataset.k; gmListPaint(); gmSidePaint(); });
+  const rs = $("gmReset"); if (rs) rs.onclick = () => { GM.q = ""; GM.st = 0; GM.role = 0; GM.page = 0; gmMainPaint(); };
+  const nx = $("gmNext"), pv = $("gmPrev"), pn = document.querySelector("#gmMain .gm-pgn"), cnt = document.querySelector("#gmMain .gm-cnt");
+  if (nx) { nx.disabled = GM.page >= n - 1; nx.onclick = () => { if (GM.page < n - 1) { GM.page++; gmListPaint(); } }; }
+  if (pv) { pv.disabled = GM.page <= 0; pv.onclick = () => { if (GM.page > 0) { GM.page--; gmListPaint(); } }; }
+  if (pn) pn.textContent = `${Math.min(GM.page + 1, Math.max(1, n))} / ${Math.max(1, n)}`;
+  if (cnt) cnt.textContent = `מוצגים ${L.length ? GM.page * GM_PG + 1 : 0}-${Math.min(L.length, (GM.page + 1) * GM_PG)} מתוך ${L.length}`;
+}
+function gmSidePaint() {              // the chosen member: picture, name, level, power, details and only the actions the player may take on them
+  const sd = $("gmSide"); if (!sd) return; const G = guildState(), P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+  let r = gmRows().find(x => String(x.k) === String(GM.sel)); if (!r) { GM.sel = "me"; r = gmRows()[0]; }
+  const t = r.me ? "me" : r.k, acts = [["👤", "פרופיל", () => r.me ? profileModal() : botProfile(r.b, true)]];
+  if (r.me) { if (gCan("leave")) acts.push(["🚪", "עזיבה", gLeaveAsk]); }
+  else {
+    if (gCan("promote", t)) acts.push(["⬆", "קידום לסגן", () => gConfirm("קידום לסגן", `לקדם את <b>${esc(r.name)}</b> מחבר לסגן?`, () => { if (gAct("promote", t)) toast(`${r.name} קודם לסגן`); }, "לקדם")]);
+    if (gCan("demote", t)) acts.push(["⬇", "הורדה לחבר", () => gConfirm("הורדה בדרגה", `להוריד את <b>${esc(r.name)}</b> מסגן לחבר?`, () => { if (gAct("demote", t)) toast(`${r.name} הורד לחבר`); }, "להוריד")]);
+    if (gCan("transfer", t)) acts.push(["👑", "העברת מנהיגות", () => gConfirm("העברת מנהיגות", `להעביר את המנהיגות של <b>${esc(G.name)}</b> ל<b>${esc(r.name)}</b>? אתה תהיה סגן.`,
+      () => gConfirm("אישור אחרון", `<b>אי אפשר לבטל את זה.</b> ${esc(r.name)} יהיה המנהיג, ורק הוא יוכל להחזיר לך את המנהיגות. להמשיך?`, () => { if (gAct("transfer", t)) toast(`${r.name} הוא המנהיג החדש`); }, "להעביר"), "המשך")]);
+    if (gCan("kick", t)) acts.push(["🚫", "הוצאה", () => gConfirm("הוצאה מהגילדה", `להוציא את <b>${esc(r.name)}</b> (${GROLE[r.role]}) מהגילדה?`, () => { if (gAct("kick", t)) toast(`${r.name} הוצא מהגילדה`); }, "להוציא")]);
+  }
+  const SQ = [10, 94, 178, 261];
+  sd.innerHTML = `<span class="gm-pic" style="${P(36, 66, 120, 120)}">${r.av}</span>
+    <span class="t gold" style="${P(170, 80, 160, 40)};font-size:25px;font-weight:900;overflow:hidden"><i class="gm-dot${r.on ? " on" : ""}"></i>${esc(r.name)}</span>
+    <span class="t" style="${P(184, 139, 128, 38)};font-size:22px">רמה ${r.lvl}</span>
+    <span class="t gold" style="${P(30, 216, 290, 46)};font-size:30px;font-weight:900">⚔ ${fmt(r.pow)}</span>
+    ${[["👑", "תפקיד בגילדה", GROLE[r.role]], ["💰", "תרומה שבועית", fmt(r.don)], ["⏳", "פעילות", r.on ? "מחובר" : gAgo(r.ago)], ["📅", "ותק בגילדה", `${r.days} ימים`], ["🏆", "דירוג זירה", rankOf(r.r)[1]]]
+      .map(([ic, n, v], j) => `<span class="t gm-info" style="${P(26, 290 + j * 52, 298, 50)}"><span>${ic} ${n}</span><b>${v}</b></span>`).join("")}
+    ${acts.map(([ic, n], j) => `<button class="gm-sq" data-a="${j}" style="${P(SQ[j], 574, 76, 84)}"><span>${ic}</span><small>${n}</small></button>`).join("")}
+    ${SQ.slice(acts.length).map(x => `<i class="gm-sq-off" style="${P(x + 4, 578, 68, 76)}"></i>`).join("")}`;
+  sd.querySelectorAll(".gm-sq").forEach(b => b.onclick = () => acts[+b.dataset.a][2]());
+}
+function gLeaveAsk() {
+  const G = guildState(); if (!G) return;
+  if (!gCan("leave")) return toast("מנהיג מעביר את המנהיגות לחבר אחר לפני שעוזבים");
+  gConfirm(`לעזוב את ${esc(G.name)}?`, "מטבעות הגילדה יימחקו, והתפקיד שלך בגילדה יאבד.", () => { if (gAct("leave")) { show("guild"); toast("עזבת את הגילדה"); } }, "לעזוב");
+}
 const GD_MSG = ["ברוכים הבאים לגילדה! השתתפו בפעילויות, תרמו לגילדה ותהיו פעילים!", "השבוע כולם תוקפים את הבוס. כל ניסיון מקרב אותנו לפרס!",
   "תרומה יומית מעלה את רמת הגילדה, ואיתה את ההטבות של כולנו.", "מטבעות הגילדה שווים הרבה: הציצו בחנות הגילדה.", "אל תשכחו: שלוש מתקפות על הבוס בכל יום.",
   "גילדה חזקה היא גילדה פעילה. תודה לכל מי שתורם!", "מי שעולה בדירוג הזירה מביא כבוד לכל הגילדה!"];
@@ -8336,11 +8637,11 @@ function guildRank(G) {            // computed from the guild's name, level and 
   const dmg = G.boss ? (1 - G.boss.hp / G.boss.max) * 30 : 0;
   return Math.max(1, 120 + h % 200 - (G.lvl - 1) * 22 - Math.floor(dmg));
 }
-function clothFilter(hex) {        // the painted banner is purple (hue 285); turn its cloth to the guild's colour
+function clothFilter(hex, base = 285) {        // the painted banner is purple (hue 285); turn its cloth to the guild's colour
   const n = parseInt(hex.slice(1), 16), r = (n >> 16) / 255, g = (n >> 8 & 255) / 255, b = (n & 255) / 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn;
   if (d < .08) return "saturate(.12) brightness(.6)";
   let h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h = (h * 60 + 360) % 360;
-  return `hue-rotate(${Math.round(h - 285)}deg)`;
+  return `hue-rotate(${Math.round(h - base)}deg)`;
 }
 function gdMenu(title, items) {    // a small window of buttons (guild management, settings)
   openModal(`<h3 style="margin:0">${title}</h3><div class="gdm">${items.map((x, i) => `<button class="btn${x[2] ? " ghost" : ""}" data-i="${i}">${x[0]}</button>`).join("")}</div><button class="btn ghost" onclick="closeModal()">סגירה</button>`);
@@ -8349,13 +8650,16 @@ function gdMenu(title, items) {    // a small window of buttons (guild managemen
 }
 function guildArt() {
   const g = $("guild"), G = guildState(), on = HAVE.has("ui_guild2_bg") && HAVE.has("ui_guild2_cloth") && !!G;
-  g.classList.toggle("gdart", on); if (!on) { const o = $("gd2"); if (o) o.remove(); return; }
+  g.classList.toggle("gdart", on); if (!on) { g.classList.remove("gmv"); ["gd2", "gm2"].forEach(x => { const o = $(x); if (o) o.remove(); }); return; }
   g.style.setProperty("--gdbg", `url(${assetUrl("ui_guild2_bg")})`); g.style.setProperty("--gdcloth", `url(${assetUrl("ui_guild2_cloth")})`);
   $("topbar").style.display = "none";
+  const gmOk = ["ui_gmem_bg", "ui_gmem_cloth", "ui_gmem_btn", "ui_gmem_btn_on"].every(n => HAVE.has(n)); if (!gmOk) gmView = false;
+  g.classList.toggle("gmv", gmView);
+  if (gmView) { g.style.setProperty("--gdbg", `url(${assetUrl("ui_gmem_bg")})`); [["--gmcloth", "ui_gmem_cloth"], ["--gmbtn", "ui_gmem_btn"], ["--gmbtnon", "ui_gmem_btn_on"]].forEach(([v, n]) => g.style.setProperty(v, `url(${assetUrl(n)})`)); gmArt(); guildFit(); return; }
   const body = $("guildBody"), panels = [...body.querySelectorAll(".gh-panel")], A = arenaState(), Bs = G.boss, pct = Math.round(Bs.hp / Bs.max * 100), att = Bs.att[today()] || 0;
   const bossId = TOWER_BOSS[weekNo() % TOWER_BOSS.length], mem = G.members.map(i => getBot(A, i)).sort((a, b) => b.r - a.r), need = 1000 * G.lvl, pk = guildPerk(G), mail = seasonMail(A).length;
   const P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`, d = dayNum(), nm = k => esc(mem[((k % mem.length) + mem.length) % mem.length].name);
-  const lead = mem[0] ? esc(mem[0].name) : "", donMe = G.donated === today(), dead = Bs.done || Bs.hp <= 0, noAtt = att >= 3;
+  const lead = esc(gLeaderName(G)), donMe = G.donated === today(), dead = Bs.done || Bs.hp <= 0, noAtt = att >= 3;
   let o = $("gd2"); if (!o) { o = document.createElement("div"); o.id = "gd2"; g.querySelector(".page").appendChild(o); }
   o.innerHTML = `
     <span class="t res" style="${P(96, 12, 96, 52)}">${fmt(G.coins)}</span><span class="t res" style="${P(272, 12, 116, 52)}">${fmt(S.gem)}</span><span class="t res" style="${P(462, 12, 140, 52)}">${fmt(S.mana)}</span>
@@ -8399,7 +8703,7 @@ function guildArt() {
     <button class="nav" data-p="0" style="${P(1376, 782, 310, 76)};padding:0 18px 0 122px">חברי הגילדה</button>`;
   const pop = i => { ghPop = i; openModal(""); $("modalCard").classList.add("ghpop"); $("modalCard").appendChild(body.querySelectorAll(".gh-panel")[i]); ghClose(); };
   o.querySelectorAll(".nav").forEach(b => b.onclick = () => +b.dataset.p === 4
-    ? gdMenu("ניהול גילדה", [["🛡 דגל וסמל", flagModal], ["לעזוב גילדה", () => $("gLeave").onclick(), 1]]) : pop(+b.dataset.p));
+    ? gdMenu("ניהול גילדה", [["🛡 דגל וסמל", flagModal], ["לעזוב גילדה", () => $("gLeave").onclick(), 1]]) : +b.dataset.p === 0 && gmOk ? gmOpen() : pop(+b.dataset.p));
   $("gdLog2").onclick = () => pop(3);
   $("gdAtk").onclick = () => { const b = $("gBoss"); if (b && !b.disabled) b.onclick(); };
   $("gdFlag").onclick = flagModal;
@@ -8413,8 +8717,8 @@ function guildFit() {
   const g = $("guild"); if (!g.classList.contains("gdart")) return;
   const cs = getComputedStyle(g), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = g.clientWidth - pl - parseFloat(cs.paddingRight), H = g.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
-  const k = Math.min(W / 1777, H / 885);
-  g.querySelector(".page").style.transform = `translate(${(pl + (W - 1777 * k) / 2).toFixed(1)}px,${(pt + (H - 885 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  const gw = g.classList.contains("gmv") ? 1536 : 1777, gh = g.classList.contains("gmv") ? 1024 : 885, k = Math.min(W / gw, H / gh);
+  g.querySelector(".page").style.transform = `translate(${(pl + (W - gw * k) / 2).toFixed(1)}px,${(pt + (H - gh * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(g, g.querySelector(".page"), "--gdbg");
 }
 addEventListener("resize", () => { if ($("guild").classList.contains("on")) guildFit(); });
