@@ -486,7 +486,6 @@ img.awglow,.unit .spr img.awglow,.mdet .big img.awglow,.mcard .pic img.awglow,.r
 .gtile .gt{position:absolute;top:4px;right:6px;font-size:10px;font-weight:800;background:#0b1330;border:1px solid var(--rc);border-radius:999px;padding:0 6px}
 .gtile .gl{position:absolute;top:4px;left:6px;font-size:11px;font-weight:800;color:var(--gold2);direction:ltr}
 .gtile .rown{top:24px}
-#gearGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
 .rws-tabs button{min-width:30px;min-height:30px}   /* slot filters stay finger-sized on the smallest phones */
 .cxbar button.ess{min-height:30px}
 .gic img,.gic svg{width:100%;height:100%;object-fit:contain;display:block}   /* painted gear art inside a reward chip stays chip-sized */
@@ -4203,6 +4202,16 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 .rpop.rart .ic img{max-width:100%;max-height:100%;object-fit:contain}
 .rpop.rart b{top:62%;font-size:min(19px,4.4vh);color:#ffe9a6;text-shadow:0 2px 3px #000;font-family:"Suez One",serif}
 .rpop.rart span{top:73%;bottom:10%;display:grid;place-items:center;font-size:min(16px,3.8vh);color:#fff;text-shadow:0 1px 3px #000;line-height:1.25}
+
+/* ---- the side gaps of the painted 16:9 screens on wide phones: the same art, blurred and darkened, instead of flat dark blue (2026-11-07) ---- */
+#box.bxart{isolation:isolate;overflow:hidden}#box.bxart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--bxbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
+#bag.bgart{isolation:isolate;overflow:hidden}#bag.bgart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--bgbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
+#runes.rnart{isolation:isolate;overflow:hidden}#runes.rnart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--rnbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
+#codex.cxart{isolation:isolate;overflow:hidden}#codex.cxart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--cxbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
+#guild.gdart{isolation:isolate;overflow:hidden}#guild.gdart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--gdbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
+#store.start{isolation:isolate;overflow:hidden}#store.start::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--stbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
+#dungeon.dnart{isolation:isolate;overflow:hidden}#dungeon.dnart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--dnbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
+#team.ptart .page.pr-page{isolation:isolate;overflow:hidden}#team.ptart .page.pr-page::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--pbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
 /* ---- the fight tab (the user's clean concept, 2026-11-05): framed cards 2x2, the bottom panel (fight / opponent / my team), other opponents ---- */
 .fz{display:grid;grid-template-rows:minmax(0,1fr) clamp(62px,21.5%,112px) auto;gap:2.2%;height:100%;min-height:0;padding-top:clamp(6px,2.6%,16px);box-sizing:border-box;direction:rtl}
 .fz-cards{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3% 1.6%;min-height:0}
@@ -4536,16 +4545,6 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
   </section>
 
   <!-- ARMORY -->
-  <section class="screen" id="gear">
-    <div class="sky night" id="gearSky"></div><div class="shade" style="background:rgba(6,10,30,.55)"></div>
-    <div class="page">
-      <h2><button class="back" data-go="place">→ לנפחייה</button><span class="title-font">ארון הציוד</span><small style="font-size:13px;color:var(--muted)" id="gearCount"></small></h2>
-      <p style="margin:-4px 0 10px;color:#dfe6ff;font-size:12.5px">ציוד נופל מאויבים באיים: ככל שהאי רחוק יותר, הציוד חזק יותר. מרכיבים אותו דרך הכרטיס של כל מפלצת.</p>
-      <div class="chips" id="gearChips"></div>
-      <div id="gearGrid"></div>
-    </div>
-  </section>
-
   <!-- STORE: every shop in one place (owner's shop template) -->
   <section class="screen" id="store">
     <div class="sky night" id="storeSky"></div><div class="shade" style="background:rgba(6,10,30,.55)"></div>
@@ -5470,7 +5469,6 @@ function show(id) {
   if (id === "summon") renderSummon();
   if (id === "team") { renderTeam(); const sb = pickedStage && !pickedStage.arena && !pickedStage.special && !pickedStage.dungeon ? (ART["stage_" + String(pickedStage.id).replace("-", "_")] || ART[ISLES[isleOf(pickedStage) - 1].bg]) : pickedStage && pickedStage.arena ? ART.arena : pickedStage && ART[pickedStage.bg] || ART.sanctuary; setBg($("teamSky"), sb, () => {}); }
   if (id === "runes") renderRunes();
-  if (id === "gear") renderGear();
   if (id === "dungeon") renderDungeon();
   if (id === "arena") renderArena();
   if (id === "world") renderWorld();
@@ -7859,17 +7857,6 @@ function gearTile(g) {
   return `<button class="gtile" data-gid="${g.id}" style="--rc:${GRAR[g.rar].c}"><span class="gt">${g.tier}</span>${g.lvl ? `<span class="gl">+${g.lvl}</span>` : ""}${owner ? `<span class="rown">${sprite(owner.id)}</span>` : ""}
     <span class="gi">${gIcon(g)}</span><span class="gn">${esc(gName(g))}</span><span class="gm">${statTxt(g.main, gearMain(g))}</span></button>`;
 }
-let gearFilter = "all";
-function renderGear() {
-  setBg($("gearSky"), ART.forge || ART.hub, () => {});
-  const chips = [["all", "הכל"], ...Object.entries(GSLOT).map(([k, s]) => [k, s.n])];
-  $("gearChips").innerHTML = chips.map(([k, n]) => `<button class="chip ${gearFilter === k ? "on" : ""}" data-f="${k}">${n}</button>`).join("");
-  $("gearChips").querySelectorAll(".chip").forEach(b => b.onclick = () => { gearFilter = b.dataset.f; renderGear(); });
-  const list = S.gear.filter(g => gearFilter === "all" || g.slot === gearFilter).sort((a, b) => b.rar - a.rar || b.tier - a.tier || b.lvl - a.lvl);
-  $("gearGrid").innerHTML = list.length ? list.map(gearTile).join("") : '<p style="color:var(--muted)">עוד אין ציוד. אויבים באיים מפילים ציוד אחרי ניצחון, ובוסים תמיד.</p>';
-  $("gearCount").textContent = `${S.gear.length} פריטים`;
-  $("gearGrid").querySelectorAll(".gtile").forEach(b => b.onclick = () => gearDetail(+b.dataset.gid));
-}
 function gearDetail(id, back, swap) {
   const g = S.gear.find(x => x.id === id); if (!g) return;
   const owner = g.on && S.mons.find(m => m.uid === g.on), cost = gUpCost(g), can = g.lvl < 10;
@@ -7883,11 +7870,11 @@ function gearDetail(id, back, swap) {
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
       ${can ? `<button class="btn" id="gUp" ${S.mana < cost ? "disabled" : ""}>⚒ שדרוג</button>` : ""}${swap ? `<button class="btn ghost" id="gSwap">להחליף</button>` : ""}
       ${owner ? `<button class="btn ghost" id="gOff">להוריד</button>` : `<button class="btn ghost" id="gSell">מכירה (${fmt(gSell(g))} זהב)</button>`}<button class="btn ghost" id="gClose">סגירה</button></div>`);
-  const ret = () => { if (back) back(); else { closeModal(); renderGear(); } };
+  const ret = () => { if (back) back(); else closeModal(); };
   if ($("gUp")) $("gUp").onclick = () => { if (!S.gear.includes(g) || g.lvl >= 10 || S.mana < gUpCost(g)) return; S.mana -= gUpCost(g); g.lvl++; SFX.up(); save(); renderTop(); gearDetail(id, back, swap); };
   if ($("gSwap")) $("gSwap").onclick = swap;
   if ($("gOff")) $("gOff").onclick = () => { g.on = null; save(); ret(); };
-  if ($("gSell")) $("gSell").onclick = () => { if (!S.gear.includes(g) || g.on) return; S.mana += gSell(g); S.gear = S.gear.filter(x => x !== g); save(); renderTop(); closeModal(); if ($("gear").classList.contains("on")) renderGear(); };
+  if ($("gSell")) $("gSell").onclick = () => { if (!S.gear.includes(g) || g.on) return; S.mana += gSell(g); S.gear = S.gear.filter(x => x !== g); save(); renderTop(); closeModal();  };
   $("gClose").onclick = ret;
 }
 function pickGear(m, slot) { wideGearPick(m, slot); }
@@ -11360,7 +11347,7 @@ function runTest(h) {
   if (h === "freemap") { OWNER = true; S.tut = "done"; mapIsle = 7; show("map"); }
   if (h === "freetower") { OWNER = true; S.tut = "done"; show("tower"); }
   if (h === "bag") { S.tut = "done"; tutBubble(null); bagModal(); }
-  if (h === "gear") { S.tut = "done"; tutBubble(null); for (let i = 0; i < 14; i++) makeGear(null, 1 + (i % 7), i % 5); S.gear[3].on = S.mons[0].uid; S.gear[5].lvl = 6; curPlace = "forge"; show("gear"); }
+  if (h === "gear") { S.tut = "done"; tutBubble(null); for (let i = 0; i < 14; i++) makeGear(null, 1 + (i % 7), i % 5); S.gear[3].on = S.mons[0].uid; S.gear[5].lvl = 6; curPlace = "forge"; show("place"); bagCat = "gear"; bagSel = null; bagModal(); }
   if (h === "gdet") { S.tut = "done"; tutBubble(null); for (let i = 0; i < 6; i++) makeGear(Object.keys(GSLOT)[i % 6], 3 + (i % 3), 2 + (i % 3)); S.gear.slice(0, 4).forEach(g => g.on = S.mons[0].uid); show("box"); monDetail(S.mons[0].uid); }
   if (h === "gdrop") { S.tut = "done"; B = {auto:true, speed:3}; startBattle(STAGES[6]); }
   if (h.startsWith("ui-")) { S.tut = "done"; tutBubble(null); S.cleared["1-7"] = 1; const k = h.slice(3);
