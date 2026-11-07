@@ -4203,15 +4203,14 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 .rpop.rart b{top:62%;font-size:min(19px,4.4vh);color:#ffe9a6;text-shadow:0 2px 3px #000;font-family:"Suez One",serif}
 .rpop.rart span{top:73%;bottom:10%;display:grid;place-items:center;font-size:min(16px,3.8vh);color:#fff;text-shadow:0 1px 3px #000;line-height:1.25}
 
-/* ---- the side gaps of the painted 16:9 screens on wide phones: the same art, blurred and darkened, instead of flat dark blue (2026-11-07) ---- */
-#box.bxart{isolation:isolate;overflow:hidden}#box.bxart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--bxbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
-#bag.bgart{isolation:isolate;overflow:hidden}#bag.bgart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--bgbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
-#runes.rnart{isolation:isolate;overflow:hidden}#runes.rnart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--rnbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
-#codex.cxart{isolation:isolate;overflow:hidden}#codex.cxart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--cxbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
-#guild.gdart{isolation:isolate;overflow:hidden}#guild.gdart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--gdbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
-#store.start{isolation:isolate;overflow:hidden}#store.start::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--stbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
-#dungeon.dnart{isolation:isolate;overflow:hidden}#dungeon.dnart::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--dnbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
-#team.ptart .page.pr-page{isolation:isolate;overflow:hidden}#team.ptart .page.pr-page::before{content:"";position:absolute;inset:-40px;z-index:-1;background:var(--pbg) center/cover no-repeat;filter:blur(14px) brightness(.72) saturate(1.15);pointer-events:none}
+/* ---- the side gaps of the painted 16:9 screens on wide phones: the outermost strip of the screen's own art is stretched over the gap (seamless at the edge), darkening softly outward (2026-11-07) ---- */
+#box.bxart .bx-page,#bag.bgart,#runes.rnart,#codex.cxart,#guild.gdart,#store.start,#dungeon.dnart,#team.ptart .page.pr-page,#tower.twart .tw-stage{isolation:isolate;overflow:hidden}
+#tower.twart .tw-stage::before{display:none}
+.sidefill{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.sidefill i{position:absolute;background-repeat:no-repeat;transform:scaleX(-1)}
+.sidefill i::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(5,7,24,0) 0,rgba(5,7,24,.2) 40%,rgba(5,7,24,.55) 100%)}
+.sidefill i:last-child::after{background:linear-gradient(to left,rgba(5,7,24,0) 0,rgba(5,7,24,.2) 40%,rgba(5,7,24,.55) 100%)}
+.modal .card.ghpop .ghx{display:block;margin:12px auto 0;min-width:150px}
 /* ---- the fight tab (the user's clean concept, 2026-11-05): framed cards 2x2, the bottom panel (fight / opponent / my team), other opponents ---- */
 .fz{display:grid;grid-template-rows:minmax(0,1fr) clamp(62px,21.5%,112px) auto;gap:2.2%;height:100%;min-height:0;padding-top:clamp(6px,2.6%,16px);box-sizing:border-box;direction:rtl}
 .fz-cards{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3% 1.6%;min-height:0}
@@ -5418,12 +5417,20 @@ function bagArt() {                                   // the painted stage (P05b
   $("bagRes").querySelectorAll(".pe-plus").forEach(b => b.onclick = () => openStore("shop"));
   bagFit();
 }
+function sideArt(C, P, v) {        // fill the gaps beside a scaled painted stage with the same art mirrored at its edges
+  const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\) scale\(([\d.]+)\)/.exec(P.style.transform); if (!m) return;
+  const x = +m[1], y = +m[2], k = +m[3], W = P.offsetWidth * k, H = P.offsetHeight * k;
+  let f = C.querySelector(":scope>.sidefill"); if (!f) { f = document.createElement("div"); f.className = "sidefill"; f.innerHTML = "<i></i><i></i>"; C.prepend(f); }
+  const gR = C.clientWidth - x - W;    // only the outermost strip of scenery (1.4% of the art) is stretched over the gap, so no panel or frame is ever repeated
+  [[0, x, "0 0"], [x + W, gR, "100% 0"]].forEach(([l, w, bp], i) => { const e = f.children[i].style; e.display = w > 1 ? "" : "none"; e.left = l + "px"; e.top = y + "px"; e.width = w + "px"; e.height = H + "px"; e.backgroundImage = `var(${v})`; e.backgroundSize = `${(w / 0.014).toFixed(1)}px 100%`; e.backgroundPosition = bp; });
+}
 function bagFit() {
   const g = $("bag"); if (!g.classList.contains("bgart")) return;
   const cs = getComputedStyle(g), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = g.clientWidth - pl - parseFloat(cs.paddingRight), H = g.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1671, H / 941);
   g.querySelector(".page").style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  sideArt(g, g.querySelector(".page"), "--bgbg");
 }
 addEventListener("resize", () => { if ($("bag").classList.contains("on")) bagFit(); });
 $("bagSort").onclick = () => { const i = BAG_SORTS.findIndex(x => x[0] === bagSort); bagSort = BAG_SORTS[(i + 1) % BAG_SORTS.length][0]; renderBag(); };
@@ -5636,6 +5643,7 @@ function runeFit() {
   const W = r.clientWidth - pl - parseFloat(cs.paddingRight), H = r.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1672, H / 940);
   r.querySelector(".page").style.transform = `translate(${(pl + (W - 1672 * k) / 2).toFixed(1)}px,${(pt + (H - 940 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  sideArt(r, r.querySelector(".page"), "--rnbg");
 }
 addEventListener("resize", () => { if ($("runes").classList.contains("on")) runeFit(); });
 function runeMoveCost(m, r) {                        // a rune leaving a monster always costs its removal price: moved from another monster, or bumped out of this slot
@@ -6022,6 +6030,7 @@ function dunFit() {
   const W = d.clientWidth - pl - parseFloat(cs.paddingRight), H = d.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1671, H / 851);
   pg.style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 851 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  sideArt(d, pg, "--dnbg");
 }
 addEventListener("resize", () => { if ($("dungeon").classList.contains("on")) dunFit(); });
 $("goDungeon").onclick = () => { if (!dunOpen(1)) { toast("המבוך נפתח אחרי שמנצחים את הבוס של אי 1 (1-7)"); return; } show("dungeon"); };
@@ -7309,6 +7318,7 @@ function prepFit() {
   const W = pg.clientWidth - pl - parseFloat(cs.paddingRight), H = pg.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / PREP_W, H / PREP_H);
   t.querySelector(".prep").style.transform = `translate(${(pl + (W - PREP_W * k) / 2).toFixed(1)}px,${(pt + (H - PREP_H * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  sideArt(pg, t.querySelector(".prep"), "--pbg");
 }
 addEventListener("resize", () => { if ($("team").classList.contains("on")) prepFit(); });
 function renderPool() {
@@ -7593,6 +7603,7 @@ function codexFit() {
   const W = c.clientWidth - pl - parseFloat(cs.paddingRight), H = c.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1671, H / 941);
   c.querySelector(".page").style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  sideArt(c, c.querySelector(".page"), "--cxbg");
 }
 addEventListener("resize", () => { if ($("codex").classList.contains("on")) codexFit(); });
 let cxEl = "all", cxSel = null; const cxStars = {};
@@ -8042,6 +8053,7 @@ function storeFit() {
   const W = g.clientWidth - pl - parseFloat(cs.paddingRight), H = g.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1670, H / 941);
   g.querySelector(".page").style.transform = `translate(${(pl + (W - 1670 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  sideArt(g, g.querySelector(".page"), "--stbg");
 }
 addEventListener("resize", () => { if ($("store").classList.contains("on")) storeFit(); });
 function renderStore0() {
@@ -8181,6 +8193,7 @@ function twFit() {
   const W = st.clientWidth - pl - parseFloat(cs.paddingRight), H = st.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1671, H / 941);
   $("twSg").style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  sideArt(st, $("twSg"), "--twbg");
 }
 addEventListener("resize", () => { if ($("tower").classList.contains("on")) twFit(); });
 /* ----- extra dungeons ----- */
@@ -8313,6 +8326,7 @@ function renderGuild() {
 }
 // the painted hall (G01b): on when the template and the window kit are there; the four sections live behind the four painted tiles
 let ghPop = null;
+function ghClose() { const b = document.createElement("button"); b.className = "btn ghost ghx"; b.textContent = "סגירה"; b.onclick = closeModal; $("modalCard").appendChild(b); }
 function guildArt() {
   const g = $("guild"), on = HAVE.has("ui_guild_bg") && HAVE.has("ui_win_row") && !!guildState();
   g.classList.toggle("gdart", on); if (!on) return;
@@ -8322,8 +8336,8 @@ function guildArt() {
   const info = [["👥", "חברים", `${G.members.length + 1}/20`], ["🤲", "תרומה", G.donated === today() ? "תרמת היום ✓" : "20,000 זהב"], ["🏪", "חנות הגילדה", `🪙 ${fmt(G.coins)}`], ["📜", "יומן הגילדה", ""]];
   let t = $("ghTiles"); if (!t) { t = document.createElement("div"); t.id = "ghTiles"; t.className = "gh-tiles"; body.appendChild(t); }
   t.innerHTML = info.map(([ic, n, sub], i) => `<button class="gh-tile" data-p="${i}"><span class="ic">${ic}</span><b>${n}</b>${sub ? `<small>${sub}</small>` : ""}</button>`).join("");
-  t.querySelectorAll(".gh-tile").forEach(b => b.onclick = () => { ghPop = +b.dataset.p; openModal(""); $("modalCard").classList.add("ghpop"); $("modalCard").appendChild(body.querySelectorAll(".gh-panel")[ghPop]); });
-  if (ghPop !== null && $("modal").classList.contains("on") && $("modalCard").classList.contains("ghpop")) { $("modalCard").innerHTML = ""; $("modalCard").appendChild(panels[ghPop]); }
+  t.querySelectorAll(".gh-tile").forEach(b => b.onclick = () => { ghPop = +b.dataset.p; openModal(""); $("modalCard").classList.add("ghpop"); $("modalCard").appendChild(body.querySelectorAll(".gh-panel")[ghPop]); ghClose(); });
+  if (ghPop !== null && $("modal").classList.contains("on") && $("modalCard").classList.contains("ghpop")) { $("modalCard").innerHTML = ""; $("modalCard").appendChild(panels[ghPop]); ghClose(); }
   let rs = $("gdRes"); if (!rs) { rs = document.createElement("div"); rs.id = "gdRes"; rs.className = "gd-res"; body.appendChild(rs); }
   rs.innerHTML = `<span>💰 <b dir="ltr">${fmt(S.mana)}</b></span><span>💎 <b dir="ltr">${fmt(S.gem)}</b></span><span>🪙 <b dir="ltr">${fmt(G.coins)}</b></span>`;
   guildFit();
@@ -8334,6 +8348,7 @@ function guildFit() {
   const W = g.clientWidth - pl - parseFloat(cs.paddingRight), H = g.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1671, H / 941);
   g.querySelector(".page").style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  sideArt(g, g.querySelector(".page"), "--gdbg");
 }
 addEventListener("resize", () => { if ($("guild").classList.contains("on")) guildFit(); });
 /* ----- results of the special stages ----- */
@@ -10175,6 +10190,7 @@ function boxFit() {
   const W = pg.clientWidth - pl - parseFloat(cs.paddingRight), H = pg.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1672, H / 940);
   b.querySelector(".bx-panel").style.transform = `translate(${(pl + (W - 1672 * k) / 2).toFixed(1)}px,${(pt + (H - 940 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  sideArt(pg, b.querySelector(".bx-panel"), "--bxbg");
 }
 addEventListener("resize", () => { if ($("box").classList.contains("on")) boxFit(); });
 let bxQT = 0;
