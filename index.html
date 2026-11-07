@@ -4074,47 +4074,43 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 /* ---- the guild hall on the user's clean template (G01b, 2026-11-06): a 1671x941 painted stage, scaled to fit by guildFit() ---- */
 #guild.gdart{background:#070b22;padding:max(4px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left))}
 #guild.gdart .sky,#guild.gdart .shade{display:none}
-#guild.gdart .page{position:absolute;left:0;top:0;right:auto;bottom:auto;width:1671px;height:941px;max-width:none;margin:0;padding:0;overflow:visible;transform-origin:0 0;direction:ltr;background:var(--gdbg) 0 0/100% 100% no-repeat;color:#fff}
-#guild.gdart .page>*,#guild.gdart #guildBody,#guild.gdart .ghall{position:absolute!important;inset:0;margin:0;padding:0;display:block;background:none!important;border:0!important;box-shadow:none!important;pointer-events:none;direction:rtl;grid-template-columns:none;transform:none!important}
-#guild.gdart .ghall>*,#guild.gdart .page h2>*,#guild.gdart .gh-tiles{position:absolute!important;right:auto!important;bottom:auto;margin:0;pointer-events:auto;inset-inline-start:auto;inset-inline-end:auto;transform:none!important;translate:none!important;background:none!important;border:0!important;box-shadow:none!important}
-#guild.gdart .gp::before,#guild.gdart .gp::after{display:none!important}
-#guild.gdart .gh-window,#guild.gdart .ghall>.gh-panel{display:none!important}
-#guild.gdart .page h2 .back{left:1336px;top:116px;width:204px;height:74px!important;padding:0;border-radius:0;font-size:24px;font-weight:800;color:#ffe9a6;display:grid;place-items:center;min-height:0}
-#guild.gdart #guildTitle{left:690px;top:116px;width:500px;height:74px!important;display:flex!important;align-items:center;justify-content:center;gap:12px;font-size:34px;color:#ffe9a6;white-space:nowrap}
-#guild.gdart #guildTitle .gban{display:none}
-#guild.gdart #gFlag{position:absolute!important;left:-236px;top:0;width:224px;height:74px;margin:0!important;padding:0;border:0!important;background:none!important;box-shadow:none!important;font-size:22px;color:#ffe9a6;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;min-height:0}
-#guild.gdart .gh-boss{left:70px;top:222px;width:420px;height:660px!important;padding:0!important}
-#guild.gdart .gh-boss>*{position:absolute!important;left:0;right:0;margin:0}
-#guild.gdart .gh-boss .gp-h{top:20px;height:44px;display:grid!important;place-items:center;font-size:26px;color:#ffe9a6;background:none;border:0}
-#guild.gdart .gh-bossart{left:22px!important;right:auto!important;top:72px;width:380px;height:226px;display:grid;place-items:center;overflow:hidden;border-radius:18px}
-#guild.gdart .gh-bossart img,#guild.gdart .gh-bossart svg{max-width:96%;max-height:210px;object-fit:contain}
-#guild.gdart .gh-bossart b{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:26px;color:#fff;text-shadow:0 2px 3px #000}
-#guild.gdart .gh-hp{left:150px!important;right:26px!important;top:312px;height:32px;display:flex;align-items:center;gap:10px;flex-direction:row-reverse}
-#guild.gdart .gh-hp .xpbar{flex:1;height:18px;margin:0;border-radius:999px;background:transparent}#guild.gdart .gh-hp .xpbar i{background:linear-gradient(90deg,#9a6cff,#c9a6ff);border-radius:999px}
-#guild.gdart .gh-hp span{position:absolute;right:auto;left:-128px;width:120px;font-size:20px;text-align:center}
-#guild.gdart .gh-rew{top:360px;height:150px;display:block}
-#guild.gdart .gh-rew span{position:absolute;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;font-size:21px;padding:0 10px}
-#guild.gdart .gh-rew span:nth-child(1){left:222px;top:0;width:178px;height:82px}#guild.gdart .gh-rew span:nth-child(2){left:26px;top:0;width:178px;height:82px}#guild.gdart .gh-rew span:nth-child(3){left:26px;top:100px;width:374px;height:46px}
-#guild.gdart #gBoss{left:24px!important;right:auto!important;top:530px;width:376px;height:96px;padding:0;border:0!important;border-radius:0;background:none!important;box-shadow:none!important;font-size:32px;font-weight:900;color:#3a2405;text-shadow:0 1px 0 rgba(255,240,190,.6);min-height:0}
-#guild.gdart #gBoss[disabled]{filter:grayscale(.7) brightness(.8)}
-#guild.gdart .gh-card{left:1213px;top:232px;width:372px;height:488px!important;padding:0!important}
-#guild.gdart .gh-card>*{position:absolute!important;left:0;right:0;margin:0;text-align:center}
-#guild.gdart .gh-card .gban.big{left:98px;right:auto;top:22px;width:166px;height:240px;background:none!important}
-#guild.gdart .gh-card .gban.big>i{display:none}#guild.gdart .gh-card .gban.big img{position:absolute;left:18px;top:40px;width:130px;height:130px;object-fit:contain}
-#guild.gdart .gh-card .gh-name{top:286px;height:56px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:30px;color:#ffe9a6}
-#guild.gdart .gh-card #gFlag2{position:absolute;left:98px;top:-264px;width:166px!important;height:240px!important;min-height:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;font-size:0;color:transparent;cursor:pointer}
-#guild.gdart .gh-card .gh-lv{top:380px;left:0;right:0;height:80px;display:block;font-size:20px}
-#guild.gdart .gh-card .gh-lv span{position:absolute;left:4px;top:12px;width:104px;text-align:center;white-space:nowrap}
-#guild.gdart .gh-card .gh-lv .xpbar{position:absolute;left:116px;top:15px;width:222px;height:20px;margin:0;border-radius:999px;background:transparent}#guild.gdart .gh-card .gh-lv .xpbar i{border-radius:999px}
-#guild.gdart .gh-card .gh-lv small{position:absolute;left:116px;top:46px;width:222px;text-align:center;font-size:17px;color:#c8d2f0}
-#guild.gdart .gh-card .gh-coins{top:448px;font-size:21px}
-#guild.gdart .gd-res{position:absolute!important;pointer-events:auto;left:14px!important;top:4px;width:600px;height:92px;display:flex!important;align-items:center;justify-content:space-around;padding:0 30px;background:var(--wrow) center/100% 100% no-repeat!important;font-size:24px;direction:rtl}
-#guild.gdart .gd-res b{font-weight:900;text-shadow:0 2px 2px #000}
-#guild.gdart .gh-tiles{left:0;top:0;width:1671px;height:941px;display:block;pointer-events:none}
-#guild.gdart .gh-tile:nth-child(1){left:1218px}#guild.gdart .gh-tile:nth-child(2){left:984px}#guild.gdart .gh-tile:nth-child(3){left:752px}#guild.gdart .gh-tile:nth-child(4){left:520px}
-#guild.gdart .gh-tile{position:absolute;top:744px;width:216px;height:138px;pointer-events:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;border:0;background:none;color:#fff;cursor:pointer}
-#guild.gdart .gh-tile .ic{font-size:44px;line-height:1}#guild.gdart .gh-tile b{font-size:24px;color:#ffe9a6}#guild.gdart .gh-tile small{font-size:18px;color:#c8d2f0}
-#guild.gdart .gh-tile:active{transform:scale(.97)}
+#guild.gdart .page{position:absolute;left:0;top:0;right:auto;bottom:auto;width:1777px;height:885px;max-width:none;margin:0;padding:0;overflow:visible;transform-origin:0 0;direction:ltr;background:var(--gdbg) 0 0/100% 100% no-repeat;color:#fff}
+#guild.gdart #guildBody{display:none!important}
+#guild.gdart .page h2{position:absolute!important;inset:0;margin:0;padding:0;display:block;background:none!important;border:0!important;box-shadow:none!important;pointer-events:none;transform:none!important}
+#guild.gdart .page h2>*:not(.back){display:none!important}
+#guild.gdart .page h2 .back{position:absolute!important;left:1372px!important;right:auto!important;top:88px;width:198px;height:76px!important;min-height:0;margin:0;padding:0;border:0!important;border-radius:26px;background:none!important;box-shadow:none!important;pointer-events:auto;font-size:26px;font-weight:800;color:#ffe9a6;display:grid;place-items:center;transform:none!important;translate:none!important;inset-inline-start:auto;inset-inline-end:auto}
+#gd2{position:absolute;left:0;top:0;width:1777px;height:885px;direction:rtl;pointer-events:none}
+#gd2>*{position:absolute;margin:0;pointer-events:auto;box-sizing:border-box}
+#gd2 .t{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;white-space:nowrap;color:#fff;text-shadow:0 2px 3px #000;line-height:1.1;pointer-events:none}
+#gd2 .gold{color:#ffe9a6}#gd2 .tf{font-family:"Suez One",serif}
+#gd2 button{padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;min-height:0;box-shadow:none;border-radius:16px}
+#gd2 button:active{transform:scale(.97)}
+#gd2 .res{font-size:28px;font-weight:900;justify-content:flex-start;direction:ltr}
+#gd2 .rnd{border-radius:50%}
+#gd2 .rnd .bd{position:absolute;top:-2px;right:-2px;min-width:26px;height:26px;padding:0 6px;border-radius:13px;background:#e0263a;color:#fff;font-size:18px;font-weight:900;display:grid;place-items:center;box-shadow:0 0 0 2px #2a0b10}
+#gd2 .cloth{background:var(--gdcloth) 0 0/100% 100% no-repeat;pointer-events:none}
+#gd2 .emb{object-fit:contain;pointer-events:none;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6))}
+#gd2 .bart{display:grid;place-items:center;overflow:hidden;border-radius:22px;pointer-events:none}
+#gd2 .bart img,#gd2 .bart svg{max-width:92%;max-height:200px;object-fit:contain;margin-top:10px}
+#gd2 .bname{font-size:30px;font-weight:900;background:linear-gradient(transparent,rgba(8,4,20,.85) 45%);border-radius:0 0 22px 22px}
+#gd2 .chip{height:30px;font-size:17px;font-weight:800;background:rgba(10,6,28,.72);border:1px solid rgba(255,214,120,.45);border-radius:14px;padding:0 10px}
+#gd2 .hpbar{border-radius:10px;overflow:hidden;pointer-events:none}#gd2 .hpbar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#b0102a,#ff4a5c);border-radius:10px}
+#gd2 .hpbar b{position:absolute;inset:0;display:grid;place-items:center;font-size:18px;text-shadow:0 1px 2px #000}
+#gd2 .xp{border-radius:10px;overflow:hidden;pointer-events:none}#gd2 .xp i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#2f7bff,#7cc4ff);border-radius:10px}
+#gd2 .atk{font-size:46px;font-weight:900;color:#3a2405;text-shadow:0 1px 0 rgba(255,240,190,.6);justify-content:flex-start;padding-inline-start:22px;display:flex;align-items:center;border-radius:20px}
+#gd2 .atk[disabled]{filter:grayscale(.75) brightness(.8);cursor:default}
+#gd2 .act{font-size:20px;justify-content:flex-start;overflow:hidden;text-overflow:ellipsis}
+#gd2 .act b{color:#ffe9a6;font-weight:800}
+#gd2 .msg{white-space:normal;flex-direction:column;gap:4px;color:#3b2410;text-shadow:none;font-size:21px;font-weight:800;line-height:1.25;padding:0 18px}
+#gd2 .msg small{font-size:17px;font-weight:700;color:#6a4520}
+#gd2 .row{font-size:24px;justify-content:space-between;padding:0 10px}
+#gd2 .row b{font-weight:900}
+#gd2 .lvn{font-size:44px;font-weight:900;color:#fff}
+#gd2 .pk{flex-direction:column;gap:2px}#gd2 .pk b{font-size:32px;font-weight:900;color:#5dff7a}#gd2 .pk span{font-size:20px;color:#e9eeff}
+#gd2 .nav{font-size:27px;font-weight:900;color:#ffe9a6;justify-content:center;display:flex;align-items:center;border-radius:36px}
+#gd2 .nav small{font-size:18px;color:#9dffb0;margin-inline-start:6px}
+.modal .card.gdmenu .gdm{display:flex;flex-direction:column;gap:10px;margin:12px 0}
+.modal .card.ghpop #gLeave{display:none}
 .modal .card.ghpop .gh-panel{display:block!important;background:none;border:0;box-shadow:none}
 
 /* ---- the store on the user's clean template (G02b, 2026-11-06): a 1670x941 painted shop, scaled to fit by storeFit() ---- */
@@ -4207,9 +4203,9 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #box.bxart .bx-page,#bag.bgart,#runes.rnart,#codex.cxart,#guild.gdart,#store.start,#dungeon.dnart,#team.ptart .page.pr-page,#tower.twart .tw-stage{isolation:isolate;overflow:hidden}
 #tower.twart .tw-stage::before{display:none}
 .sidefill{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.sidefill i{position:absolute;background-repeat:no-repeat;transform:scaleX(-1)}
-.sidefill i::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(5,7,24,0) 0,rgba(5,7,24,.2) 40%,rgba(5,7,24,.55) 100%)}
-.sidefill i:last-child::after{background:linear-gradient(to left,rgba(5,7,24,0) 0,rgba(5,7,24,.2) 40%,rgba(5,7,24,.55) 100%)}
+.sidefill i{position:absolute;background-repeat:no-repeat;transform:scaleX(-1)}.sidefill i.t,.sidefill i.b{transform:scaleY(-1)}
+.sidefill i::after{content:"";position:absolute;inset:0;--sfg:rgba(5,7,24,0) 0,rgba(5,7,24,.2) 40%,rgba(5,7,24,.55) 100%;background:linear-gradient(to right,var(--sfg))}
+.sidefill i.r::after{background:linear-gradient(to left,var(--sfg))}.sidefill i.t::after{background:linear-gradient(to bottom,var(--sfg))}.sidefill i.b::after{background:linear-gradient(to top,var(--sfg))}
 .modal .card.ghpop .ghx{display:block;margin:12px auto 0;min-width:150px}
 /* ---- the fight tab (the user's clean concept, 2026-11-05): framed cards 2x2, the bottom panel (fight / opponent / my team), other opponents ---- */
 .fz{display:grid;grid-template-rows:minmax(0,1fr) clamp(62px,21.5%,112px) auto;gap:2.2%;height:100%;min-height:0;padding-top:clamp(6px,2.6%,16px);box-sizing:border-box;direction:rtl}
@@ -4967,15 +4963,15 @@ const HAVE = new Set([   // generated by sync_have.py from assets/ — do not ed
   "ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs","ui_dun_bg","ui_fz_laurel","ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon",
   "ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon","ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon",
   "ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon","ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon",
-  "ui_guild_bg","ui_plaque","ui_prep_bg","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2",
-  "ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","ui_rank_template","ui_rew_card","ui_rune_bg","ui_runering","ui_sh_card","ui_sh_ped","ui_sh_sel","ui_skillframe_1","ui_skillframe_2",
-  "ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1","ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6","ui_ssn_card_7","ui_ssn_chest_0","ui_ssn_chest_1",
-  "ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5","ui_ssn_chest_6","ui_ssn_chest_7","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2","ui_ssn_crest_3","ui_ssn_crest_4","ui_ssn_crest_5",
-  "ui_ssn_crest_6","ui_ssn_crest_7","ui_store_bg","ui_store_cat_on","ui_store_slot_on","ui_store_tab_on","ui_tower_bg","ui_vic_banner","ui_vic_bar","ui_vic_tile","ui_wf_b","ui_wf_bl",
-  "ui_wf_br","ui_wf_fill","ui_wf_gem","ui_wf_l","ui_wf_r","ui_wf_t","ui_wf_tl","ui_wf_tr","ui_win_btn_blue","ui_win_btn_gold","ui_win_btn_grey","ui_win_chk",
-  "ui_win_chk_on","ui_win_close","ui_win_frame","ui_win_frame_ng","ui_win_ribbon","ui_win_row","ui_win_tab","ui_win_tab_on","ui_win_tog_off","ui_win_tog_on","valkyrie","valkyrie_awakened",
-  "vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened","werewolf","werewolf_awakened",
-  "will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
+  "ui_guild2_bg","ui_guild2_cloth","ui_guild_bg","ui_plaque","ui_prep_bg","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest",
+  "ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","ui_rank_template","ui_rew_card","ui_rune_bg","ui_runering","ui_sh_card","ui_sh_ped","ui_sh_sel",
+  "ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1","ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6","ui_ssn_card_7",
+  "ui_ssn_chest_0","ui_ssn_chest_1","ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5","ui_ssn_chest_6","ui_ssn_chest_7","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2","ui_ssn_crest_3",
+  "ui_ssn_crest_4","ui_ssn_crest_5","ui_ssn_crest_6","ui_ssn_crest_7","ui_store_bg","ui_store_cat_on","ui_store_slot_on","ui_store_tab_on","ui_tower_bg","ui_vic_banner","ui_vic_bar","ui_vic_tile",
+  "ui_wf_b","ui_wf_bl","ui_wf_br","ui_wf_fill","ui_wf_gem","ui_wf_l","ui_wf_r","ui_wf_t","ui_wf_tl","ui_wf_tr","ui_win_btn_blue","ui_win_btn_gold",
+  "ui_win_btn_grey","ui_win_chk","ui_win_chk_on","ui_win_close","ui_win_frame","ui_win_frame_ng","ui_win_ribbon","ui_win_row","ui_win_tab","ui_win_tab_on","ui_win_tog_off","ui_win_tog_on",
+  "valkyrie","valkyrie_awakened","vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened",
+  "werewolf","werewolf_awakened","will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
 const POOL = {2:["imp","mushroom"],3:["wolf","fairy","golem","elf","harpy","mermaid","skeleton","salamander","yeti","snowowl","scarab","mummy","werewolf","banshee"],4:["ninja","priestess","griffin","frostwitch","stormmage","obsidian","winddancer","frostserpent","aurora","sphinx","vampire","celestlion","starsage","voidknight"],5:["dragon","valkyrie","phoenix","djinn","ghostqueen","seraph","sun_empress","kraken_king","storm_roc","wind_centaur","mountain_behemoth","forest_dryad","dawn_unicorn","eclipse_dragon"]};
 POOL[5] = POOL[5].filter(id => !MON[id].mystic);         // the mystic monsters can't be summoned for now (owner's call): every summon and reward pool skips them
 const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"aurora_aw":[1,0.83],"bandit":[1,0.83],"banshee":[1,0.83],"banshee_aw":[1,0.83],"celestlion":[1,0.83],"celestlion_aw":[1,0.83],"cinderhound":[1,0.83],"cloudslime":[1,0.83],"crystalg":[1,0.93],"dawn_unicorn":[1,0.93],"djinn":[1,0.83],"djinn_aw":[1,0.83],"dragon":[1,0.84],"dragon_aw":[1,0.84],"duneworm":[1,0.83],"elf":[1,0.84],"elf_aw":[1,0.84],"fairy":[1,0.84],"fairy_aw":[1,0.85],"forest_dryad":[1,0.83],"forest_dryad_aw":[1,0.83],"frostserpent":[1,0.83],"frostserpent_aw":[1,0.83],"frostwitch":[1,0.83],"frostwitch_aw":[1,0.83],"frostwyrm":[1,0.83],"gargoyle":[1,0.83],"ghostqueen":[1,0.83],"ghostqueen_aw":[1,0.83],"ghoul":[1,0.83],"golem":[1,0.83],"golem_aw":[1,0.83],"griffin":[1,0.84],"griffin_aw":[1,0.84],"harpy":[1,0.83],"harpy_aw":[1,0.83],"icetroll":[1,0.83],"imp":[1,0.83],"imp_aw":[1,0.83],"kraken_king":[1,0.83],"kraken_king_aw":[1,0.83],"lavatitan":[1,0.83],"marble":[1,0.83],"mermaid":[1,0.83],"mermaid_aw":[1,0.83],"mosswolf":[1,0.95],"mummy":[1,0.83],"mummy_aw":[1,0.83],"mushroom":[1,0.83],"mushroom_aw":[1,0.84],"ninja":[1,0.83],"ninja_aw":[1,0.83],"obsidian":[1,0.83],"obsidian_aw":[1,0.83],"phoenix":[1,0.83],"phoenix_aw":[1,0.83],"pixie":[1,0.83],"priestess":[1,0.83],"priestess_aw":[1,0.83],"sandcolossus":[1,0.83],"scarab":[1,0.83],"scarab_aw":[1,0.83],"scorpion":[1,0.83],"seraph":[1,0.83],"seraph_aw":[1,0.83],"shadowlord":[1,0.83],"skeleton":[1,0.83],"skeleton_aw":[1,0.83],"skyboar":[1,0.89],"snowowl":[1,0.83],"snowowl_aw":[1,0.83],"snowsprite":[1,0.83],"sphinx":[1,0.83],"sphinx_aw":[1,0.83],"spider":[1,0.83],"sprite":[1,0.83],"starsage":[1,0.83],"starsage_aw":[1,0.83],"starwisp":[1,0.83],"storm_roc":[1,0.83],"storm_roc_aw":[1,0.83],"stormmage":[1,0.83],"stormmage_aw":[1,0.83],"sun_empress":[1,0.83],"sun_empress_aw":[1,0.83],"treant":[1,0.83],"valkyrie":[1,0.83],"valkyrie_aw":[1,0.83],"vampire":[1,0.83],"vampire_aw":[1,0.83],"voidknight":[1,0.83],"voidknight_aw":[1,0.83],"werewolf":[1,0.83],"werewolf_aw":[1,0.83],"wind_centaur":[1,0.83],"wind_centaur_aw":[1,0.83],"winddancer":[1,0.83],"winddancer_aw":[1,0.83],"wisp":[1,0.83],"wolf":[1,0.85],"wolf_aw":[1,0.84],"wraith":[1,0.83],"yeti":[1,0.83],"yeti_aw":[1,0.83]};   // generated by art_audit.py: [brightness, size] per monster (+"_aw")
@@ -4989,7 +4985,7 @@ const BLOB = {ui_alt_bg:"/_blob/73e408fe4030c2751dc6895d3c8d974d", ui_alt_ped_si
   legend_mountain_behemoth:"/_blob/22c82c9c622ff7b8be73f09f905587ad", legend_mountain_behemoth_awakened:"/_blob/6d3f874e7b3738c2399c57cb6b286357",
   legend_forest_dryad:"/_blob/b4ccfe2b8db4bc720ee4f97f3668e85b", legend_forest_dryad_awakened:"/_blob/1af13f1cde01bea260fbc93e915cf3ab",
   legend_dawn_unicorn:"/_blob/617656b76bf0f0cbbadd207eb171416c", legend_dawn_unicorn_awakened:"/_blob/1658280c114175082ad74ba4aa5de8e7",
-  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723", ui_bt_bar:"/_blob/020944b966c4c9ae72b39ed6ea305925", ui_bt_port:"/_blob/2c8116eda94304b769b2dd244602e638", ui_bt_port_on:"/_blob/faf97980484f223974568d3a94fe8cc5", ui_bt_orb:"/_blob/493972682ae8c47393beab5d2e86dbbf", ui_bt_orb_full:"/_blob/3dc97ad847642aba010112fa2ec62be6", ui_bt_hp_a:"/_blob/6a0c08ff1248e4d3c118722fcd7e6c5d", ui_bt_hp_e:"/_blob/776e1f08bd239eebcb334a7953f6e085", ui_bt_sk:"/_blob/87a8f6be98ae06156a1fca686aae4331", ui_bt_sk_on:"/_blob/216fc7a49c2d093717ccc1a3f1def529", ui_bt_sk_cd:"/_blob/1f795db0f5c160aacb7394a47e9f2ca4", ui_bt_btn:"/_blob/1c9e2ed20d5d69a75e45a6d5fb5f49d3", ui_bt_tip:"/_blob/fd1c4bead5e37e54c9191abd0fa6d09f", ui_bt_wave:"/_blob/4a6274c32883b81f4281a045116dd76d", ui_def_bg:"/_blob/a43694d9306f00867c89cdd13a3f0289", ui_def_row:"/_blob/5928f3ab2ad0e788146ffceba292100c", ui_def_tipbtn:"/_blob/83239c284a7166aa0404db638154715f", ui_wf_tl:"/_blob/47da4a37fe4ae7a581e622e7b715b231", ui_wf_tr:"/_blob/28c7d992a4ab5c77002ff43a2a826e78", ui_wf_bl:"/_blob/8ed23a9e182584cc88fc3fe653e75eaa", ui_wf_br:"/_blob/fd183734fa135bdb0086d4ce4201db89", ui_wf_t:"/_blob/a70dd4d771d1f53ab2b70f072fdb36ad", ui_wf_b:"/_blob/d7c140405fa15b0dcf246d2220a69cab", ui_wf_l:"/_blob/7318ce8753ec9a23477573f0f75e30a1", ui_wf_r:"/_blob/5101bbc9136ccfb861cefaa9a095c55a", ui_wf_fill:"/_blob/bda0df6c434fb949841b944ff1c730f1", ui_wf_gem:"/_blob/785f6cfcafd901ecb3b2d2978128fede", ui_tower_bg:"/_blob/3389fe49d07f258b319786fc2335cec0", ui_dun_bg:"/_blob/9cfc9fe839028922a27bfdb0605c70ee", ico_bolt:"/_blob/05fe4252b7485e368366e4dffe394a66", ico_book:"/_blob/2e657c97652b0f1548959b3ba73097d0", ico_calendar:"/_blob/28b08da830550a27e60cfabe48e2f40f", ico_cart:"/_blob/66ac0f2178a4f61c23e99b390c2830cc", ico_castle:"/_blob/3aaf3ce99e391ebf89ae1a59d0b87070", ico_chart:"/_blob/5ff8241d1e564f92209e60036e1acfbe", ico_chest:"/_blob/b4498c3be2a3ddb9c2a8c168f3cd3793", ico_crown:"/_blob/726b40ca89fec26582517ee7632ce034", ico_dragon:"/_blob/5624e3cf33670e21a270c85b69c3f4e3", ico_fire:"/_blob/1396dcf9c6ecce4ff257bfc4a83d8f9a", ico_fireworks:"/_blob/c9eca74b30b3c2ddbfdf8e9497046a51", ico_gift:"/_blob/5bf7b03df16fb82130eea9a9ee3a069b", ico_hammer:"/_blob/f9d775f950d83eb5cc845d943c56eb92", ico_heart:"/_blob/3f2f57c08a2433bd7cb2fd524893b50d", ico_hourglass:"/_blob/3ecd48cf1ef6d17ea0200b28f79349b3", ico_lock:"/_blob/4af82623fe3a16e7d86223485e47cff3", ico_map:"/_blob/3346be2b79c3900323d2ff1105220f84", ico_orb:"/_blob/cb16bbb522c4ed860d6a9a4ed6e9808f", ico_pencil:"/_blob/7765a3092de7dd599c00fd9466e61599", ico_people:"/_blob/9eb61e623c0bfc66e90cf5bc7b873982", ico_person:"/_blob/fedb84d748067dd61b131cd9b02b6b6d", ico_scroll:"/_blob/dbda2ce7427ad121025e70e4f84de16e", ico_search:"/_blob/2f48c9f84e268e27d468bab6bbd75674", ico_shield:"/_blob/c7a60ce2e25894ce4d77d912f851d665", ico_sparkle:"/_blob/ff4877571b2aeb0b13ea81b174bda695", ico_swords:"/_blob/5aa9686cc17b7a51c6f23f79e58bcdbf", ico_tower:"/_blob/96fcf9276d9177e3e0f25c055db44202", ico_trophy:"/_blob/10c6516f86fb7e7f6581bf8035886769", ico_unlock:"/_blob/bde942c19eaeab8489b3e36673ec1998", ico_warn:"/_blob/4851f88c1915b91d01f5e8bb1e9ab1aa", ui_box_bg:"/_blob/b499fec3cbd16609e2c92f67731e8700", ui_bag_bg:"/_blob/c405e5e203453d772573d075cf1ab359", ui_rune_bg:"/_blob/f58fda38ab0d69a991216efa5e2dd77c", ui_codex_bg:"/_blob/7bdf9e0cc16ddcbf6105e720f9124725", ui_guild_bg:"/_blob/356a78968f2b8e6bfd317bf0229f5f4d", ui_store_bg:"/_blob/83d632458ccc4d89a8aedd9ed4bd4fad", ui_store_tab_on:"/_blob/e3816d0c9e3d014f9d648d599fefb38c", ui_store_slot_on:"/_blob/d2a5416b0a550f714cbdfc7517eb79db", ui_store_cat_on:"/_blob/ebb03be9020dd4b9e8dbebd8b9233874", ui_cal_day:"/_blob/1c65990ea6021f8e6f2c2b7fa59e4838", ui_cal_got:"/_blob/67ea413f15d039d7651569a8fc3ce522", ui_cal_today:"/_blob/13e53fff8beebc4f52192cc5355e27f0", ui_cal_big:"/_blob/66b5434dab0b302333c3cdc7060870a8", ui_cal_myst:"/_blob/6f5d9b6b2232ef058fd8d835aff332dd", ui_cal_check:"/_blob/031479c3b04c7678ec436426c0a6d841", pf_wins:"/_blob/187e162f96adf2fb0121597f280c2777", pf_mons:"/_blob/852ae3fa731c42c56678856f52116d2c", pf_codex:"/_blob/c076bca70299eb24360928efb3a6abe7", pf_stages:"/_blob/954928e41c4480c9d9e57c789529a104", pf_tower:"/_blob/52930704b4da59bf1dd061e415b95dc3", pf_arena:"/_blob/aa13e978ee84356c531f1e806a94623a", pf_ach:"/_blob/acc6d30ab6a2b9e3441a5cde48e19ba1", pf_runes:"/_blob/58a86abdf2ab356c8c151075190c588a", pf_summ:"/_blob/f1a92e0a0783afe1ba46df6a25ebbb90", ui_rew_card:"/_blob/bc3da15766da96076638364d4e647f54", ui_prep_bg:"/_blob/63c236256a98fb5a6436e8535fe52683", ui_vic_banner:"/_blob/3a9a059641181796417aed5e86e485f3", ui_vic_tile:"/_blob/ed95d2aba59ebaa2866fd8b6e37deb2a", ui_vic_bar:"/_blob/95e5d5a3ed41f351e77c84e7353be013", ui_win_frame:"/_blob/f574592c2923afd7321af22769ce0913", ui_win_ribbon:"/_blob/016672401428e2a155738a9a28d8551d", ui_win_close:"/_blob/993a519952a41a6041bc9fdb42b3f4c1", ui_win_btn_gold:"/_blob/0e13e153044812c9e85e23f2ec26babd", ui_win_btn_blue:"/_blob/64b5257cbbcbcb6111e756b8de8dd7b3", ui_win_btn_grey:"/_blob/ab8f92d66e4d4817a6c7f168d7883426", ui_win_row:"/_blob/146536adb9bace620991d11de7b00006", ui_win_tab:"/_blob/2805190c5c9314daafac25eac2ad4bdc", ui_win_tab_on:"/_blob/6f8984a06b04dd95abf13912087e10ff", ui_win_tog_on:"/_blob/fbeb8020630d894a88cbce60fd6c1387", ui_win_tog_off:"/_blob/0475d81d5ce3f6aabda634d92888435b", ui_win_chk:"/_blob/ed9c571c16b0be6918f289c10d3b4546", ui_win_chk_on:"/_blob/4edc8d218f3a6ce45345766e0f94c107"};
+  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723", ui_bt_bar:"/_blob/020944b966c4c9ae72b39ed6ea305925", ui_bt_port:"/_blob/2c8116eda94304b769b2dd244602e638", ui_bt_port_on:"/_blob/faf97980484f223974568d3a94fe8cc5", ui_bt_orb:"/_blob/493972682ae8c47393beab5d2e86dbbf", ui_bt_orb_full:"/_blob/3dc97ad847642aba010112fa2ec62be6", ui_bt_hp_a:"/_blob/6a0c08ff1248e4d3c118722fcd7e6c5d", ui_bt_hp_e:"/_blob/776e1f08bd239eebcb334a7953f6e085", ui_bt_sk:"/_blob/87a8f6be98ae06156a1fca686aae4331", ui_bt_sk_on:"/_blob/216fc7a49c2d093717ccc1a3f1def529", ui_bt_sk_cd:"/_blob/1f795db0f5c160aacb7394a47e9f2ca4", ui_bt_btn:"/_blob/1c9e2ed20d5d69a75e45a6d5fb5f49d3", ui_bt_tip:"/_blob/fd1c4bead5e37e54c9191abd0fa6d09f", ui_bt_wave:"/_blob/4a6274c32883b81f4281a045116dd76d", ui_def_bg:"/_blob/a43694d9306f00867c89cdd13a3f0289", ui_def_row:"/_blob/5928f3ab2ad0e788146ffceba292100c", ui_def_tipbtn:"/_blob/83239c284a7166aa0404db638154715f", ui_wf_tl:"/_blob/47da4a37fe4ae7a581e622e7b715b231", ui_wf_tr:"/_blob/28c7d992a4ab5c77002ff43a2a826e78", ui_wf_bl:"/_blob/8ed23a9e182584cc88fc3fe653e75eaa", ui_wf_br:"/_blob/fd183734fa135bdb0086d4ce4201db89", ui_wf_t:"/_blob/a70dd4d771d1f53ab2b70f072fdb36ad", ui_wf_b:"/_blob/d7c140405fa15b0dcf246d2220a69cab", ui_wf_l:"/_blob/7318ce8753ec9a23477573f0f75e30a1", ui_wf_r:"/_blob/5101bbc9136ccfb861cefaa9a095c55a", ui_wf_fill:"/_blob/bda0df6c434fb949841b944ff1c730f1", ui_wf_gem:"/_blob/785f6cfcafd901ecb3b2d2978128fede", ui_tower_bg:"/_blob/3389fe49d07f258b319786fc2335cec0", ui_dun_bg:"/_blob/9cfc9fe839028922a27bfdb0605c70ee", ico_bolt:"/_blob/05fe4252b7485e368366e4dffe394a66", ico_book:"/_blob/2e657c97652b0f1548959b3ba73097d0", ico_calendar:"/_blob/28b08da830550a27e60cfabe48e2f40f", ico_cart:"/_blob/66ac0f2178a4f61c23e99b390c2830cc", ico_castle:"/_blob/3aaf3ce99e391ebf89ae1a59d0b87070", ico_chart:"/_blob/5ff8241d1e564f92209e60036e1acfbe", ico_chest:"/_blob/b4498c3be2a3ddb9c2a8c168f3cd3793", ico_crown:"/_blob/726b40ca89fec26582517ee7632ce034", ico_dragon:"/_blob/5624e3cf33670e21a270c85b69c3f4e3", ico_fire:"/_blob/1396dcf9c6ecce4ff257bfc4a83d8f9a", ico_fireworks:"/_blob/c9eca74b30b3c2ddbfdf8e9497046a51", ico_gift:"/_blob/5bf7b03df16fb82130eea9a9ee3a069b", ico_hammer:"/_blob/f9d775f950d83eb5cc845d943c56eb92", ico_heart:"/_blob/3f2f57c08a2433bd7cb2fd524893b50d", ico_hourglass:"/_blob/3ecd48cf1ef6d17ea0200b28f79349b3", ico_lock:"/_blob/4af82623fe3a16e7d86223485e47cff3", ico_map:"/_blob/3346be2b79c3900323d2ff1105220f84", ico_orb:"/_blob/cb16bbb522c4ed860d6a9a4ed6e9808f", ico_pencil:"/_blob/7765a3092de7dd599c00fd9466e61599", ico_people:"/_blob/9eb61e623c0bfc66e90cf5bc7b873982", ico_person:"/_blob/fedb84d748067dd61b131cd9b02b6b6d", ico_scroll:"/_blob/dbda2ce7427ad121025e70e4f84de16e", ico_search:"/_blob/2f48c9f84e268e27d468bab6bbd75674", ico_shield:"/_blob/c7a60ce2e25894ce4d77d912f851d665", ico_sparkle:"/_blob/ff4877571b2aeb0b13ea81b174bda695", ico_swords:"/_blob/5aa9686cc17b7a51c6f23f79e58bcdbf", ico_tower:"/_blob/96fcf9276d9177e3e0f25c055db44202", ico_trophy:"/_blob/10c6516f86fb7e7f6581bf8035886769", ico_unlock:"/_blob/bde942c19eaeab8489b3e36673ec1998", ico_warn:"/_blob/4851f88c1915b91d01f5e8bb1e9ab1aa", ui_box_bg:"/_blob/b499fec3cbd16609e2c92f67731e8700", ui_bag_bg:"/_blob/c405e5e203453d772573d075cf1ab359", ui_rune_bg:"/_blob/f58fda38ab0d69a991216efa5e2dd77c", ui_codex_bg:"/_blob/7bdf9e0cc16ddcbf6105e720f9124725", ui_guild_bg:"/_blob/356a78968f2b8e6bfd317bf0229f5f4d", ui_store_bg:"/_blob/83d632458ccc4d89a8aedd9ed4bd4fad", ui_store_tab_on:"/_blob/e3816d0c9e3d014f9d648d599fefb38c", ui_store_slot_on:"/_blob/d2a5416b0a550f714cbdfc7517eb79db", ui_store_cat_on:"/_blob/ebb03be9020dd4b9e8dbebd8b9233874", ui_cal_day:"/_blob/1c65990ea6021f8e6f2c2b7fa59e4838", ui_cal_got:"/_blob/67ea413f15d039d7651569a8fc3ce522", ui_cal_today:"/_blob/13e53fff8beebc4f52192cc5355e27f0", ui_cal_big:"/_blob/66b5434dab0b302333c3cdc7060870a8", ui_cal_myst:"/_blob/6f5d9b6b2232ef058fd8d835aff332dd", ui_cal_check:"/_blob/031479c3b04c7678ec436426c0a6d841", pf_wins:"/_blob/187e162f96adf2fb0121597f280c2777", pf_mons:"/_blob/852ae3fa731c42c56678856f52116d2c", pf_codex:"/_blob/c076bca70299eb24360928efb3a6abe7", pf_stages:"/_blob/954928e41c4480c9d9e57c789529a104", pf_tower:"/_blob/52930704b4da59bf1dd061e415b95dc3", pf_arena:"/_blob/aa13e978ee84356c531f1e806a94623a", pf_ach:"/_blob/acc6d30ab6a2b9e3441a5cde48e19ba1", pf_runes:"/_blob/58a86abdf2ab356c8c151075190c588a", pf_summ:"/_blob/f1a92e0a0783afe1ba46df6a25ebbb90", ui_rew_card:"/_blob/bc3da15766da96076638364d4e647f54", ui_guild2_bg:"/_blob/b10fe140c3f4a44cd753fe4997cd8d96", ui_guild2_cloth:"/_blob/e7886a1ffc23678dd1562c286c912bd2", ui_prep_bg:"/_blob/63c236256a98fb5a6436e8535fe52683", ui_vic_banner:"/_blob/3a9a059641181796417aed5e86e485f3", ui_vic_tile:"/_blob/ed95d2aba59ebaa2866fd8b6e37deb2a", ui_vic_bar:"/_blob/95e5d5a3ed41f351e77c84e7353be013", ui_win_frame:"/_blob/f574592c2923afd7321af22769ce0913", ui_win_ribbon:"/_blob/016672401428e2a155738a9a28d8551d", ui_win_close:"/_blob/993a519952a41a6041bc9fdb42b3f4c1", ui_win_btn_gold:"/_blob/0e13e153044812c9e85e23f2ec26babd", ui_win_btn_blue:"/_blob/64b5257cbbcbcb6111e756b8de8dd7b3", ui_win_btn_grey:"/_blob/ab8f92d66e4d4817a6c7f168d7883426", ui_win_row:"/_blob/146536adb9bace620991d11de7b00006", ui_win_tab:"/_blob/2805190c5c9314daafac25eac2ad4bdc", ui_win_tab_on:"/_blob/6f8984a06b04dd95abf13912087e10ff", ui_win_tog_on:"/_blob/fbeb8020630d894a88cbce60fd6c1387", ui_win_tog_off:"/_blob/0475d81d5ce3f6aabda634d92888435b", ui_win_chk:"/_blob/ed9c571c16b0be6918f289c10d3b4546", ui_win_chk_on:"/_blob/4edc8d218f3a6ce45345766e0f94c107"};
 const onClaude = location.protocol === "https:" && !/github\.io$/.test(location.hostname);
 const assetUrl = n => (onClaude && BLOB[n]) || "assets/" + n + ".webp";
 Object.keys(MON).forEach(id => { const a = MON[id].art; if (a && HAVE.has(a)) ART[id] = assetUrl(a); if (a && HAVE.has(a + "_awakened")) ART[id + "_aw"] = assetUrl(a + "_awakened"); });
@@ -5421,8 +5417,11 @@ function sideArt(C, P, v) {        // fill the gaps beside a scaled painted stag
   const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\) scale\(([\d.]+)\)/.exec(P.style.transform); if (!m) return;
   const x = +m[1], y = +m[2], k = +m[3], W = P.offsetWidth * k, H = P.offsetHeight * k;
   let f = C.querySelector(":scope>.sidefill"); if (!f) { f = document.createElement("div"); f.className = "sidefill"; f.innerHTML = "<i></i><i></i>"; C.prepend(f); }
-  const gR = C.clientWidth - x - W;    // only the outermost strip of scenery (1.4% of the art) is stretched over the gap, so no panel or frame is ever repeated
-  [[0, x, "0 0"], [x + W, gR, "100% 0"]].forEach(([l, w, bp], i) => { const e = f.children[i].style; e.display = w > 1 ? "" : "none"; e.left = l + "px"; e.top = y + "px"; e.width = w + "px"; e.height = H + "px"; e.backgroundImage = `var(${v})`; e.backgroundSize = `${(w / 0.014).toFixed(1)}px 100%`; e.backgroundPosition = bp; });
+  const gR = C.clientWidth - x - W, gB = C.clientHeight - y - H;   // only the outermost strip of scenery (1.4% of the art) is stretched over a gap, so no panel or frame is ever repeated
+  if (f.children.length < 4) f.innerHTML = "<i class=l></i><i class=r></i><i class=t></i><i class=b></i>";
+  [[0, y, x, H, `${(x / 0.014).toFixed(1)}px 100%`, "0 0"], [x + W, y, gR, H, `${(gR / 0.014).toFixed(1)}px 100%`, "100% 0"],
+   [x, 0, W, y, `100% ${(y / 0.014).toFixed(1)}px`, "0 0"], [x, y + H, W, gB, `100% ${(gB / 0.014).toFixed(1)}px`, "0 100%"]].forEach(([l, t, w, h, bs, bp], i) => {
+    const e = f.children[i].style; e.display = w > 1 && h > 1 ? "" : "none"; e.left = l + "px"; e.top = t + "px"; e.width = w + "px"; e.height = h + "px"; e.backgroundImage = `var(${v})`; e.backgroundSize = bs; e.backgroundPosition = bp; });
 }
 function bagFit() {
   const g = $("bag"); if (!g.classList.contains("bgart")) return;
@@ -8324,30 +8323,98 @@ function renderGuild() {
   body.querySelectorAll("[data-g]").forEach(b => b.onclick = () => storeBuy("guild", GSHOP.find(i => i.k === b.dataset.g)));
   $("gLeave").onclick = () => { openModal(`<h3 style="margin:0 0 8px">לעזוב את ${esc(G.name)}?</h3><p style="font-size:12.5px;color:var(--muted)">מטבעות הגילדה יימחקו.</p><div style="display:flex;gap:8px"><button class="btn" id="glY">לעזוב</button><button class="btn ghost" onclick="closeModal()">ביטול</button></div>`); $("glY").onclick = () => { S.guild = null; save(true); closeModal(); renderGuild(); }; };
 }
-// the painted hall (G01b): on when the template and the window kit are there; the four sections live behind the four painted tiles
+// the painted hall (G02, the user's second template): the four sections (members, donation, shop, log) open in a window from the bottom buttons
 let ghPop = null;
 function ghClose() { const b = document.createElement("button"); b.className = "btn ghost ghx"; b.textContent = "סגירה"; b.onclick = closeModal; $("modalCard").appendChild(b); }
+const GD_MSG = ["ברוכים הבאים לגילדה! השתתפו בפעילויות, תרמו לגילדה ותהיו פעילים!", "השבוע כולם תוקפים את הבוס. כל ניסיון מקרב אותנו לפרס!",
+  "תרומה יומית מעלה את רמת הגילדה, ואיתה את ההטבות של כולנו.", "מטבעות הגילדה שווים הרבה: הציצו בחנות הגילדה.", "אל תשכחו: שלוש מתקפות על הבוס בכל יום.",
+  "גילדה חזקה היא גילדה פעילה. תודה לכל מי שתורם!", "מי שעולה בדירוג הזירה מביא כבוד לכל הגילדה!"];
+const guildPerk = G => G ? Math.min(10, 2 * (G.lvl || 1)) : 0;   // the approved perk: +2% per guild level, up to +10%
+function guildBuff(st) { const p = guildPerk(S.guild); if (!p) return st; const o = {...st}; ["atk", "def", "hp"].forEach(k => o[k] = Math.round(o[k] * (1 + p / 100))); return o; }
+function guildRank(G) {            // computed from the guild's name, level and the boss damage this week (the user approved a computed rank)
+  let h = 0; for (const c of G.name) h = (h * 31 + c.charCodeAt(0)) % 9973;
+  const dmg = G.boss ? (1 - G.boss.hp / G.boss.max) * 30 : 0;
+  return Math.max(1, 120 + h % 200 - (G.lvl - 1) * 22 - Math.floor(dmg));
+}
+function clothFilter(hex) {        // the painted banner is purple (hue 285); turn its cloth to the guild's colour
+  const n = parseInt(hex.slice(1), 16), r = (n >> 16) / 255, g = (n >> 8 & 255) / 255, b = (n & 255) / 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn;
+  if (d < .08) return "saturate(.12) brightness(.6)";
+  let h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h = (h * 60 + 360) % 360;
+  return `hue-rotate(${Math.round(h - 285)}deg)`;
+}
+function gdMenu(title, items) {    // a small window of buttons (guild management, settings)
+  openModal(`<h3 style="margin:0">${title}</h3><div class="gdm">${items.map((x, i) => `<button class="btn${x[2] ? " ghost" : ""}" data-i="${i}">${x[0]}</button>`).join("")}</div><button class="btn ghost" onclick="closeModal()">סגירה</button>`);
+  $("modalCard").classList.add("gdmenu");
+  $("modalCard").querySelectorAll("[data-i]").forEach(b => b.onclick = () => items[+b.dataset.i][1]());
+}
 function guildArt() {
-  const g = $("guild"), on = HAVE.has("ui_guild_bg") && HAVE.has("ui_win_row") && !!guildState();
-  g.classList.toggle("gdart", on); if (!on) return;
-  g.style.setProperty("--gdbg", `url(${assetUrl("ui_guild_bg")})`); g.style.setProperty("--wrow", `url(${assetUrl("ui_win_row")})`);
+  const g = $("guild"), G = guildState(), on = HAVE.has("ui_guild2_bg") && HAVE.has("ui_guild2_cloth") && !!G;
+  g.classList.toggle("gdart", on); if (!on) { const o = $("gd2"); if (o) o.remove(); return; }
+  g.style.setProperty("--gdbg", `url(${assetUrl("ui_guild2_bg")})`); g.style.setProperty("--gdcloth", `url(${assetUrl("ui_guild2_cloth")})`);
   $("topbar").style.display = "none";
-  const body = $("guildBody"), panels = [...body.querySelectorAll(".gh-panel")], G = guildState();
-  const info = [["👥", "חברים", `${G.members.length + 1}/20`], ["🤲", "תרומה", G.donated === today() ? "תרמת היום ✓" : "20,000 זהב"], ["🏪", "חנות הגילדה", `🪙 ${fmt(G.coins)}`], ["📜", "יומן הגילדה", ""]];
-  let t = $("ghTiles"); if (!t) { t = document.createElement("div"); t.id = "ghTiles"; t.className = "gh-tiles"; body.appendChild(t); }
-  t.innerHTML = info.map(([ic, n, sub], i) => `<button class="gh-tile" data-p="${i}"><span class="ic">${ic}</span><b>${n}</b>${sub ? `<small>${sub}</small>` : ""}</button>`).join("");
-  t.querySelectorAll(".gh-tile").forEach(b => b.onclick = () => { ghPop = +b.dataset.p; openModal(""); $("modalCard").classList.add("ghpop"); $("modalCard").appendChild(body.querySelectorAll(".gh-panel")[ghPop]); ghClose(); });
+  const body = $("guildBody"), panels = [...body.querySelectorAll(".gh-panel")], A = arenaState(), Bs = G.boss, pct = Math.round(Bs.hp / Bs.max * 100), att = Bs.att[today()] || 0;
+  const bossId = TOWER_BOSS[weekNo() % TOWER_BOSS.length], mem = G.members.map(i => getBot(A, i)).sort((a, b) => b.r - a.r), need = 1000 * G.lvl, pk = guildPerk(G), mail = seasonMail(A).length;
+  const P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`, d = dayNum(), nm = k => esc(mem[((k % mem.length) + mem.length) % mem.length].name);
+  const lead = mem[0] ? esc(mem[0].name) : "", donMe = G.donated === today(), dead = Bs.done || Bs.hp <= 0, noAtt = att >= 3;
+  let o = $("gd2"); if (!o) { o = document.createElement("div"); o.id = "gd2"; g.querySelector(".page").appendChild(o); }
+  o.innerHTML = `
+    <span class="t res" style="${P(96, 12, 96, 52)}">${fmt(G.coins)}</span><span class="t res" style="${P(272, 12, 116, 52)}">${fmt(S.gem)}</span><span class="t res" style="${P(462, 12, 140, 52)}">${fmt(S.mana)}</span>
+    <button class="rnd" id="gdGift" style="${P(1467, 0, 76, 76)}" aria-label="פרס כניסה יומי"></button>
+    <button class="rnd" id="gdMail" style="${P(1564, 0, 76, 76)}" aria-label="תיבת הדואר">${mail ? `<b class="bd">${mail}</b>` : ""}</button>
+    <button class="rnd" id="gdSet" style="${P(1656, 0, 76, 76)}" aria-label="הגדרות"></button>
+    <span class="t gold" style="${P(492, 92, 170, 68)};font-size:30px;font-weight:900">רמה ${G.lvl} 👑</span>
+    <span class="t gold tf" style="${P(706, 92, 400, 68)};font-size:42px">${esc(G.name)}</span>
+    <i class="cloth" style="${P(1135, 45, 207, 257)};filter:${clothFilter(GCOL[G.col || 0])}"></i>
+    <img class="emb" src="assets/emblem_${G.em || 1}.webp" alt="" style="${P(1186, 100, 96, 96)}">
+    <button id="gdFlag" style="${P(1164, 52, 142, 236)}" aria-label="דגל וסמל"></button>
+    <span class="t gold" style="${P(100, 206, 340, 46)};font-size:30px;font-weight:900">👹 הבוס השבועי</span>
+    <span class="bart" style="${P(92, 260, 358, 218)}">${sprite(bossId)}</span>
+    <span class="t" style="${P(102, 268, 338, 32)};justify-content:space-between;gap:6px"><span class="chip t">פרס: 📜 מגילה אגדית · 💎300</span><span class="chip t">נזק: ${fmt(Bs.my)}</span></span>
+    <span class="t bname" style="${P(92, 420, 358, 58)}">${esc(MON[bossId].n)}</span>
+    <span class="t" style="${P(134, 494, 92, 32)};font-size:21px">חיי הבוס</span>
+    <span class="hpbar" style="${P(231, 500, 211, 20)}"><i style="width:${pct}%"></i><b>${dead ? "הובס ✓" : pct + "%"}</b></span>
+    <span class="t" style="${P(160, 542, 280, 44)};font-size:23px;justify-content:space-between;padding:0 6px"><span>ניסיונות נותרו</span><b style="color:#5dff7a;font-size:28px">${3 - att}/3</b></span>
+    <button class="atk" id="gdAtk" style="${P(98, 632, 348, 82)};padding-inline-start:${dead || noAtt ? 18 : 60}px" ${dead || noAtt ? "disabled" : ""}>${dead ? "הובס ✓" : noAtt ? "חזרו מחר" : "לתקוף"}</button>
+    <span class="t gold" style="${P(552, 570, 300, 36)};font-size:25px;font-weight:900">פעילות אחרונה</span>
+    <span class="t act" style="${P(548, 610, 344, 38)}"><b>${nm(d)}</b>&nbsp;· תקף את הבוס</span>
+    <span class="t act" style="${P(548, 650, 344, 38)}">${donMe ? "<b>אתה</b>&nbsp;· תרמת 20,000 זהב" : `<b>${nm(d + 3)}</b>&nbsp;· תרם 20,000 זהב`}</span>
+    <span class="t act" style="${P(548, 690, 344, 38)}"><b>${nm(d + 7)}</b>&nbsp;· הצטרף לגילדה</span>
+    <button id="gdLog2" style="${P(500, 568, 400, 166)};z-index:-1" aria-label="יומן הגילדה"></button>
+    <span class="t gold" style="${P(964, 570, 226, 36)};font-size:25px;font-weight:900">הודעת מנהיג</span>
+    <span class="t msg" style="${P(950, 612, 300, 110)}">${GD_MSG[d % GD_MSG.length]}${lead ? `<small>— ${lead}</small>` : ""}</span>
+    <span class="t gold" style="${P(1356, 208, 336, 46)};font-size:29px;font-weight:900">👑 מידע על הגילדה</span>
+    <span class="t row" style="${P(1412, 262, 272, 44)};direction:ltr"><b>${G.members.length + 1}/20</b><span>חברים</span></span>
+    <span class="t row" style="${P(1412, 307, 234, 44)};direction:ltr"><b>#${guildRank(G)}</b><span>דירוג גילדה</span></span>
+    <span class="t row" style="${P(1412, 352, 234, 44)};direction:ltr"><b>${fmt(G.coins)}</b><span>מטבעות גילדה</span></span>
+    <span class="t lvn" style="${P(1356, 420, 70, 70)}">${G.lvl}</span>
+    <span class="t gold" style="${P(1438, 410, 252, 36)};font-size:24px;font-weight:900">רמת גילדה</span>
+    <span class="xp" style="${P(1438, 450, 252, 19)}"><i style="width:${Math.min(100, G.xp / need * 100)}%"></i></span>
+    <span class="t" style="${P(1438, 472, 252, 30)};font-size:21px;color:#c8d2f0" dir="ltr">${fmt(G.xp)} / ${fmt(need)}</span>
+    <span class="t gold" style="${P(1362, 513, 324, 38)};font-size:24px;font-weight:900">הטבות גילדה (רמה ${G.lvl})</span>
+    ${[["התקפה", 1363], ["הגנה", 1479], ["חיים", 1594]].map(([n, x]) => `<span class="t pk" style="${P(x, 628, 95, 58)}"><b dir="ltr">+${pk}%</b><span>${n}</span></span>`).join("")}
+    <button class="nav" data-p="4" style="${P(98, 782, 304, 76)};padding:0 18px 0 112px">ניהול גילדה</button>
+    <button class="nav" data-p="3" style="${P(420, 782, 302, 76)};padding:0 18px 0 122px">יומן הגילדה</button>
+    <button class="nav" data-p="2" style="${P(740, 782, 298, 76)};padding:0 18px 0 122px">חנות הגילדה</button>
+    <button class="nav" data-p="1" style="${P(1058, 782, 300, 76)};padding:0 18px 0 130px">תרומה${donMe ? "<small>✓</small>" : ""}</button>
+    <button class="nav" data-p="0" style="${P(1376, 782, 310, 76)};padding:0 18px 0 122px">חברי הגילדה</button>`;
+  const pop = i => { ghPop = i; openModal(""); $("modalCard").classList.add("ghpop"); $("modalCard").appendChild(body.querySelectorAll(".gh-panel")[i]); ghClose(); };
+  o.querySelectorAll(".nav").forEach(b => b.onclick = () => +b.dataset.p === 4
+    ? gdMenu("ניהול גילדה", [["🛡 דגל וסמל", flagModal], ["לעזוב גילדה", () => $("gLeave").onclick(), 1]]) : pop(+b.dataset.p));
+  $("gdLog2").onclick = () => pop(3);
+  $("gdAtk").onclick = () => { const b = $("gBoss"); if (b && !b.disabled) b.onclick(); };
+  $("gdFlag").onclick = flagModal;
+  $("gdGift").onclick = loginModal;
+  $("gdMail").onclick = () => { arenaTab = "ranks"; azRw.tab = "season"; show("arena"); };
+  $("gdSet").onclick = () => gdMenu("הגדרות", [["🔊 צלילים: הפעלה / כיבוי", () => $("muteBtn").click()], ["⛶ מסך מלא", () => $("fsBtn").click()], ["❓ איך משחקים", helpModal]]);
   if (ghPop !== null && $("modal").classList.contains("on") && $("modalCard").classList.contains("ghpop")) { $("modalCard").innerHTML = ""; $("modalCard").appendChild(panels[ghPop]); ghClose(); }
-  let rs = $("gdRes"); if (!rs) { rs = document.createElement("div"); rs.id = "gdRes"; rs.className = "gd-res"; body.appendChild(rs); }
-  rs.innerHTML = `<span>💰 <b dir="ltr">${fmt(S.mana)}</b></span><span>💎 <b dir="ltr">${fmt(S.gem)}</b></span><span>🪙 <b dir="ltr">${fmt(G.coins)}</b></span>`;
   guildFit();
 }
 function guildFit() {
   const g = $("guild"); if (!g.classList.contains("gdart")) return;
   const cs = getComputedStyle(g), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = g.clientWidth - pl - parseFloat(cs.paddingRight), H = g.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
-  const k = Math.min(W / 1671, H / 941);
-  g.querySelector(".page").style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
+  const k = Math.min(W / 1777, H / 885);
+  g.querySelector(".page").style.transform = `translate(${(pl + (W - 1777 * k) / 2).toFixed(1)}px,${(pt + (H - 885 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(g, g.querySelector(".page"), "--gdbg");
 }
 addEventListener("resize", () => { if ($("guild").classList.contains("on")) guildFit(); });
@@ -8410,7 +8477,7 @@ function btArt() {                                   // the user's painted battl
 function startBattle(stage) {
   btArt();
   const team = S.team.map(u => S.mons.find(m => m.uid === u)).filter(Boolean);
-  B = {stage, waves:wildWaves(stage), ag:0, spell:sumState().eq, wave:0, allies:team.map((m, i) => Object.assign(mkUnit("a", m.id, m.lvl, i, null, withLeader(monTotal(m), team[0])), {uid:m.uid, aw:!!m.aw, skl:m.skl, st:mst(m), lk:MON[m.id].sk.map((_, k) => !skOpen(m, k))})), enemies:[], auto:S.autoRep && !stage.arena ? true : B ? B.auto : false, speed:B ? B.speed : 1, over:false, turn:0};
+  B = {stage, waves:wildWaves(stage), ag:0, spell:sumState().eq, wave:0, allies:team.map((m, i) => Object.assign(mkUnit("a", m.id, m.lvl, i, null, guildBuff(withLeader(monTotal(m), team[0]))), {uid:m.uid, aw:!!m.aw, skl:m.skl, st:mst(m), lk:MON[m.id].sk.map((_, k) => !skOpen(m, k))})), enemies:[], auto:S.autoRep && !stage.arena ? true : B ? B.auto : false, speed:B ? B.speed : 1, over:false, turn:0};
   B.allies.forEach(giveUlt);
   show("battle");
   if (!speedsOpen().includes(B.speed)) B.speed = Math.max(...speedsOpen());
@@ -10077,7 +10144,7 @@ const bindTips = tips => $("modalCard").querySelectorAll("[data-ti]").forEach(b 
 
 /* ============================== MODAL / BOX ============================== */
 function openModal(html) { $("modalCard").innerHTML = html; $("modal").classList.add("on"); }
-function closeModal() { clearTimeout(repTimer); vipView = null; if (ghPop !== null) { ghPop = null; if ($("guild").classList.contains("on") && $("modalCard").classList.contains("ghpop")) setTimeout(renderGuild, 0); } $("modalCard").classList.remove("ghpop"); $("modal").classList.remove("on", "vic", "def"); $("modalCard").classList.remove("vipcard", "profcard", "viccard", "defcard", "pickcard", "skwcard", "cfcard", "dlycard", "azbuy", "vart", "dart", "calart"); $("modalCard").style.zoom = ""; ["--cal-day", "--cal-got", "--cal-today", "--cal-big", "--cal-myst", "--cal-check"].forEach(v => $("modalCard").style.removeProperty(v)); }
+function closeModal() { clearTimeout(repTimer); vipView = null; if (ghPop !== null) { ghPop = null; if ($("guild").classList.contains("on") && $("modalCard").classList.contains("ghpop")) setTimeout(renderGuild, 0); } $("modalCard").classList.remove("ghpop"); $("modal").classList.remove("on", "vic", "def"); $("modalCard").classList.remove("gdmenu", "vipcard", "profcard", "viccard", "defcard", "pickcard", "skwcard", "cfcard", "dlycard", "azbuy", "vart", "dart", "calart"); $("modalCard").style.zoom = ""; ["--cal-day", "--cal-got", "--cal-today", "--cal-big", "--cal-myst", "--cal-check"].forEach(v => $("modalCard").style.removeProperty(v)); }
 // the shared painted window (W01): on for every window once all its pieces are there; the urls go in as vars (the claude page serves them from the asset store)
 const WIN_ART = {"--wftl":"ui_wf_tl", "--wftr":"ui_wf_tr", "--wfbl":"ui_wf_bl", "--wfbr":"ui_wf_br", "--wft":"ui_wf_t", "--wfb":"ui_wf_b", "--wfl":"ui_wf_l", "--wfr":"ui_wf_r",
   "--wffill":"ui_wf_fill", "--wfgem":"ui_wf_gem", "--wkg":"ui_win_btn_gold", "--wkb":"ui_win_btn_blue", "--wkgr":"ui_win_btn_grey"};
