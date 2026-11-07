@@ -4183,6 +4183,20 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #gm2 .gm-sq{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:14px}
 #gm2 .gm-sq span{font-size:34px;line-height:1}#gm2 .gm-sq small{font-size:15px;font-weight:800;color:#ffe9a6;line-height:1.05;white-space:normal;text-align:center}
 #gm2 .gm-sq-off{background:rgba(6,8,24,.5);border-radius:12px;pointer-events:none}
+@keyframes gdIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}#gd2.gdin,#gm2.gdin{animation:gdIn .28s ease-out}
+@keyframes gdPulse{50%{filter:brightness(1.15) drop-shadow(0 0 12px #ffd35a)}}
+#gd2 .xp i,#gd2 .hpbar i{transition:width .8s ease}
+#gd2 .act{display:block;line-height:38px;text-align:right;overflow:hidden;text-overflow:ellipsis;font-size:22px}
+#gd2 .gd-note{font-size:20px;font-weight:800;color:#ffd98a}
+#gd2 .gd-empty{white-space:normal;font-size:20px;color:#c8d2f0;padding:0 16px;line-height:1.35}
+#gd2 .gd-edit{border-radius:14px!important;font-size:30px;color:#5a3a12;background:rgba(255,240,200,.7)!important;border:2px solid #b4842e!important}
+#gd2 .gd-off{background:rgba(6,8,24,.6);border-radius:30px;pointer-events:none}
+#gd2 .nav .nbd{position:static;display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 7px;margin-inline-start:10px;border-radius:15px;background:#e0263a;color:#fff;font-size:19px;font-weight:900;box-shadow:0 0 0 2px #2a0b10}
+#gd2 .atk.collect{animation:gdPulse 1.4s ease-in-out infinite}
+#gd2 .bart.beaten img,#gd2 .bart.beaten svg{filter:grayscale(.85) brightness(.6)}
+#gd2 .chip{font-size:18px!important}
+#gd2 .gd-name{overflow:hidden}
+.gh-log small{color:var(--muted);font-size:11px;margin-inline-start:6px}.gh-log .gh-empty{color:var(--muted);padding:10px;text-align:center}
 .modal .card.gdmenu .gdm{display:flex;flex-direction:column;gap:10px;margin:12px 0}
 .modal .card.ghpop #gLeave{display:none}
 .modal .card.ghpop .gh-panel{display:block!important;background:none;border:0;box-shadow:none}
@@ -8306,14 +8320,15 @@ function guildState() {
   gInit(G); if (!G.wd || G.wd.w !== weekNo()) G.wd = {w:weekNo(), me:0};
   if (G.week !== weekNo()) { G.week = weekNo(); G.boss = {max:Math.round(4e5 + G.lvl * 8e4), hp:0, my:0, done:false, att:{}}; G.boss.hp = G.boss.max; }
   if (G.day !== today()) { const days = Math.max(1, Math.min(7, dayNum() - (G.dn || dayNum() - 1))); G.dn = dayNum(); G.day = today(); gDaily(G, days);
-    if (!G.boss.done) G.boss.hp = Math.max(0, G.boss.hp - Math.round(G.boss.max * .11 * days * (.8 + R() * .4))); G.xp += 150 * days; }
-  while (G.xp >= 1000 * G.lvl) { G.xp -= 1000 * G.lvl; G.lvl++; }
+    if (!G.boss.done && G.boss.hp > 0) { const h0 = G.boss.hp; G.boss.hp = Math.max(0, G.boss.hp - Math.round(G.boss.max * .11 * days * (.8 + R() * .4))); if (h0 > G.boss.hp) gLog(G, "bdmg", null, h0 - G.boss.hp); if (G.boss.hp <= 0) gLog(G, "bkill", null); }
+    G.xp += 150 * days; gLog(G, "gxp", null, 150 * days); }
+  while (G.xp >= 1000 * G.lvl) { G.xp -= 1000 * G.lvl; G.lvl++; gLog(G, "lvl", null, G.lvl); }
   return G;
 }
 function joinGuild(name, founder) {
   const A = arenaState(), base = Math.floor(R() * 9000);
   S.guild = {name, role:founder ? "leader" : "member", since:dayNum(), lvl:1 + Math.floor(R() * 4), xp:0, coins:0, week:-1, day:"", dn:dayNum(), donated:"", members:Array.from({length:19}, (_, i) => base + i * 47 % 9000)};
-  guildState(); save(true); renderGuild();
+  guildState(); gLog(S.guild, "join", "me"); save(true); renderGuild();
 }
 const GSHOP = [{k:"gl", img:["scroll_l"], n:"מגילה אגדית", p:200, r:{l:1}}, {k:"gld", img:["scroll_ld"], n:"מגילת אור וחושך", p:300, r:{ld:1}}, {k:"gr", img:["shop_rune6", "rune_blade"], n:"רון של 6 כוכבים", p:180, r:{rune:6}},
   {k:"gm", img:["shop_magic", "ess_magic"], n:"15 אבני קשת", p:80, r:{magic:15}}, {k:"gs", img:["shop_sprites", "aether_sprite"], n:"5 רוחוני אתר", p:100, r:{sprite:5}}];
@@ -8339,6 +8354,7 @@ function guildBanners() {
 }
 addEventListener("resize", () => { if ($("guild").classList.contains("on")) guildBanners(); });
 function flagModal() {
+  if (!gCan("flag")) return toast("רק מנהיג הגילדה מחליף את הדגל");
   const G = S.guild; let em = G.em || 1, col = G.col || 0;
   const draw = () => {
     openModal(`<h3 style="margin:0 0 8px;color:var(--gold2)">🛡 הדגל והסמל של הגילדה</h3>
@@ -8350,7 +8366,7 @@ function flagModal() {
       <div style="display:flex;gap:8px;margin-top:10px"><button class="btn" id="flOk">לשמור</button><button class="btn ghost" onclick="closeModal()">ביטול</button></div>`);
     $("modalCard").querySelectorAll("[data-em]").forEach(b => b.onclick = () => { em = +b.dataset.em; draw(); });
     $("modalCard").querySelectorAll("[data-col]").forEach(b => b.onclick = () => { col = +b.dataset.col; draw(); });
-    $("flOk").onclick = () => { G.em = em; G.col = col; save(); closeModal(); renderGuild(); toast("הדגל עודכן!"); };
+    $("flOk").onclick = () => { closeModal(); if (gAct("flag", {em, col})) toast("הדגל עודכן!"); };
   };
   draw();
 }
@@ -8390,18 +8406,51 @@ function renderGuild() {
       <button class="btn" id="gDon" ${G.donated === today() ? "disabled" : ""}>${G.donated === today() ? "תרמת היום ✓" : "לתרום"}</button></div>
     <div class="gp gh-panel"><div class="gp-h">🏪 חנות הגילדה</div><div class="gh-shop">${GSHOP.map(x => `<button class="sitem" data-g="${x.k}"><span class="ic">${shopImg(x)}</span><b>${x.n}</b><span class="price">🪙 ${x.p}</span></button>`).join("")}</div></div>
     <div class="gp gh-panel"><div class="gp-h">📜 יומן הגילדה</div><div class="gh-log">
-      ${mem.slice(0, 6).map((b, i) => `<div><span>${["⚔ תקף את הבוס", "🤲 תרם זהב", "🏆 עלה דרגה בזירה", "⚔ תקף את הבוס", "🤲 תרם זהב", "✨ הצטרף לגילדה"][i]}</span><b>${esc(b.name)}</b></div>`).join("")}</div></div>
+      ${gLogHtml(G)}</div></div>
   </div>`;
   $("gFlag2").onclick = flagModal;
   setTimeout(guildArt, 0);
-  $("gDon").onclick = () => { if (G.donated === today()) return; if (S.mana < 20000) return toast("צריך 20,000 זהב"); S.mana -= 20000; G.coins += 30; G.xp += 200; G.donated = today(); G.dons = (G.dons || 0) + 1; G.wd.me += 20000; SFX.up(); guildState(); save(true); renderTop(); renderGuild(); };
-  $("gBoss").onclick = () => { pickedStage = {id:"בוס גילדה", n:MON[bossId].n, special:"gboss", cost:0, bg:"guild_boss", boss:true, waves:[[[bossId, 40, "boss"]]]}; show("team"); };
+  $("gDon").onclick = () => { if (G.donated === today()) return; if (S.mana < 20000) return toast("צריך 20,000 זהב"); S.mana -= 20000; G.coins += 30; G.xp += 200; G.donated = today(); G.dons = (G.dons || 0) + 1; G.wd.me += 20000; gLog(G, "donate", "me", 20000); SFX.up(); guildState(); save(true); renderTop(); renderGuild(); };
+  $("gBoss").onclick = gBossGo;
   body.querySelectorAll("[data-g]").forEach(b => b.onclick = () => storeBuy("guild", GSHOP.find(i => i.k === b.dataset.g)));
   $("gLeave").onclick = gLeaveAsk;
 }
 // the painted hall (G02, the user's second template): the four sections (members, donation, shop, log) open in a window from the bottom buttons
 let ghPop = null;
 function ghClose() { const b = document.createElement("button"); b.className = "btn ghost ghx"; b.textContent = "סגירה"; b.onclick = closeModal; $("modalCard").appendChild(b); }
+/* ---- the guild log (2026-11-07): one list of real events, written where the state changes; the hall's recent activity and the full log both read it ---- */
+const GBOSS_REW = {l:1, gem:300}, GBOSS_REW_TXT = "📜 מגילה אגדית · 💎 300";   // the weekly boss reward (unchanged), one definition for the payment and the panel
+function gLog(G, t, who, n) { if (!G) return; G.log = G.log || []; G.log.unshift({t, who, n, at:Date.now()}); if (G.log.length > 60) G.log.length = 60; }
+const GLOG_TXT = {join:["👥", "הצטרף לגילדה"], kick:["🚫", "הוצא מהגילדה"], promote:["⬆", "קודם לסגן"], demote:["⬇", "הורד לחבר"], transfer:["👑", "הוא המנהיג החדש"],
+  donate:["💰", n => `תרם ${fmt(n)} זהב`], gxp:["✨", n => `חברי הגילדה הוסיפו ${fmt(n)} ניסיון`], lvl:["🏆", n => `הגילדה עלתה לרמה ${n}`], batk:["⚔", n => `תקף את הבוס · ${fmt(n)} נזק`],
+  bdmg:["⚔", n => `חברי הגילדה גרמו לבוס ${fmt(n)} נזק`], bkill:["🎉", "הבוס השבועי הובס"], bcol:["🎁", "אסף את פרס הבוס"], msg:["📣", "פרסם הודעה חדשה"], flag:["🛡", "החליף את דגל הגילדה"],
+  perm:["⚙", "הרשאות הסגנים עודכנו"]};
+const GLOG_STAFF = ["perm"];                       // events only the leader and deputies see
+function gLogRows(G, n) {
+  const staff = G.role === "leader" || G.role === "deputy", A = arenaState();
+  return (G.log || []).filter(e => GLOG_TXT[e.t] && (staff || !GLOG_STAFF.includes(e.t))).slice(0, n).map(e => {
+    const [ic, tx] = GLOG_TXT[e.t], who = e.who === "me" ? prof().name : typeof e.who === "number" ? getBot(A, e.who).name : "";
+    return {ic, who, tx:typeof tx === "function" ? tx(e.n) : tx, ago:gAgo(Math.max(0, Math.round((Date.now() - e.at) / 6e4)))}; });
+}
+const gLogLine = r => `${r.who ? `<b>${esc(r.who)}</b>&nbsp;· ` : ""}${esc(r.tx)}`;
+function gBossState(G) {                           // the weekly boss: open / no tries / reward to collect / beaten
+  const Bs = G.boss, att = Bs.att[today()] || 0;
+  if (Bs.done) return "done";
+  if (Bs.hp <= 0) return "collect";
+  return att >= 3 ? "notries" : "open";
+}
+function gResetIn() {                              // time to the next weekly boss (the week turns at local midnight)
+  const d = dayNum(), left = 7 - ((d + 3) % 7 + 7) % 7, ms = new Date(today()).getTime() + left * 864e5 + new Date().getTimezoneOffset() * 6e4 - Date.now(), h = Math.max(0, Math.ceil(ms / 36e5));
+  return h >= 48 ? `${Math.floor(h / 24)} ימים` : `${h} שע'`;
+}
+let gdAnim = {xp:null, hp:null};                  // last shown bar widths, so a change slides from the old value
+function gdMsgEdit() {
+  const G = guildState(); if (!G || !gCan("msg")) return toast("אין לך הרשאה לערוך את ההודעה");
+  openModal(`<h3 style="margin:0 0 8px">📣 הודעת המנהיג</h3><textarea id="gmsgIn" maxlength="140" rows="4" dir="rtl" style="width:100%;box-sizing:border-box;padding:10px;border-radius:12px;border:1px solid var(--line);background:#0b1330;color:var(--ink);font:inherit;font-size:15px;resize:none">${esc(G.msg ? G.msg.t : "")}</textarea>
+    <small id="gmsgN" style="display:block;color:var(--muted);margin:4px 0 10px">עד 140 תווים</small><div style="display:flex;gap:8px;justify-content:center"><button class="btn" id="gmsgOk">לפרסם</button><button class="btn ghost" onclick="closeModal()">ביטול</button></div>`);
+  const i = $("gmsgIn"), cnt = () => $("gmsgN").textContent = `${i.value.length}/140`; i.oninput = cnt; cnt(); setTimeout(() => { try { i.focus(); } catch (e) {} }, 60);
+  $("gmsgOk").onclick = () => { const t = i.value.trim(); if (!t) return toast("כתוב הודעה"); closeModal(); if (gAct("msg", t)) toast("ההודעה פורסמה"); };
+}
 /* ============================== GUILD ROLES (2026-11-07) ==============================
    The player holds one role in the guild: leader (founded it, or was handed it) / deputy / member. The guild's other members are bots; one of them
    leads when the player doesn't. Every guild action goes through gAct(), which checks gCan() again at the moment it runs (hidden buttons are not
@@ -8413,13 +8462,14 @@ function gInit(G) {                   // fills what older saves lack (once); a j
     G.role = G.role || "member"; G.roles = G.roles || {}; G.dperm = G.dperm || {inv:true, req:true, kick:false};
     G.req = G.req || []; G.inv = G.inv || []; G.kicked = G.kicked || []; G.bs = G.bs || {}; G.dons = G.dons || 0; G.since = G.since || G.dn || dayNum(); G.rv = 1;
   }
+  if (G.dperm.msg === undefined) G.dperm.msg = false; G.log = G.log || [];
   if (G.role !== "leader" && G.members.length && !G.members.some(i => G.roles[i] === "leader")) {   // always someone leads: the strongest member takes over
     Object.keys(G.roles).forEach(k => { if (G.roles[k] === "leader") delete G.roles[k]; });
     const A = arenaState(); let best = G.members[0]; G.members.forEach(i => { if (getBot(A, i).r > getBot(A, best).r) best = i; }); G.roles[best] = "leader";
   }
 }
 function gDaily(G, days) {            // a new day: invited players join if there is room, new join requests arrive, a faithful member becomes deputy
-  G.inv = G.inv.filter(i => { if (G.members.length + 1 < G_MAX && !G.members.includes(i)) { G.members.push(i); G.bs[i] = dayNum(); return false; } return !G.members.includes(i); });
+  G.inv = G.inv.filter(i => { if (G.members.length + 1 < G_MAX && !G.members.includes(i)) { G.members.push(i); G.bs[i] = dayNum(); gLog(G, "join", i); return false; } return !G.members.includes(i); });
   if (G.members.length + 1 < G_MAX && G.req.length < 5) {
     const rg = srng(dayNum() * 97 + G.members.length * 13), n = Math.min(5 - G.req.length, 1 + Math.floor(rg() * 2));
     for (let k = 0; k < n * 4 && G.req.length < 5; k++) { const i = Math.floor(rg() * NBOTS); if (!G.members.includes(i) && !G.req.includes(i) && !G.kicked.includes(i) && !G.inv.includes(i)) G.req.push(i); }
@@ -8443,6 +8493,10 @@ function gCan(act, t) {               // the one rule book: what the player may 
     case "roles": return lead;
     case "perm": return lead && t in G.dperm;
     case "leave": return !lead || !G.members.length;     // a leader hands over the guild first (or is alone in it)
+    case "msg": return lead || dep && G.dperm.msg;          // the leader's message: the leader, or a deputy given that right
+    case "flag": return lead;
+    case "manage": return gCan("requests") || gCan("invite") || gCan("roles");
+    case "collect": return gBossState(G) === "collect";
   }
   return false;
 }
@@ -8450,14 +8504,17 @@ function gAct(act, t) {               // performs an action only if gCan allows 
   const G = guildState();
   if (!G || !gCan(act, t)) { toast("אין לך הרשאה לפעולה הזו"); return false; }
   switch (act) {
-    case "promote": if (gDeputies(G) >= G_DEP_MAX) { toast(`אפשר עד ${G_DEP_MAX} סגנים`); return false; } G.roles[t] = "deputy"; break;
-    case "demote": delete G.roles[t]; break;
-    case "kick": G.members = G.members.filter(i => i !== t); delete G.roles[t]; G.kicked.push(t); if (GM.sel === t) GM.sel = "me"; break;
-    case "transfer": G.roles[t] = "leader"; G.role = "deputy"; break;          // the old leader stays on as a deputy
-    case "accept": if (G.members.length + 1 >= G_MAX) { toast("הגילדה מלאה"); return false; } G.req = G.req.filter(i => i !== t); G.members.push(t); G.bs[t] = dayNum(); break;
+    case "promote": if (gDeputies(G) >= G_DEP_MAX) { toast(`אפשר עד ${G_DEP_MAX} סגנים`); return false; } G.roles[t] = "deputy"; gLog(G, "promote", t); break;
+    case "demote": delete G.roles[t]; gLog(G, "demote", t); break;
+    case "kick": G.members = G.members.filter(i => i !== t); delete G.roles[t]; G.kicked.push(t); if (GM.sel === t) GM.sel = "me"; gLog(G, "kick", t); break;
+    case "transfer": G.roles[t] = "leader"; G.role = "deputy"; gLog(G, "transfer", t); break;          // the old leader stays on as a deputy
+    case "accept": if (G.members.length + 1 >= G_MAX) { toast("הגילדה מלאה"); return false; } G.req = G.req.filter(i => i !== t); G.members.push(t); G.bs[t] = dayNum(); gLog(G, "join", t); break;
     case "reject": G.req = G.req.filter(i => i !== t); break;
     case "invite": if (!G.inv.includes(t)) G.inv.push(t); break;
-    case "perm": G.dperm[t] = !G.dperm[t]; break;
+    case "perm": G.dperm[t] = !G.dperm[t]; gLog(G, "perm", null); break;
+    case "msg": G.msg = {t:String(t).trim().slice(0, 140), by:"me", at:Date.now()}; gLog(G, "msg", "me"); break;
+    case "flag": G.em = t.em; G.col = t.col; gLog(G, "flag", "me"); break;
+    case "collect": giveRew(GBOSS_REW); G.boss.done = true; gLog(G, "bcol", "me"); break;
     case "leave": S.guild = null; gmView = false; break;
     default: return false;
   }
@@ -8574,7 +8631,7 @@ function gmMainPaint() {              // the centre: filters + list (members), r
     m.querySelectorAll("[data-inv]").forEach(b => b.onclick = () => { const i = +b.dataset.inv; if (gAct("invite", i)) toast(`נשלחה הזמנה ל${getBot(A, i).name}`); });
     pgWire("ipage", n, gmMainPaint);
   } else {
-    const PERM = [["inv", "הזמנת שחקנים"], ["req", "אישור ודחיית בקשות הצטרפות"], ["kick", "הוצאת חברים רגילים"]];
+    const PERM = [["inv", "הזמנת שחקנים"], ["req", "אישור ודחיית בקשות הצטרפות"], ["kick", "הוצאת חברים רגילים"], ["msg", "עריכת הודעת המנהיג"]];
     m.innerHTML = `<span class="t gold gm-cover" style="${P(4, -4, 826, 66)}">ניהול תפקידים · סגנים ${gDeputies(G)}/${G_DEP_MAX}</span>${strip}
       <div class="gm-list" style="${P(4, 114, 826, 520)}"><div class="gm-sub">מה סגנים רשאים לעשות:</div>${PERM.map(([k, n]) => `<div class="gm-row gm-perm"><span>${n}</span>
         <button class="gm-tg${G.dperm[k] ? " on" : ""}" data-pm="${k}" aria-label="${n}"><i></i></button></div>`).join("")}
@@ -8622,6 +8679,16 @@ function gmSidePaint() {              // the chosen member: picture, name, level
     ${SQ.slice(acts.length).map(x => `<i class="gm-sq-off" style="${P(x + 4, 578, 68, 76)}"></i>`).join("")}`;
   sd.querySelectorAll(".gm-sq").forEach(b => b.onclick = () => acts[+b.dataset.a][2]());
 }
+function gBossGo() {                 // into the weekly boss fight, only while the rules allow it (open, tries left)
+  const G = guildState(); if (!G) return false;
+  const st = gBossState(G); if (st !== "open") { toast(st === "notries" ? "נגמרו הניסיונות להיום" : st === "collect" ? "הבוס הובס: אספו את הפרס" : "הבוס הובס השבוע"); return false; }
+  const bossId = TOWER_BOSS[weekNo() % TOWER_BOSS.length];
+  pickedStage = {id:"בוס גילדה", n:MON[bossId].n, special:"gboss", cost:0, bg:"guild_boss", boss:true, waves:[[[bossId, 40, "boss"]]]}; show("team"); return true;
+}
+function gLogHtml(G) {                // the full guild log window
+  const L = gLogRows(G, 30);
+  return L.length ? L.map(r => `<div><span>${r.ic} ${esc(r.tx)}</span><b>${esc(r.who)}</b><small>${r.ago}</small></div>`).join("") : `<div class="gh-empty">עדיין אין פעילות בגילדה. תרומות, מתקפות על הבוס והצטרפויות יופיעו כאן.</div>`;
+}
 function gLeaveAsk() {
   const G = guildState(); if (!G) return;
   if (!gCan("leave")) return toast("מנהיג מעביר את המנהיגות לחבר אחר לפני שעוזבים");
@@ -8655,58 +8722,70 @@ function guildArt() {
   $("topbar").style.display = "none";
   const gmOk = ["ui_gmem_bg", "ui_gmem_cloth", "ui_gmem_btn", "ui_gmem_btn_on"].every(n => HAVE.has(n)); if (!gmOk) gmView = false;
   g.classList.toggle("gmv", gmView);
-  if (gmView) { g.style.setProperty("--gdbg", `url(${assetUrl("ui_gmem_bg")})`); [["--gmcloth", "ui_gmem_cloth"], ["--gmbtn", "ui_gmem_btn"], ["--gmbtnon", "ui_gmem_btn_on"]].forEach(([v, n]) => g.style.setProperty(v, `url(${assetUrl(n)})`)); gmArt(); guildFit(); return; }
-  const body = $("guildBody"), panels = [...body.querySelectorAll(".gh-panel")], A = arenaState(), Bs = G.boss, pct = Math.round(Bs.hp / Bs.max * 100), att = Bs.att[today()] || 0;
-  const bossId = TOWER_BOSS[weekNo() % TOWER_BOSS.length], mem = G.members.map(i => getBot(A, i)).sort((a, b) => b.r - a.r), need = 1000 * G.lvl, pk = guildPerk(G), mail = seasonMail(A).length;
-  const P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`, d = dayNum(), nm = k => esc(mem[((k % mem.length) + mem.length) % mem.length].name);
-  const lead = esc(gLeaderName(G)), donMe = G.donated === today(), dead = Bs.done || Bs.hp <= 0, noAtt = att >= 3;
-  let o = $("gd2"); if (!o) { o = document.createElement("div"); o.id = "gd2"; g.querySelector(".page").appendChild(o); }
+  if (gmView) { g.style.setProperty("--gdbg", `url(${assetUrl("ui_gmem_bg")})`); [["--gmcloth", "ui_gmem_cloth"], ["--gmbtn", "ui_gmem_btn"], ["--gmbtnon", "ui_gmem_btn_on"]].forEach(([v, n]) => g.style.setProperty(v, `url(${assetUrl(n)})`)); const enter = g.dataset.mode !== "gm"; g.dataset.mode = "gm"; gmArt(); const m2 = $("gm2"); if (enter && m2) { m2.classList.remove("gdin"); void m2.offsetWidth; m2.classList.add("gdin"); } guildFit(); return; }
+  const body = $("guildBody"), panels = [...body.querySelectorAll(".gh-panel")], A = arenaState(), Bs = G.boss, pct = Math.max(0, Math.round(Bs.hp / Bs.max * 100)), att = Bs.att[today()] || 0;
+  const bossId = TOWER_BOSS[weekNo() % TOWER_BOSS.length], need = 1000 * G.lvl, xpPct = Math.min(100, G.xp / need * 100), pk = guildPerk(G), mail = seasonMail(A).length;
+  const P = (x, y, w, h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`, donMe = G.donated === today(), bst = gBossState(G);
+  const leadI = G.members.find(i => G.roles[i] === "leader"), msg = G.msg || (leadI !== undefined ? {t:GD_MSG[weekNo() % GD_MSG.length], by:leadI} : null);
+  const msgBy = msg ? (msg.by === "me" ? prof().name : getBot(A, msg.by).name) : "", logs = gLogRows(G, 3), canMgr = gCan("manage"), nl = [...G.name].length;
+  const ATK = {open:["לתקוף", ""], notries:["חזרו מחר", "ניסיונות חדשים בחצות"], collect:["לאסוף פרס", "הבוס הובס! הפרס מחכה לך"], done:["הובס ✓", `בוס חדש בעוד ${gResetIn()}`]}[bst];
+  const xp0 = gdAnim.xp === null ? xpPct : gdAnim.xp, hp0 = gdAnim.hp === null ? pct : gdAnim.hp;
+  let o = $("gd2"); if (!o) { o = document.createElement("div"); o.id = "gd2"; g.querySelector(".page").appendChild(o); o.classList.add("gdin"); }
+  if (g.dataset.mode !== "hall") { o.classList.remove("gdin"); void o.offsetWidth; o.classList.add("gdin"); g.dataset.mode = "hall"; }
   o.innerHTML = `
     <span class="t res" style="${P(96, 12, 96, 52)}">${fmt(G.coins)}</span><span class="t res" style="${P(272, 12, 116, 52)}">${fmt(S.gem)}</span><span class="t res" style="${P(462, 12, 140, 52)}">${fmt(S.mana)}</span>
     <button class="rnd" id="gdGift" style="${P(1467, 0, 76, 76)}" aria-label="פרס כניסה יומי"></button>
     <button class="rnd" id="gdMail" style="${P(1564, 0, 76, 76)}" aria-label="תיבת הדואר">${mail ? `<b class="bd">${mail}</b>` : ""}</button>
     <button class="rnd" id="gdSet" style="${P(1656, 0, 76, 76)}" aria-label="הגדרות"></button>
-    <span class="t gold" style="${P(492, 92, 170, 68)};font-size:30px;font-weight:900">רמה ${G.lvl} 👑</span>
-    <span class="t gold tf" style="${P(706, 92, 400, 68)};font-size:42px">${esc(G.name)}</span>
+    <span class="t gold" style="${P(492, 92, 170, 68)};font-size:32px;font-weight:900">רמה ${G.lvl} 👑</span>
+    <span class="t gold tf gd-name" style="${P(700, 92, 412, 68)};font-size:${nl > 16 ? 30 : nl > 12 ? 36 : 44}px">${esc(G.name)}</span>
     <i class="cloth" style="${P(1135, 45, 207, 257)};filter:${clothFilter(GCOL[G.col || 0])}"></i>
     <img class="emb" src="assets/emblem_${G.em || 1}.webp" alt="" style="${P(1186, 100, 96, 96)}">
-    <button id="gdFlag" style="${P(1164, 52, 142, 236)}" aria-label="דגל וסמל"></button>
+    ${gCan("flag") ? `<button id="gdFlag" style="${P(1164, 52, 142, 236)}" aria-label="דגל וסמל"></button>` : ""}
     <span class="t gold" style="${P(100, 206, 340, 46)};font-size:30px;font-weight:900">👹 הבוס השבועי</span>
-    <span class="bart" style="${P(92, 260, 358, 218)}">${sprite(bossId)}</span>
-    <span class="t" style="${P(102, 268, 338, 32)};justify-content:space-between;gap:6px"><span class="chip t">פרס: 📜 מגילה אגדית · 💎300</span><span class="chip t">נזק: ${fmt(Bs.my)}</span></span>
-    <span class="t bname" style="${P(92, 420, 358, 58)}">${esc(MON[bossId].n)}</span>
-    <span class="t" style="${P(134, 494, 92, 32)};font-size:21px">חיי הבוס</span>
-    <span class="hpbar" style="${P(231, 500, 211, 20)}"><i style="width:${pct}%"></i><b>${dead ? "הובס ✓" : pct + "%"}</b></span>
-    <span class="t" style="${P(160, 542, 280, 44)};font-size:23px;justify-content:space-between;padding:0 6px"><span>ניסיונות נותרו</span><b style="color:#5dff7a;font-size:28px">${3 - att}/3</b></span>
-    <button class="atk" id="gdAtk" style="${P(98, 632, 348, 82)};padding-inline-start:${dead || noAtt ? 18 : 60}px" ${dead || noAtt ? "disabled" : ""}>${dead ? "הובס ✓" : noAtt ? "חזרו מחר" : "לתקוף"}</button>
-    <span class="t gold" style="${P(552, 570, 300, 36)};font-size:25px;font-weight:900">פעילות אחרונה</span>
-    <span class="t act" style="${P(548, 610, 344, 38)}"><b>${nm(d)}</b>&nbsp;· תקף את הבוס</span>
-    <span class="t act" style="${P(548, 650, 344, 38)}">${donMe ? "<b>אתה</b>&nbsp;· תרמת 20,000 זהב" : `<b>${nm(d + 3)}</b>&nbsp;· תרם 20,000 זהב`}</span>
-    <span class="t act" style="${P(548, 690, 344, 38)}"><b>${nm(d + 7)}</b>&nbsp;· הצטרף לגילדה</span>
+    <span class="bart${bst === "done" || bst === "collect" ? " beaten" : ""}" style="${P(92, 260, 358, 218)}">${sprite(bossId)}</span>
+    <span class="t" style="${P(100, 266, 342, 32)};justify-content:flex-start"><span class="chip t">פרס: ${GBOSS_REW_TXT}</span></span><span class="t" style="${P(100, 302, 342, 32)};justify-content:flex-start"><span class="chip t">הנזק שלך: ${fmt(Bs.my)}</span></span>
+    <span class="t bname" style="${P(92, 418, 358, 60)}">${esc(MON[bossId].n)}</span>
+    <span class="t" style="${P(132, 492, 96, 36)};font-size:22px;font-weight:800">חיי הבוס</span>
+    <span class="hpbar" style="${P(231, 498, 211, 24)}"><i style="width:${hp0}%"></i><b dir="ltr">${bst === "done" || bst === "collect" ? "הובס" : `${fmt(Math.max(0, Bs.hp))} · ${pct}%`}</b></span>
+    <span class="t" style="${P(160, 542, 280, 44)};font-size:24px;justify-content:space-between;padding:0 6px"><span>ניסיונות נותרו</span><b style="color:${att >= 3 ? "#ff8a8a" : "#5dff7a"};font-size:30px">${Math.max(0, 3 - att)}/3</b></span>
+    ${ATK[1] ? `<span class="t gd-note" style="${P(100, 594, 342, 32)}">${ATK[1]}</span>` : ""}
+    <button class="atk ${bst}" id="gdAtk" style="${P(98, 632, 348, 82)};padding-inline-start:${bst === "open" ? 60 : 18}px" ${bst === "open" || bst === "collect" ? "" : "disabled"}>${ATK[0]}</button>
+    <span class="t gold" style="${P(552, 570, 300, 36)};font-size:26px;font-weight:900">פעילות אחרונה</span>
+    ${logs.length ? logs.map((r, j) => `<span class="t act" style="${P(548, 610 + j * 40, 344, 38)}" title="${esc(r.ago)}">${gLogLine(r)}</span>`).join("")
+      : `<span class="t gd-empty" style="${P(548, 610, 344, 118)}">עדיין אין פעילות. תרומות, מתקפות על הבוס והצטרפויות יופיעו כאן.</span>`}
     <button id="gdLog2" style="${P(500, 568, 400, 166)};z-index:-1" aria-label="יומן הגילדה"></button>
-    <span class="t gold" style="${P(964, 570, 226, 36)};font-size:25px;font-weight:900">הודעת מנהיג</span>
-    <span class="t msg" style="${P(950, 612, 300, 110)}">${GD_MSG[d % GD_MSG.length]}${lead ? `<small>— ${lead}</small>` : ""}</span>
+    <span class="t gold" style="${P(964, 570, 226, 36)};font-size:26px;font-weight:900">הודעת מנהיג</span>
+    ${msg ? `<span class="t msg" style="${gCan("msg") ? P(1010, 606, 246, 122) : P(950, 606, 304, 122)};font-size:${msg.t.length > 110 ? 15 : msg.t.length > 80 ? 17 : msg.t.length > 55 ? 19 : 22}px;line-height:${msg.t.length > 80 ? 1.12 : 1.25}">${esc(msg.t)}<small>— ${esc(msgBy)}</small></span>`
+      : `<span class="t msg" style="${gCan("msg") ? P(1010, 612, 244, 110) : P(950, 612, 300, 110)}">עדיין לא פורסמה הודעה.</span>`}
+    ${gCan("msg") ? `<button class="gd-edit" id="gdMsgEd" style="${P(934, 640, 74, 78)}" aria-label="עריכת ההודעה">✎</button>` : ""}
     <span class="t gold" style="${P(1356, 208, 336, 46)};font-size:29px;font-weight:900">👑 מידע על הגילדה</span>
-    <span class="t row" style="${P(1412, 262, 272, 44)};direction:ltr"><b>${G.members.length + 1}/20</b><span>חברים</span></span>
+    <span class="t row" style="${P(1412, 262, 272, 44)};direction:ltr"><b>${G.members.length + 1}/${G_MAX}</b><span>חברים</span></span>
     <span class="t row" style="${P(1412, 307, 234, 44)};direction:ltr"><b>#${guildRank(G)}</b><span>דירוג גילדה</span></span>
-    <span class="t row" style="${P(1412, 352, 234, 44)};direction:ltr"><b>${fmt(G.coins)}</b><span>מטבעות גילדה</span></span>
+    <span class="t row" style="${P(1412, 352, 234, 44)};direction:ltr"><b>${fmt(G.coins)}</b><span>המטבעות שלך</span></span>
     <span class="t lvn" style="${P(1356, 420, 70, 70)}">${G.lvl}</span>
-    <span class="t gold" style="${P(1438, 410, 252, 36)};font-size:24px;font-weight:900">רמת גילדה</span>
-    <span class="xp" style="${P(1438, 450, 252, 19)}"><i style="width:${Math.min(100, G.xp / need * 100)}%"></i></span>
-    <span class="t" style="${P(1438, 472, 252, 30)};font-size:21px;color:#c8d2f0" dir="ltr">${fmt(G.xp)} / ${fmt(need)}</span>
-    <span class="t gold" style="${P(1362, 513, 324, 38)};font-size:24px;font-weight:900">הטבות גילדה (רמה ${G.lvl})</span>
+    <span class="t gold" style="${P(1438, 408, 252, 36)};font-size:25px;font-weight:900">רמת גילדה</span>
+    <span class="xp" style="${P(1438, 448, 252, 22)}"><i style="width:${xp0}%"></i></span>
+    <span class="t" style="${P(1438, 472, 252, 30)};font-size:22px;color:#dfe6ff" dir="ltr">${fmt(G.xp)} / ${fmt(need)}</span>
+    <span class="t gold" style="${P(1362, 513, 324, 38)};font-size:25px;font-weight:900">הטבות גילדה (רמה ${G.lvl})</span>
     ${[["התקפה", 1363], ["הגנה", 1479], ["חיים", 1594]].map(([n, x]) => `<span class="t pk" style="${P(x, 628, 95, 58)}"><b dir="ltr">+${pk}%</b><span>${n}</span></span>`).join("")}
-    <button class="nav" data-p="4" style="${P(98, 782, 304, 76)};padding:0 18px 0 112px">ניהול גילדה</button>
+    ${canMgr ? `<button class="nav" data-p="4" style="${P(98, 782, 304, 76)};padding:0 12px 0 100px;white-space:nowrap">ניהול גילדה${G.req.length && gCan("requests") ? `<b class="bd nbd">${G.req.length}</b>` : ""}</button>` : `<i class="gd-off" style="${P(104, 788, 292, 64)}"></i>`}
     <button class="nav" data-p="3" style="${P(420, 782, 302, 76)};padding:0 18px 0 122px">יומן הגילדה</button>
     <button class="nav" data-p="2" style="${P(740, 782, 298, 76)};padding:0 18px 0 122px">חנות הגילדה</button>
     <button class="nav" data-p="1" style="${P(1058, 782, 300, 76)};padding:0 18px 0 130px">תרומה${donMe ? "<small>✓</small>" : ""}</button>
     <button class="nav" data-p="0" style="${P(1376, 782, 310, 76)};padding:0 18px 0 122px">חברי הגילדה</button>`;
-  const pop = i => { ghPop = i; openModal(""); $("modalCard").classList.add("ghpop"); $("modalCard").appendChild(body.querySelectorAll(".gh-panel")[i]); ghClose(); };
-  o.querySelectorAll(".nav").forEach(b => b.onclick = () => +b.dataset.p === 4
-    ? gdMenu("ניהול גילדה", [["🛡 דגל וסמל", flagModal], ["לעזוב גילדה", () => $("gLeave").onclick(), 1]]) : +b.dataset.p === 0 && gmOk ? gmOpen() : pop(+b.dataset.p));
+  requestAnimationFrame(() => { const x = o.querySelector(".xp i"), h = o.querySelector(".hpbar i"); if (x) x.style.width = xpPct + "%"; if (h) h.style.width = pct + "%"; });
+  gdAnim = {xp:xpPct, hp:pct};
+  const pop = i => { if (i === 3) { const L = body.querySelector(".gh-log"); if (L) L.innerHTML = gLogHtml(G); } ghPop = i; openModal(""); $("modalCard").classList.add("ghpop"); $("modalCard").appendChild(body.querySelectorAll(".gh-panel")[i]); ghClose(); };
+  o.querySelectorAll(".nav").forEach(b => b.onclick = () => {
+    const k = +b.dataset.p;
+    if (k === 4) { if (!gCan("manage")) return toast("אין לך הרשאת ניהול"); if (gmOk) { gmView = true; GM.view = gCan("requests") ? "requests" : gCan("roles") ? "roles" : "invite"; GM.page = 0; renderGuild(); } return; }
+    if (k === 0 && gmOk) return gmOpen();
+    pop(k); });
   $("gdLog2").onclick = () => pop(3);
-  $("gdAtk").onclick = () => { const b = $("gBoss"); if (b && !b.disabled) b.onclick(); };
-  $("gdFlag").onclick = flagModal;
+  $("gdAtk").onclick = () => { const s = gBossState(guildState()); if (s === "collect") { if (gAct("collect")) toast("🎉 הפרס נאסף: " + GBOSS_REW_TXT); return; } if (s === "open") gBossGo(); };
+  if ($("gdFlag")) $("gdFlag").onclick = flagModal;
+  if ($("gdMsgEd")) $("gdMsgEd").onclick = gdMsgEdit;
   $("gdGift").onclick = loginModal;
   $("gdMail").onclick = () => { arenaTab = "ranks"; azRw.tab = "season"; show("arena"); };
   $("gdSet").onclick = () => gdMenu("הגדרות", [["🔊 צלילים: הפעלה / כיבוי", () => $("muteBtn").click()], ["⛶ מסך מלא", () => $("fsBtn").click()], ["❓ איך משחקים", helpModal]]);
@@ -8741,9 +8820,9 @@ function specialEnd(win) {
     if (win) { const n = 1 + Math.floor(st.f / 2) + (R() < .3 ? 1 : 0), mana = 5000 * st.f; for (let i = 0; i < n; i++) addMon("sprite", 1); S.mana += mana; S.cleared[st.id] = true; rew = `✨ ${n} רוחוני אתר · 🪙 ${fmt(mana)}`; track("dungeon"); }
   } else if (sp === "gboss") {
     back = "guild"; again = null; const G = guildState(), boss = B.enemies.find(e => e.boss) || B.enemies[0], dmg = Math.max(0, Math.round(B.gbStart - Math.max(0, boss.hp)));
-    G.boss.hp = Math.max(0, G.boss.hp - dmg); G.boss.my += dmg; G.boss.att[today()] = (G.boss.att[today()] || 0) + 1; const coins = 10 + Math.round(dmg / 2000); G.coins += coins;
+    G.boss.hp = Math.max(0, G.boss.hp - dmg); G.boss.my += dmg; G.boss.att[today()] = (G.boss.att[today()] || 0) + 1; const coins = 10 + Math.round(dmg / 2000); G.coins += coins; gLog(G, "batk", "me", dmg);
     title = "סוף ההתקפה"; rew = `💥 נזק לבוס: <b>${fmt(dmg)}</b> · 🪙 ${coins} מטבעות גילדה`;
-    if (G.boss.hp <= 0 && !G.boss.done) { G.boss.done = true; giveRew({l:1, gem:300}); rew += "<br><b style='color:var(--gold2)'>🎉 הבוס הובס! מגילה אגדית + 300 💎</b>"; }
+    if (G.boss.hp <= 0 && !G.boss.done) { G.boss.done = true; giveRew(GBOSS_REW); gLog(G, "bkill", "me"); rew += `<br><b style='color:var(--gold2)'>🎉 הבוס הובס! ${GBOSS_REW_TXT}</b>`; }
     win = true;
   }
   if (sp !== "gboss" && win) S.wins++;
@@ -8779,6 +8858,7 @@ function btArt() {                                   // the user's painted battl
   b.classList.add("btart");
 }
 function startBattle(stage) {
+  if (stage.special === "gboss" && (!S.guild || gBossState(guildState()) !== "open")) { toast("הבוס לא זמין כרגע"); show("guild"); return; }   // the rule holds at the fight's start too
   btArt();
   const team = S.team.map(u => S.mons.find(m => m.uid === u)).filter(Boolean);
   B = {stage, waves:wildWaves(stage), ag:0, spell:sumState().eq, wave:0, allies:team.map((m, i) => Object.assign(mkUnit("a", m.id, m.lvl, i, null, guildBuff(withLeader(monTotal(m), team[0]))), {uid:m.uid, aw:!!m.aw, skl:m.skl, st:mst(m), lk:MON[m.id].sk.map((_, k) => !skOpen(m, k))})), enemies:[], auto:S.autoRep && !stage.arena ? true : B ? B.auto : false, speed:B ? B.speed : 1, over:false, turn:0};
