@@ -4255,9 +4255,9 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 /* event banner */
 #city2 #c2ev{left:50%;transform:translateX(-50%);top:0;width:calc(var(--u)*560);height:calc(var(--u)*104);background:var(--bg) 0 0/100% 100% no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 calc(var(--u)*150) 0 calc(var(--u)*40);box-sizing:border-box}
 #city2 #c2ev:active{transform:translateX(-50%) scale(.97)!important}
-#c2ev b{font-size:max(13px,calc(var(--u)*36));font-weight:900;color:#fff;text-shadow:0 2px 3px #000,0 0 8px var(--ec,#5fb8ff);white-space:nowrap}
-#c2ev small{font-size:max(10px,calc(var(--u)*20));color:#dfe6ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-#c2ev .c2left{position:absolute;right:calc(var(--u)*30);top:50%;transform:translateY(-50%);padding:2px calc(var(--u)*12);border-radius:999px;border:1px solid #e7b34a;background:rgba(8,12,34,.85);font-size:max(10px,calc(var(--u)*20));color:#ffe08a;font-weight:800;white-space:nowrap}
+#c2ev b{font-size:clamp(11px,calc(var(--u)*26),24px);line-height:1.15;font-weight:900;color:#fff;text-shadow:0 2px 3px #000,0 0 8px var(--ec,#5fb8ff);white-space:nowrap}
+#c2ev small{font-size:clamp(9px,calc(var(--u)*16),15px);line-height:1.15;color:#dfe6ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#c2ev .c2left{position:absolute;right:calc(var(--u)*30);top:50%;transform:translateY(-50%);padding:2px calc(var(--u)*12);border-radius:999px;border:1px solid #e7b34a;background:rgba(8,12,34,.85);font-size:clamp(9px,calc(var(--u)*17),15px);color:#ffe08a;font-weight:800;white-space:nowrap}
 /* resources */
 #c2res{right:calc(var(--sr) + var(--u)*8);top:calc(var(--u)*10);display:flex;gap:calc(var(--u)*10);direction:ltr}
 #city2 .c2r{position:relative;width:calc(var(--u)*176);min-width:84px;height:calc(var(--u)*50);min-height:28px;background:var(--bg) 0 0/100% 100% no-repeat;display:flex;align-items:center;justify-content:center;padding:0 calc(var(--u)*44) 0 calc(var(--u)*50);box-sizing:border-box}
@@ -4273,7 +4273,7 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #c2Go[hidden]{display:none}
 #c2Go .c2thumb{position:absolute;left:4.4%;top:12%;width:31%;height:76%;border-radius:calc(var(--u)*60) 0 0 calc(var(--u)*60);background:center/cover no-repeat;
   -webkit-mask:linear-gradient(90deg,#000 70%,transparent);mask:linear-gradient(90deg,#000 70%,transparent)}
-#c2Go .c2chev{position:absolute;left:30%;top:50%;transform:translateY(-50%);width:calc(var(--u)*58);height:calc(var(--u)*50);background:var(--go) calc(var(--u)*-181) calc(var(--u)*-21)/calc(var(--u)*262) calc(var(--u)*90) no-repeat}
+#c2Go .c2chev{position:absolute;left:31%;top:50%;transform:translateY(-50%);width:calc(var(--u)*32);height:calc(var(--u)*28);background:var(--go) calc(var(--u)*-100) calc(var(--u)*-12)/calc(var(--u)*144) calc(var(--u)*50) no-repeat;-webkit-mask:radial-gradient(closest-side,#000 62%,transparent);mask:radial-gradient(closest-side,#000 62%,transparent)}   /* small, and its edges melt into the button */
 #c2Go b{font-size:clamp(12px,calc(var(--u)*32),28px);font-weight:900;color:#3a2405;text-shadow:0 1px 0 rgba(255,240,190,.7);white-space:nowrap}
 #c2Go small{font-size:clamp(10px,calc(var(--u)*24),21px);font-weight:900;color:#4a2e06}
 #city2 #c2ev.narrow{padding:0 10px}#city2 #c2ev.narrow .c2left{display:none}
@@ -5702,14 +5702,14 @@ const C2_ART = ["city_bg2", "city_crystal", "city_rings", "city_menu", "city_bar
   "city_r_gift", "city_r_scroll", "city_r_trophy", "city_r_crown", "city_r_sound", "city_btn_journey", "city_btn_go", "city_ic_home", "city_ic_monsters", "city_ic_quests", "city_ic_guild", "city_ic_bag"];
 const c2On = () => C2_ART.every(n => HAVE.has(n));
 const C2_W = 1089, C2_H = 599;                       // the city picture: every place below is a fraction of it
-const C2_HOTS = [                                    // the buildings, as in the approved design
-  {x:.30, y:.17, n:"היכל המפלצות", ic:"📖", go:() => enterPlace("hall"), id:"hotBox"},
-  {x:.26, y:.41, n:"נפחיית הרונים", ic:"⚒", go:() => enterPlace("forge")},
+const C2_HOTS = [                                    // each name sits on the middle of its building in city_bg2
+  {x:.28, y:.12, n:"היכל המפלצות", ic:"📖", go:() => enterPlace("hall"), id:"hotBox"},
+  {x:.14, y:.33, n:"נפחיית הרונים", ic:"⚒", go:() => enterPlace("forge")},
   {x:.505, y:.50, n:"זימון", ic:"sum", go:() => show("summon"), id:"hotSummon"},
-  {x:.70, y:.25, n:"זירת השמיים", ic:"⚔", go:() => $("goArena").onclick()},
-  {x:.86, y:.46, n:"השוק", ic:"⚖", go:() => enterPlace("market")},
-  {x:.22, y:.72, n:"הפונדק", ic:"🍺", go:() => enterPlace("tavern")},
-  {x:.81, y:.70, n:"ספינת האוויר", ic:"🧭", go:() => show(ART.world ? "world" : "map"), id:"hotShip"}];
+  {x:.745, y:.16, n:"זירת השמיים", ic:"⚔", go:() => $("goArena").onclick()},
+  {x:.89, y:.38, n:"השוק", ic:"⚖", go:() => enterPlace("market")},
+  {x:.16, y:.68, n:"הפונדק", ic:"🍺", go:() => enterPlace("tavern")},
+  {x:.835, y:.61, n:"ספינת האוויר", ic:"🧭", go:() => show(ART.world ? "world" : "map"), id:"hotShip"}];
 const C2_MONS = [                                    // decorative only: [art, x, y of the feet, width, mirrored, delay]
   ["city_m_griffin", .175, .565, .10, 0, 0], ["city_m_deer", .665, .445, .055, 1, 1.1], ["city_m_fairy", .455, .60, .03, 0, .5],
   ["city_m_beast", .40, .915, .09, 0, 1.7], ["city_m_dragon", .585, .90, .075, 1, .8], ["city_m_dragon", .705, .135, .062, 0, 2.3]];
