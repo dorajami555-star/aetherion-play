@@ -4192,6 +4192,91 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #gm2 .gm-sq{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:14px;background:var(--gmsq) 0 0/100% 100% no-repeat!important;padding:4px 6px!important}
 #gm2 .gm-sq.danger small{color:#ff9a9a}
 #gm2 .gm-sq span{font-size:34px;line-height:1}#gm2 .gm-sq small{font-size:15px;font-weight:800;color:#ffe9a6;line-height:1.05;white-space:normal;text-align:center}
+/* ----- the new city (2026-11-08): sizes follow the approved design (1768x890), u = one design pixel, inside the safe area ----- */
+#home.c2 .home-title,#home.c2 .dock,#home.c2 #eventChip,#home.c2 #goNext,#home.c2 #hotspots,#home.c2 .shade{display:none!important}
+#quick.c2off{display:none!important}
+#city2{position:absolute;inset:0;z-index:3;overflow:hidden;overflow:clip;direction:rtl;pointer-events:none;
+  --sl:env(safe-area-inset-left,0px);--sr:env(safe-area-inset-right,0px);--sb:env(safe-area-inset-bottom,0px);
+  --u:min(calc(100vh / 890),calc((100vw - var(--sl) - var(--sr)) / 1768))}
+#city2>*,#c2stage>*{position:absolute;pointer-events:auto}
+#city2 button{padding:0;border:0;background:none;color:#fff;font:inherit;cursor:pointer;min-height:0;box-shadow:none;-webkit-tap-highlight-color:transparent}
+#city2 button:active{transform:scale(.96)}
+#city2 img{pointer-events:none;user-select:none;-webkit-user-select:none}
+#city2 .c2bd{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#e0263a;color:#fff;font-size:11px;font-weight:900;font-style:normal;display:grid;place-items:center;box-shadow:0 0 0 2px #3a0b10;line-height:1}
+/* the stage: the crystal, its light and the monsters, in fractions of the city picture */
+#c2stage{pointer-events:none}
+#c2stage .c2glow{left:39%;top:12%;width:21%;height:42%;border-radius:50%;background:radial-gradient(closest-side,rgba(120,200,255,.55),rgba(90,140,255,.18) 55%,transparent);pointer-events:none;animation:c2glow 3.2s ease-in-out infinite}
+#c2stage .c2rings{left:41%;top:27%;width:18%;pointer-events:none;opacity:.8;mix-blend-mode:screen;animation:c2ring 4s ease-in-out infinite}
+#c2stage .c2r2{top:31%;left:43%;width:14%;animation-delay:-2s;opacity:.55}
+#c2stage .c2crys{left:44.2%;top:17%;width:11%;height:32%;display:grid;place-items:end center;animation:c2float 4s ease-in-out infinite}
+#c2stage .c2crys img{width:100%;height:auto;filter:drop-shadow(0 0 14px rgba(110,190,255,.85))}
+#c2stage .c2mon{pointer-events:none;transform:translate(-50%,-100%)}
+#c2stage .c2mon img{display:block;width:100%;height:auto;filter:drop-shadow(0 4px 4px rgba(0,0,0,.45));animation:c2bob 3.6s ease-in-out infinite;animation-delay:var(--d)}
+#c2stage .c2mon img.flip{transform:scaleX(-1);animation-name:c2bobf}
+@keyframes c2glow{50%{opacity:.6;transform:scale(1.06)}}
+@keyframes c2ring{0%,100%{transform:scale(.94);opacity:.55}50%{transform:scale(1.06);opacity:.95}}
+@keyframes c2float{50%{transform:translateY(-2.5%)}}
+@keyframes c2bob{50%{transform:translateY(-4%)}}
+@keyframes c2bobf{0%,100%{transform:scaleX(-1)}50%{transform:scaleX(-1) translateY(-4%)}}
+#home:not(.on) #city2 *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){#city2 *{animation:none!important}}
+/* building names */
+#c2hots{inset:0;pointer-events:none}
+#city2 .c2lab{position:absolute;pointer-events:auto;height:calc(var(--u)*74);min-height:30px;padding:0 max(12px,calc(var(--u)*30)) 0 max(42px,calc(var(--u)*96));display:flex;align-items:center;white-space:nowrap;
+  background:var(--bg) 0 0/100% 100% no-repeat;font-size:max(12px,calc(var(--u)*30));font-weight:900;color:#fff;text-shadow:0 2px 3px #000}
+#city2 .c2lab .c2li{position:absolute;left:calc(var(--u)*-6);top:50%;transform:translateY(-50%);width:max(32px,calc(var(--u)*82));height:max(32px,calc(var(--u)*82));border-radius:50%;
+  display:grid;place-items:center;font-style:normal;font-size:max(15px,calc(var(--u)*38));background:radial-gradient(circle at 50% 40%,#22305e,#0b1231);box-shadow:0 0 0 2px #e7b34a,0 0 0 4px rgba(60,30,0,.6),0 3px 6px rgba(0,0,0,.5)}
+#city2 .c2lab img.c2li{background:none;box-shadow:none;object-fit:contain}
+/* side menu */
+#c2menu{left:calc(var(--sl) + var(--u)*14);top:calc(var(--u)*88);width:calc(var(--u)*122);height:calc(var(--u)*722);background:var(--bg) 0 0/100% 100% no-repeat;
+  display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;padding:calc(var(--u)*50) 0 calc(var(--u)*44);box-sizing:border-box}
+#city2 .c2m{position:relative;width:calc(var(--u)*104);flex:1;max-height:calc(var(--u)*104);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+#city2 .c2m img{width:calc(var(--u)*54);height:calc(var(--u)*54);object-fit:contain;filter:drop-shadow(0 2px 2px #000)}
+#city2 .c2m b{font-size:max(10px,calc(var(--u)*24));font-weight:900;color:#fff;text-shadow:0 2px 2px #000;white-space:nowrap}
+#city2 .c2m.on b{color:#ffe08a}
+#city2 .c2ring{width:calc(var(--u)*84);height:calc(var(--u)*84);border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#5a3a08,#241404 70%);
+  box-shadow:0 0 0 2px #ffd25a,0 0 calc(var(--u)*22) rgba(255,190,60,.9),inset 0 0 calc(var(--u)*14) rgba(255,200,90,.6)}
+#city2 .c2ring img{width:calc(var(--u)*58);height:calc(var(--u)*58)}
+#city2 .c2m .c2bd{top:0;right:calc(var(--u)*8)}
+#city2 .c2dots{width:calc(var(--u)*80);height:calc(var(--u)*52);border-radius:calc(var(--u)*14);display:grid;place-items:center;border:2px solid #e7b34a;background:#0d1434;color:#ffe08a;font-size:max(12px,calc(var(--u)*30));letter-spacing:1px;line-height:1}
+/* top bar */
+#c2top{direction:ltr;left:calc(var(--sl) + var(--u)*6);top:calc(var(--u)*4);height:max(42px,calc(var(--u)*80));display:flex;align-items:center;gap:calc(var(--u)*8)}
+#city2 .c2av{position:relative;width:max(36px,calc(var(--u)*78));height:max(36px,calc(var(--u)*78));border-radius:50%;box-shadow:0 0 0 2px #ffd25a,0 0 0 4px #6b4410;background:#1a1438;flex:none}
+#city2 .c2av img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+#city2 .c2av b{position:absolute;left:-4px;bottom:-6px;min-width:20px;height:18px;padding:0 4px;border-radius:9px;background:linear-gradient(#ffd768,#c98a14);color:#3a2405;font-size:11px;font-weight:900;display:grid;place-items:center;box-shadow:0 0 0 1px #fff0b8}
+#city2 .c2name{height:max(28px,calc(var(--u)*56));min-width:calc(var(--u)*190);max-width:calc(var(--u)*240);padding:0 calc(var(--u)*24);display:flex;align-items:center;justify-content:center;background:var(--bg) 0 0/100% 100% no-repeat;pointer-events:none}
+#city2 .c2name b{font-size:max(12px,calc(var(--u)*28));font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;unicode-bidi:plaintext}
+#city2 .c2vip{position:relative;height:max(26px,calc(var(--u)*44));padding:0 calc(var(--u)*16);border-radius:999px;background:linear-gradient(180deg,var(--vc1,#ffe08a),var(--vc2,#c98a14));box-shadow:0 0 0 2px #6b4410;color:#2a1803;font-weight:900;font-size:max(11px,calc(var(--u)*24));white-space:nowrap}
+#city2 .c2rnd{position:relative;width:max(30px,calc(var(--u)*58));height:max(30px,calc(var(--u)*58));flex:none}
+#city2 .c2rnd img{width:100%;height:100%;object-fit:contain}
+#city2 .c2rnd .c2x{display:none;position:absolute;inset:0;place-items:center;color:#ff6a6a;font-style:normal;font-weight:900;font-size:max(14px,calc(var(--u)*30));text-shadow:0 1px 2px #000}
+#city2 .c2rnd.off .c2x{display:grid}#city2 .c2rnd.off img{filter:grayscale(.7) brightness(.8)}
+/* event banner */
+#city2 #c2ev{left:50%;transform:translateX(-50%);top:0;width:calc(var(--u)*560);height:calc(var(--u)*104);background:var(--bg) 0 0/100% 100% no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 calc(var(--u)*150) 0 calc(var(--u)*40);box-sizing:border-box}
+#city2 #c2ev:active{transform:translateX(-50%) scale(.97)!important}
+#c2ev b{font-size:max(13px,calc(var(--u)*36));font-weight:900;color:#fff;text-shadow:0 2px 3px #000,0 0 8px var(--ec,#5fb8ff);white-space:nowrap}
+#c2ev small{font-size:max(10px,calc(var(--u)*20));color:#dfe6ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#c2ev .c2left{position:absolute;right:calc(var(--u)*30);top:50%;transform:translateY(-50%);padding:2px calc(var(--u)*12);border-radius:999px;border:1px solid #e7b34a;background:rgba(8,12,34,.85);font-size:max(10px,calc(var(--u)*20));color:#ffe08a;font-weight:800;white-space:nowrap}
+/* resources */
+#c2res{right:calc(var(--sr) + var(--u)*8);top:calc(var(--u)*10);display:flex;gap:calc(var(--u)*10);direction:ltr}
+#city2 .c2r{position:relative;width:calc(var(--u)*176);min-width:84px;height:calc(var(--u)*50);min-height:28px;background:var(--bg) 0 0/100% 100% no-repeat;display:flex;align-items:center;justify-content:center;padding:0 calc(var(--u)*44) 0 calc(var(--u)*50);box-sizing:border-box}
+#city2 .c2r b{font-size:max(11px,calc(var(--u)*25));font-weight:900;white-space:nowrap;text-shadow:0 1px 2px #000}
+#city2 .c2r small{position:absolute;left:calc(var(--u)*50);bottom:calc(var(--u)*-22);font-size:max(9px,calc(var(--u)*17));color:#ffe08a;text-shadow:0 1px 2px #000}
+#c2side{right:calc(var(--sr) + var(--u)*12);top:calc(var(--u)*86);display:flex;gap:calc(var(--u)*24)}
+#city2 .c2big{position:relative;width:calc(var(--u)*96);display:flex;flex-direction:column;align-items:center}
+#city2 .c2big img{width:calc(var(--u)*86);height:calc(var(--u)*86);object-fit:contain}
+#city2 .c2big b{font-size:max(10px,calc(var(--u)*22));font-weight:900;text-shadow:0 2px 2px #000;margin-top:-2px;white-space:nowrap}
+#city2 .c2big .c2bd{top:0;right:calc(var(--u)*4)}
+/* continue the journey */
+#city2 #c2Go{right:calc(var(--sr) + var(--u)*14);bottom:calc(var(--sb) + var(--u)*28);width:calc(var(--u)*448);height:calc(var(--u)*122);background:var(--bg) 0 0/100% 100% no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 calc(var(--u)*40) 0 calc(var(--u)*190);box-sizing:border-box}
+#c2Go[hidden]{display:none}
+#c2Go .c2thumb{position:absolute;left:4.4%;top:12%;width:31%;height:76%;border-radius:calc(var(--u)*60) 0 0 calc(var(--u)*60);background:center/cover no-repeat;
+  -webkit-mask:linear-gradient(90deg,#000 70%,transparent);mask:linear-gradient(90deg,#000 70%,transparent)}
+#c2Go .c2chev{position:absolute;left:30%;top:50%;transform:translateY(-50%);width:calc(var(--u)*72);height:calc(var(--u)*62);background:var(--go) calc(var(--u)*-226) calc(var(--u)*-26)/calc(var(--u)*327) calc(var(--u)*113) no-repeat}
+#c2Go b{font-size:max(15px,calc(var(--u)*40));font-weight:900;color:#3a2405;text-shadow:0 1px 0 rgba(255,240,190,.7);white-space:nowrap}
+#c2Go small{font-size:max(12px,calc(var(--u)*30));font-weight:900;color:#4a2e06}
+#city2 #c2ev.narrow{padding:0 10px}#city2 #c2ev.narrow .c2left{display:none}
+#city2 #c2ev.tiny small{display:none}
 @keyframes gdIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}#gd2.gdin,#gm2.gdin{animation:gdIn .28s ease-out}
 @keyframes gdPulse{50%{filter:brightness(1.15) drop-shadow(0 0 12px #ffd35a)}}
 #gd2 .xp i,#gd2 .hpbar i{transition:width .8s ease}
@@ -4453,6 +4538,7 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
     <div class="hotspots" id="hotspots"></div>
     <div class="eventchip" id="eventChip"></div>
     <button class="nextbtn" id="goNext" hidden></button>
+    <div id="city2" hidden></div>
     <div class="home-title"><h1 class="title-font">אתריון</h1><p>מזמני השמיים</p></div>
     <div class="dock">
       <button class="bigbtn" id="goBox">%I_BOX%<span>המפלצות שלי</span><small id="boxCount"></small></button>
@@ -5010,66 +5096,69 @@ const AWN = {sun_empress:"קיסרית השמש", kraken_king:"קיסר התהו
 const HAVE = new Set([   // generated by sync_have.py from assets/ — do not edit by hand
   "aether_sprite","aether_titan","arena","ash_golem","aurora_spirit","aurora_spirit_awakened","bag_medal","bagtab_all","bagtab_gear","bagtab_mats","bagtab_misc","bagtab_runes",
   "banshee","banshee_awakened","battle_celestial","battle_desert","battle_essence_cave","battle_forest","battle_glacier","battle_guild_boss","battle_meadow","battle_shadow","battle_sky_tower","battle_sprite_garden",
-  "battle_volcano","card_frame_2","card_frame_3","card_frame_4","card_frame_5","card_ring","card_spark","celestial_lion","celestial_lion_awakened","cinder_hound","cloud_slime","crystal_beetle",
-  "crystal_guardian","cur_energy","cur_gem","cur_glory","cur_guild","cur_mana","cur_ticket","desert_bandit","djinn","djinn_awakened","dragon","dragon_awakened",
-  "dune_worm","dungeon_crystal","el_dark","el_earth","el_fire","el_light","el_water","el_wind","elf_archer","elf_archer_awakened","emblem_1","emblem_2",
-  "emblem_3","emblem_4","emblem_5","emblem_6","ess","ess_dark","ess_earth","ess_fire","ess_light","ess_magic","ess_water","ess_wind",
-  "fairy","fairy_awakened","frame_bronze","frame_diamond","frame_gold","frame_legend","frame_platinum","frame_silver","frost_serpent","frost_serpent_awakened","frost_witch","frost_witch_awakened",
-  "frost_wyrm","gargoyle","gear_amulet_1","gear_amulet_2","gear_amulet_3","gear_amulet_4","gear_amulet_5","gear_amulet_6","gear_amulet_7","gear_armor_1","gear_armor_2","gear_armor_3",
-  "gear_armor_4","gear_armor_5","gear_armor_6","gear_armor_7","gear_boots_1","gear_boots_2","gear_boots_3","gear_boots_4","gear_boots_5","gear_boots_6","gear_boots_7","gear_helmet_1",
-  "gear_helmet_2","gear_helmet_3","gear_helmet_4","gear_helmet_5","gear_helmet_6","gear_helmet_7","gear_ring_1","gear_ring_2","gear_ring_3","gear_ring_4","gear_ring_5","gear_ring_6",
-  "gear_ring_7","gear_weapon_1","gear_weapon_2","gear_weapon_3","gear_weapon_4","gear_weapon_5","gear_weapon_6","gear_weapon_7","ghost_queen","ghost_queen_awakened","ghoul","giant_spider",
-  "golem","golem_awakened","griffin","griffin_awakened","guide_alara","guild_hall","harpy","harpy_awakened","ic_b_break","ic_b_buff","ic_b_burn","ic_b_heal",
-  "ic_b_hit","ic_b_multi","ic_b_shield","ic_b_slow","ic_b_stun","ic_backup","ic_full","ic_help","ic_music","ic_q_chest","ic_q_dungeon","ic_q_login",
-  "ic_q_rune","ic_q_summon","ic_q_tower","ic_q_trophy","ic_q_vip","ic_q_win","ic_quality","ic_reset","ic_s_acc","ic_s_atk","ic_s_cd","ic_s_cr",
-  "ic_s_def","ic_s_hp","ic_s_res","ic_s_spd","ic_settings","ic_sound","ic_unlock","ice_troll","ico_bolt","ico_book","ico_calendar","ico_cart",
-  "ico_castle","ico_chart","ico_chest","ico_crown","ico_dragon","ico_fire","ico_fireworks","ico_gift","ico_hammer","ico_heart","ico_hourglass","ico_lock",
-  "ico_map","ico_orb","ico_pencil","ico_people","ico_person","ico_scroll","ico_search","ico_shield","ico_sparkle","ico_swords","ico_tower","ico_trophy",
-  "ico_unlock","ico_warn","imp_fire","imp_fire_awakened","lava_titan","legend_dawn_unicorn","legend_dawn_unicorn_awakened","legend_eclipse_dragon","legend_eclipse_dragon_awakened","legend_forest_dryad","legend_forest_dryad_awakened","legend_kraken_king",
-  "legend_kraken_king_awakened","legend_mountain_behemoth","legend_mountain_behemoth_awakened","legend_storm_roc","legend_storm_roc_awakened","legend_sun_empress","legend_sun_empress_awakened","legend_wind_centaur","legend_wind_centaur_awakened","magma_bat","map_isle1","map_isle2",
-  "map_isle3","map_isle4","map_isle5","map_isle6","map_isle7","marble_guardian","market","mermaid","mermaid_awakened","moon_priestess","moon_priestess_awakened","moss_wolf",
-  "mummy","mummy_awakened","mushroom","mushroom_awakened","nav_shop","navs_arena","navs_bag","navs_guild","navs_home","navs_monsters","navs_quests","navs_summon",
-  "obsidian_knight","obsidian_knight_awakened","pf_ach","pf_arena","pf_codex","pf_mons","pf_runes","pf_stages","pf_summ","pf_tower","pf_wins","phoenix",
-  "phoenix_awakened","pixie_thief","rank_1","rank_2","rank_3","rank_4","rank_5","rank_6","rank_7","rank_8","rune_blade","rune_energy",
-  "rune_focus","rune_forge","rune_guard","rune_rage","rune_swift","salamander","salamander_awakened","sanctuary_hall","sand_colossus","sand_scorpion","scarab_knight","scarab_knight_awakened",
-  "scroll_l","scroll_ld","scroll_m","scroll_u","seraph","seraph_awakened","shadow_lord","shadow_ninja","shadow_ninja_awakened","shadow_wraith","shop_energy","shop_magic",
-  "shop_mana","shop_rune6","shop_runes","shop_scrolls","shop_sprites","shop_tickets","shoptab_arena","shoptab_gems","shoptab_guild","shoptab_shop","sk_aurora_1","sk_aurora_2",
-  "sk_aurora_3","sk_aurora_u","sk_banshee_1","sk_banshee_2","sk_banshee_u","sk_celestlion_1","sk_celestlion_2","sk_celestlion_u","sk_dawn_unicorn_1","sk_dawn_unicorn_2","sk_dawn_unicorn_3","sk_dawn_unicorn_u",
-  "sk_djinn_1","sk_djinn_2","sk_djinn_3","sk_djinn_u","sk_dragon_1","sk_dragon_2","sk_dragon_3","sk_dragon_u","sk_eclipse_dragon_1","sk_eclipse_dragon_2","sk_eclipse_dragon_3","sk_eclipse_dragon_u",
-  "sk_elf_1","sk_elf_2","sk_elf_u","sk_fairy_1","sk_fairy_2","sk_fairy_u","sk_forest_dryad_1","sk_forest_dryad_2","sk_forest_dryad_3","sk_forest_dryad_u","sk_frostserpent_1","sk_frostserpent_2",
-  "sk_frostserpent_u","sk_frostwitch_1","sk_frostwitch_2","sk_frostwitch_u","sk_ghostqueen_1","sk_ghostqueen_2","sk_ghostqueen_3","sk_ghostqueen_u","sk_golem_1","sk_golem_2","sk_golem_u","sk_griffin_1",
-  "sk_griffin_2","sk_griffin_u","sk_harpy_1","sk_harpy_2","sk_harpy_u","sk_imp_1","sk_imp_2","sk_imp_u","sk_kraken_king_1","sk_kraken_king_2","sk_kraken_king_3","sk_kraken_king_u",
-  "sk_mermaid_1","sk_mermaid_2","sk_mermaid_u","sk_mountain_behemoth_1","sk_mountain_behemoth_2","sk_mountain_behemoth_3","sk_mountain_behemoth_u","sk_mummy_1","sk_mummy_2","sk_mummy_u","sk_mushroom_1","sk_mushroom_2",
-  "sk_mushroom_u","sk_ninja_1","sk_ninja_2","sk_ninja_u","sk_obsidian_1","sk_obsidian_2","sk_obsidian_u","sk_phoenix_1","sk_phoenix_2","sk_phoenix_3","sk_phoenix_u","sk_priestess_1",
-  "sk_priestess_2","sk_priestess_3","sk_priestess_u","sk_salamander_1","sk_salamander_2","sk_salamander_u","sk_scarab_1","sk_scarab_2","sk_scarab_u","sk_seraph_1","sk_seraph_2","sk_seraph_3",
-  "sk_seraph_u","sk_skeleton_1","sk_skeleton_2","sk_skeleton_u","sk_snowowl_1","sk_snowowl_2","sk_snowowl_u","sk_sphinx_1","sk_sphinx_2","sk_sphinx_3","sk_sphinx_u","sk_starsage_1",
-  "sk_starsage_2","sk_starsage_3","sk_starsage_u","sk_storm_roc_1","sk_storm_roc_2","sk_storm_roc_3","sk_storm_roc_u","sk_stormmage_1","sk_stormmage_2","sk_stormmage_3","sk_stormmage_u","sk_sun_empress_1",
-  "sk_sun_empress_2","sk_sun_empress_3","sk_sun_empress_u","sk_valkyrie_1","sk_valkyrie_2","sk_valkyrie_3","sk_valkyrie_u","sk_vampire_1","sk_vampire_2","sk_vampire_u","sk_voidknight_1","sk_voidknight_2",
-  "sk_voidknight_u","sk_werewolf_1","sk_werewolf_2","sk_werewolf_u","sk_wind_centaur_1","sk_wind_centaur_2","sk_wind_centaur_3","sk_wind_centaur_u","sk_winddancer_1","sk_winddancer_2","sk_winddancer_u","sk_wolf_1",
-  "sk_wolf_2","sk_wolf_u","sk_yeti_1","sk_yeti_2","sk_yeti_u","skeleton_knight","skeleton_knight_awakened","sky_boar","sky_city","sky_hub","sky_ray","snow_owl",
-  "snow_owl_awakened","snow_sprite","spell_blessing","spell_elemstorm","spell_meteor","spell_timestop","sphinx","sphinx_awakened","splash","stage_1_2","stage_1_3","stage_1_4",
-  "stage_1_5","stage_1_6","stage_1_7","stage_2_2","stage_2_3","stage_2_4","stage_2_5","stage_2_6","stage_2_7","stage_3_2","stage_3_3","stage_3_4",
-  "stage_3_5","stage_3_6","stage_3_7","stage_4_2","stage_4_3","stage_4_4","stage_4_5","stage_4_6","stage_4_7","stage_5_2","stage_5_3","stage_5_4",
-  "stage_5_5","stage_5_6","stage_5_7","stage_6_2","stage_6_3","stage_6_4","stage_6_5","stage_6_6","stage_6_7","stage_7_2","stage_7_3","stage_7_4",
-  "stage_7_5","stage_7_6","stage_7_7","star_sage","star_sage_awakened","star_wisp","storm_mage","storm_mage_awakened","sum_pk_1","sum_pk_2","sum_pk_3","sum_pk_4",
-  "sum_pk_5","sum_pk_6","summon_altar","summon_burst","summon_card_back","summon_circle","summon_open","summon_temple","summon_wings","summoner_3","summoner_4","summoner_f",
-  "summoner_m","tavern","treant_boss","tunnel_bg","tunnel_gate","tunnel_ring","tunnel_ring_2","ui_alt_bg","ui_alt_btn_blue","ui_alt_btn_gold","ui_alt_odds","ui_alt_ped_gold",
-  "ui_alt_ped_purple","ui_alt_ped_red","ui_alt_ped_silver","ui_alt_plate","ui_alt_title","ui_bag_bg","ui_box_bg","ui_bt_bar","ui_bt_btn","ui_bt_hp_a","ui_bt_hp_e","ui_bt_orb",
-  "ui_bt_orb_full","ui_bt_port","ui_bt_port_on","ui_bt_sk","ui_bt_sk_cd","ui_bt_sk_on","ui_bt_tip","ui_bt_wave","ui_cal_big","ui_cal_check","ui_cal_day","ui_cal_got",
-  "ui_cal_myst","ui_cal_today","ui_cardframe","ui_codex_bg","ui_daily_banner","ui_def_bg","ui_def_row","ui_def_tipbtn","ui_deflog_empty","ui_deflog_hall","ui_deflog_scroll","ui_detbtn_1",
-  "ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs","ui_dun_bg","ui_fz_laurel","ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon",
-  "ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet","ui_gearframe_1_ring","ui_gearframe_1_weapon","ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon",
-  "ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet","ui_gearframe_3_ring","ui_gearframe_3_weapon","ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon",
-  "ui_gmem_bg","ui_gmem_bg2","ui_gmem_bgc","ui_gmem_btn","ui_gmem_btn_on","ui_gmem_cloth","ui_gmem_cloth2","ui_gmem_sq","ui_guild2_actic","ui_guild2_bg","ui_guild2_bgc","ui_guild2_cloth",
-  "ui_guild_bg","ui_plaque","ui_prep_bg","ui_prg_banner","ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2",
-  "ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","ui_rank_template","ui_rew_card","ui_rune_bg","ui_runering","ui_sh_card","ui_sh_ped","ui_sh_sel","ui_skillframe_1","ui_skillframe_2",
-  "ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1","ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6","ui_ssn_card_7","ui_ssn_chest_0","ui_ssn_chest_1",
-  "ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5","ui_ssn_chest_6","ui_ssn_chest_7","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2","ui_ssn_crest_3","ui_ssn_crest_4","ui_ssn_crest_5",
-  "ui_ssn_crest_6","ui_ssn_crest_7","ui_store_bg","ui_store_cat_on","ui_store_slot_on","ui_store_tab_on","ui_tower_bg","ui_vic_banner","ui_vic_bar","ui_vic_tile","ui_wf_b","ui_wf_bl",
-  "ui_wf_br","ui_wf_fill","ui_wf_gem","ui_wf_l","ui_wf_r","ui_wf_t","ui_wf_tl","ui_wf_tr","ui_win_btn_blue","ui_win_btn_gold","ui_win_btn_grey","ui_win_chk",
-  "ui_win_chk_on","ui_win_close","ui_win_frame","ui_win_frame_ng","ui_win_ribbon","ui_win_row","ui_win_tab","ui_win_tab_on","ui_win_tog_off","ui_win_tog_on","valkyrie","valkyrie_awakened",
-  "vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond","vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened","werewolf","werewolf_awakened",
-  "will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit","wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
+  "battle_volcano","card_frame_2","card_frame_3","card_frame_4","card_frame_5","card_ring","card_spark","celestial_lion","celestial_lion_awakened","cinder_hound","city_bar_name","city_bar_small",
+  "city_beam","city_bg2","city_btn_go","city_btn_journey","city_btn_summon","city_burst","city_crystal","city_ic_bag","city_ic_guild","city_ic_home","city_ic_monsters","city_ic_quests",
+  "city_m_beast","city_m_bunny","city_m_deer","city_m_dragon","city_m_fairy","city_m_griffin","city_menu","city_pad","city_r_crown","city_r_gift","city_r_scroll","city_r_set",
+  "city_r_sound","city_r_trophy","city_res_bolt","city_res_coin","city_res_gem","city_rings","cloud_slime","crystal_beetle","crystal_guardian","cur_energy","cur_gem","cur_glory",
+  "cur_guild","cur_mana","cur_ticket","desert_bandit","djinn","djinn_awakened","dragon","dragon_awakened","dune_worm","dungeon_crystal","el_dark","el_earth",
+  "el_fire","el_light","el_water","el_wind","elf_archer","elf_archer_awakened","emblem_1","emblem_2","emblem_3","emblem_4","emblem_5","emblem_6",
+  "ess","ess_dark","ess_earth","ess_fire","ess_light","ess_magic","ess_water","ess_wind","fairy","fairy_awakened","frame_bronze","frame_diamond",
+  "frame_gold","frame_legend","frame_platinum","frame_silver","frost_serpent","frost_serpent_awakened","frost_witch","frost_witch_awakened","frost_wyrm","gargoyle","gear_amulet_1","gear_amulet_2",
+  "gear_amulet_3","gear_amulet_4","gear_amulet_5","gear_amulet_6","gear_amulet_7","gear_armor_1","gear_armor_2","gear_armor_3","gear_armor_4","gear_armor_5","gear_armor_6","gear_armor_7",
+  "gear_boots_1","gear_boots_2","gear_boots_3","gear_boots_4","gear_boots_5","gear_boots_6","gear_boots_7","gear_helmet_1","gear_helmet_2","gear_helmet_3","gear_helmet_4","gear_helmet_5",
+  "gear_helmet_6","gear_helmet_7","gear_ring_1","gear_ring_2","gear_ring_3","gear_ring_4","gear_ring_5","gear_ring_6","gear_ring_7","gear_weapon_1","gear_weapon_2","gear_weapon_3",
+  "gear_weapon_4","gear_weapon_5","gear_weapon_6","gear_weapon_7","ghost_queen","ghost_queen_awakened","ghoul","giant_spider","golem","golem_awakened","griffin","griffin_awakened",
+  "guide_alara","guild_hall","harpy","harpy_awakened","ic_b_break","ic_b_buff","ic_b_burn","ic_b_heal","ic_b_hit","ic_b_multi","ic_b_shield","ic_b_slow",
+  "ic_b_stun","ic_backup","ic_full","ic_help","ic_music","ic_q_chest","ic_q_dungeon","ic_q_login","ic_q_rune","ic_q_summon","ic_q_tower","ic_q_trophy",
+  "ic_q_vip","ic_q_win","ic_quality","ic_reset","ic_s_acc","ic_s_atk","ic_s_cd","ic_s_cr","ic_s_def","ic_s_hp","ic_s_res","ic_s_spd",
+  "ic_settings","ic_sound","ic_unlock","ice_troll","ico_bolt","ico_book","ico_calendar","ico_cart","ico_castle","ico_chart","ico_chest","ico_crown",
+  "ico_dragon","ico_fire","ico_fireworks","ico_gift","ico_hammer","ico_heart","ico_hourglass","ico_lock","ico_map","ico_orb","ico_pencil","ico_people",
+  "ico_person","ico_scroll","ico_search","ico_shield","ico_sparkle","ico_swords","ico_tower","ico_trophy","ico_unlock","ico_warn","imp_fire","imp_fire_awakened",
+  "lava_titan","legend_dawn_unicorn","legend_dawn_unicorn_awakened","legend_eclipse_dragon","legend_eclipse_dragon_awakened","legend_forest_dryad","legend_forest_dryad_awakened","legend_kraken_king","legend_kraken_king_awakened","legend_mountain_behemoth","legend_mountain_behemoth_awakened","legend_storm_roc",
+  "legend_storm_roc_awakened","legend_sun_empress","legend_sun_empress_awakened","legend_wind_centaur","legend_wind_centaur_awakened","magma_bat","map_isle1","map_isle2","map_isle3","map_isle4","map_isle5","map_isle6",
+  "map_isle7","marble_guardian","market","mermaid","mermaid_awakened","moon_priestess","moon_priestess_awakened","moss_wolf","mummy","mummy_awakened","mushroom","mushroom_awakened",
+  "nav_shop","navs_arena","navs_bag","navs_guild","navs_home","navs_monsters","navs_quests","navs_summon","obsidian_knight","obsidian_knight_awakened","pf_ach","pf_arena",
+  "pf_codex","pf_mons","pf_runes","pf_stages","pf_summ","pf_tower","pf_wins","phoenix","phoenix_awakened","pixie_thief","rank_1","rank_2",
+  "rank_3","rank_4","rank_5","rank_6","rank_7","rank_8","rune_blade","rune_energy","rune_focus","rune_forge","rune_guard","rune_rage",
+  "rune_swift","salamander","salamander_awakened","sanctuary_hall","sand_colossus","sand_scorpion","scarab_knight","scarab_knight_awakened","scroll_l","scroll_ld","scroll_m","scroll_u",
+  "seraph","seraph_awakened","shadow_lord","shadow_ninja","shadow_ninja_awakened","shadow_wraith","shop_energy","shop_magic","shop_mana","shop_rune6","shop_runes","shop_scrolls",
+  "shop_sprites","shop_tickets","shoptab_arena","shoptab_gems","shoptab_guild","shoptab_shop","sk_aurora_1","sk_aurora_2","sk_aurora_3","sk_aurora_u","sk_banshee_1","sk_banshee_2",
+  "sk_banshee_u","sk_celestlion_1","sk_celestlion_2","sk_celestlion_u","sk_dawn_unicorn_1","sk_dawn_unicorn_2","sk_dawn_unicorn_3","sk_dawn_unicorn_u","sk_djinn_1","sk_djinn_2","sk_djinn_3","sk_djinn_u",
+  "sk_dragon_1","sk_dragon_2","sk_dragon_3","sk_dragon_u","sk_eclipse_dragon_1","sk_eclipse_dragon_2","sk_eclipse_dragon_3","sk_eclipse_dragon_u","sk_elf_1","sk_elf_2","sk_elf_u","sk_fairy_1",
+  "sk_fairy_2","sk_fairy_u","sk_forest_dryad_1","sk_forest_dryad_2","sk_forest_dryad_3","sk_forest_dryad_u","sk_frostserpent_1","sk_frostserpent_2","sk_frostserpent_u","sk_frostwitch_1","sk_frostwitch_2","sk_frostwitch_u",
+  "sk_ghostqueen_1","sk_ghostqueen_2","sk_ghostqueen_3","sk_ghostqueen_u","sk_golem_1","sk_golem_2","sk_golem_u","sk_griffin_1","sk_griffin_2","sk_griffin_u","sk_harpy_1","sk_harpy_2",
+  "sk_harpy_u","sk_imp_1","sk_imp_2","sk_imp_u","sk_kraken_king_1","sk_kraken_king_2","sk_kraken_king_3","sk_kraken_king_u","sk_mermaid_1","sk_mermaid_2","sk_mermaid_u","sk_mountain_behemoth_1",
+  "sk_mountain_behemoth_2","sk_mountain_behemoth_3","sk_mountain_behemoth_u","sk_mummy_1","sk_mummy_2","sk_mummy_u","sk_mushroom_1","sk_mushroom_2","sk_mushroom_u","sk_ninja_1","sk_ninja_2","sk_ninja_u",
+  "sk_obsidian_1","sk_obsidian_2","sk_obsidian_u","sk_phoenix_1","sk_phoenix_2","sk_phoenix_3","sk_phoenix_u","sk_priestess_1","sk_priestess_2","sk_priestess_3","sk_priestess_u","sk_salamander_1",
+  "sk_salamander_2","sk_salamander_u","sk_scarab_1","sk_scarab_2","sk_scarab_u","sk_seraph_1","sk_seraph_2","sk_seraph_3","sk_seraph_u","sk_skeleton_1","sk_skeleton_2","sk_skeleton_u",
+  "sk_snowowl_1","sk_snowowl_2","sk_snowowl_u","sk_sphinx_1","sk_sphinx_2","sk_sphinx_3","sk_sphinx_u","sk_starsage_1","sk_starsage_2","sk_starsage_3","sk_starsage_u","sk_storm_roc_1",
+  "sk_storm_roc_2","sk_storm_roc_3","sk_storm_roc_u","sk_stormmage_1","sk_stormmage_2","sk_stormmage_3","sk_stormmage_u","sk_sun_empress_1","sk_sun_empress_2","sk_sun_empress_3","sk_sun_empress_u","sk_valkyrie_1",
+  "sk_valkyrie_2","sk_valkyrie_3","sk_valkyrie_u","sk_vampire_1","sk_vampire_2","sk_vampire_u","sk_voidknight_1","sk_voidknight_2","sk_voidknight_u","sk_werewolf_1","sk_werewolf_2","sk_werewolf_u",
+  "sk_wind_centaur_1","sk_wind_centaur_2","sk_wind_centaur_3","sk_wind_centaur_u","sk_winddancer_1","sk_winddancer_2","sk_winddancer_u","sk_wolf_1","sk_wolf_2","sk_wolf_u","sk_yeti_1","sk_yeti_2",
+  "sk_yeti_u","skeleton_knight","skeleton_knight_awakened","sky_boar","sky_city","sky_hub","sky_ray","snow_owl","snow_owl_awakened","snow_sprite","spell_blessing","spell_elemstorm",
+  "spell_meteor","spell_timestop","sphinx","sphinx_awakened","splash","stage_1_2","stage_1_3","stage_1_4","stage_1_5","stage_1_6","stage_1_7","stage_2_2",
+  "stage_2_3","stage_2_4","stage_2_5","stage_2_6","stage_2_7","stage_3_2","stage_3_3","stage_3_4","stage_3_5","stage_3_6","stage_3_7","stage_4_2",
+  "stage_4_3","stage_4_4","stage_4_5","stage_4_6","stage_4_7","stage_5_2","stage_5_3","stage_5_4","stage_5_5","stage_5_6","stage_5_7","stage_6_2",
+  "stage_6_3","stage_6_4","stage_6_5","stage_6_6","stage_6_7","stage_7_2","stage_7_3","stage_7_4","stage_7_5","stage_7_6","stage_7_7","star_sage",
+  "star_sage_awakened","star_wisp","storm_mage","storm_mage_awakened","sum_pk_1","sum_pk_2","sum_pk_3","sum_pk_4","sum_pk_5","sum_pk_6","summon_altar","summon_burst",
+  "summon_card_back","summon_circle","summon_open","summon_temple","summon_wings","summoner_3","summoner_4","summoner_f","summoner_m","tavern","treant_boss","tunnel_bg",
+  "tunnel_gate","tunnel_ring","tunnel_ring_2","ui_alt_bg","ui_alt_btn_blue","ui_alt_btn_gold","ui_alt_odds","ui_alt_ped_gold","ui_alt_ped_purple","ui_alt_ped_red","ui_alt_ped_silver","ui_alt_plate",
+  "ui_alt_title","ui_bag_bg","ui_box_bg","ui_bt_bar","ui_bt_btn","ui_bt_hp_a","ui_bt_hp_e","ui_bt_orb","ui_bt_orb_full","ui_bt_port","ui_bt_port_on","ui_bt_sk",
+  "ui_bt_sk_cd","ui_bt_sk_on","ui_bt_tip","ui_bt_wave","ui_cal_big","ui_cal_check","ui_cal_day","ui_cal_got","ui_cal_myst","ui_cal_today","ui_cardframe","ui_codex_bg",
+  "ui_daily_banner","ui_def_bg","ui_def_row","ui_def_tipbtn","ui_deflog_empty","ui_deflog_hall","ui_deflog_scroll","ui_detbtn_1","ui_detbtn_2","ui_detbtn_3","ui_detbtn_4","ui_dettabs",
+  "ui_dun_bg","ui_fz_laurel","ui_gearframe_0_amulet","ui_gearframe_0_armor","ui_gearframe_0_boots","ui_gearframe_0_helmet","ui_gearframe_0_ring","ui_gearframe_0_weapon","ui_gearframe_1_amulet","ui_gearframe_1_armor","ui_gearframe_1_boots","ui_gearframe_1_helmet",
+  "ui_gearframe_1_ring","ui_gearframe_1_weapon","ui_gearframe_2_amulet","ui_gearframe_2_armor","ui_gearframe_2_boots","ui_gearframe_2_helmet","ui_gearframe_2_ring","ui_gearframe_2_weapon","ui_gearframe_3_amulet","ui_gearframe_3_armor","ui_gearframe_3_boots","ui_gearframe_3_helmet",
+  "ui_gearframe_3_ring","ui_gearframe_3_weapon","ui_gearframe_4_amulet","ui_gearframe_4_armor","ui_gearframe_4_boots","ui_gearframe_4_helmet","ui_gearframe_4_ring","ui_gearframe_4_weapon","ui_gmem_bg","ui_gmem_bg2","ui_gmem_bgc","ui_gmem_btn",
+  "ui_gmem_btn_on","ui_gmem_cloth","ui_gmem_cloth2","ui_gmem_sq","ui_guild2_actic","ui_guild2_bg","ui_guild2_bgc","ui_guild2_cloth","ui_guild_bg","ui_plaque","ui_prep_bg","ui_prg_banner",
+  "ui_prg_card_1","ui_prg_card_2","ui_prg_card_3","ui_prg_card_4","ui_prg_card_5","ui_prg_chest","ui_prg_crest_1","ui_prg_crest_2","ui_prg_crest_3","ui_prg_crest_4","ui_prg_crest_5","ui_rank_template",
+  "ui_rew_card","ui_rune_bg","ui_runering","ui_sh_card","ui_sh_ped","ui_sh_sel","ui_skillframe_1","ui_skillframe_2","ui_skillframe_3","ui_skillframe_4","ui_ssn_card_0","ui_ssn_card_1",
+  "ui_ssn_card_2","ui_ssn_card_3","ui_ssn_card_4","ui_ssn_card_5","ui_ssn_card_6","ui_ssn_card_7","ui_ssn_chest_0","ui_ssn_chest_1","ui_ssn_chest_2","ui_ssn_chest_3","ui_ssn_chest_4","ui_ssn_chest_5",
+  "ui_ssn_chest_6","ui_ssn_chest_7","ui_ssn_crest_0","ui_ssn_crest_1","ui_ssn_crest_2","ui_ssn_crest_3","ui_ssn_crest_4","ui_ssn_crest_5","ui_ssn_crest_6","ui_ssn_crest_7","ui_store_bg","ui_store_cat_on",
+  "ui_store_slot_on","ui_store_tab_on","ui_tower_bg","ui_vic_banner","ui_vic_bar","ui_vic_tile","ui_wf_b","ui_wf_bl","ui_wf_br","ui_wf_fill","ui_wf_gem","ui_wf_l",
+  "ui_wf_r","ui_wf_t","ui_wf_tl","ui_wf_tr","ui_win_btn_blue","ui_win_btn_gold","ui_win_btn_grey","ui_win_chk","ui_win_chk_on","ui_win_close","ui_win_frame","ui_win_frame_ng",
+  "ui_win_ribbon","ui_win_row","ui_win_tab","ui_win_tab_on","ui_win_tog_off","ui_win_tog_on","valkyrie","valkyrie_awakened","vampire","vampire_awakened","vip_crest_bronze","vip_crest_diamond",
+  "vip_crest_gold","vip_crest_legend","vip_crest_platinum","vip_crest_silver","void_knight","void_knight_awakened","werewolf","werewolf_awakened","will_wisp","wind_dancer","wind_dancer_awakened","wolf_spirit",
+  "wolf_spirit_awakened","world_map","yeti","yeti_awakened"]);
 const POOL = {2:["imp","mushroom"],3:["wolf","fairy","golem","elf","harpy","mermaid","skeleton","salamander","yeti","snowowl","scarab","mummy","werewolf","banshee"],4:["ninja","priestess","griffin","frostwitch","stormmage","obsidian","winddancer","frostserpent","aurora","sphinx","vampire","celestlion","starsage","voidknight"],5:["dragon","valkyrie","phoenix","djinn","ghostqueen","seraph","sun_empress","kraken_king","storm_roc","wind_centaur","mountain_behemoth","forest_dryad","dawn_unicorn","eclipse_dragon"]};
 POOL[5] = POOL[5].filter(id => !MON[id].mystic);         // the mystic monsters can't be summoned for now (owner's call): every summon and reward pool skips them
 const ARTFIT = {"aethertitan":[1,0.83],"ashgolem":[1,0.83],"aurora":[1,0.83],"aurora_aw":[1,0.83],"bandit":[1,0.83],"banshee":[1,0.83],"banshee_aw":[1,0.83],"celestlion":[1,0.83],"celestlion_aw":[1,0.83],"cinderhound":[1,0.83],"cloudslime":[1,0.83],"crystalg":[1,0.93],"dawn_unicorn":[1,0.93],"djinn":[1,0.83],"djinn_aw":[1,0.83],"dragon":[1,0.84],"dragon_aw":[1,0.84],"duneworm":[1,0.83],"elf":[1,0.84],"elf_aw":[1,0.84],"fairy":[1,0.84],"fairy_aw":[1,0.85],"forest_dryad":[1,0.83],"forest_dryad_aw":[1,0.83],"frostserpent":[1,0.83],"frostserpent_aw":[1,0.83],"frostwitch":[1,0.83],"frostwitch_aw":[1,0.83],"frostwyrm":[1,0.83],"gargoyle":[1,0.83],"ghostqueen":[1,0.83],"ghostqueen_aw":[1,0.83],"ghoul":[1,0.83],"golem":[1,0.83],"golem_aw":[1,0.83],"griffin":[1,0.84],"griffin_aw":[1,0.84],"harpy":[1,0.83],"harpy_aw":[1,0.83],"icetroll":[1,0.83],"imp":[1,0.83],"imp_aw":[1,0.83],"kraken_king":[1,0.83],"kraken_king_aw":[1,0.83],"lavatitan":[1,0.83],"marble":[1,0.83],"mermaid":[1,0.83],"mermaid_aw":[1,0.83],"mosswolf":[1,0.95],"mummy":[1,0.83],"mummy_aw":[1,0.83],"mushroom":[1,0.83],"mushroom_aw":[1,0.84],"ninja":[1,0.83],"ninja_aw":[1,0.83],"obsidian":[1,0.83],"obsidian_aw":[1,0.83],"phoenix":[1,0.83],"phoenix_aw":[1,0.83],"pixie":[1,0.83],"priestess":[1,0.83],"priestess_aw":[1,0.83],"sandcolossus":[1,0.83],"scarab":[1,0.83],"scarab_aw":[1,0.83],"scorpion":[1,0.83],"seraph":[1,0.83],"seraph_aw":[1,0.83],"shadowlord":[1,0.83],"skeleton":[1,0.83],"skeleton_aw":[1,0.83],"skyboar":[1,0.89],"snowowl":[1,0.83],"snowowl_aw":[1,0.83],"snowsprite":[1,0.83],"sphinx":[1,0.83],"sphinx_aw":[1,0.83],"spider":[1,0.83],"sprite":[1,0.83],"starsage":[1,0.83],"starsage_aw":[1,0.83],"starwisp":[1,0.83],"storm_roc":[1,0.83],"storm_roc_aw":[1,0.83],"stormmage":[1,0.83],"stormmage_aw":[1,0.83],"sun_empress":[1,0.83],"sun_empress_aw":[1,0.83],"treant":[1,0.83],"valkyrie":[1,0.83],"valkyrie_aw":[1,0.83],"vampire":[1,0.83],"vampire_aw":[1,0.83],"voidknight":[1,0.83],"voidknight_aw":[1,0.83],"werewolf":[1,0.83],"werewolf_aw":[1,0.83],"wind_centaur":[1,0.83],"wind_centaur_aw":[1,0.83],"winddancer":[1,0.83],"winddancer_aw":[1,0.83],"wisp":[1,0.83],"wolf":[1,0.85],"wolf_aw":[1,0.84],"wraith":[1,0.83],"yeti":[1,0.83],"yeti_aw":[1,0.83]};   // generated by art_audit.py: [brightness, size] per monster (+"_aw")
@@ -5083,7 +5172,7 @@ const BLOB = {ui_alt_bg:"/_blob/73e408fe4030c2751dc6895d3c8d974d", ui_alt_ped_si
   legend_mountain_behemoth:"/_blob/22c82c9c622ff7b8be73f09f905587ad", legend_mountain_behemoth_awakened:"/_blob/6d3f874e7b3738c2399c57cb6b286357",
   legend_forest_dryad:"/_blob/b4ccfe2b8db4bc720ee4f97f3668e85b", legend_forest_dryad_awakened:"/_blob/1af13f1cde01bea260fbc93e915cf3ab",
   legend_dawn_unicorn:"/_blob/617656b76bf0f0cbbadd207eb171416c", legend_dawn_unicorn_awakened:"/_blob/1658280c114175082ad74ba4aa5de8e7",
-  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723", ui_bt_bar:"/_blob/020944b966c4c9ae72b39ed6ea305925", ui_bt_port:"/_blob/2c8116eda94304b769b2dd244602e638", ui_bt_port_on:"/_blob/faf97980484f223974568d3a94fe8cc5", ui_bt_orb:"/_blob/493972682ae8c47393beab5d2e86dbbf", ui_bt_orb_full:"/_blob/3dc97ad847642aba010112fa2ec62be6", ui_bt_hp_a:"/_blob/6a0c08ff1248e4d3c118722fcd7e6c5d", ui_bt_hp_e:"/_blob/776e1f08bd239eebcb334a7953f6e085", ui_bt_sk:"/_blob/87a8f6be98ae06156a1fca686aae4331", ui_bt_sk_on:"/_blob/216fc7a49c2d093717ccc1a3f1def529", ui_bt_sk_cd:"/_blob/1f795db0f5c160aacb7394a47e9f2ca4", ui_bt_btn:"/_blob/1c9e2ed20d5d69a75e45a6d5fb5f49d3", ui_bt_tip:"/_blob/fd1c4bead5e37e54c9191abd0fa6d09f", ui_bt_wave:"/_blob/4a6274c32883b81f4281a045116dd76d", ui_def_bg:"/_blob/a43694d9306f00867c89cdd13a3f0289", ui_def_row:"/_blob/5928f3ab2ad0e788146ffceba292100c", ui_def_tipbtn:"/_blob/83239c284a7166aa0404db638154715f", ui_wf_tl:"/_blob/47da4a37fe4ae7a581e622e7b715b231", ui_wf_tr:"/_blob/28c7d992a4ab5c77002ff43a2a826e78", ui_wf_bl:"/_blob/8ed23a9e182584cc88fc3fe653e75eaa", ui_wf_br:"/_blob/fd183734fa135bdb0086d4ce4201db89", ui_wf_t:"/_blob/a70dd4d771d1f53ab2b70f072fdb36ad", ui_wf_b:"/_blob/d7c140405fa15b0dcf246d2220a69cab", ui_wf_l:"/_blob/7318ce8753ec9a23477573f0f75e30a1", ui_wf_r:"/_blob/5101bbc9136ccfb861cefaa9a095c55a", ui_wf_fill:"/_blob/bda0df6c434fb949841b944ff1c730f1", ui_wf_gem:"/_blob/785f6cfcafd901ecb3b2d2978128fede", ui_tower_bg:"/_blob/3389fe49d07f258b319786fc2335cec0", ui_dun_bg:"/_blob/9cfc9fe839028922a27bfdb0605c70ee", ico_bolt:"/_blob/05fe4252b7485e368366e4dffe394a66", ico_book:"/_blob/2e657c97652b0f1548959b3ba73097d0", ico_calendar:"/_blob/28b08da830550a27e60cfabe48e2f40f", ico_cart:"/_blob/66ac0f2178a4f61c23e99b390c2830cc", ico_castle:"/_blob/3aaf3ce99e391ebf89ae1a59d0b87070", ico_chart:"/_blob/5ff8241d1e564f92209e60036e1acfbe", ico_chest:"/_blob/b4498c3be2a3ddb9c2a8c168f3cd3793", ico_crown:"/_blob/726b40ca89fec26582517ee7632ce034", ico_dragon:"/_blob/5624e3cf33670e21a270c85b69c3f4e3", ico_fire:"/_blob/1396dcf9c6ecce4ff257bfc4a83d8f9a", ico_fireworks:"/_blob/c9eca74b30b3c2ddbfdf8e9497046a51", ico_gift:"/_blob/5bf7b03df16fb82130eea9a9ee3a069b", ico_hammer:"/_blob/f9d775f950d83eb5cc845d943c56eb92", ico_heart:"/_blob/3f2f57c08a2433bd7cb2fd524893b50d", ico_hourglass:"/_blob/3ecd48cf1ef6d17ea0200b28f79349b3", ico_lock:"/_blob/4af82623fe3a16e7d86223485e47cff3", ico_map:"/_blob/3346be2b79c3900323d2ff1105220f84", ico_orb:"/_blob/cb16bbb522c4ed860d6a9a4ed6e9808f", ico_pencil:"/_blob/7765a3092de7dd599c00fd9466e61599", ico_people:"/_blob/9eb61e623c0bfc66e90cf5bc7b873982", ico_person:"/_blob/fedb84d748067dd61b131cd9b02b6b6d", ico_scroll:"/_blob/dbda2ce7427ad121025e70e4f84de16e", ico_search:"/_blob/2f48c9f84e268e27d468bab6bbd75674", ico_shield:"/_blob/c7a60ce2e25894ce4d77d912f851d665", ico_sparkle:"/_blob/ff4877571b2aeb0b13ea81b174bda695", ico_swords:"/_blob/5aa9686cc17b7a51c6f23f79e58bcdbf", ico_tower:"/_blob/96fcf9276d9177e3e0f25c055db44202", ico_trophy:"/_blob/10c6516f86fb7e7f6581bf8035886769", ico_unlock:"/_blob/bde942c19eaeab8489b3e36673ec1998", ico_warn:"/_blob/4851f88c1915b91d01f5e8bb1e9ab1aa", ui_box_bg:"/_blob/b499fec3cbd16609e2c92f67731e8700", ui_bag_bg:"/_blob/c405e5e203453d772573d075cf1ab359", ui_rune_bg:"/_blob/f58fda38ab0d69a991216efa5e2dd77c", ui_codex_bg:"/_blob/7bdf9e0cc16ddcbf6105e720f9124725", ui_guild_bg:"/_blob/356a78968f2b8e6bfd317bf0229f5f4d", ui_store_bg:"/_blob/83d632458ccc4d89a8aedd9ed4bd4fad", ui_store_tab_on:"/_blob/e3816d0c9e3d014f9d648d599fefb38c", ui_store_slot_on:"/_blob/d2a5416b0a550f714cbdfc7517eb79db", ui_store_cat_on:"/_blob/ebb03be9020dd4b9e8dbebd8b9233874", ui_cal_day:"/_blob/1c65990ea6021f8e6f2c2b7fa59e4838", ui_cal_got:"/_blob/67ea413f15d039d7651569a8fc3ce522", ui_cal_today:"/_blob/13e53fff8beebc4f52192cc5355e27f0", ui_cal_big:"/_blob/66b5434dab0b302333c3cdc7060870a8", ui_cal_myst:"/_blob/6f5d9b6b2232ef058fd8d835aff332dd", ui_cal_check:"/_blob/031479c3b04c7678ec436426c0a6d841", pf_wins:"/_blob/187e162f96adf2fb0121597f280c2777", pf_mons:"/_blob/852ae3fa731c42c56678856f52116d2c", pf_codex:"/_blob/c076bca70299eb24360928efb3a6abe7", pf_stages:"/_blob/954928e41c4480c9d9e57c789529a104", pf_tower:"/_blob/52930704b4da59bf1dd061e415b95dc3", pf_arena:"/_blob/aa13e978ee84356c531f1e806a94623a", pf_ach:"/_blob/acc6d30ab6a2b9e3441a5cde48e19ba1", pf_runes:"/_blob/58a86abdf2ab356c8c151075190c588a", pf_summ:"/_blob/f1a92e0a0783afe1ba46df6a25ebbb90", ui_rew_card:"/_blob/bc3da15766da96076638364d4e647f54", ui_guild2_bg:"/_blob/b10fe140c3f4a44cd753fe4997cd8d96", ui_guild2_bgc:"/_blob/d42d14ed9f39d7f3e0eba38820dec417", ui_gmem_bgc:"/_blob/d36360d8b080c0f69bc17c0313a85358", ui_guild2_actic:"/_blob/99344dd1b76a8c91dd7d844e378f9f03", ui_guild2_cloth:"/_blob/e7886a1ffc23678dd1562c286c912bd2", ui_gmem_bg:"/_blob/61f9d9d2ed9082093d91ffe3224a71b8", ui_gmem_cloth:"/_blob/f5f6875c79687388f16c48cea514851f", ui_gmem_btn_on:"/_blob/125a7346d15bf84c51532b46968ac8bd", ui_gmem_btn:"/_blob/88cf786e84fc701377cf05a78e510b83", ui_gmem_cloth2:"/_blob/c7bd328a343e06f40ea1d037c00a6a46", ui_gmem_bg2:"/_blob/2c389bb81e879b2ea15a29f3f6c3deb7", ui_gmem_sq:"/_blob/906013c2f4184e6f16b037d2fceae930", ui_prep_bg:"/_blob/63c236256a98fb5a6436e8535fe52683", ui_vic_banner:"/_blob/3a9a059641181796417aed5e86e485f3", ui_vic_tile:"/_blob/ed95d2aba59ebaa2866fd8b6e37deb2a", ui_vic_bar:"/_blob/95e5d5a3ed41f351e77c84e7353be013", ui_win_frame:"/_blob/f574592c2923afd7321af22769ce0913", ui_win_ribbon:"/_blob/016672401428e2a155738a9a28d8551d", ui_win_close:"/_blob/993a519952a41a6041bc9fdb42b3f4c1", ui_win_btn_gold:"/_blob/0e13e153044812c9e85e23f2ec26babd", ui_win_btn_blue:"/_blob/64b5257cbbcbcb6111e756b8de8dd7b3", ui_win_btn_grey:"/_blob/ab8f92d66e4d4817a6c7f168d7883426", ui_win_row:"/_blob/146536adb9bace620991d11de7b00006", ui_win_tab:"/_blob/2805190c5c9314daafac25eac2ad4bdc", ui_win_tab_on:"/_blob/6f8984a06b04dd95abf13912087e10ff", ui_win_tog_on:"/_blob/fbeb8020630d894a88cbce60fd6c1387", ui_win_tog_off:"/_blob/0475d81d5ce3f6aabda634d92888435b", ui_win_chk:"/_blob/ed9c571c16b0be6918f289c10d3b4546", ui_win_chk_on:"/_blob/4edc8d218f3a6ce45345766e0f94c107"};
+  legend_eclipse_dragon:"/_blob/4d39662cc710653411d991c3617514f4", legend_eclipse_dragon_awakened:"/_blob/11cea83eff57512f5efd2019817b7a2d", sum_pk_1:"/_blob/9b35652043da400ee3f25ad08356e3a8", sum_pk_2:"/_blob/65a0245427f3f3f2d0423764b5d10b85", sum_pk_3:"/_blob/5c6bdc1257e6f59959df1e1569135c5b", sum_pk_4:"/_blob/64b327e99307a5a824d9fe8f91cbc549", sum_pk_5:"/_blob/85a67b47b1a6b2109d83f3292ad35f84", sum_pk_6:"/_blob/0ce1bc54381962108868ff573d94ec16", tunnel_bg:"/_blob/b7d630854f15ef3e01e766a85721c004", tunnel_ring:"/_blob/64904c97b8442db6439c789a80a50779", tunnel_ring_2:"/_blob/e6063929d4b0d0d9dc63e4dccd3b177f", tunnel_gate:"/_blob/efa65a66c5474d6491a2c073400f4916", card_ring:"/_blob/6a72add8ca8468d7402a5d5e4931f4c4", card_spark:"/_blob/8f194fc50e23b6f215a741cdc370d723", ui_bt_bar:"/_blob/020944b966c4c9ae72b39ed6ea305925", ui_bt_port:"/_blob/2c8116eda94304b769b2dd244602e638", ui_bt_port_on:"/_blob/faf97980484f223974568d3a94fe8cc5", ui_bt_orb:"/_blob/493972682ae8c47393beab5d2e86dbbf", ui_bt_orb_full:"/_blob/3dc97ad847642aba010112fa2ec62be6", ui_bt_hp_a:"/_blob/6a0c08ff1248e4d3c118722fcd7e6c5d", ui_bt_hp_e:"/_blob/776e1f08bd239eebcb334a7953f6e085", ui_bt_sk:"/_blob/87a8f6be98ae06156a1fca686aae4331", ui_bt_sk_on:"/_blob/216fc7a49c2d093717ccc1a3f1def529", ui_bt_sk_cd:"/_blob/1f795db0f5c160aacb7394a47e9f2ca4", ui_bt_btn:"/_blob/1c9e2ed20d5d69a75e45a6d5fb5f49d3", ui_bt_tip:"/_blob/fd1c4bead5e37e54c9191abd0fa6d09f", ui_bt_wave:"/_blob/4a6274c32883b81f4281a045116dd76d", ui_def_bg:"/_blob/a43694d9306f00867c89cdd13a3f0289", ui_def_row:"/_blob/5928f3ab2ad0e788146ffceba292100c", ui_def_tipbtn:"/_blob/83239c284a7166aa0404db638154715f", ui_wf_tl:"/_blob/47da4a37fe4ae7a581e622e7b715b231", ui_wf_tr:"/_blob/28c7d992a4ab5c77002ff43a2a826e78", ui_wf_bl:"/_blob/8ed23a9e182584cc88fc3fe653e75eaa", ui_wf_br:"/_blob/fd183734fa135bdb0086d4ce4201db89", ui_wf_t:"/_blob/a70dd4d771d1f53ab2b70f072fdb36ad", ui_wf_b:"/_blob/d7c140405fa15b0dcf246d2220a69cab", ui_wf_l:"/_blob/7318ce8753ec9a23477573f0f75e30a1", ui_wf_r:"/_blob/5101bbc9136ccfb861cefaa9a095c55a", ui_wf_fill:"/_blob/bda0df6c434fb949841b944ff1c730f1", ui_wf_gem:"/_blob/785f6cfcafd901ecb3b2d2978128fede", ui_tower_bg:"/_blob/3389fe49d07f258b319786fc2335cec0", ui_dun_bg:"/_blob/9cfc9fe839028922a27bfdb0605c70ee", ico_bolt:"/_blob/05fe4252b7485e368366e4dffe394a66", ico_book:"/_blob/2e657c97652b0f1548959b3ba73097d0", ico_calendar:"/_blob/28b08da830550a27e60cfabe48e2f40f", ico_cart:"/_blob/66ac0f2178a4f61c23e99b390c2830cc", ico_castle:"/_blob/3aaf3ce99e391ebf89ae1a59d0b87070", ico_chart:"/_blob/5ff8241d1e564f92209e60036e1acfbe", ico_chest:"/_blob/b4498c3be2a3ddb9c2a8c168f3cd3793", ico_crown:"/_blob/726b40ca89fec26582517ee7632ce034", ico_dragon:"/_blob/5624e3cf33670e21a270c85b69c3f4e3", ico_fire:"/_blob/1396dcf9c6ecce4ff257bfc4a83d8f9a", ico_fireworks:"/_blob/c9eca74b30b3c2ddbfdf8e9497046a51", ico_gift:"/_blob/5bf7b03df16fb82130eea9a9ee3a069b", ico_hammer:"/_blob/f9d775f950d83eb5cc845d943c56eb92", ico_heart:"/_blob/3f2f57c08a2433bd7cb2fd524893b50d", ico_hourglass:"/_blob/3ecd48cf1ef6d17ea0200b28f79349b3", ico_lock:"/_blob/4af82623fe3a16e7d86223485e47cff3", ico_map:"/_blob/3346be2b79c3900323d2ff1105220f84", ico_orb:"/_blob/cb16bbb522c4ed860d6a9a4ed6e9808f", ico_pencil:"/_blob/7765a3092de7dd599c00fd9466e61599", ico_people:"/_blob/9eb61e623c0bfc66e90cf5bc7b873982", ico_person:"/_blob/fedb84d748067dd61b131cd9b02b6b6d", ico_scroll:"/_blob/dbda2ce7427ad121025e70e4f84de16e", ico_search:"/_blob/2f48c9f84e268e27d468bab6bbd75674", ico_shield:"/_blob/c7a60ce2e25894ce4d77d912f851d665", ico_sparkle:"/_blob/ff4877571b2aeb0b13ea81b174bda695", ico_swords:"/_blob/5aa9686cc17b7a51c6f23f79e58bcdbf", ico_tower:"/_blob/96fcf9276d9177e3e0f25c055db44202", ico_trophy:"/_blob/10c6516f86fb7e7f6581bf8035886769", ico_unlock:"/_blob/bde942c19eaeab8489b3e36673ec1998", ico_warn:"/_blob/4851f88c1915b91d01f5e8bb1e9ab1aa", ui_box_bg:"/_blob/b499fec3cbd16609e2c92f67731e8700", ui_bag_bg:"/_blob/c405e5e203453d772573d075cf1ab359", ui_rune_bg:"/_blob/f58fda38ab0d69a991216efa5e2dd77c", ui_codex_bg:"/_blob/7bdf9e0cc16ddcbf6105e720f9124725", ui_guild_bg:"/_blob/356a78968f2b8e6bfd317bf0229f5f4d", ui_store_bg:"/_blob/83d632458ccc4d89a8aedd9ed4bd4fad", ui_store_tab_on:"/_blob/e3816d0c9e3d014f9d648d599fefb38c", ui_store_slot_on:"/_blob/d2a5416b0a550f714cbdfc7517eb79db", ui_store_cat_on:"/_blob/ebb03be9020dd4b9e8dbebd8b9233874", ui_cal_day:"/_blob/1c65990ea6021f8e6f2c2b7fa59e4838", ui_cal_got:"/_blob/67ea413f15d039d7651569a8fc3ce522", ui_cal_today:"/_blob/13e53fff8beebc4f52192cc5355e27f0", ui_cal_big:"/_blob/66b5434dab0b302333c3cdc7060870a8", ui_cal_myst:"/_blob/6f5d9b6b2232ef058fd8d835aff332dd", ui_cal_check:"/_blob/031479c3b04c7678ec436426c0a6d841", pf_wins:"/_blob/187e162f96adf2fb0121597f280c2777", pf_mons:"/_blob/852ae3fa731c42c56678856f52116d2c", pf_codex:"/_blob/c076bca70299eb24360928efb3a6abe7", pf_stages:"/_blob/954928e41c4480c9d9e57c789529a104", pf_tower:"/_blob/52930704b4da59bf1dd061e415b95dc3", pf_arena:"/_blob/aa13e978ee84356c531f1e806a94623a", pf_ach:"/_blob/acc6d30ab6a2b9e3441a5cde48e19ba1", pf_runes:"/_blob/58a86abdf2ab356c8c151075190c588a", pf_summ:"/_blob/f1a92e0a0783afe1ba46df6a25ebbb90", ui_rew_card:"/_blob/bc3da15766da96076638364d4e647f54", ui_guild2_bg:"/_blob/b10fe140c3f4a44cd753fe4997cd8d96", ui_guild2_bgc:"/_blob/d42d14ed9f39d7f3e0eba38820dec417", ui_gmem_bgc:"/_blob/d36360d8b080c0f69bc17c0313a85358", ui_guild2_actic:"/_blob/99344dd1b76a8c91dd7d844e378f9f03", ui_guild2_cloth:"/_blob/e7886a1ffc23678dd1562c286c912bd2", ui_gmem_bg:"/_blob/61f9d9d2ed9082093d91ffe3224a71b8", ui_gmem_cloth:"/_blob/f5f6875c79687388f16c48cea514851f", ui_gmem_btn_on:"/_blob/125a7346d15bf84c51532b46968ac8bd", ui_gmem_btn:"/_blob/88cf786e84fc701377cf05a78e510b83", ui_gmem_cloth2:"/_blob/c7bd328a343e06f40ea1d037c00a6a46", ui_gmem_bg2:"/_blob/2c389bb81e879b2ea15a29f3f6c3deb7", ui_gmem_sq:"/_blob/906013c2f4184e6f16b037d2fceae930", city_bar_name:"/_blob/28c694b9793fc05fad8e1f6e5a13afff", city_bar_small:"/_blob/ab9b297ed865640db98a6b8974f430ab", city_beam:"/_blob/0a77b9cc2bbff5a684bf7f5cec4511b6", city_bg2:"/_blob/1b1648a9154601576a02b65432bddec4", city_btn_go:"/_blob/3f0c7fa554e1567614b07fc36513e432", city_btn_journey:"/_blob/de655bb61f518a79513ae8d743909f38", city_btn_summon:"/_blob/00c6e85b605a18a86b2fd4639ec9c4a8", city_burst:"/_blob/eba2c36097eff9942e43f8d0c9c284e7", city_crystal:"/_blob/d9adb0581c0b5c6ff732c9368a916bc8", city_ic_bag:"/_blob/11b75b88effe0ef98227cbd93fda30c8", city_ic_guild:"/_blob/1f7cd5e7d49ed76ac6ec111bbe5038cd", city_ic_home:"/_blob/8d32271cb3da6b702d070925ef55854a", city_ic_monsters:"/_blob/1447faaa702e3b2d8399af33e042a328", city_ic_quests:"/_blob/cc8edde792b63cc356e5e6ffaa07d7ab", city_m_beast:"/_blob/752202dacb308bc325162db5de733415", city_m_bunny:"/_blob/c13b007caa7236c88f3ded74df045c25", city_m_deer:"/_blob/236ede1dc1283a37f7cbd32d7bb33c36", city_m_dragon:"/_blob/8e87dfc52fed4e72d2eeb2f6677445c9", city_m_fairy:"/_blob/82efd467a7ae0bf069ede4498c30b9a0", city_m_griffin:"/_blob/7ad4faea8afa3819923abbbe1da25770", city_menu:"/_blob/565f7a4f9406b9949d06a5ba4b123330", city_pad:"/_blob/6ab31f222e24fb9399e15d9521896486", city_r_crown:"/_blob/addeb49d3d7a004832426c0a47803f2f", city_r_gift:"/_blob/b3e386706ec5ddad51921a599c595040", city_r_scroll:"/_blob/7275c0306d16eff16a975398c42c516e", city_r_set:"/_blob/fc2802adf7e0ded285c47c17d377209e", city_r_sound:"/_blob/00aa7ae72011ab4cd7e16d909fa2e67e", city_r_trophy:"/_blob/d3c73e75df4245015e7676dc86eb6b52", city_res_bolt:"/_blob/ebc377b4b6ac05d110b562a5bff164a8", city_res_coin:"/_blob/d2ca1a7101403a2c9aa206b88e1f7268", city_res_gem:"/_blob/c753db9c04b1bf4cc4e6dd1b5097aad2", city_rings:"/_blob/4aca3692702d1f1720958fa9463bae84", ui_prep_bg:"/_blob/63c236256a98fb5a6436e8535fe52683", ui_vic_banner:"/_blob/3a9a059641181796417aed5e86e485f3", ui_vic_tile:"/_blob/ed95d2aba59ebaa2866fd8b6e37deb2a", ui_vic_bar:"/_blob/95e5d5a3ed41f351e77c84e7353be013", ui_win_frame:"/_blob/f574592c2923afd7321af22769ce0913", ui_win_ribbon:"/_blob/016672401428e2a155738a9a28d8551d", ui_win_close:"/_blob/993a519952a41a6041bc9fdb42b3f4c1", ui_win_btn_gold:"/_blob/0e13e153044812c9e85e23f2ec26babd", ui_win_btn_blue:"/_blob/64b5257cbbcbcb6111e756b8de8dd7b3", ui_win_btn_grey:"/_blob/ab8f92d66e4d4817a6c7f168d7883426", ui_win_row:"/_blob/146536adb9bace620991d11de7b00006", ui_win_tab:"/_blob/2805190c5c9314daafac25eac2ad4bdc", ui_win_tab_on:"/_blob/6f8984a06b04dd95abf13912087e10ff", ui_win_tog_on:"/_blob/fbeb8020630d894a88cbce60fd6c1387", ui_win_tog_off:"/_blob/0475d81d5ce3f6aabda634d92888435b", ui_win_chk:"/_blob/ed9c571c16b0be6918f289c10d3b4546", ui_win_chk_on:"/_blob/4edc8d218f3a6ce45345766e0f94c107"};
 const onClaude = location.protocol === "https:" && !/github\.io$/.test(location.hostname);
 const assetUrl = n => (onClaude && BLOB[n]) || "assets/" + n + ".webp";
 Object.keys(MON).forEach(id => { const a = MON[id].art; if (a && HAVE.has(a)) ART[id] = assetUrl(a); if (a && HAVE.has(a + "_awakened")) ART[id + "_aw"] = assetUrl(a + "_awakened"); });
@@ -5556,6 +5645,7 @@ function renderTop() {
   { const vb = $("vipBtn"), T = VIP_TIER(vipLv()); vb.style.setProperty("--vc1", T.c1); vb.style.setProperty("--vc2", T.c2); vb.firstChild.nodeValue = `VIP ${vipLv()}`; } $("vipBadge").hidden = vipState().gift === today();
   $("dunSmall").textContent = dunOpen(1) ? "רונים טובים ואבני אתר" : "נפתח אחרי אי 1";
   $("arenaSmall").textContent = S.cleared["1-7"] ? `${rankOf(arenaState().r)[1]} · ${arenaState().t} כרטיסים` : "נפתח אחרי אי 1";
+  c2Paint();
 }
 setInterval(() => { if (S) renderTop(); }, 1000);
 
@@ -5582,6 +5672,7 @@ function show(id) {
   if (id === "home") { paintEvent(); paintNext(); }
   $("quick").classList.toggle("hide", id === "battle");
   $("eventChip").style.display = id === "home" ? "" : "none";
+  c2Show(id);
   if (id === "home") curPlace = null;
   ["box", "runes"].forEach(s => { const b = document.querySelector(`#${s} .back`); if (b) { b.dataset.go = curPlace ? "place" : "home";
     if (b.classList.contains("bx-back")) b.title = curPlace ? `ל${PLACES[curPlace].t}` : "חזרה";   // the round back button keeps its arrow
@@ -5602,12 +5693,145 @@ $("goSummon").onclick = () => show("summon");
 $("goBox").onclick = () => show("box");
 $("goRunes").onclick = () => show("runes");
 
+/* ============================== THE NEW CITY (2026-11-08) ==============================
+   The user's final city design: the new city art, the summoning crystal with its light, decorative monsters, a side menu,
+   the top bar (profile, VIP, resources, event, rewards) and "continue the journey". Every button opens a system that already
+   existed; every number comes from the save. The old city (hotspots, dock, bottom bar) stays as the fallback without the art. */
+const C2_ART = ["city_bg2", "city_crystal", "city_rings", "city_menu", "city_bar_name", "city_bar_small", "city_btn_summon", "city_res_bolt", "city_res_coin", "city_res_gem",
+  "city_r_gift", "city_r_scroll", "city_r_trophy", "city_r_crown", "city_r_sound", "city_btn_journey", "city_btn_go", "city_ic_home", "city_ic_monsters", "city_ic_quests", "city_ic_guild", "city_ic_bag"];
+const c2On = () => C2_ART.every(n => HAVE.has(n));
+const C2_W = 1089, C2_H = 599;                       // the city picture: every place below is a fraction of it
+const C2_HOTS = [                                    // the buildings, as in the approved design
+  {x:.30, y:.17, n:"היכל המפלצות", ic:"📖", go:() => enterPlace("hall"), id:"hotBox"},
+  {x:.26, y:.41, n:"נפחיית הרונים", ic:"⚒", go:() => enterPlace("forge")},
+  {x:.505, y:.50, n:"זימון", ic:"sum", go:() => show("summon"), id:"hotSummon"},
+  {x:.70, y:.25, n:"זירת השמיים", ic:"⚔", go:() => $("goArena").onclick()},
+  {x:.86, y:.46, n:"השוק", ic:"⚖", go:() => enterPlace("market")},
+  {x:.22, y:.72, n:"הפונדק", ic:"🍺", go:() => enterPlace("tavern")},
+  {x:.81, y:.70, n:"ספינת האוויר", ic:"🧭", go:() => show(ART.world ? "world" : "map"), id:"hotShip"}];
+const C2_MONS = [                                    // decorative only: [art, x, y of the feet, width, mirrored, delay]
+  ["city_m_griffin", .175, .565, .10, 0, 0], ["city_m_deer", .665, .445, .055, 1, 1.1], ["city_m_fairy", .455, .60, .03, 0, .5],
+  ["city_m_beast", .40, .915, .09, 0, 1.7], ["city_m_dragon", .585, .90, .075, 1, .8], ["city_m_dragon", .705, .135, .062, 0, 2.3]];
+let c2Built = false, c2Last = {};
+function c2Build() {
+  const box = $("city2"); if (!box || c2Built) return; c2Built = true;
+  const A = n => assetUrl(n), img = (n, cls = "", st = "") => `<img class="${cls}" src="${A(n)}" alt="" style="${st}" draggable="false">`;
+  box.innerHTML = `
+    <div id="c2stage">
+      <div class="c2glow"></div>${img("city_rings", "c2rings")}${img("city_rings", "c2rings c2r2")}
+      <button class="c2crys" id="c2Crys" aria-label="זימון">${img("city_crystal")}</button>
+      ${C2_MONS.filter(m => HAVE.has(m[0])).map(([n, x, y, w, f, d]) => `<i class="c2mon" style="left:${x * 100}%;top:${y * 100}%;width:${w * 100}%;--d:${d}s">${img(n, f ? "flip" : "")}</i>`).join("")}
+    </div>
+    <div id="c2hots"></div>
+    <nav id="c2menu" style="--bg:url(${A("city_menu")})">
+      <button class="c2m on" id="c2Home"><span class="c2ring">${img("city_ic_home")}</span><b>העיר</b></button>
+      <button class="c2m" id="c2Mons">${img("city_ic_monsters")}<b>מפלצות</b></button>
+      <button class="c2m" id="c2Mis">${img("city_ic_quests")}<b>משימות</b><i class="c2bd" id="c2MisB" hidden></i></button>
+      <button class="c2m" id="c2Guild">${img("city_ic_guild")}<b>גילדה</b></button>
+      <button class="c2m" id="c2Bag">${img("city_ic_bag")}<b>תיק</b></button>
+      <button class="c2m c2more" id="c2More"><span class="c2dots">•••</span><b>עוד</b></button>
+    </nav>
+    <div id="c2top">
+      <button class="c2av" id="c2Prof" aria-label="הפרופיל שלי"><img id="c2AvImg" alt=""><b id="c2Lv"></b></button>
+      <span class="c2name" style="--bg:url(${A("city_bar_small")})"><b id="c2Name"></b></span>
+      <button class="c2vip" id="c2Vip"><b id="c2VipT"></b><i class="c2bd" id="c2VipB" hidden>!</i></button>
+      <button class="c2rnd" id="c2Ach" aria-label="הישגים">${img("city_r_trophy")}<i class="c2bd" id="c2AchB" hidden></i></button>
+      <button class="c2rnd" id="c2Rank" aria-label="דירוג הזירה">${img("city_r_crown")}</button>
+      <button class="c2rnd" id="c2Snd" aria-label="צלילים">${img("city_r_sound")}<i class="c2x">✕</i></button>
+    </div>
+    <button id="c2ev" style="--bg:url(${A("city_bar_name")})"><b id="c2EvN"></b><small id="c2EvD"></small><span class="c2left">⏳ <span id="c2EvL"></span></span></button>
+    <div id="c2res">
+      <button class="c2r" data-r="en" style="--bg:url(${A("city_res_bolt")})" aria-label="אנרגיה"><b id="c2En"></b><small id="c2EnT"></small></button>
+      <button class="c2r" data-r="mana" style="--bg:url(${A("city_res_coin")})" aria-label="זהב"><b id="c2Mana"></b></button>
+      <button class="c2r" data-r="gem" style="--bg:url(${A("city_res_gem")})" aria-label="גבישים"><b id="c2Gem"></b></button>
+    </div>
+    <div id="c2side">
+      <button class="c2big" id="c2Gift">${img("city_r_gift")}<b>תגמולים</b><i class="c2bd" id="c2GiftB" hidden></i></button>
+      <button class="c2big" id="c2Evt">${img("city_r_scroll")}<b>אירועים</b><i class="c2bd" id="c2EvtB" hidden>!</i></button>
+    </div>
+    <button id="c2Go" style="--bg:url(${A("city_btn_journey")});--go:url(${A("city_btn_go")})" hidden><i class="c2thumb" id="c2Thumb"></i><i class="c2chev"></i><b>המשך מסע</b><small id="c2GoS"></small></button>`;
+  $("c2Crys").onclick = () => show("summon");
+  $("c2Home").onclick = () => { closeModal(); show("home"); };
+  $("c2Mons").onclick = () => { closeModal(); show("box"); };
+  $("c2Mis").onclick = () => missionsModal();
+  $("c2Guild").onclick = () => $("qGuild").onclick();
+  $("c2Bag").onclick = () => bagModal();
+  $("c2More").onclick = c2More;
+  $("c2Prof").onclick = () => profileModal();
+  $("c2Vip").onclick = () => vipModal();
+  $("c2Ach").onclick = () => achModal();
+  $("c2Rank").onclick = () => { if (!S.cleared["1-7"] && !FREE()) return toast("הדירוג נפתח עם הזירה, אחרי האי הראשון (1-7)"); arenaTab = "ranks"; show("arena"); };
+  $("c2Snd").onclick = () => { $("muteBtn").click(); c2Paint(true); };
+  box.querySelectorAll(".c2r").forEach(b => b.onclick = () => openStore("shop"));
+  $("c2ev").onclick = $("c2Evt").onclick = c2EventModal;
+  $("c2Gift").onclick = () => loginCheck(true);
+}
+function c2More() {                                  // the existing places that are not in the side menu
+  gdMenu("עוד", [["🏪 החנות", () => openStore("shop")], ["🗺 מפת העולם והקרבות", () => { closeModal(); show(ART.world ? "world" : "map"); }],
+    ["💎 המבוכים", () => { closeModal(); $("goDungeon").onclick(); }], ["🗼 מגדל השמיים", () => { closeModal(); S.cleared["1-7"] || FREE() ? show("tower") : toast("המגדל נפתח אחרי הבוס של אי 1"); }],
+    ["📖 ספר המפלצות", () => { closeModal(); show("codex"); }], ["🏆 הישגים", achModal], ["📅 לוח הכניסה היומי", () => loginCheck(true)],
+    ["⛶ מסך מלא", () => $("fsBtn").click()], ["❓ איך משחקים", helpModal]]);
+}
+function c2EventModal() {                            // this week's event, read from the game (curEvent)
+  const e = curEvent(); S.evSeen = weekNo(); save();
+  openModal(`<h3 style="margin:0 0 6px">🎉 ${esc(e.n)}</h3><p style="font-size:14px;color:#dfe6ff;margin:0 0 6px">${esc(e.d)}</p>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 12px">⏳ נותרו ${e.left} ${e.left === 1 ? "יום" : "ימים"} לאירוע</p>
+    <div style="display:flex;gap:8px;justify-content:center"><button class="btn" id="c2EvGo">לזימון</button><button class="btn ghost" onclick="closeModal()">סגירה</button></div>`);
+  $("c2EvGo").onclick = () => { closeModal(); show("summon"); };
+  c2Paint(true);
+}
+function c2Layout() {                                // the picture covers the screen; the stage holds the crystal and monsters in picture fractions
+  const box = $("city2"); if (!box || box.hidden) return;
+  const W = box.clientWidth, H = box.clientHeight; if (!W || !H) return; box.scrollTop = 0; box.scrollLeft = 0;   // nothing may scroll the city layer
+  const s = Math.max(W / C2_W, H / C2_H), dw = C2_W * s, dh = C2_H * s, ox = (W - dw) / 2, oy = (H - dh) / 2;
+  Object.assign($("c2stage").style, {left:ox + "px", top:oy + "px", width:dw + "px", height:dh + "px"});
+  { const ev = $("c2ev"), a = $("c2top").getBoundingClientRect().right, b = $("c2res").getBoundingClientRect().left, u = Math.min(innerHeight / 890, (innerWidth - SAFE().l - SAFE().r) / 1768), w = Math.min(560 * u, b - a - 12) - 0;   // the event banner takes the room between the profile and the resources
+    ev.style.width = Math.max(120, w) + "px"; ev.style.left = ((a + b) / 2 - box.getBoundingClientRect().left) + "px"; ev.classList.toggle("narrow", w < 330); ev.classList.toggle("tiny", w < 190); }
+  const sf = SAFE(), mr = $("c2menu").getBoundingClientRect().right - box.getBoundingClientRect().left, top = $("c2top").getBoundingClientRect().bottom - box.getBoundingClientRect().top;
+  const bx = box.getBoundingClientRect(), obs = ["c2ev", "c2side", "c2res", "c2Go", "tutb"].map($).filter(e => e && !e.hidden && (e.id !== "tutb" || e.classList.contains("on"))).map(e => e.getBoundingClientRect());
+  if ($("c2hots").children.length !== C2_HOTS.length) $("c2hots").innerHTML = C2_HOTS.map((h, i) => `<button class="c2lab" data-i="${i}" ${h.id ? `id="${h.id}"` : ""} style="--bg:url(${assetUrl("city_bar_small")})">${h.ic === "sum" ? `<img class="c2li" src="${assetUrl("city_btn_summon")}" alt="">` : `<i class="c2li">${h.ic}</i>`}<span>${h.n}</span></button>`).join("");
+  $("c2hots").querySelectorAll(".c2lab").forEach(b => {
+    const h = C2_HOTS[+b.dataset.i], w = b.offsetWidth, hh = b.offsetHeight;
+    let x = ox + h.x * dw - w / 2, y = oy + h.y * dh - hh / 2;
+    x = Math.max(mr + 6, Math.min(W - sf.r - 6 - w, x)); y = Math.max(top + 4, Math.min(H - sf.b - 6 - hh, y));
+    for (const o of obs) { const L = o.left - bx.left, T = o.top - bx.top, Rr = o.right - bx.left, Bt = o.bottom - bx.top;   // never under the banner, the rewards or the journey button
+      if (x < Rr + 4 && x + w > L - 4 && y < Bt + 4 && y + hh > T - 4) y = T > H / 2 ? T - hh - 6 : Bt + 6; }
+    b.style.left = x + "px"; b.style.top = y + "px"; b.onclick = () => h.go(); });
+}
+function c2Paint(force) {                            // live numbers; cheap, runs with the top bar every second
+  if (!c2Built || !$("home").classList.contains("on")) return;
+  const set = (id, v) => { if (force || c2Last[id] !== v) { c2Last[id] = v; const e = $(id); if (e) e.textContent = v; } };
+  const flag = (id, on, v) => { const e = $(id); if (!e) return; e.hidden = !on; if (v !== undefined) e.textContent = v; };
+  const p = prof(), lv = typeof summLv === "function" ? summLv() : 1, av = avatarSrc(); if ($("c2AvImg").getAttribute("src") !== av) $("c2AvImg").src = av;
+  set("c2Lv", String(lv)); set("c2Name", p.name); set("c2VipT", `VIP ${vipLv()}`);
+  { const T = VIP_TIER(vipLv()), v = $("c2Vip"); v.style.setProperty("--vc1", T.c1); v.style.setProperty("--vc2", T.c2); }
+  flag("c2VipB", vipState().gift !== today());
+  { const n = S.ach ? achReady() : 0; flag("c2AchB", n > 0, n); }
+  $("c2Snd").classList.toggle("off", !!MUTED);
+  set("c2En", `${S.energy}/${energyMax()}`); set("c2Mana", fmt(S.mana)); set("c2Gem", fmt(S.gem));
+  if (S.energy < energyMax()) { const s = Math.max(0, Math.ceil((ENERGY_MS - (Date.now() - S.energyTs)) / 1000)); set("c2EnT", `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`); } else set("c2EnT", "");
+  { const n = claimable(); flag("c2MisB", n > 0, n); }
+  { const L = S.login, n = (L.day !== today() || !L.claimed) ? 1 : 0; flag("c2GiftB", n > 0, n); }
+  { const e = curEvent(); set("c2EvN", e.n); set("c2EvD", $("c2ev").classList.contains("narrow") ? `נותרו ${e.left} ${e.left === 1 ? "יום" : "ימים"}` : e.d.split(" · ")[0]); set("c2EvL", `נותרו ${e.left} ${e.left === 1 ? "יום" : "ימים"}`); $("c2ev").style.setProperty("--ec", EL[e.el].c); flag("c2EvtB", S.evSeen !== weekNo()); }
+  { const st = nextStage(), g = $("c2Go"), hide = !st || S.tut !== "done";
+    if (g.hidden !== hide) { g.hidden = hide; c2Layout(); }
+    if (st && !hide && c2Last.go !== st.id) { c2Last.go = st.id; set("c2GoS", `שלב ${st.id}${st.boss ? " · 👑 בוס" : ""}`);
+      const bg = ART["stage_" + String(st.id).replace("-", "_")] || ART[ISLES[isleOf(st) - 1].bg]; $("c2Thumb").style.backgroundImage = bg ? `url(${bg})` : "";
+      g.onclick = () => { pickedStage = nextStage(); if (pickedStage) show("team"); }; } }
+}
+function c2Show(id) {                                // the new city takes over the home screen: no old bottom bar or top bar there
+  const on = c2On(), home = id === "home" && on;
+  $("home").classList.toggle("c2", on); $("city2").hidden = !on;
+  $("quick").classList.toggle("c2off", home);
+  if (home) { $("topbar").style.display = "none"; c2Build(); c2Paint(true); requestAnimationFrame(c2Layout); }
+}
+addEventListener("resize", () => { if ($("home").classList.contains("on") && c2On()) c2Layout(); });
 function skyDecor(el, battle) {
   el.innerHTML = `<div class="cloud" style="width:22%;height:6%;top:22%;left:8%"></div><div class="cloud" style="width:30%;height:7%;top:30%;left:60%"></div>
     <div class="cloud" style="width:14%;height:4%;top:10%;left:78%;opacity:.3"></div><div class="isle small"></div><div class="isle small b"></div>${battle ? "" : '<div class="isle"></div>'}`;
 }
 function setBg(el, url, fallback) { el.innerHTML = url ? `<img class="art" src="${url}" alt="">` : ""; if (!url) fallback(); }
-setBg($("homeSky"), ART.hub, () => skyDecor($("homeSky")));
+setBg($("homeSky"), c2On() ? assetUrl("city_bg2") : ART.hub, () => skyDecor($("homeSky")));
 { const hi = $("homeSky").querySelector("img"); if (hi) hi.addEventListener("load", layoutHot); }
 setBg($("mapSky"), ART.battle, () => skyDecor($("mapSky")));
 setBg($("summonSky"), ART.altar, () => {});
@@ -7817,6 +8041,7 @@ const OLD_HOTS = [
   {x:.885, y:.40, n:"ספינת האוויר · לעולם", c:"#ffb347", go:() => show(ART.world ? "world" : "map"), id:"hotShip"},
 ];
 function layoutHot() {
+  if (c2On()) { $("hotspots").innerHTML = ""; c2Layout(); return; }   // the new city places its own building names
   placeHots($("hotspots"), $("homeSky").querySelector("img"), ART.city ? CITY_HOTS : OLD_HOTS, h => h.go());
   document.querySelector("#home .dock").classList.toggle("hidden", !!ART.city);
 }
@@ -7858,7 +8083,7 @@ const TUT = [
   {show:"acted", next:"victory", hl:"#spellBtn", text:"מעולה! העיגול משמאל הוא <b>כוח המזמן</b>: הוא מתמלא בקרב, וכשהוא זוהר לוחצים עליו ומטילים כישוף. טיפ: רוח ואחריה אש יוצרים <b>קומבו</b>!"},
   {show:"victory", next:"summon", hl:"#vHome", again:"#qSum, #hotSummon, #goSummon", againText:"ברוך שובך לעיר! לחץ על <b>זימון</b> כדי להשתמש במגילה שקיבלת.", text:"ניצחון! 🎁 קיבלת ממני <b>מגילת אתר</b>. לחץ <b>לעיר</b>, ושם נזמן מפלצת חדשה."},
   {show:"summon", next:"summoned", hl:"#summon [data-k=\"m\"][data-n=\"1\"]", text:"לחץ <b>זימון ×1</b> במגילת אתר. שים לב לצבע האור: כחול, סגול או זהב רומזים כמה נדירה המפלצת, והצל רומז מי היא!"},
-  {show:"summoned", next:"box", hl:"#qMons, #hotBox, #goBox, #hotCircle", again:"#qMons, #hotBox, #goBox", againText:"לחץ על <b>המפלצות</b> כדי לראות את כל המפלצות שלך.", text:"איזה יופי! עכשיו נחזק מפלצת עם <b>רונים</b>. לחץ על <b>המפלצות</b> בסרגל למטה."},
+  {show:"summoned", next:"box", hl:"#c2Mons, #qMons, #hotBox, #goBox, #hotCircle", again:"#c2Mons, #qMons, #hotBox, #goBox", againText:"לחץ על <b>המפלצות</b> כדי לראות את כל המפלצות שלך.", text:"איזה יופי! עכשיו נחזק מפלצת עם <b>רונים</b>. לחץ על <b>המפלצות</b> בתפריט."},
   {show:"box", next:"detail", hl:"#boxGrid .mc", text:"לחץ על אחת המפלצות שלך."},
   {show:"detail", next:"equip", hl:".rslots .rslotbtn:not(.has)", text:"לחץ על <b>משבצת רון ריקה (+)</b> ובחר רון. רונים מאותו סט נותנים בונוס נוסף."},
   {show:"equip", next:null, hl:"", text:"מושלם! סיימת את ההדרכה, ו-🎁 <b>200 גבישים</b> מחכים לך. משימות יומיות נמצאות בכפתור <b>משימות</b> בסרגל למטה. בהצלחה, מזמן!"},
@@ -7886,9 +8111,10 @@ function tipFor(id) {
 let tutGen = 0;                                    // each bubble gets a number; a late highlight timer from an older bubble does nothing
 function tutBubble(step) {
   const b = $("tutb"), gen = ++tutGen; document.querySelectorAll(".tut-hl").forEach(e => e.classList.remove("tut-hl"));
-  if (!step) { b.classList.remove("on"); return; }
+  const c2re = () => { if ($("home").classList.contains("on") && c2On()) c2Layout(); };   // the city names step aside from the guide
+  if (!step) { b.classList.remove("on"); c2re(); return; }
   $("tutFace").innerHTML = HAVE.has("guide_alara") ? '<img src="assets/guide_alara.webp" alt="">' : sprite("fairy"); $("tutText").innerHTML = step.text;
-  b.classList.remove("on", "low"); void b.offsetWidth; b.classList.add("on");
+  b.classList.remove("on", "low"); void b.offsetWidth; b.classList.add("on"); c2re(); setTimeout(c2re, 450);
   if (step.hl) {                                   // map hotspots appear only after the map image loads: keep looking for ~3s
     let tries = 0;
     const find = () => { if (gen !== tutGen || !b.classList.contains("on")) return; const el = [...document.querySelectorAll(step.hl)].find(e => e.offsetWidth > 0);
