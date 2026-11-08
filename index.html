@@ -4386,8 +4386,11 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #tower.twart .tw-stage::before{display:none}
 .sidefill{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 .sidefill{background:radial-gradient(ellipse at 50% 45%,#120d33 0,#07061a 70%)}
-.sidefill i{position:absolute;background-repeat:no-repeat;transform:scaleX(-1)}.sidefill i.t,.sidefill i.b{transform:scaleY(-1)}
-.sidefill i::after{content:"";position:absolute;inset:0;--sfg:rgba(7,6,26,0) 0,rgba(7,6,26,.55) calc(var(--fd) * .5),#07061a var(--fd);background:linear-gradient(to right,var(--sfg))}
+.sidefill.nomir i{display:none!important}
+.sidefill::before{content:"";position:absolute;inset:-60px;background:var(--sfbg) center/cover no-repeat;filter:blur(30px) brightness(.5) saturate(1.05)}
+.sidefill i{position:absolute;background-repeat:no-repeat;transform:scaleX(-1);--sfm:#000 0,#000 var(--fd),transparent calc(var(--fd) * 2.4);-webkit-mask:linear-gradient(to right,var(--sfm));mask:linear-gradient(to right,var(--sfm))}
+.sidefill i.r{-webkit-mask:linear-gradient(to left,var(--sfm));mask:linear-gradient(to left,var(--sfm))}.sidefill i.t{-webkit-mask:linear-gradient(to bottom,var(--sfm));mask:linear-gradient(to bottom,var(--sfm))}.sidefill i.b{-webkit-mask:linear-gradient(to top,var(--sfm));mask:linear-gradient(to top,var(--sfm))}.sidefill i.t,.sidefill i.b{transform:scaleY(-1)}
+.sidefill i::after{content:"";position:absolute;inset:0;--sfg:rgba(7,6,26,0) 0,rgba(7,6,26,.35) calc(var(--fd) * .5),rgba(7,6,26,.55) var(--fd);background:linear-gradient(to right,var(--sfg))}
 .sidefill i.r::after{background:linear-gradient(to left,var(--sfg))}.sidefill i.t::after{background:linear-gradient(to bottom,var(--sfg))}.sidefill i.b::after{background:linear-gradient(to top,var(--sfg))}
 .modal .card.ghpop .ghx{display:block;margin:12px auto 0;min-width:150px}
 /* ---- the fight tab (the user's clean concept, 2026-11-05): framed cards 2x2, the bottom panel (fight / opponent / my team), other opponents ---- */
@@ -5601,12 +5604,13 @@ function bagArt() {                                   // the painted stage (P05b
   $("bagRes").querySelectorAll(".pe-plus").forEach(b => b.onclick = () => openStore("shop"));
   bagFit();
 }
-function sideArt(C, P, v) {        // the gaps beside a scaled painted stage: the art goes on past its edge, mirrored at its own scale (never stretched), and fades into the dark of the hall
-  const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\) scale\(([\d.]+)\)/.exec(P.style.transform); if (!m) return;
-  const x = +m[1], y = +m[2], k = +m[3], W = P.offsetWidth * k, H = P.offsetHeight * k;
+function sideArt(C, P, v) {        // the gaps beside a scaled painted stage: the art goes on past its edge, mirrored at its own scale (never stretched), for a short strip, then a soft blurred dim copy of the same art at its own proportions fills the rest, so no flat blue band and no ghost panels (desktop, 2026-11-08)
+  const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\) scale\(([\d.]+)\)/.exec(P.style.transform);
+  let x, y, W, H; if (m) { const k = +m[3]; x = +m[1]; y = +m[2]; W = P.offsetWidth * k; H = P.offsetHeight * k; }
+  else { const a = P.getBoundingClientRect(), c = C.getBoundingClientRect(); if (!a.width) return; x = a.left - c.left; y = a.top - c.top; W = a.width; H = a.height; }   // a stage scaled by CSS (the arena): its box on screen
   let f = C.querySelector(":scope>.sidefill"); if (!f) { f = document.createElement("div"); f.className = "sidefill"; C.prepend(f); }
   const gR = C.clientWidth - x - W, gB = C.clientHeight - y - H, fd = Math.max(6, Math.round(W * 0.012));   // the fade covers only the outer scenery strip of the art, so no panel shows in the mirror
-  if (f.children.length < 4) f.innerHTML = "<i class=l></i><i class=r></i><i class=t></i><i class=b></i>";
+  f.style.setProperty("--sfbg", `var(${v})`); if (f.children.length < 4) f.innerHTML = "<i class=l></i><i class=r></i><i class=t></i><i class=b></i>";
   [[0, y, x, H, "0 0"], [x + W, y, gR, H, "100% 0"], [x, 0, W, y, "0 0"], [x, y + H, W, gB, "0 100%"]].forEach(([l, t, w, h, bp], i) => {
     const e = f.children[i].style; e.display = w > 1 && h > 1 ? "" : "none"; e.left = l + "px"; e.top = t + "px"; e.width = w + "px"; e.height = h + "px";
     e.backgroundImage = `var(${v})`; e.backgroundSize = `${W.toFixed(1)}px ${H.toFixed(1)}px`; e.backgroundPosition = bp; e.setProperty("--fd", (i < 2 ? fd : Math.max(4, Math.round(H * 0.012))) + "px"); });
@@ -6685,6 +6689,7 @@ function azStageFit() {
   g.style.setProperty("--k", k);
   const r = g.getBoundingClientRect(), d = document.documentElement.style;   // the content box of every arena tab: where the ranking's own content starts and ends on the template
   d.setProperty("--azx", r.left + AZS.box[0] * k + "px"); d.setProperty("--azy", r.top + AZS.box[1] * k + "px");
+  st.style.setProperty("--aztpl", g.style.getPropertyValue("--tpl")); sideArt(st, g, "--aztpl"); st.querySelector(":scope>.sidefill")?.classList.add("nomir");   // the gaps beside the ranking template on a wide screen: the same art, not a flat blue band
   d.setProperty("--azw", (AZS.box[2] - AZS.box[0]) * k + "px"); d.setProperty("--azh", (AZS.box[3] - AZS.box[1]) * k + "px"); g.style.setProperty("--mf", (10.5 / k).toFixed(1) + "px"); g.classList.toggle("lo", k < .5); g.classList.toggle("xs", k < .4); g.classList.toggle("big", k >= .65);
   const fit = e => { e.style.fontSize = ""; let f = parseFloat(getComputedStyle(e).fontSize); const m = 10.5 / k;
     while ((e.scrollWidth > e.clientWidth + 1 || e.scrollHeight > e.clientHeight + 1) && f > m) { f = Math.max(m, f - 1); e.style.fontSize = f + "px"; } };
@@ -7625,6 +7630,7 @@ const PREP_W = 1792, PREP_H = 878;
 function prepArt() {
   const t = $("team"), on = HAVE.has("ui_prep_bg") && HAVE.has("ui_win_btn_gold") && HAVE.has("ui_win_row");
   t.classList.toggle("ptart", on); if (!on) return;
+  if (t.classList.contains("on")) $("topbar").style.display = "none";   // the painted prep has its own energy / gold / gems bar: the general top bar only doubled it and sat on the title (desktop, 2026-11-08)
   const bg = `url(${assetUrl("ui_prep_bg")})`;
   if (t.style.getPropertyValue("--pbg") !== bg) { t.style.setProperty("--pbg", bg); t.style.setProperty("--wbg", `url(${assetUrl("ui_win_btn_gold")})`); t.style.setProperty("--wrow", `url(${assetUrl("ui_win_row")})`); }
   $("prEn").innerHTML = `<span class="pe en">${pic("cur_energy", "⚡")}<b dir="ltr">${S.energy}/${energyMax()}</b></span><span class="pe mn">${pic("cur_mana", "🪙")}<b dir="ltr">${fmt(S.mana)}</b></span><span class="pe gm">${pic("cur_gem", "💎")}<b dir="ltr">${fmt(S.gem)}</b></span>
@@ -7640,7 +7646,7 @@ function prepFit() {
   const W = pg.clientWidth - pl - parseFloat(cs.paddingRight), H = pg.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / PREP_W, H / PREP_H);
   t.querySelector(".prep").style.transform = `translate(${(pl + (W - PREP_W * k) / 2).toFixed(1)}px,${(pt + (H - PREP_H * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
-  sideArt(pg, t.querySelector(".prep"), "--pbg");
+  sideArt(pg, t.querySelector(".prep"), "--pbg"); pg.querySelector(":scope>.sidefill")?.classList.add("nomir");   // frames run to its edge: only the soft copy, no mirrored frame
 }
 addEventListener("resize", () => { if ($("team").classList.contains("on")) prepFit(); });
 function renderPool() {
