@@ -4278,6 +4278,11 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #c2Go small{font-size:clamp(10px,calc(var(--u)*24),21px);font-weight:900;color:#4a2e06}
 #city2 #c2ev.narrow{padding:0 10px}#city2 #c2ev.narrow .c2left{display:none}
 #city2 #c2ev.tiny small{display:none}
+#place.painted #placeTitle,#place.painted #placeNote{display:none}
+#placeHots .phot{position:absolute;pointer-events:auto;background:none;border:0;padding:0;border-radius:22px;cursor:pointer;-webkit-tap-highlight-color:transparent;animation:photHint 1.6s ease-out .35s 1}
+#placeHots .phot:hover,#placeHots .phot:focus-visible{box-shadow:inset 0 0 0 2px rgba(255,215,90,.55),0 0 26px rgba(255,215,90,.35);background:rgba(255,236,170,.06);outline:none}
+#placeHots .phot:active{box-shadow:inset 0 0 0 3px rgba(255,215,90,.85),0 0 30px rgba(255,215,90,.55);background:rgba(255,236,170,.12)}
+@keyframes photHint{0%,100%{box-shadow:none}45%{box-shadow:inset 0 0 0 2px rgba(255,215,90,.6),0 0 26px rgba(255,215,90,.4)}}   /* one soft glow on entry shows what can be tapped */
 @keyframes gdIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}#gd2.gdin,#gm2.gdin{animation:gdIn .28s ease-out}
 @keyframes gdPulse{50%{filter:brightness(1.15) drop-shadow(0 0 12px #ffd35a)}}
 #gd2 .xp i,#gd2 .hpbar i{transition:width .8s ease}
@@ -8017,10 +8022,10 @@ const PLACES = {
     {x:.58, y:.66, n:"✨ מעגל המפלצות · המפלצות שלי", c:"#ffd75a", go:() => show("box"), id:"hotCircle"},
     {x:.66, y:.30, n:"📖 הפסל העתיק · ספר המפלצות", c:"#9fdcff", go:() => show("codex")},
     {x:.12, y:.55, n:"⚔ חדר הצוות · בחירת צוות", c:"#ff7a5a", go:() => { pickedStage = null; show("team"); }}]},
-  market:{t:"השוק", bg:"hub", note:"חנות הסוחר הגדולה של אתריון. לחץ על משהו בחנות.", hots:[
-    {x:.55, y:.70, n:"🛒 דלפק הסוחר · החנות", c:"#8fd8ff", go:() => shopModal(), id:"hotShop"},
-    {x:.68, y:.55, n:"🔮 כדור הבדולח · VIP ומתנות", c:"#ffd75a", go:() => vipModal()},
-    {x:.07, y:.58, n:"📅 ספר הכניסות · לוח הכניסה", c:"#c58bff", go:() => loginCheck(true)}]},
+  market:{t:"השוק", bg:"hub", note:"", painted:true, hots:[          // r = the stall in picture fractions [left, top, width, height]
+    {r:[.045, .13, .285, .48], n:"חנות כללית", go:() => openStore("shop"), id:"hotShop"},
+    {r:[.355, .08, .29, .53], n:"חנות יהלומים", go:() => openStore("gems"), id:"hotGems"},
+    {r:[.685, .15, .29, .48], n:"סוחר אירועים", go:() => c2EventModal(), id:"hotEvMerch"}]},
 };
 let curPlace = null;
 function enterPlace(k) { curPlace = k; show("place"); }
@@ -8029,8 +8034,16 @@ function renderPlace() {
   const url = P0.bg === "hub" ? (ART.market || "assets/sky_hub.webp") : ART[P0.bg];
   $("placeTitle").textContent = P0.t; $("placeNote").textContent = P0.note;
   setBg($("placeSky"), url, () => {});
-  const img = $("placeSky").querySelector("img"), go = () => placeHots($("placeHots"), img, P0.hots, h => h.go(), 130);
+  $("place").classList.toggle("painted", !!P0.painted);
+  const img = $("placeSky").querySelector("img"), go = () => P0.painted ? paintedHots($("placeHots"), img, P0.hots) : placeHots($("placeHots"), img, P0.hots, h => h.go(), 130);
   if (img && !img.complete) img.onload = go; else go();
+}
+function paintedHots(box, img, list) {               // a place whose signs are painted: each stall is one big invisible button that glows when touched
+  const W = box.clientWidth, H = box.clientHeight; if (!img || !img.naturalWidth || !W) return;
+  const s = Math.max(W / img.naturalWidth, H / img.naturalHeight), dw = img.naturalWidth * s, dh = img.naturalHeight * s, ox = (W - dw) / 2, oy = (H - dh) / 2;
+  box.innerHTML = list.map((h, i) => { const [x, y, w, hh] = h.r, L = Math.max(0, ox + x * dw), T = Math.max(0, oy + y * dh);
+    return `<button class="phot" data-i="${i}" ${h.id ? `id="${h.id}"` : ""} aria-label="${h.n}" style="left:${L}px;top:${T}px;width:${Math.min(W, ox + (x + w) * dw) - L}px;height:${Math.min(H, oy + (y + hh) * dh) - T}px"></button>`; }).join("");
+  box.querySelectorAll(".phot").forEach(b => b.onclick = () => list[+b.dataset.i].go());
 }
 const CITY_HOTS = [
   {x:.50, y:.34, n:"זימון", c:"#5fb8ff", go:() => show("summon"), id:"hotSummon"},
