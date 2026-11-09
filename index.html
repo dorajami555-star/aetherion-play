@@ -3165,7 +3165,7 @@ body:has(#reveal.on) #tutb{visibility:hidden}   /* a guide tip waits until the c
 .az-stage{position:fixed;inset:0;z-index:30;display:grid;place-items:center;overflow:hidden;background:#05081a;
   padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 .az-stage[hidden]{display:none}
-.az-sg{position:relative;width:1774px;height:887px;flex:none;transform:scale(var(--k,.5));transform-origin:center;margin:calc((1 - var(--k,.5)) * -443.5px) calc((1 - var(--k,.5)) * -887px);
+.az-sg{position:relative;width:1774px;height:887px;flex:none;transform:scale(var(--k,.5),var(--ky,var(--k,.5)));transform-origin:center;margin:calc((1 - var(--ky,var(--k,.5))) * -443.5px) calc((1 - var(--k,.5)) * -887px);
   background:url(assets/ui_rank_template.webp) center/100% 100% no-repeat;direction:rtl;color:#fff;font-weight:800}
 .az-sg>*,.sg-layer>*{position:absolute;box-sizing:border-box}.az-sg>.sg-layer{inset:0}
 .az-sg .sf{display:block;min-width:0;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -4392,6 +4392,8 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #box.bxart .bx-page,#bag.bgart,#runes.rnart,#codex.cxart,#guild.gdart,#store.start,#dungeon.dnart,#team.ptart .page.pr-page,#tower.twart .tw-stage{isolation:isolate;overflow:hidden}
 #tower.twart .tw-stage::before{display:none}
 .sidefill{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+#box.bxart *,#bag.bgart *,#runes.rnart *,#codex.cxart *,#tower.twart *,#dungeon.dnart *,#guild.gdart *,#team.ptart *,#store.start *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}   /* the painted screens: nothing blurs the art behind it (the back arrow had a blurred box, the user 2026-11-09) */
+.fa-seg{position:absolute;left:0;display:block;z-index:-1;pointer-events:none}.fa-full>.sidefill,#tower .tw-stage.fa-full::before{display:none!important}   /* fillArt: the art below a cut, drawn under all the screen's HTML */
 .sidefill{background:radial-gradient(ellipse at 50% 45%,#120d33 0,#07061a 70%)}
 .sidefill.nomir i{display:none!important}
 .sidefill::before{content:"";position:absolute;inset:-60px;background:var(--sfbg) center/cover no-repeat;filter:blur(30px) brightness(.5) saturate(1.05)}
@@ -5622,11 +5624,50 @@ function sideArt(C, P, v) {        // the gaps beside a scaled painted stage: th
     const e = f.children[i].style; e.display = w > 1 && h > 1 ? "" : "none"; e.left = l + "px"; e.top = t + "px"; e.width = w + "px"; e.height = h + "px";
     e.backgroundImage = `var(${v})`; e.backgroundSize = `${W.toFixed(1)}px ${H.toFixed(1)}px`; e.backgroundPosition = bp; e.setProperty("--fd", (i < 2 ? fd : Math.max(4, Math.round(H * 0.012))) + "px"); });
 }
+/* full screen by default (the user, 2026-11-09): a painted stage always fills the whole screen, sharp, no side strips, no blur.
+   Wider screen than the art: it is scaled to the full width, and the extra height comes off, in this order: the floor scenery under the panels (cfg.floor),
+   then plain horizontal slices inside the panels (cfg.cuts: [y, most], the art there is the same from row to row, so the frames close over the cut and the
+   HTML below it moves up; lists crossing a cut get shorter and scroll), then at most a 5% vertical squeeze, then whatever is left is cut at the bottom.
+   Narrower screen: up to 3% off each side, else the old fit. */
+function fillArt(C, P, w, h, v, cfg = {}) {
+  (P._fa || []).forEach(([e, t, hh]) => { e.style.translate = t; e.style.height = hh; }); P._fa = []; P.querySelectorAll(":scope>.fa-seg").forEach(e => e.remove());
+  C.querySelector(":scope>.sidefill")?.remove(); C.classList.add("fa-full");
+  const W = C.clientWidth, H = C.clientHeight; if (W <= 0 || H <= 0) return false;
+  if (W / H < w / h) { const k = H / h, kx = W / w, side = (w * k - W) / 2 / k;
+    if (k / kx <= 1.04) { P.style.transform = `translate(0px,0px) scale(${kx.toFixed(4)},${k.toFixed(4)})`; P._fk = [kx, k]; return true; }   // a hair narrower: at most 4% taller, nothing cut (the team screen's back arrow sits on the very edge)
+    if (side > w * .03) { C.classList.remove("fa-full"); return false; }
+    P.style.transform = `translate(${((W - w * k) / 2).toFixed(1)}px,0px) scale(${k.toFixed(4)})`; P._fk = [k, k]; return true; }
+  const k = W / w, need0 = h - (cfg.floor || 0) - H / k; let need = Math.max(0, need0);
+  const cuts = (cfg.cuts || []).map(([y, m]) => { const a = Math.min(need, m); need -= a; return [y, a]; }).filter(c => c[1] > 0).sort((a, b) => a[0] - b[0]);
+  const hv = h - cuts.reduce((s, c) => s + c[1], 0) - (cfg.floor || 0); let sy = need > 0 ? Math.max(.95, H / (hv * k)) : 1;
+  if (cfg.maxLoss != null && hv - H / (k * sy) > cfg.maxLoss) { C.classList.remove("fa-full"); return false; }   // a screen whose buttons would go off the bottom (the 3:2 guild members page on a phone): the old fit
+  P.style.transform = `translate(0px,0px) scale(${k.toFixed(4)},${(k * sy).toFixed(4)})`; P._fk = [k, k * sy];
+  if (!cuts.length) return true;
+  const map = y => y - cuts.reduce((s, [cy, a]) => s + Math.max(0, Math.min(a, y - cy)), 0), ky = k * sy;
+  const pr = P.getBoundingClientRect(), box = e => { const r = e.getBoundingClientRect(); return [(r.top - pr.top) / ky, (r.bottom - pr.top) / ky, r.width]; };
+  const orig = new Map(), snap = (el, d) => { for (const c of el.children) { orig.set(c, box(c)); const cs = getComputedStyle(c); if (d < 7 && !/auto|scroll/.test(cs.overflowY) && cs.display !== "none") snap(c, d + 1); } };
+  snap(P, 0);
+  const spans = (t, b) => cuts.some(([cy, a]) => t < cy + a && b > cy);
+  const visit = el => { for (const c of el.children) { const o = orig.get(c); if (!o) continue; const [t, b, wd] = o;
+    if (!wd || b - t < 1) { visit(c); continue; }
+    const nt = map(t), nb = map(b); let cur = box(c);
+    if (Math.abs(nt - cur[0]) > .5) { P._fa.push([c, c.style.translate, c.style.height]); const m = /^(-?[\d.]+)px (-?[\d.]+)px$/.exec(c.style.translate || ""); const dx = m ? +m[1] : 0, dy0 = m ? +m[2] : 0;
+      c.style.translate = `${dx}px ${(dy0 + nt - cur[0]).toFixed(1)}px`; cur = box(c); }
+    if (spans(t, b)) { const cs = getComputedStyle(c), want = nb - nt;
+      if (Math.abs(cur[1] - cur[0] - want) > 1 && cs.display !== "inline" && !/^(IMG|SVG|CANVAS)$/i.test(c.tagName)) { if (!P._fa.some(x => x[0] === c)) P._fa.push([c, c.style.translate, c.style.height]); c.style.height = Math.max(0, c.offsetHeight - (cur[1] - cur[0] - want)).toFixed(1) + "px"; }
+      if (!/auto|scroll/.test(cs.overflowY)) visit(c); } } };
+  visit(P);
+  cuts.forEach(([cy, a], i) => { const s = cy + a, e = i + 1 < cuts.length ? cuts[i + 1][0] : h, d = document.createElement("i"); d.className = "fa-seg";
+    [["position", "absolute"], ["inset", "auto"], ["left", "0"], ["top", map(s).toFixed(1) + "px"], ["height", (e - s).toFixed(1) + "px"], ["width", w + "px"], ["margin", "0"], ["transform", "none"], ["translate", "none"],
+     ["background", `var(${v}) 0 ${-s}px/${w}px ${h}px no-repeat`]].forEach(([p, x]) => d.style.setProperty(p, x, "important")); P.prepend(d); });   // !important: the screens' own ".page>*" rules clear backgrounds and positions
+  return true;
+}
 function bagFit() {
   const g = $("bag"); if (!g.classList.contains("bgart")) return;
   const cs = getComputedStyle(g), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = g.clientWidth - pl - parseFloat(cs.paddingRight), H = g.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1671, H / 941);
+  if (fillArt(g, g.querySelector(".page"), 1671, 941, "--bgbg", {floor: 48, cuts: [[450, 65], [705, 55]]})) return;
   g.querySelector(".page").style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(g, g.querySelector(".page"), "--bgbg");
 }
@@ -5975,6 +6016,7 @@ function runeFit() {
   const cs = getComputedStyle(r), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = r.clientWidth - pl - parseFloat(cs.paddingRight), H = r.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1672, H / 940);
+  if (fillArt(r, r.querySelector(".page"), 1672, 940, "--rnbg", {floor: 68, cuts: [[187, 18]]})) return;
   r.querySelector(".page").style.transform = `translate(${(pl + (W - 1672 * k) / 2).toFixed(1)}px,${(pt + (H - 940 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(r, r.querySelector(".page"), "--rnbg");
 }
@@ -6362,6 +6404,7 @@ function dunFit() {
   const pg = d.querySelector(".page"), cs = getComputedStyle(d), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = d.clientWidth - pl - parseFloat(cs.paddingRight), H = d.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1671, H / 851);
+  if (fillArt(d, pg, 1671, 851, "--dnbg", {floor: 190})) return;
   pg.style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 851 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(d, pg, "--dnbg");
 }
@@ -6692,12 +6735,16 @@ function azStageFit() {
   const st = $("azStage"); if (!st || st.hidden) return;
   const cs = getComputedStyle(st), W = st.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), H = st.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
   if (W <= 0 || H <= 0) return;
-  const k = Math.min(W / 1774, H / 887), g = $("azSg");
-  g.style.setProperty("--k", k);
+  const g = $("azSg"), FW = st.clientWidth, FH = st.clientHeight;   // full screen (the user, 2026-11-09): the template fills the whole screen, sharp; a wider screen loses at most a 5% squeeze and a sliver top and bottom, a narrower one up to 3% a side
+  let k = Math.min(W / 1774, H / 887), ky = k, full = false;
+  if (FW / FH >= 2) { k = FW / 1774; ky = 887 * k > FH ? Math.max(k * .95, FH / 887) : k; full = true; }
+  else if (FH / 887 <= FW / 1774 * 1.04) { k = FW / 1774; ky = FH / 887; full = true; }
+  else if ((1774 * FH / 887 - FW) / 2 <= 1774 * FH / 887 * .03) { k = ky = FH / 887; full = true; }
+  g.style.setProperty("--k", k); g.style.setProperty("--ky", ky);
   const r = g.getBoundingClientRect(), d = document.documentElement.style;   // the content box of every arena tab: where the ranking's own content starts and ends on the template
-  d.setProperty("--azx", r.left + AZS.box[0] * k + "px"); d.setProperty("--azy", r.top + AZS.box[1] * k + "px");
-  st.style.setProperty("--aztpl", g.style.getPropertyValue("--tpl")); sideArt(st, g, "--aztpl"); st.querySelector(":scope>.sidefill")?.classList.add("nomir");   // the gaps beside the ranking template on a wide screen: the same art, not a flat blue band
-  d.setProperty("--azw", (AZS.box[2] - AZS.box[0]) * k + "px"); d.setProperty("--azh", (AZS.box[3] - AZS.box[1]) * k + "px"); g.style.setProperty("--mf", (10.5 / k).toFixed(1) + "px"); g.classList.toggle("lo", k < .5); g.classList.toggle("xs", k < .4); g.classList.toggle("big", k >= .65);
+  d.setProperty("--azx", r.left + AZS.box[0] * k + "px"); d.setProperty("--azy", r.top + AZS.box[1] * ky + "px");
+  if (full) st.querySelector(":scope>.sidefill")?.remove(); else { st.style.setProperty("--aztpl", g.style.getPropertyValue("--tpl")); sideArt(st, g, "--aztpl"); st.querySelector(":scope>.sidefill")?.classList.add("nomir"); }   // the gaps beside the ranking template on a wide screen: the same art, not a flat blue band
+  d.setProperty("--azw", (AZS.box[2] - AZS.box[0]) * k + "px"); d.setProperty("--azh", (AZS.box[3] - AZS.box[1]) * ky + "px"); g.style.setProperty("--mf", (10.5 / k).toFixed(1) + "px"); g.classList.toggle("lo", k < .5); g.classList.toggle("xs", k < .4); g.classList.toggle("big", k >= .65);
   const fit = e => { e.style.fontSize = ""; let f = parseFloat(getComputedStyle(e).fontSize); const m = 10.5 / k;
     while ((e.scrollWidth > e.clientWidth + 1 || e.scrollHeight > e.clientHeight + 1) && f > m) { f = Math.max(m, f - 1); e.style.fontSize = f + "px"; } };
   const nh = g.querySelector(".sg-nh"); if (nh) nh.classList.remove("short");
@@ -7652,6 +7699,7 @@ function prepFit() {
   const pg = t.querySelector(".pr-page"), cs = getComputedStyle(pg), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = pg.clientWidth - pl - parseFloat(cs.paddingRight), H = pg.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / PREP_W, H / PREP_H);
+  if (fillArt(pg, t.querySelector(".prep"), PREP_W, PREP_H, "--pbg", {cuts: [[650, 200]]})) return;
   t.querySelector(".prep").style.transform = `translate(${(pl + (W - PREP_W * k) / 2).toFixed(1)}px,${(pt + (H - PREP_H * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(pg, t.querySelector(".prep"), "--pbg"); pg.querySelector(":scope>.sidefill")?.classList.add("nomir");   // frames run to its edge: only the soft copy, no mirrored frame
 }
@@ -7938,6 +7986,7 @@ function codexFit() {
   const cs = getComputedStyle(c), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = c.clientWidth - pl - parseFloat(cs.paddingRight), H = c.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1671, H / 941);
+  if (fillArt(c, c.querySelector(".page"), 1671, 941, "--cxbg", {floor: 52, cuts: [[487, 26]]})) return;
   c.querySelector(".page").style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(c, c.querySelector(".page"), "--cxbg");
 }
@@ -8537,6 +8586,7 @@ function twFit() {
   const st = $("twStage"), cs = getComputedStyle(st), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = st.clientWidth - pl - parseFloat(cs.paddingRight), H = st.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1671, H / 941);
+  if (fillArt(st, $("twSg"), 1671, 941, "--twbg", {floor: 140})) return;
   $("twSg").style.transform = `translate(${(pl + (W - 1671 * k) / 2).toFixed(1)}px,${(pt + (H - 941 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(st, $("twSg"), "--twbg");
 }
@@ -9058,6 +9108,7 @@ function guildFit() {
   const cs = getComputedStyle(g), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = g.clientWidth - pl - parseFloat(cs.paddingRight), H = g.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const mv = g.classList.contains("gmv"), gw = mv ? 1536 : 1777, gh = mv ? 1024 : 885, ch = mv ? 932 : 866;   // ch: the lowest painted panel; below it only floor, which may be cut
+  if (fillArt(g, g.querySelector(".page"), gw, gh, "--gdbg", mv ? {floor: 105, cuts: [[740, 95]], maxLoss: 20} : {floor: 16, cuts: [[740, 36]]})) return;
   const k = Math.min(W / gw, H / ch), pb = parseFloat(cs.paddingBottom), y = pt + Math.max(0, Math.min((H - gh * k) / 2, H + pb - gh * k));
   g.querySelector(".page").style.transform = `translate(${(pl + (W - gw * k) / 2).toFixed(1)}px,${(gh * k <= H ? pt + (H - gh * k) / 2 : y).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(g, g.querySelector(".page"), "--gdbg");
@@ -10904,6 +10955,7 @@ function boxFit() {
   const pg = b.querySelector(".bx-page"), cs = getComputedStyle(pg), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = pg.clientWidth - pl - parseFloat(cs.paddingRight), H = pg.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1672, H / 940);
+  if (fillArt(pg, b.querySelector(".bx-panel"), 1672, 940, "--bxbg", {floor: 30, cuts: [[450, 400]]})) return;
   b.querySelector(".bx-panel").style.transform = `translate(${(pl + (W - 1672 * k) / 2).toFixed(1)}px,${(pt + (H - 940 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(pg, b.querySelector(".bx-panel"), "--bxbg");
 }
