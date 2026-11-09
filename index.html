@@ -4163,7 +4163,7 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #gm2 .gm-lv{right:434px;width:56px;justify-content:center;font-weight:900}
 #gm2 .gm-row:not(.gm-hd) .gm-lv{top:16px;bottom:16px;border-radius:12px;background:#3a1d6e;border:2px solid #d6a640;color:#fff}
 #gm2 .gm-pow{right:496px;width:124px;justify-content:center;font-weight:800}
-#gm2 .gm-don{right:622px;width:110px;justify-content:center;font-weight:800;color:#ffe9a6;font-size:20px}
+#gm2 .gm-don{right:622px;width:122px;justify-content:center;font-weight:800;color:#ffe9a6;font-size:20px}
 #gm2 .gm-ago{right:736px;width:86px;justify-content:center;font-size:19px;color:#dfe6ff;text-align:center}
 #gm2 .gm-hd .gm-don,#gm2 .gm-hd .gm-ago{white-space:normal;line-height:1.02;font-size:16px!important;text-align:center}
 #gm2 .gm-ago.on{color:#5dff7a;font-weight:900}
@@ -4250,6 +4250,7 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #city2 .c2vip{position:relative;height:max(26px,calc(var(--u)*44));padding:0 calc(var(--u)*16);border-radius:999px;background:linear-gradient(180deg,var(--vc1,#ffe08a),var(--vc2,#c98a14));box-shadow:0 0 0 2px #6b4410;color:#2a1803;font-weight:900;font-size:max(11px,calc(var(--u)*24));white-space:nowrap}
 #city2 .c2rnd{position:relative;width:max(30px,calc(var(--u)*58));height:max(30px,calc(var(--u)*58));flex:none}
 #city2 .c2rnd img{width:100%;height:100%;object-fit:contain}
+#city2 .c2rnd::after,#city2 .c2vip::after,#city2 .c2r::after,#city2 .c2av::after,#city2 .c2big::after{content:"";position:absolute;inset:-6px}   /* finger-sized target, same look */
 #city2 .c2rnd .c2x{display:none;position:absolute;inset:0;place-items:center;color:#ff6a6a;font-style:normal;font-weight:900;font-size:max(14px,calc(var(--u)*30));text-shadow:0 1px 2px #000}
 #city2 .c2rnd.off .c2x{display:grid}#city2 .c2rnd.off img{filter:grayscale(.7) brightness(.8)}
 /* event banner */
@@ -4283,6 +4284,8 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #placeHots .phot:hover,#placeHots .phot:focus-visible{box-shadow:inset 0 0 0 2px rgba(255,215,90,.55),0 0 26px rgba(255,215,90,.35);background:rgba(255,236,170,.06);outline:none}
 #placeHots .phot:active{box-shadow:inset 0 0 0 3px rgba(255,215,90,.85),0 0 30px rgba(255,215,90,.55);background:rgba(255,236,170,.12)}
 @keyframes photHint{0%,100%{box-shadow:none}45%{box-shadow:inset 0 0 0 2px rgba(255,215,90,.6),0 0 26px rgba(255,215,90,.4)}}   /* one soft glow on entry shows what can be tapped */
+#modalX{position:fixed;z-index:20;width:36px;height:36px;min-height:0;padding:0;border-radius:50%;border:2px solid #e7b34a;background:rgba(8,12,34,.92);color:#ffe08a;font-size:18px;font-weight:900;line-height:1;display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 8px #000}
+#modalX[hidden]{display:none}#modalX::after{content:"";position:absolute;inset:-6px}   /* finger-sized */
 @keyframes gdIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}#gd2.gdin,#gm2.gdin{animation:gdIn .28s ease-out}
 @keyframes gdPulse{50%{filter:brightness(1.15) drop-shadow(0 0 12px #ffd35a)}}
 #gd2 .xp i,#gd2 .hpbar i{transition:width .8s ease}
@@ -5369,6 +5372,7 @@ const mname = m => m.aw ? (AWN[m.id] || MON[m.id].n) : MON[m.id].n;
 const msprite = (m, cls, label) => sprite(m.id, cls, label, m.aw);
 function tickEnergy() {
   if (!S) return;
+  if (S.energyTs > Date.now()) S.energyTs = Date.now();   // a clock set back must not freeze the refill
   if (S.energy >= energyMax()) { S.energyTs = Date.now(); return; }
   const add = Math.floor((Date.now() - S.energyTs) / ENERGY_MS);
   if (add > 0) { S.energy = Math.min(energyMax(), S.energy + add); S.energyTs += add * ENERGY_MS; if (S.energy >= energyMax()) S.energyTs = Date.now(); save(); }
@@ -5387,10 +5391,11 @@ let cloudNext = null, cloudBusy = false, cloudFail = 0, cloudHeld = false, cloud
 let cloudBase = (() => { try { return +localStorage.getItem(SAVE_KEY + "-synced") || 0; } catch (e) { return 0; } })();
 const setBase = t => { cloudBase = t; try { localStorage.setItem(SAVE_KEY + "-synced", String(t)); } catch (e) {} };
 function flushSave() {                         // local write is synchronous; cloud writes go out one at a time, newest snapshot last
-  clearTimeout(saveTimer); saveTimer = null; if (!S) return;
+  clearTimeout(saveTimer); saveTimer = null; if (!S || otherTab) return;
   S.savedAt = Math.max(Date.now(), (S.savedAt || 0) + 1);
   const json = JSON.stringify(S);
-  try { localStorage.setItem(SAVE_KEY, json); localFail = false; } catch (e) { localFail = true; }
+  try { localStorage.setItem(SAVE_KEY, json); localFail = false; try { localStorage.setItem(SAVE_KEY + "-prev", json); } catch (e2) {} }   // -prev: a second full copy, so a write cut in half never costs the progress
+  catch (e) { if (!localFail) toast("השמירה במכשיר נכשלה (אין מקום). כדאי לשמור קוד גיבוי בהגדרות"); localFail = true; }
   if (db && uid) { cloudNext = {json, savedAt:S.savedAt}; pumpCloud(); }
   syncBadge();
 }
@@ -5434,7 +5439,7 @@ function backupSave(json, tag) {                // keeps the last 3 replaced sav
 let conflictRemote = null;
 function cloudConflict(r) {                     // another device saved newer progress: let the player choose, never lose either one
   conflictRemote = r; syncBadge();
-  if (B) { const w = setInterval(() => { if (!B) { clearInterval(w); conflictModal(); } }, 1500); return; }   // never swap the save mid-battle
+  if (B && !B.over) { const w = setInterval(() => { if (!B || B.over) { clearInterval(w); conflictModal(); } }, 1500); return; }   // never swap the save mid-battle
   conflictModal();
 }
 function saveSummary(x) {
@@ -5446,7 +5451,7 @@ function conflictModal() {
   const r = conflictRemote; if (!r) return;
   let remote = null; try { remote = migrate(JSON.parse(r.json)); } catch (e) { remote = null; }
   if (!remote) { cloudHeld = false; conflictRemote = null; setBase(r.savedAt || 0); pumpCloud(); return; }   // an unreadable cloud save: this device's progress wins
-  openModal(`<h3 class="title-font" style="margin:0 0 6px;color:var(--gold2)">נמצאה התקדמות אחרת בענן</h3>
+  openModal(`<h3 class="title-font" data-nox style="margin:0 0 6px;color:var(--gold2)">נמצאה התקדמות אחרת בענן</h3>
     <p style="margin:0 0 10px;font-size:14px">שיחקת במכשיר אחר, וגם במכשיר הזה. בחרו איזו התקדמות להמשיך. השנייה נשמרת כגיבוי במכשיר הזה.</p>
     <div class="cf-grid"><div class="cf-opt"><div class="cf-h">☁ מהענן (מכשיר אחר)</div>${saveSummary(remote)}<button class="btn" id="cfCloud">להמשיך מהענן</button></div>
       <div class="cf-opt"><div class="cf-h">📱 המכשיר הזה</div>${saveSummary(S)}<button class="btn ghost" id="cfLocal">להמשיך מהמכשיר הזה</button></div></div>`);
@@ -5459,13 +5464,29 @@ function conflictModal() {
 // a pending (debounced) save must not be lost when the tab is closed, reloaded or sent to the background
 document.addEventListener("visibilitychange", () => { if (document.hidden && saveTimer) flushSave(); });
 window.addEventListener("pagehide", () => { if (saveTimer) flushSave(); });
-function loadLocal() { try { const s = localStorage.getItem(SAVE_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
+let otherTab = false;                          // another tab of the game saved: this one stops saving, so neither overwrites the other
+window.addEventListener("storage", e => {
+  if (e.key !== SAVE_KEY || !e.newValue || otherTab) return;
+  otherTab = true; clearTimeout(saveTimer); saveTimer = null;
+  openModal(`<h3 class="title-font" data-nox style="margin:0 0 6px;color:var(--gold2)">המשחק פתוח בחלון אחר</h3><p style="margin:0 0 12px;font-size:14px">ההתקדמות נשמרת בחלון השני. כדי לא לאבד אותה, החלון הזה נעצר.</p><button class="btn" onclick="location.reload()">להמשיך כאן</button>`);
+});
+function loadLocal() {                          // the save, or its last good copy when the save itself is unreadable (an unreadable one is kept aside, never thrown away)
+  const read = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+  const s = read(SAVE_KEY); if (!s) return null;
+  try { return JSON.parse(s); } catch (e) { try { localStorage.setItem(SAVE_KEY + "-corrupt-" + Date.now(), s); } catch (e2) {} }
+  try { const p = read(SAVE_KEY + "-prev"); return p ? JSON.parse(p) : null; } catch (e) { return null; }
+}
 function migrate(s) {                          // validates a save from any source (local, cloud, backup code) and fills fields added since it was made
   if (!s || typeof s !== "object" || !Array.isArray(s.mons)) throw new Error("bad save");
   const num = (v, d) => Number.isFinite(+v) ? +v : d;
   ["gem", "mana", "energy", "unknown", "wins", "pity"].forEach(k => s[k] = Math.max(0, num(s[k], 0)));
   s.energyTs = Math.min(num(s.energyTs, Date.now()), Date.now()); s.savedAt = num(s.savedAt, 0);   // a timestamp from the future (another device's clock) would freeze the refill
   if (!s.cleared || typeof s.cleared !== "object") s.cleared = {};
+  ["vip", "codex", "login", "arena", "shop", "scrolls", "stats", "guild"].forEach(k => { if (s[k] != null && (typeof s[k] !== "object" || Array.isArray(s[k]))) delete s[k]; });   // a field of the wrong type is rebuilt fresh instead of breaking the game
+  if (s.vip) s.vip.pts = Math.max(0, num(s.vip.pts, 0));
+  if (s.scrolls) ["m", "l", "ld"].forEach(k => s.scrolls[k] = Math.max(0, num(s.scrolls[k], 0)));
+  if (s.guild) s.guild.coins = Math.max(0, num(s.guild.coins, 0));
+  if (s.arena) s.arena.glory = Math.max(0, num(s.arena.glory, 0));
   const lost = s.mons.filter(m => !m || typeof m !== "object" || !MON[m.id]);
   if (lost.length) s.lostMons = (s.lostMons || []).concat(lost);   // unknown monsters are parked, never deleted
   s.mons = s.mons.filter(m => m && typeof m === "object" && MON[m.id]);
@@ -5482,10 +5503,10 @@ function migrate(s) {                          // validates a save from any sour
   if (Array.isArray(s.presets)) s.presets = [0, 1, 2].map(k => (Array.isArray(s.presets[k]) ? s.presets[k] : []).filter((u, i, a) => alive.has(u) && a.indexOf(u) === i).slice(0, TEAM_MAX));
   return s;
 }
-function adopt(s) {                            // make s the live save; returns true when the rune starter pack was just added
-  S = migrate(s);
-  const gotRunes = ensureRunes(); ensureV4(); ensureV5();
-  return gotRunes;
+function adopt(s) {                            // make s the live save; returns true when the rune starter pack was just added. All or nothing: if s fails, the old save stays
+  const old = S;
+  try { S = migrate(s); const gotRunes = ensureRunes(); ensureV4(); ensureV5(); return gotRunes; }
+  catch (e) { S = old; throw e; }
 }
 
 /* ============================== RENDER HELPERS ============================== */
@@ -5851,6 +5872,7 @@ function c2Layout() {                                // the picture covers the s
       if (x < Rr + 4 && x + w > L - 4 && y < Bt + 4 && y + hh > T - 4) y = T > H / 2 ? T - hh - 6 : Bt + 6; }
     b.style.left = x + "px"; b.style.top = y + "px"; b.onclick = () => h.go(); });
 }
+const fmtK = (n, k = 1e5) => n >= 1e6 ? (Math.floor(n / 1e5) / 10) + "M" : n >= k ? Math.floor(n / 1e3) + "K" : fmt(n);   // 999K, 1.2M: fits the painted pills (k: where the short form starts)
 function c2Paint(force) {                            // live numbers; cheap, runs with the top bar every second
   if (!c2Built || !$("home").classList.contains("on")) return;
   const set = (id, v) => { if (force || c2Last[id] !== v) { c2Last[id] = v; const e = $(id); if (e) e.textContent = v; } };
@@ -5861,7 +5883,7 @@ function c2Paint(force) {                            // live numbers; cheap, run
   flag("c2VipB", vipState().gift !== today());
   { const n = S.ach ? achReady() : 0; flag("c2AchB", n > 0, n); }
   $("c2Snd").classList.toggle("off", !!MUTED);
-  set("c2En", `${S.energy}/${energyMax()}`); set("c2Mana", fmt(S.mana)); set("c2Gem", fmt(S.gem));
+  set("c2En", `${S.energy}/${energyMax()}`); set("c2Mana", fmtK(S.mana)); set("c2Gem", fmtK(S.gem));
   if (S.energy < energyMax()) { const s = Math.max(0, Math.ceil((ENERGY_MS - (Date.now() - S.energyTs)) / 1000)); set("c2EnT", `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`); } else set("c2EnT", "");
   { const n = claimable(); flag("c2MisB", n > 0, n); }
   { const L = S.login, n = (L.day !== today() || !L.claimed) ? 1 : 0; flag("c2GiftB", n > 0, n); }
@@ -6283,7 +6305,7 @@ function ensureV4() {                        // fields added in v4 saves
   S.mons.forEach(m => { if (!MON[m.id].food) codex().own[m.id] = 1; });
   return daily();
 }
-const today = () => new Date().toLocaleDateString("en-CA");
+const today = () => { const d = new Date().toLocaleDateString("en-CA"); if (!S) return d; if (!(S.maxDay >= d)) S.maxDay = d; return S.maxDay; };   // never goes back: a clock set back and forth can't start a new day twice
 const MISSIONS = [
   {k:"login", n:"כניסה יומית", need:1, rew:{gem:20}},
   {k:"win", n:"לנצח 5 קרבות", need:5, rew:{mana:3000}},
@@ -8057,6 +8079,13 @@ function placeHots(box, img, list, onClick, minTop) {
   const dw = img.naturalWidth * s, dh = img.naturalHeight * s, ox = (W - dw) / 2, oy = (H - dh) / 2;
   box.innerHTML = list.map((h, i) => `<button class="hot ${h.cls || ""}" data-i="${i}" ${h.id ? `id="${h.id}"` : ""} data-k="${h.k || ""}" style="--hc:${h.c};left:${Math.min(W - 64 - SAFE().r, Math.max(64 + SAFE().l, ox + h.x * dw))}px;top:${Math.min(H - (H < 520 && getComputedStyle($("quick")).display !== "none" ? 118 : 30), Math.max(H < 520 ? (minTop >= 150 ? 112 : 74) : (minTop || 110), oy + h.y * dh))}px"><i></i><span>${h.n}</span></button>`).join("");
   box.querySelectorAll(".hot").forEach(b => b.onclick = () => onClick(list[+b.dataset.i]));
+  { const hs = [...box.querySelectorAll(".hot")], sl = SAFE().l + 6, sr = W - SAFE().r - 6, ch = box.id === "mapHots" && $("isleChips"), bt = box.getBoundingClientRect().top;
+    const cb = ch && ch.offsetWidth ? ch.getBoundingClientRect().bottom - bt + 24 : 0, maxT = H - (H < 520 && getComputedStyle($("quick")).display !== "none" ? 118 : 30);
+    hs.forEach(b => { const hw = b.offsetWidth / 2; b.style.left = Math.min(sr - hw, Math.max(sl + hw, parseFloat(b.style.left))) + "px"; if (cb) b.style.top = Math.max(cb, parseFloat(b.style.top)) + "px"; });
+    hs.sort((a, b) => parseFloat(a.style.top) - parseFloat(b.style.top)).forEach((b, i) => { for (let j = 0; j < i; j++) { const ra = b.getBoundingClientRect(), ro = hs[j].getBoundingClientRect();
+      if (ra.left < ro.right + 4 && ra.right > ro.left - 4 && ra.top < ro.bottom + 4 && ra.bottom > ro.top - 4) { const down = parseFloat(b.style.top) + ro.bottom - ra.top + 6;
+        if (down <= maxT) b.style.top = down + "px"; else { const hw = b.offsetWidth / 2, x = parseFloat(b.style.left), toR = ra.left + ra.width / 2 >= ro.left + ro.width / 2;   // no room below (the bottom bar): step aside instead
+          b.style.left = Math.min(sr - hw, Math.max(sl + hw, toR ? x + (ro.right - ra.left) + 6 : x - (ra.right - ro.left) - 6)) + "px"; } } } }); }
 }
 /* ----- interiors: walk into a building, then tap something inside ----- */
 const PLACES = {
@@ -8486,9 +8515,10 @@ function storeBuy(tab, x, qty) {                     // the one purchase routine
   qty = Math.max(1, Math.floor(qty || 1));
   const D = shopDay(), used = D.b[x.k] || 0, cost = x.p * qty;
   if (x.lim && used + qty > x.lim) { toast("נגמר להיום"); return false; }
-  if (tab === "shop") { if (S.gem < cost) { toast("אין מספיק גבישים"); return false; } S.gem -= cost; vipAdd(Math.floor(cost / 10)); }
-  else if (tab === "guild") { const G = S.guild; if (!G || G.coins < cost) { toast("אין מספיק מטבעות גילדה"); return false; } G.coins -= cost; }
-  else if (tab === "arena") { const A = arenaState(); if ((A.glory || 0) < cost) { toast("אין מספיק תהילה"); return false; } A.glory -= cost; }
+  if (x.r && x.r.energy && S.energy >= 99) { toast("האנרגיה מלאה"); return false; }   // it would be paid for and lost (the cap is 99)
+  if (tab === "shop") { if (!(S.gem >= cost)) { toast("אין מספיק גבישים"); return false; } S.gem -= cost; vipAdd(Math.floor(cost / 10)); }
+  else if (tab === "guild") { const G = S.guild; if (!G || !(G.coins >= cost)) { toast("אין מספיק מטבעות גילדה"); return false; } G.coins -= cost; }
+  else if (tab === "arena") { const A = arenaState(); if (!(+A.glory >= cost)) { toast("אין מספיק תהילה"); return false; } A.glory -= cost; }
   else return false;
   if (x.lim) D.b[x.k] = used + qty;
   for (let i = 0; i < qty; i++) giveRew(x.r);
@@ -8875,7 +8905,7 @@ function gmArt() {                    // the members screen on the user's templa
   if (gCan("roles")) menu.push(["roles", "👑", "ניהול תפקידים"]);
   const MY = [436, 516, 596, 676, 756];
   o.innerHTML = `
-    <span class="t res" style="${P(60, 15, 90, 53)}">${fmt(G.coins)}</span><span class="t res" style="${P(150, 15, 90, 53)}">${pic("cur_gem", "💎")}${fmt(S.gem)}</span><span class="t res" style="${P(240, 15, 120, 53)}">${pic("cur_mana", "🪙")}${fmt(S.mana)}</span>
+    <span class="t res" style="${P(60, 15, 90, 53)}">${fmt(G.coins)}</span><span class="t res" style="${P(150, 15, 90, 53)}">${pic("cur_gem", "💎")}${fmtK(S.gem, 1e4)}</span><span class="t res" style="${P(240, 15, 120, 53)}">${pic("cur_mana", "🪙")}${fmtK(S.mana, 1e4)}</span>
     <span class="t" style="${P(26, 15, 34, 53)};font-size:24px">🪙</span>
     <span class="t gold tf" style="${P(600, 85, 340, 78)};font-size:46px">חברי הגילדה</span>
     <i class="cloth" style="${P(30, 150, 255, 780)};filter:${clothFilter(GCOL[G.col || 0], 274)}"></i>
@@ -9121,6 +9151,7 @@ function teamXp(xp) {
     return `<div class="mcard ${rarCls(m.id)}"><div class="pic">${msprite(m)}</div>${starRow(m.id, mst(m))}<span class="nm">${esc(mname(m))}</span><span class="lv">רמה ${m.lvl}</span>${up ? `<span class="lvup">עלה רמה!</span>` : ""}</div>`; }).join("");
 }
 function specialEnd(win) {
+  if (win) track("win");
   const st = B.stage, sp = st.special; let title = win ? "ניצחון!" : "הפסד", rew = "", back = "home", again = win ? null : st, next = null;
   if (sp === "tower") {
     back = "tower";
@@ -9640,7 +9671,7 @@ $("quit").onclick = () => {
   $("qYes").onclick = () => {
     closeModal(); if (!B || B.over) return;
     if (B.stage.special === "gboss") { endBattle(); B.ended = B.quit = true; specialEnd(false); return; }
-    endBattle();
+    endBattle(); B.ended = B.quit = true;          // a blow still landing after the quit must not pay a victory or score the fight again
     if (arena) arenaResult(false); else show(B.stage.dungeon || B.stage.special === "essd" || B.stage.special === "sprd" ? "dungeon" : B.stage.special === "tower" ? "tower" : B.stage.special === "gboss" ? "guild" : "map");
   };
   $("qNo").onclick = closeModal;
@@ -10678,6 +10709,7 @@ async function useSkill(u, si, target) {
 }
 const TURN_CAP = 600;                            // B.turn counts single actions (~10 per round); long boss fights reach ~200
 async function checkEnd() {
+  if (B.quit) return true;                       // the player left: this fight has no result any more
   if (!B.allies.some(u => u.alive)) { if (B.ended) return true; B.over = B.ended = true; await wait(600); defeat(); return true; }
   if (B.turn >= TURN_CAP && B.enemies.some(u => u.alive)) { if (B.ended) return true; B.over = B.ended = true; B.timeout = true; await wait(600); defeat(); return true; }   // two healing sides could stall forever
   if (!B.enemies.some(u => u.alive)) {
@@ -10842,7 +10874,16 @@ const tipsHtml = tips => `<p style="text-align:center;margin:2px 0 6px;font-weig
 const bindTips = tips => $("modalCard").querySelectorAll("[data-ti]").forEach(b => b.onclick = () => { closeModal(); tips[+b.dataset.ti][2](); });
 
 /* ============================== MODAL / BOX ============================== */
-function openModal(html) { $("modalCard").innerHTML = html; $("modal").classList.add("on"); }
+function openModal(html) {
+  $("modalCard").innerHTML = html; $("modalCard").scrollTop = 0; $("modal").classList.add("on");   // a new window opens at its top
+  let x = $("modalX"); if (!x) { x = document.createElement("button"); x.id = "modalX"; x.setAttribute("aria-label", "סגירה"); x.textContent = "✕"; x.onclick = () => closeModal(); $("modal").appendChild(x);
+    if (window.ResizeObserver) new ResizeObserver(mxPos).observe($("modalCard")); addEventListener("resize", mxPos); }
+  x.hidden = /aria-label="סגירה"|data-nox/.test(html); mxPos();
+}
+function mxPos() {                               // the ✕ sits on the window's top corner, outside its content, so it is always in view and never covers a button
+  const x = $("modalX"); if (!x || x.hidden || !$("modal").classList.contains("on")) return; const r = $("modalCard").getBoundingClientRect();
+  x.style.left = Math.max(SAFE().l + 2, r.left - 14) + "px"; x.style.top = Math.max(2, r.top - 14) + "px";
+}
 function closeModal() { clearTimeout(repTimer); vipView = null; if (ghPop !== null) { ghPop = null; if ($("guild").classList.contains("on") && $("modalCard").classList.contains("ghpop")) setTimeout(renderGuild, 0); } $("modalCard").classList.remove("ghpop"); $("modal").classList.remove("on", "vic", "def"); $("modalCard").classList.remove("gdmenu", "vipcard", "profcard", "viccard", "defcard", "pickcard", "skwcard", "cfcard", "dlycard", "azbuy", "vart", "dart", "calart"); $("modalCard").style.zoom = ""; ["--cal-day", "--cal-got", "--cal-today", "--cal-big", "--cal-myst", "--cal-check"].forEach(v => $("modalCard").style.removeProperty(v)); }
 // the shared painted window (W01): on for every window once all its pieces are there; the urls go in as vars (the claude page serves them from the asset store)
 const WIN_ART = {"--wftl":"ui_wf_tl", "--wftr":"ui_wf_tr", "--wfbl":"ui_wf_bl", "--wfbr":"ui_wf_br", "--wft":"ui_wf_t", "--wfb":"ui_wf_b", "--wfl":"ui_wf_l", "--wfr":"ui_wf_r",
@@ -11624,7 +11665,7 @@ async function flipCard(card, m, opts) {             // turns one card: flash at
 const rvBestIndex = got => got.reduce((b, m, i) => { const k = MON[m.id].st * 2 + (rarKey(m.id) === "mystic" ? 1 : 0), kb = MON[got[b].id].st * 2 + (rarKey(got[b].id) === "mystic" ? 1 : 0); return k > kb ? i : b; }, 0);
 function rvLeave(to) {                               // closes the reveal (results were saved by summon() before any of this)
   const rv = $("reveal"); rvClearHero(); rv.classList.remove("on", "show", "cards", "gold", "act", "mys", "lgfocus"); RV = null;
-  if (to) { show("box"); monEquip(to.uid); } else { show("summon"); tutEv("summoned"); }
+  if (to) { tutEv("summoned"); show("box"); monEquip(to.uid); } else { show("summon"); tutEv("summoned"); }   // both ways out count as the guided summon
 }
 function rvMarkResults() {                           // the result grid: every 5★ in a gold frame, or (without one) the best card softly marked
   if (!RV) return; const cards = [...$("revealBody").querySelectorAll(".scd")];
@@ -12281,7 +12322,8 @@ async function awakenCinematic(m) {      // played once when a monster awakens: 
   const local = loadLocal();
   if (local) {
     try { if (adopt(local)) { save(true); setTimeout(() => toast("מתנה: 6 רונים! מרכיבים אותם דרך \"המפלצות שלי\""), 900); } }
-    catch (e) { try { localStorage.setItem(SAVE_KEY + "-corrupt-" + Date.now(), JSON.stringify(local)); } catch (e2) {} }
+    catch (e) { try { localStorage.setItem(SAVE_KEY + "-corrupt-" + Date.now(), JSON.stringify(local)); } catch (e2) {}
+      try { const p = localStorage.getItem(SAVE_KEY + "-prev"); if (p && p !== JSON.stringify(local)) adopt(JSON.parse(p)); } catch (e3) { S = null; } }   // a save that loads but breaks: try the last good copy before starting over
   }
   if (!S) { fresh = true; newGame(); save(true); }
   if (ART.splash && !window.__err) { const sp = $("splash"); sp.style.backgroundImage = `linear-gradient(transparent 50%, rgba(6,10,30,.85)), url(${ART.splash})`; sp.style.display = "grid";
