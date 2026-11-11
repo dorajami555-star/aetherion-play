@@ -3917,6 +3917,7 @@ img.emi{display:inline-block;width:auto;height:1.2em;vertical-align:-.24em;margi
 #box.bxart #bxEss{left:40px;top:238px;width:330px;height:70px!important;display:flex;align-items:center;justify-content:center;gap:8px;padding:0;border:0!important;border-radius:0;background:none!important;box-shadow:none!important;font-size:22px;font-weight:800;color:#ffe9a6;min-height:0!important;height:70px!important}
 #box.bxart #essBar{left:40px;top:314px;width:760px;height:76px!important;display:flex;align-items:center;justify-content:space-around;padding:0 28px;margin:0;background:var(--wrow) center/100% 100% no-repeat;z-index:5}
 #box.bxart #essBar[hidden]{display:none!important}
+#box.bxart.essopen #boxGrid{top:396px;height:488px!important}   /* the essence bar open: the monster grid starts under it, nothing covers the cards (the user 2026-11-11) */
 #box.bxart #essBar .bx-crys{display:flex;align-items:center;gap:6px;font-size:22px}#box.bxart #essBar .bx-crys img{width:34px;height:34px}
 #box.bxart #bxFav{left:388px;top:238px;width:94px;height:70px!important;padding:0;border:0!important;border-radius:12px;background:none!important;box-shadow:none!important;min-height:0!important;height:70px!important;font-size:34px}
 #box.bxart #bxFav em{display:none}
@@ -5678,9 +5679,10 @@ function fillArt(C, P, w, h, v, cfg = {}) {
       if (Math.abs(cur[1] - cur[0] - want) > 1 && cs.display !== "inline" && !/^(IMG|SVG|CANVAS)$/i.test(c.tagName)) { if (!P._fa.some(x => x[0] === c)) P._fa.push([c, c.style.translate, c.style.height]); c.style.height = Math.max(0, c.offsetHeight - (cur[1] - cur[0] - want)).toFixed(1) + "px"; }
       if (!/auto|scroll/.test(cs.overflowY)) visit(c); } } };
   visit(P);
+  const sx = cfg.sx || [0, w];   // sx: only the framed panel slides up; the scenery beside it stays whole (no seam at the screen edges)
   cuts.forEach(([cy, a], i) => { const s = cy + a, e = i + 1 < cuts.length ? cuts[i + 1][0] : h, d = document.createElement("i"); d.className = "fa-seg";
-    [["position", "absolute"], ["inset", "auto"], ["left", "0"], ["top", map(s).toFixed(1) + "px"], ["height", (e - s).toFixed(1) + "px"], ["width", w + "px"], ["margin", "0"], ["transform", "none"], ["translate", "none"],
-     ["background", `var(${v}) 0 ${-s}px/${w}px ${h}px no-repeat`]].forEach(([p, x]) => d.style.setProperty(p, x, "important")); P.prepend(d); });   // !important: the screens' own ".page>*" rules clear backgrounds and positions
+    [["position", "absolute"], ["inset", "auto"], ["left", sx[0] + "px"], ["top", map(s).toFixed(1) + "px"], ["height", (e - s).toFixed(1) + "px"], ["width", (sx[1] - sx[0]) + "px"], ["margin", "0"], ["transform", "none"], ["translate", "none"],
+     ["background", `var(${v}) ${-sx[0]}px ${-s}px/${w}px ${h}px no-repeat`]].forEach(([p, x]) => d.style.setProperty(p, x, "important")); P.prepend(d); });   // !important: the screens' own ".page>*" rules clear backgrounds and positions
   return true;
 }
 function bagFit() {
@@ -10996,7 +10998,7 @@ function boxFit() {
   const pg = b.querySelector(".bx-page"), cs = getComputedStyle(pg), pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
   const W = pg.clientWidth - pl - parseFloat(cs.paddingRight), H = pg.clientHeight - pt - parseFloat(cs.paddingBottom); if (W <= 0 || H <= 0) return;
   const k = Math.min(W / 1672, H / 940);
-  if (fillArt(pg, b.querySelector(".bx-panel"), 1672, 940, "--bxbg", {floor: 30, cuts: [[450, 400]]})) return;
+  if (fillArt(pg, b.querySelector(".bx-panel"), 1672, 940, "--bxbg", {floor: 30, cuts: [[490, 100], [810, 70]], sx: [24, 1658]})) return;
   b.querySelector(".bx-panel").style.transform = `translate(${(pl + (W - 1672 * k) / 2).toFixed(1)}px,${(pt + (H - 940 * k) / 2).toFixed(1)}px) scale(${k.toFixed(4)})`;
   sideArt(pg, b.querySelector(".bx-panel"), "--bxbg");
 }
@@ -11008,10 +11010,10 @@ $("bxStars").onchange = e => { BX.st = +e.target.value; renderBoxGrid(); };
 $("bxBy").onchange = e => { BX.by = e.target.value; renderBoxGrid(); };
 $("bxFav").onclick = () => { BX.fav = !BX.fav; renderBoxGrid(); };
 $("bxReset").onclick = bxReset;
-$("bxEss").onclick = () => { const e = $("essBar"); e.hidden = !e.hidden; $("bxEss").classList.toggle("on", !e.hidden); try { localStorage.setItem("aetherion-bx-ess", e.hidden ? "0" : "1"); } catch (x) {} };
+$("bxEss").onclick = () => { const e = $("essBar"); e.hidden = !e.hidden; $("bxEss").classList.toggle("on", !e.hidden); $("box").classList.toggle("essopen", !e.hidden); boxFit(); try { localStorage.setItem("aetherion-bx-ess", e.hidden ? "0" : "1"); } catch (x) {} };
 { let pref = null; try { pref = localStorage.getItem("aetherion-bx-ess"); } catch (x) {}
   const open = pref ? pref === "1" : innerHeight > 500;              // phones start with the drawer closed (height is precious)
-  $("essBar").hidden = !open; $("bxEss").classList.toggle("on", open); }
+  $("essBar").hidden = !open; $("bxEss").classList.toggle("on", open); $("box").classList.toggle("essopen", open); }
 $("bxClr").onclick = () => { BX.q = ""; $("bxQ").value = ""; renderBoxGrid(); };
 $("boxGrid").onclick = e => {                          // one listener for the whole grid (hundreds of cards)
   if (e.target.closest("[data-reset]")) return bxReset();
